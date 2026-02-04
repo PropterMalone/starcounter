@@ -1,0 +1,38 @@
+{
+  "name": "starcounter",
+  "version": "0.1.0",
+  "description": "Bluesky thread analyzer for tallying media mentions",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/bundle.js",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint .",
+    "format": "prettier --write \"src/**/*.{ts,js}\" \"public/**/*.{html,css}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,js}\" \"public/**/*.{html,css}\"",
+    "type-check": "tsc --noEmit",
+    "validate": "npm run format:check && npm run lint && npm run type-check && npm run test:coverage"
+  },
+  "keywords": ["bluesky", "analyzer", "media", "sentiment"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chart.js": "^4.5.1",
+    "lz-string": "^1.5.0",
+    "sentiment": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/sentiment": "^5.0.4",
+    "@typescript-eslint/eslint-plugin": "^8.53.0",
+    "@vitest/coverage-v8": "^4.0.17",
+    "esbuild": "^0.27.2",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.2",
+    "jsdom": "^25.0.0",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.54.0",
+    "vitest": "^4.0.17"
+  }
+}
