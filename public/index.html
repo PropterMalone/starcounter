@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Analyze Bluesky threads and tally media mentions" />
+
+    <!-- Open Graph meta tags (for Phase 7) -->
+    <meta property="og:title" content="Starcounter - Bluesky Post Analyzer" />
+    <meta property="og:description" content="Analyze Bluesky threads and tally media mentions" />
+    <meta property="og:type" content="website" />
+
+    <title>Starcounter - Bluesky Post Analyzer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Starcounter</h1>
+      <p>Analyze Bluesky threads and tally media mentions</p>
+    </header>
+
+    <main>
+      <section id="input-section">
+        <form id="post-form">
+          <label for="post-url">Bluesky Post URL:</label>
+          <input
+            type="url"
+            id="post-url"
+            name="post-url"
+            placeholder="https://bsky.app/profile/username/post/..."
+            required
+          />
+          <button type="submit">Analyze</button>
+        </form>
+      </section>
+
+      <section id="progress-section" style="display: none;">
+        <div id="progress-bar">
+          <div id="progress-fill"></div>
+        </div>
+        <p id="progress-text">Fetching thread...</p>
+        <button id="cancel-button">Cancel</button>
+      </section>
+
+      <section id="results-section" style="display: none;">
+        <h2>Results</h2>
+        <div id="chart-container">
+          <canvas id="results-chart"></canvas>
+        </div>
+        <div id="results-table"></div>
+        <button id="share-button">Share Results</button>
+      </section>
+    </main>
+
+    <footer>
+      <p>Free and open source. No tracking. No data storage.</p>
+    </footer>
+
+    <script type="module" src="../dist/bundle.js"></script>
+  </body>
+</html>
