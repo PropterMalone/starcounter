@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { BlueskyClient } from './bluesky-client';
+import { resetRateLimiter } from './rate-limiter';
 import type {
   GetPostThreadResponse,
   GetQuotesResponse,
@@ -12,6 +13,7 @@ describe('BlueskyClient', () => {
   let fetchMock: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
+    resetRateLimiter();
     fetchMock = vi.fn();
     global.fetch = fetchMock;
     client = new BlueskyClient();
@@ -19,6 +21,7 @@ describe('BlueskyClient', () => {
 
   afterEach(() => {
     vi.restoreAllMocks();
+    resetRateLimiter();
   });
 
   describe('getPostThread', () => {
@@ -175,6 +178,106 @@ describe('BlueskyClient', () => {
       vi.useRealTimers();
     });
 
+    it('should use retry-after header when ratelimit-reset is missing', async () => {
+      // First call: 429 with retry-after but no ratelimit-reset
+      fetchMock.mockResolvedValueOnce({
+        ok: false,
+        status: 429,
+        headers: new Headers({
+          'retry-after': '1',
+        }),
+        json: async () => ({
+          error: 'RateLimitExceeded',
+          message: 'Too Many Requests',
+        }),
+      });
+
+      // Second call: success
+      fetchMock.mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        headers: new Headers({
+          'ratelimit-limit': '3000',
+          'ratelimit-remaining': '2999',
+          'ratelimit-reset': String(Math.floor(Date.now() / 1000) + 300),
+        }),
+        json: async () => ({
+          thread: {
+            post: {
+              uri: 'at://did:plc:test/app.bsky.feed.post/123',
+              cid: 'bafytest',
+              author: { did: 'did:plc:test', handle: 'test.bsky.social' },
+              record: { text: 'Test', createdAt: '2026-02-04T10:00:00.000Z' },
+              indexedAt: '2026-02-04T10:00:05.000Z',
+            },
+            replies: [],
+          },
+        }),
+      });
+
+      vi.useFakeTimers();
+      const resultPromise = client.getPostThread('at://did:plc:test/app.bsky.feed.post/123');
+
+      // Advance timers to trigger retry
+      await vi.advanceTimersByTimeAsync(1100);
+
+      const result = await resultPromise;
+
+      expect(result.ok).toBe(true);
+      expect(fetchMock).toHaveBeenCalledTimes(2);
+
+      vi.useRealTimers();
+    });
+
+    it('should use exponential backoff when no headers present', async () => {
+      // First call: 429 with no retry headers
+      fetchMock.mockResolvedValueOnce({
+        ok: false,
+        status: 429,
+        headers: new Headers(),
+        json: async () => ({
+          error: 'RateLimitExceeded',
+          message: 'Too Many Requests',
+        }),
+      });
+
+      // Second call: success
+      fetchMock.mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        headers: new Headers({
+          'ratelimit-limit': '3000',
+          'ratelimit-remaining': '2999',
+          'ratelimit-reset': String(Math.floor(Date.now() / 1000) + 300),
+        }),
+        json: async () => ({
+          thread: {
+            post: {
+              uri: 'at://did:plc:test/app.bsky.feed.post/123',
+              cid: 'bafytest',
+              author: { did: 'did:plc:test', handle: 'test.bsky.social' },
+              record: { text: 'Test', createdAt: '2026-02-04T10:00:00.000Z' },
+              indexedAt: '2026-02-04T10:00:05.000Z',
+            },
+            replies: [],
+          },
+        }),
+      });
+
+      vi.useFakeTimers();
+      const resultPromise = client.getPostThread('at://did:plc:test/app.bsky.feed.post/123');
+
+      // Exponential backoff: 2^0 = 1 second
+      await vi.advanceTimersByTimeAsync(1100);
+
+      const result = await resultPromise;
+
+      expect(result.ok).toBe(true);
+      expect(fetchMock).toHaveBeenCalledTimes(2);
+
+      vi.useRealTimers();
+    });
+
     it('should pass depth parameter', async () => {
       fetchMock.mockResolvedValueOnce({
         ok: true,
@@ -200,6 +303,13 @@ describe('BlueskyClient', () => {
         expect.stringContaining('depth=10'),
         expect.any(Object)
       );
+    });
+  });
+
+  describe('getLastRateLimitInfo', () => {
+    it('should return null when no request has been made', () => {
+      const info = client.getLastRateLimitInfo();
+      expect(info).toBeNull();
     });
   });
 
@@ -299,6 +409,142 @@ describe('BlueskyClient', () => {
       expect(rateLimitInfo?.remaining).toBe(2500);
       expect(rateLimitInfo?.reset).toBe(1737633541);
       expect(rateLimitInfo?.policy).toBe('3000;w=300');
+    });
+
+    it('should handle missing rate limit headers', async () => {
+      fetchMock.mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        headers: new Headers(),
+        json: async () => ({
+          thread: {
+            post: {
+              uri: 'at://did:plc:test/app.bsky.feed.post/123',
+              cid: 'bafytest',
+              author: { did: 'did:plc:test', handle: 'test.bsky.social' },
+              record: { text: 'Test', createdAt: '2026-02-04T10:00:00.000Z' },
+              indexedAt: '2026-02-04T10:00:05.000Z',
+            },
+            replies: [],
+          },
+        }),
+      });
+
+      const result = await client.getPostThread('at://did:plc:test/app.bsky.feed.post/123');
+
+      expect(result.ok).toBe(true);
+
+      const rateLimitInfo = client.getLastRateLimitInfo();
+      expect(rateLimitInfo).toBeNull();
+    });
+  });
+
+  describe('error handling', () => {
+    it('should handle network errors', async () => {
+      fetchMock.mockRejectedValueOnce(new Error('Network failure'));
+
+      const result = await client.getPostThread('at://did:plc:test/app.bsky.feed.post/123');
+
+      expect(result.ok).toBe(false);
+      if (!result.ok) {
+        expect(result.error.message).toContain('Network failure');
+      }
+    });
+
+    it('should handle malformed JSON response', async () => {
+      fetchMock.mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        headers: new Headers(),
+        json: async () => {
+          throw new Error('Invalid JSON');
+        },
+      });
+
+      const result = await client.getPostThread('at://did:plc:test/app.bsky.feed.post/123');
+
+      expect(result.ok).toBe(false);
+      if (!result.ok) {
+        expect(result.error.message).toContain('Invalid JSON');
+      }
+    });
+
+    it('should handle non-Error thrown values', async () => {
+      fetchMock.mockRejectedValueOnce('String error');
+
+      const result = await client.getPostThread('at://did:plc:test/app.bsky.feed.post/123');
+
+      expect(result.ok).toBe(false);
+      if (!result.ok) {
+        expect(result.error.message).toBe('String error');
+      }
+    });
+
+    it('should handle error response without message field', async () => {
+      fetchMock.mockResolvedValueOnce({
+        ok: false,
+        status: 500,
+        statusText: 'Internal Server Error',
+        headers: new Headers(),
+        json: async () => ({}),
+      });
+
+      const result = await client.getPostThread('at://did:plc:test/app.bsky.feed.post/123');
+
+      expect(result.ok).toBe(false);
+      if (!result.ok) {
+        expect(result.error.message).toContain('HTTP 500');
+      }
+    });
+
+    it('should handle error response with unparseable JSON', async () => {
+      fetchMock.mockResolvedValueOnce({
+        ok: false,
+        status: 500,
+        statusText: 'Internal Server Error',
+        headers: new Headers(),
+        json: async () => {
+          throw new Error('Malformed JSON in error response');
+        },
+      });
+
+      const result = await client.getPostThread('at://did:plc:test/app.bsky.feed.post/123');
+
+      expect(result.ok).toBe(false);
+      if (!result.ok) {
+        expect(result.error.message).toContain('HTTP 500');
+      }
+    });
+
+    it('should handle partial rate limit headers', async () => {
+      // Test case: only have limit and remaining, missing reset
+      fetchMock.mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        headers: new Headers({
+          'ratelimit-limit': '3000',
+          'ratelimit-remaining': '2500',
+        }),
+        json: async () => ({
+          thread: {
+            post: {
+              uri: 'at://did:plc:test/app.bsky.feed.post/123',
+              cid: 'bafytest',
+              author: { did: 'did:plc:test', handle: 'test.bsky.social' },
+              record: { text: 'Test', createdAt: '2026-02-04T10:00:00.000Z' },
+              indexedAt: '2026-02-04T10:00:05.000Z',
+            },
+            replies: [],
+          },
+        }),
+      });
+
+      const result = await client.getPostThread('at://did:plc:test/app.bsky.feed.post/123');
+
+      expect(result.ok).toBe(true);
+
+      const rateLimitInfo = client.getLastRateLimitInfo();
+      expect(rateLimitInfo).toBeNull();
     });
   });
 });
