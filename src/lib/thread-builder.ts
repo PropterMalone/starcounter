@@ -1,3 +1,4 @@
+// pattern: Functional Core
 import type { ThreadViewPost, PostView, NotFoundPost, BlockedPost, Did } from '../types';
 
 /**
@@ -12,11 +13,11 @@ function isPostView(node: ThreadViewPost | NotFoundPost | BlockedPost): node is 
  */
 export interface ThreadTree {
   post: PostView;
-  branches: ThreadTree[];
-  allPosts: PostView[];
+  branches: Array<ThreadTree>;
+  allPosts: Array<PostView>;
   getParent(uri: string): string | null;
-  getBranchAuthors(uri: string): Did[];
-  flattenPosts(): PostView[];
+  getBranchAuthors(uri: string): Array<Did>;
+  flattenPosts(): Array<PostView>;
 }
 
 /**
@@ -24,7 +25,7 @@ export interface ThreadTree {
  */
 interface TreeNode {
   post: PostView;
-  branches: ThreadTree[];
+  branches: Array<ThreadTree>;
 }
 
 /**
@@ -33,7 +34,7 @@ interface TreeNode {
  */
 export class ThreadBuilder {
   private parentMap: Map<string, string> = new Map();
-  private allPostsList: PostView[] = [];
+  private allPostsList: Array<PostView> = [];
 
   /**
    * Build tree from ThreadViewPost response
@@ -102,8 +103,8 @@ export class ThreadBuilder {
   /**
    * Collect all author DIDs in a branch (from post up to root)
    */
-  private collectBranchAuthors(uri: string): Did[] {
-    const authors: Did[] = [];
+  private collectBranchAuthors(uri: string): Array<Did> {
+    const authors: Array<Did> = [];
     const seen = new Set<Did>();
 
     // Walk up to root
@@ -123,8 +124,11 @@ export class ThreadBuilder {
   /**
    * Flatten tree to post list (depth-first)
    */
-  private flattenPostsRecursive(tree: { post: PostView; branches: ThreadTree[] }): PostView[] {
-    const posts: PostView[] = [tree.post];
+  private flattenPostsRecursive(tree: {
+    post: PostView;
+    branches: Array<ThreadTree>;
+  }): Array<PostView> {
+    const posts: Array<PostView> = [tree.post];
 
     for (const branch of tree.branches) {
       posts.push(...this.flattenPostsRecursive(branch));

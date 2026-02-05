@@ -1,9 +1,12 @@
-export enum MediaType {
-  MOVIE = 'MOVIE',
-  TV_SHOW = 'TV_SHOW',
-  MUSIC = 'MUSIC',
-  UNKNOWN = 'UNKNOWN',
-}
+// pattern: Functional Core
+export type MediaType = 'MOVIE' | 'TV_SHOW' | 'MUSIC' | 'UNKNOWN';
+
+export const MediaType = {
+  MOVIE: 'MOVIE' as const,
+  TV_SHOW: 'TV_SHOW' as const,
+  MUSIC: 'MUSIC' as const,
+  UNKNOWN: 'UNKNOWN' as const,
+};
 
 export type MediaMention = {
   readonly title: string;
