@@ -1,0 +1,127 @@
+import type { ThreadViewPost, PostView, NotFoundPost, BlockedPost, Did } from '../types';
+
+/**
+ * Check if node is a valid post (not NotFound or Blocked)
+ */
+function isPostView(
+  node: ThreadViewPost | NotFoundPost | BlockedPost
+): node is ThreadViewPost {
+  return 'post' in node && !('notFound' in node) && !('blocked' in node);
+}
+
+/**
+ * Thread tree structure with parent/child relationships
+ */
+export interface ThreadTree {
+  post: PostView;
+  branches: ThreadTree[];
+  allPosts: PostView[];
+  getParent(uri: string): string | null;
+  getBranchAuthors(uri: string): Did[];
+  flattenPosts(): PostView[];
+}
+
+/**
+ * Builds thread tree structure from flat post list
+ * Identifies branches and parent/child relationships
+ */
+export class ThreadBuilder {
+  private parentMap: Map<string, string> = new Map();
+  private allPostsList: PostView[] = [];
+
+  /**
+   * Build tree from ThreadViewPost response
+   * Filters out NotFoundPost and BlockedPost nodes
+   */
+  buildTree(root: ThreadViewPost | NotFoundPost | BlockedPost): ThreadTree {
+    this.parentMap = new Map();
+    this.allPostsList = [];
+
+    // Handle NotFound/Blocked root
+    if (!isPostView(root)) {
+      throw new Error('Root post is not available (deleted or blocked)');
+    }
+
+    const tree = this.buildTreeRecursive(root);
+
+    return {
+      ...tree,
+      allPosts: this.allPostsList,
+      getParent: (uri: string) => this.parentMap.get(uri) ?? null,
+      getBranchAuthors: (uri: string) => this.collectBranchAuthors(uri),
+      flattenPosts: () => this.flattenPostsRecursive(tree),
+    };
+  }
+
+  /**
+   * Recursive tree builder
+   */
+  private buildTreeRecursive(node: ThreadViewPost): { post: PostView; branches: ThreadTree[] } {
+    const post = node.post;
+
+    // Add to flat list
+    this.allPostsList.push(post);
+
+    // Track parent relationship
+    if (post.record.reply?.parent) {
+      this.parentMap.set(post.uri, post.record.reply.parent.uri);
+    }
+
+    // Build child branches
+    const branches: ThreadTree[] = [];
+
+    if (node.replies) {
+      for (const reply of node.replies) {
+        // Skip NotFound and Blocked posts
+        if (!isPostView(reply)) {
+          continue;
+        }
+
+        const childTree = this.buildTreeRecursive(reply);
+        branches.push({
+          ...childTree,
+          allPosts: this.allPostsList,
+          getParent: (uri: string) => this.parentMap.get(uri) ?? null,
+          getBranchAuthors: (uri: string) => this.collectBranchAuthors(uri),
+          flattenPosts: () => this.flattenPostsRecursive(childTree),
+        });
+      }
+    }
+
+    return { post, branches };
+  }
+
+  /**
+   * Collect all author DIDs in a branch (from post up to root)
+   */
+  private collectBranchAuthors(uri: string): Did[] {
+    const authors: Did[] = [];
+    const seen = new Set<Did>();
+
+    // Walk up to root
+    let currentUri: string | null = uri;
+    while (currentUri) {
+      const post = this.allPostsList.find((p) => p.uri === currentUri);
+      if (post && !seen.has(post.author.did)) {
+        authors.push(post.author.did);
+        seen.add(post.author.did);
+      }
+      currentUri = this.parentMap.get(currentUri) ?? null;
+    }
+
+    return authors;
+  }
+
+  /**
+   * Flatten tree to post list (depth-first)
+   */
+  private flattenPostsRecursive(tree: { post: PostView; branches: ThreadTree[] }): PostView[] {
+    const posts: PostView[] = [tree.post];
+
+    for (const branch of tree.branches) {
+      posts.push(...this.flattenPostsRecursive(branch));
+    }
+
+    return posts;
+  }
+}
