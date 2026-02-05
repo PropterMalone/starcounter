@@ -1,7 +1,15 @@
 import { BlueskyClient } from './api';
 import { ThreadBuilder, MentionExtractor, MentionCounter, decodeResults } from './lib';
 import { ProgressTracker } from './lib/progress-tracker';
-import { InputForm, ProgressBar, ResultsChart, DrillDownModal, ShareButton } from './components';
+import { createSentimentAnalyzer } from './lib/sentiment-factory';
+import {
+  InputForm,
+  ProgressBar,
+  ResultsChart,
+  DrillDownModal,
+  ShareButton,
+  AdvancedToggle,
+} from './components';
 import type { MentionCount, PostView } from './types';
 
 /**
@@ -21,8 +29,10 @@ class StarcounterApp {
   private resultsChart: ResultsChart;
   private drillDownModal: DrillDownModal;
   private shareButton: ShareButton;
+  private advancedToggle: AdvancedToggle;
 
   private abortController: AbortController | null = null;
+  private useAdvancedSentiment = false;
 
   constructor() {
     // Initialize backend services
@@ -64,6 +74,17 @@ class StarcounterApp {
       document.getElementById('share-feedback') as HTMLElement,
       document.getElementById('share-feedback-text') as HTMLElement
     );
+
+    this.advancedToggle = new AdvancedToggle(
+      document.getElementById('advanced-mode') as HTMLInputElement,
+      document.getElementById('advanced-status') as HTMLSpanElement
+    );
+
+    // Track advanced mode state
+    this.useAdvancedSentiment = this.advancedToggle.isEnabled();
+    this.advancedToggle.onChange((enabled) => {
+      this.useAdvancedSentiment = enabled;
+    });
 
     this.attachEventListeners();
     this.checkForSharedResults();
@@ -166,10 +187,14 @@ class StarcounterApp {
         this.mentionExtractor.extractMentions(post.record.text)
       );
 
-      // Stage 3: Count mentions
+      // Stage 3: Count mentions (with appropriate sentiment analyzer)
       this.progressTracker.emit('counting', {});
 
-      const countMap = this.counter.countMentions(mentions, allPosts, tree);
+      // Set the appropriate sentiment analyzer based on user preference
+      const analyzer = createSentimentAnalyzer(this.useAdvancedSentiment);
+      this.counter.setSentimentAnalyzer(analyzer);
+
+      const countMap = await this.counter.countMentions(mentions, allPosts, tree);
       const mentionCounts = this.buildMentionCounts(countMap, allPosts);
 
       // Stage 4: Validate mentions (optional - could skip for faster results)
