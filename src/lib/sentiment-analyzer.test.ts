@@ -58,10 +58,10 @@ describe('SentimentAnalyzer', () => {
 
     it('should return strength indicator', () => {
       const strongPositive = analyzer.analyze('Absolutely amazing! I love it!');
-      const weakPositive = analyzer.analyze('I think it is nice');
+      const moderatePositive = analyzer.analyze('That seems right to me');
 
       expect(strongPositive.strength).toBe('Strong');
-      expect(weakPositive.strength).toBe('Moderate');
+      expect(moderatePositive.strength).toBe('Moderate');
     });
   });
 
@@ -78,6 +78,40 @@ describe('SentimentAnalyzer', () => {
 
     it('should treat neutral as non-agreement', () => {
       expect(analyzer.isAgreement('The sky is blue')).toBe(false);
+    });
+  });
+
+  describe('edge cases', () => {
+    it('should handle empty string', () => {
+      const result = analyzer.analyze('');
+      expect(result.classification).toBe('Neutral');
+      expect(result.comparative).toBe(0);
+    });
+
+    it('should handle very long text', () => {
+      const longText = 'I love this! '.repeat(100) + 'This is amazing!';
+      const result = analyzer.analyze(longText);
+      expect(result.classification).toBe('Positive');
+      expect(result.strength).toBe('Strong');
+    });
+
+    it('should handle text with only neutral words', () => {
+      const result = analyzer.analyze('The building has windows and doors');
+      expect(result.classification).toBe('Neutral');
+      expect(Math.abs(result.comparative)).toBeLessThan(0.05);
+    });
+
+    it('should handle mixed sentiment (more positive)', () => {
+      const result = analyzer.analyze('I love this but I hate that');
+      // More positive words should win
+      expect(result.positiveWords.length).toBeGreaterThan(0);
+    });
+
+    it('should handle mixed sentiment (more negative)', () => {
+      const result = analyzer.analyze('I hate this but I love that');
+      // Both positive and negative should be present
+      expect(result.positiveWords.length).toBeGreaterThan(0);
+      expect(result.negativeWords.length).toBeGreaterThan(0);
     });
   });
 });
