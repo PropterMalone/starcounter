@@ -3,3 +3,7 @@ node_modules/
 dist/
 coverage/
 .env
+
+# Cloudflare Workers
+.wrangler/
+wrangler.toml.bak
