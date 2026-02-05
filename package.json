@@ -8,12 +8,17 @@
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint .",
-    "format": "prettier --write \"src/**/*.{ts,js}\" \"public/**/*.{html,css}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,js}\" \"public/**/*.{html,css}\"",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "type-check": "tsc --noEmit",
     "validate": "npm run format:check && npm run lint && npm run type-check && npm run test:coverage"
   },
-  "keywords": ["bluesky", "analyzer", "media", "sentiment"],
+  "keywords": [
+    "bluesky",
+    "analyzer",
+    "media",
+    "sentiment"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
