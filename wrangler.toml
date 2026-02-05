@@ -1,0 +1,19 @@
+name = "starcounter-validation"
+main = "functions/api/validate.ts"
+compatibility_date = "2024-01-01"
+
+[env.production]
+name = "starcounter-validation-prod"
+
+[env.development]
+name = "starcounter-validation-dev"
+
+# Environment variables (set via Cloudflare dashboard or wrangler secret)
+# TMDB_API_KEY - TMDB Bearer token
+# MUSICBRAINZ_USER_AGENT - User-Agent string for MusicBrainz
+
+# KV namespace for caching (create via: wrangler kv:namespace create "VALIDATION_CACHE")
+[[kv_namespaces]]
+binding = "VALIDATION_CACHE"
+id = "placeholder_id" # Replace with actual KV namespace ID
+preview_id = "placeholder_preview_id" # Replace with preview namespace ID
