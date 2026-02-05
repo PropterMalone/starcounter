@@ -1,12 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { BlueskyClient } from './bluesky-client';
 import { resetRateLimiter } from './rate-limiter';
-import type {
-  GetPostThreadResponse,
-  GetQuotesResponse,
-  ThreadViewPost,
-  PostView,
-} from '../types';
+import type { GetPostThreadResponse, GetQuotesResponse, ThreadViewPost, PostView } from '../types';
 
 describe('BlueskyClient', () => {
   let client: BlueskyClient;

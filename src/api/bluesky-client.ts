@@ -56,10 +56,7 @@ export class BlueskyClient {
    * @param uri - AT-URI of the post
    * @param options - Pagination cursor, limit, and retry configuration
    */
-  async getQuotes(
-    uri: AtUri,
-    options: GetQuotesOptions = {}
-  ): Promise<Result<GetQuotesResponse>> {
+  async getQuotes(uri: AtUri, options: GetQuotesOptions = {}): Promise<Result<GetQuotesResponse>> {
     const { cursor, limit = 50, maxRetries = 3 } = options;
 
     const params = new URLSearchParams({
@@ -135,9 +132,7 @@ export class BlueskyClient {
         const errorData = await response.json().catch(() => ({}));
         return {
           ok: false,
-          error: new Error(
-            errorData.message || `HTTP ${response.status}: ${response.statusText}`
-          ),
+          error: new Error(errorData.message || `HTTP ${response.status}: ${response.statusText}`),
         };
       }
 
