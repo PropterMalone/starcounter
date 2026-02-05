@@ -1,13 +1,19 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { ValidationClient } from './validation-client';
+import type { ValidationProgress } from './validation-client';
 import type { MediaMention } from './mention-extractor';
 import { MediaType } from './mention-extractor';
 
-global.fetch = vi.fn();
-
 describe('ValidationClient', () => {
+  let fetchMock: ReturnType<typeof vi.fn>;
+
   beforeEach(() => {
-    vi.clearAllMocks();
+    fetchMock = vi.fn();
+    global.fetch = fetchMock as unknown as typeof global.fetch;
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   it('should validate mentions with progress reporting', async () => {
@@ -26,12 +32,12 @@ describe('ValidationClient', () => {
       },
     ];
 
-    (global.fetch as any).mockResolvedValue({
+    fetchMock.mockResolvedValue({
       ok: true,
       json: async () => ({ validated: true, confidence: 'high', title: 'The Matrix' }),
     });
 
-    const progressUpdates: any[] = [];
+    const progressUpdates: ValidationProgress[] = [];
     const client = new ValidationClient({
       apiUrl: 'http://test.com/api/validate',
       onProgress: (progress) => progressUpdates.push(progress),
@@ -54,7 +60,7 @@ describe('ValidationClient', () => {
         confidence: 'high',
       }));
 
-    (global.fetch as any).mockResolvedValue({
+    fetchMock.mockResolvedValue({
       ok: true,
       json: async () => ({ validated: true, confidence: 'high' }),
     });
@@ -68,7 +74,7 @@ describe('ValidationClient', () => {
     await client.validateMentions(mentions);
 
     // Should make 25 fetch calls (not batched at API level, but delayed)
-    expect((global.fetch as any).mock.calls.length).toBe(25);
+    expect(fetchMock.mock.calls.length).toBe(25);
   });
 
   it('should handle validation errors gracefully', async () => {
@@ -81,7 +87,7 @@ describe('ValidationClient', () => {
       },
     ];
 
-    (global.fetch as any).mockResolvedValue({
+    fetchMock.mockResolvedValue({
       ok: false,
       status: 500,
     });
@@ -107,7 +113,7 @@ describe('ValidationClient', () => {
       },
     ];
 
-    (global.fetch as any).mockResolvedValue({
+    fetchMock.mockResolvedValue({
       ok: true,
       json: async () => ({
         validated: true,
@@ -141,7 +147,7 @@ describe('ValidationClient', () => {
       },
     ];
 
-    (global.fetch as any).mockRejectedValue(new Error('Network error'));
+    fetchMock.mockRejectedValue(new Error('Network error'));
 
     const client = new ValidationClient({
       apiUrl: 'http://test.com/api/validate',
@@ -176,12 +182,12 @@ describe('ValidationClient', () => {
       },
     ];
 
-    (global.fetch as any).mockResolvedValue({
+    fetchMock.mockResolvedValue({
       ok: true,
       json: async () => ({ validated: true, confidence: 'high' }),
     });
 
-    const progressUpdates: any[] = [];
+    const progressUpdates: ValidationProgress[] = [];
     const client = new ValidationClient({
       apiUrl: 'http://test.com/api/validate',
       batchSize: 2,
@@ -208,7 +214,7 @@ describe('ValidationClient', () => {
       },
     ];
 
-    (global.fetch as any).mockResolvedValue({
+    fetchMock.mockResolvedValue({
       ok: true,
       json: async () => ({
         validated: true,

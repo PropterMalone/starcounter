@@ -7,3 +7,10 @@ export { SentimentAnalyzer } from './sentiment-analyzer';
 export type { SentimentResult } from './sentiment-analyzer';
 export { MentionCounter } from './counter';
 export type { MentionCount } from './counter';
+export { ValidationClient } from './validation-client';
+export type {
+  ValidationProgress,
+  ValidationClientOptions,
+  ValidationResponse,
+  ValidatedMention,
+} from './validation-client';
