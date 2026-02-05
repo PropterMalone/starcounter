@@ -1,49 +1,50 @@
+// pattern: Imperative Shell
 import type { MediaType } from '../../src/lib/mention-extractor';
 
-interface TMDBResult {
-  id?: number;
-  title?: string;
-  name?: string;
-  release_date?: string;
-  first_air_date?: string;
-  vote_average?: number;
-  vote_count?: number;
-  popularity?: number;
-}
+type TMDBResult = {
+  readonly id?: number;
+  readonly title?: string;
+  readonly name?: string;
+  readonly release_date?: string;
+  readonly first_air_date?: string;
+  readonly vote_average?: number;
+  readonly vote_count?: number;
+  readonly popularity?: number;
+};
 
-interface MusicBrainzResult {
-  id?: string;
-  title?: string;
-  score?: number;
-  'artist-credit'?: Array<{ name: string }>;
-}
+type MusicBrainzResult = {
+  readonly id?: string;
+  readonly title?: string;
+  readonly score?: number;
+  readonly 'artist-credit'?: Array<{ readonly name: string }>;
+};
 
-interface CloudflareEnv {
-  TMDB_API_KEY: string;
-  MUSICBRAINZ_USER_AGENT: string;
-  VALIDATION_CACHE?: KVNamespace;
-}
+type CloudflareEnv = {
+  readonly TMDB_API_KEY: string;
+  readonly MUSICBRAINZ_USER_AGENT: string;
+  readonly VALIDATION_CACHE?: KVNamespace;
+};
 
-export interface ValidationOptions {
-  tmdbApiKey: string;
-  musicbrainzUserAgent: string;
-  cache?: KVNamespace; // Cloudflare KV for caching
-}
+export type ValidationOptions = {
+  readonly tmdbApiKey: string;
+  readonly musicbrainzUserAgent: string;
+  readonly cache?: KVNamespace; // Cloudflare KV for caching
+};
 
-export interface ValidationResult {
-  title: string;
-  validated: boolean;
-  confidence: 'high' | 'medium' | 'low';
-  source?: 'tmdb' | 'musicbrainz';
-  artist?: string; // For music
-  metadata?: {
-    id?: string | number;
-    releaseDate?: string;
-    voteAverage?: number;
-    popularity?: number;
+export type ValidationResult = {
+  readonly title: string;
+  readonly validated: boolean;
+  readonly confidence: 'high' | 'medium' | 'low';
+  readonly source?: 'tmdb' | 'musicbrainz';
+  readonly artist?: string; // For music
+  readonly metadata?: {
+    readonly id?: string | number;
+    readonly releaseDate?: string;
+    readonly voteAverage?: number;
+    readonly popularity?: number;
   };
-  error?: string;
-}
+  readonly error?: string;
+};
 
 const CACHE_TTL = 15 * 60; // 15 minutes in seconds
 

@@ -1,3 +1,4 @@
+// pattern: Imperative Shell
 import type { MediaMention } from './mention-extractor';
 
 export type ValidatedMention = MediaMention & {
@@ -6,27 +7,27 @@ export type ValidatedMention = MediaMention & {
   validatedTitle?: string;
 };
 
-export interface ValidationProgress {
-  total: number;
-  completed: number;
-  currentTitle: string;
-}
+export type ValidationProgress = {
+  readonly total: number;
+  readonly completed: number;
+  readonly currentTitle: string;
+};
 
-export interface ValidationClientOptions {
-  apiUrl: string;
-  onProgress?: (progress: ValidationProgress) => void;
-  batchSize?: number;
-  batchDelayMs?: number;
-}
+export type ValidationClientOptions = {
+  readonly apiUrl: string;
+  readonly onProgress?: (progress: ValidationProgress) => void;
+  readonly batchSize?: number;
+  readonly batchDelayMs?: number;
+};
 
-export interface ValidationResponse {
-  validated: boolean;
-  confidence: 'high' | 'medium' | 'low';
-  title: string;
-  artist?: string;
-  source?: 'tmdb' | 'musicbrainz';
-  metadata?: Record<string, unknown>;
-}
+export type ValidationResponse = {
+  readonly validated: boolean;
+  readonly confidence: 'high' | 'medium' | 'low';
+  readonly title: string;
+  readonly artist?: string;
+  readonly source?: 'tmdb' | 'musicbrainz';
+  readonly metadata?: Record<string, unknown>;
+};
 
 /**
  * Client-side wrapper for validation API
