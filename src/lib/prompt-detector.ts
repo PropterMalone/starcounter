@@ -1,3 +1,4 @@
+// pattern: Functional Core
 export { MediaType } from './mention-extractor';
 export type { MediaMention } from './mention-extractor';
 
