@@ -1,5 +1,5 @@
 // pattern: Functional Core
-import Sentiment = require('sentiment');
+import Sentiment from 'sentiment';
 
 export interface SentimentResult {
   score: number;
