@@ -15,15 +15,7 @@ export type MediaMention = {
 };
 
 const MOVIE_KEYWORDS = ['watched', 'saw', 'film', 'cinema', 'theater', 'theatre', 'movie'];
-const TV_KEYWORDS = [
-  'watching',
-  'episode',
-  'season',
-  'series',
-  'binge',
-  'show',
-  'tv',
-];
+const TV_KEYWORDS = ['watching', 'episode', 'season', 'series', 'binge', 'show', 'tv'];
 const MUSIC_KEYWORDS = [
   'listening',
   'heard',
@@ -52,11 +44,46 @@ const NOISE_WORDS = new Set([
 
 // Common English words to skip as single-word matches
 const COMMON_WORDS = new Set([
-  'have', 'has', 'had', 'do', 'does', 'did', 'be', 'is', 'are', 'was', 'were',
-  'can', 'could', 'would', 'should', 'may', 'might', 'must', 'shall',
-  'the', 'a', 'an', 'and', 'or', 'but', 'if', 'in', 'on', 'at', 'to', 'for',
-  'art', 'where', 'thou', 'thee', 'thy', 'thine', // archaic/poetic
-  'brother', 'o', 'movie', // common words that shouldn't be standalone mentions
+  'have',
+  'has',
+  'had',
+  'do',
+  'does',
+  'did',
+  'be',
+  'is',
+  'are',
+  'was',
+  'were',
+  'can',
+  'could',
+  'would',
+  'should',
+  'may',
+  'might',
+  'must',
+  'shall',
+  'the',
+  'a',
+  'an',
+  'and',
+  'or',
+  'but',
+  'if',
+  'in',
+  'on',
+  'at',
+  'to',
+  'for',
+  'art',
+  'where',
+  'thou',
+  'thee',
+  'thy',
+  'thine', // archaic/poetic
+  'brother',
+  'o',
+  'movie', // common words that shouldn't be standalone mentions
 ]);
 
 /**
@@ -90,7 +117,10 @@ export class MentionExtractor {
 
       // Check if this is a substring of another mention (avoid duplicates like "Where Art Thou" vs "O Brother, Where Art Thou")
       for (const existing of seen) {
-        if (existing.includes(mention.normalizedTitle) || mention.normalizedTitle.includes(existing)) {
+        if (
+          existing.includes(mention.normalizedTitle) ||
+          mention.normalizedTitle.includes(existing)
+        ) {
           return false;
         }
       }
@@ -107,7 +137,8 @@ export class MentionExtractor {
     const articles = ['the', 'a', 'an'];
     const words = title.toLowerCase().split(/\s+/);
 
-    if (words.length > 1 && articles.includes(words[0])) {
+    const firstWord = words[0];
+    if (words.length > 1 && firstWord && articles.includes(firstWord)) {
       return words.slice(1).join(' ');
     }
 
@@ -125,7 +156,11 @@ export class MentionExtractor {
     let match;
 
     while ((match = quotedPattern.exec(text)) !== null) {
-      const title = match[1].trim();
+      const capturedTitle = match[1];
+      if (!capturedTitle) {
+        continue;
+      }
+      const title = capturedTitle.trim();
 
       // Validate title
       if (!this.isValidTitle(title)) {
@@ -141,7 +176,8 @@ export class MentionExtractor {
       const mediaType = defaultMediaType ?? this.classifyFromContext(context);
 
       // Extract artist for music
-      const artist = mediaType === MediaType.MUSIC ? this.extractArtist(text, match.index) : undefined;
+      const artist =
+        mediaType === MediaType.MUSIC ? this.extractArtist(text, match.index) : undefined;
 
       mentions.push({
         title,
@@ -164,7 +200,8 @@ export class MentionExtractor {
 
     // Regex: 1+ consecutive capitalized words (with numbers allowed)
     // Single words must be 2+ chars, multi-word sequences can be any length
-    const titleCasePattern = /\b(?:[A-Z][a-z]+|\d+)(?:\s+(?:[A-Z][a-z]+|\d+))*|\b[A-Z]{2,}(?:\s+[A-Z]{2,})*/g;
+    const titleCasePattern =
+      /\b(?:[A-Z][a-z]+|\d+)(?:\s+(?:[A-Z][a-z]+|\d+))*|\b[A-Z]{2,}(?:\s+[A-Z]{2,})*/g;
     let match;
 
     while ((match = titleCasePattern.exec(text)) !== null) {
@@ -235,10 +272,14 @@ export class MentionExtractor {
   private extractArtist(text: string, titlePosition: number): string | undefined {
     // Look for " by Artist" pattern after the title
     const afterTitle = text.slice(titlePosition);
-    const artistPattern = /by\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*(?:\s+(?:feat\.|featuring|ft\.|with)\s+.+)?)/;
+    const artistPattern =
+      /by\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*(?:\s+(?:feat\.|featuring|ft\.|with)\s+.+)?)/;
     const match = artistPattern.exec(afterTitle);
 
-    return match ? match[1].trim() : undefined;
+    if (!match || !match[1]) {
+      return undefined;
+    }
+    return match[1].trim();
   }
 
   /**
