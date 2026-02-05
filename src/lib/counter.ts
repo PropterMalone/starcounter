@@ -1,5 +1,6 @@
 // pattern: Functional Core
-import type { PostView, ThreadTree, Did } from '../types';
+import type { PostView, Did } from '../types';
+import type { ThreadTree } from './thread-builder';
 import type { MediaMention } from './mention-extractor';
 import { SentimentAnalyzer } from './sentiment-analyzer';
 
@@ -66,7 +67,7 @@ export class MentionCounter {
         const parent = tree.getParent(post.uri);
         if (parent) {
           // Get parent post
-          const parentPost = tree.allPosts.find((p) => p.uri === parent);
+          const parentPost = tree.allPosts.find((p: PostView) => p.uri === parent);
           if (parentPost) {
             const parentMentions = this.extractMentionsFromPost(parentPost, mentions);
             const parentHasMention = parentMentions.some((m) => m.normalizedTitle === normalized);
