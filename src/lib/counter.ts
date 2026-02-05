@@ -2,7 +2,7 @@
 import type { PostView, Did } from '../types';
 import type { ThreadTree } from './thread-builder';
 import type { MediaMention } from './mention-extractor';
-import { SentimentAnalyzer } from './sentiment-analyzer';
+import { SentimentAnalyzer, type SentimentResult } from './sentiment-analyzer';
 
 export interface MentionCount {
   title: string;
@@ -11,13 +11,28 @@ export interface MentionCount {
 }
 
 /**
+ * Interface for sentiment analyzers (supports both sync and async)
+ */
+export type SentimentAnalyzerLike = {
+  analyze(text: string): SentimentResult | Promise<SentimentResult>;
+  isAgreement(text: string): boolean | Promise<boolean>;
+};
+
+/**
  * Smart mention counter with thread-awareness and sentiment analysis
  */
 export class MentionCounter {
-  private sentimentAnalyzer: SentimentAnalyzer;
+  private sentimentAnalyzer: SentimentAnalyzerLike;
 
-  constructor() {
-    this.sentimentAnalyzer = new SentimentAnalyzer();
+  constructor(sentimentAnalyzer?: SentimentAnalyzerLike) {
+    this.sentimentAnalyzer = sentimentAnalyzer ?? new SentimentAnalyzer();
+  }
+
+  /**
+   * Set the sentiment analyzer (for switching between basic and advanced)
+   */
+  setSentimentAnalyzer(analyzer: SentimentAnalyzerLike): void {
+    this.sentimentAnalyzer = analyzer;
   }
 
   /**
@@ -27,12 +42,14 @@ export class MentionCounter {
    * - Disagreement replies: +0
    * - Same author re-mention in branch: +0
    * - Separate branches: independent counting
+   *
+   * Note: This method is async to support both sync and async sentiment analyzers.
    */
-  countMentions(
+  async countMentions(
     mentions: MediaMention[],
     posts: PostView[],
     tree: ThreadTree
-  ): Map<string, number> {
+  ): Promise<Map<string, number>> {
     const counts = new Map<string, number>();
 
     // Track which authors have mentioned each title in each branch
@@ -74,7 +91,8 @@ export class MentionCounter {
 
             if (parentHasMention) {
               // Parent mentioned it, check sentiment of current post
-              const isAgreement = this.sentimentAnalyzer.isAgreement(post.record.text);
+              // Await to support both sync and async analyzers
+              const isAgreement = await this.sentimentAnalyzer.isAgreement(post.record.text);
 
               if (!isAgreement) {
                 // Disagreement → don't count

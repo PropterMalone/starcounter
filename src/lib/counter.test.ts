@@ -15,7 +15,7 @@ describe('MentionCounter', () => {
   });
 
   describe('countMentions', () => {
-    it('should count novel mentions', () => {
+    it('should count novel mentions', async () => {
       const mentions: MediaMention[] = [
         {
           title: 'The Matrix',
@@ -33,12 +33,12 @@ describe('MentionCounter', () => {
         getBranchAuthors: () => ['user1'],
       };
 
-      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+      const counts = await counter.countMentions(mentions, posts, tree as ThreadTree);
 
       expect(counts.get('matrix')).toBe(1);
     });
 
-    it('should count agreement replies', () => {
+    it('should count agreement replies', async () => {
       const mentions: MediaMention[] = [
         {
           title: 'The Matrix',
@@ -59,12 +59,12 @@ describe('MentionCounter', () => {
         getBranchAuthors: (uri) => (uri === 'post2' ? ['user1', 'user2'] : ['user1']),
       };
 
-      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+      const counts = await counter.countMentions(mentions, posts, tree as ThreadTree);
 
       expect(counts.get('matrix')).toBe(2); // Original + agreement
     });
 
-    it('should not count disagreement replies', () => {
+    it('should not count disagreement replies', async () => {
       const mentions: MediaMention[] = [
         {
           title: 'The Matrix',
@@ -85,12 +85,12 @@ describe('MentionCounter', () => {
         getBranchAuthors: (uri) => (uri === 'post2' ? ['user1', 'user2'] : ['user1']),
       };
 
-      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+      const counts = await counter.countMentions(mentions, posts, tree as ThreadTree);
 
       expect(counts.get('matrix')).toBe(1); // Only original, disagreement not counted
     });
 
-    it('should not count same author re-mentions in same branch', () => {
+    it('should not count same author re-mentions in same branch', async () => {
       const mentions: MediaMention[] = [
         {
           title: 'The Matrix',
@@ -111,12 +111,12 @@ describe('MentionCounter', () => {
         getBranchAuthors: (_uri) => ['user1'],
       };
 
-      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+      const counts = await counter.countMentions(mentions, posts, tree as ThreadTree);
 
       expect(counts.get('matrix')).toBe(1); // Same author, same branch
     });
 
-    it('should count separately across different branches', () => {
+    it('should count separately across different branches', async () => {
       const mentions: MediaMention[] = [
         {
           title: 'The Matrix',
@@ -142,12 +142,12 @@ describe('MentionCounter', () => {
         },
       };
 
-      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+      const counts = await counter.countMentions(mentions, posts, tree as ThreadTree);
 
       expect(counts.get('matrix')).toBe(2); // Both branches count separately
     });
 
-    it('should handle posts with no mentions', () => {
+    it('should handle posts with no mentions', async () => {
       const mentions: MediaMention[] = [
         {
           title: 'The Matrix',
@@ -168,12 +168,12 @@ describe('MentionCounter', () => {
         getBranchAuthors: () => ['user1', 'user2'],
       };
 
-      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+      const counts = await counter.countMentions(mentions, posts, tree as ThreadTree);
 
       expect(counts.get('matrix')).toBeUndefined();
     });
 
-    it('should handle empty posts list', () => {
+    it('should handle empty posts list', async () => {
       const mentions: MediaMention[] = [
         {
           title: 'The Matrix',
@@ -191,12 +191,12 @@ describe('MentionCounter', () => {
         getBranchAuthors: () => [],
       };
 
-      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+      const counts = await counter.countMentions(mentions, posts, tree as ThreadTree);
 
       expect(counts.size).toBe(0);
     });
 
-    it('should handle multiple mentions in single post', () => {
+    it('should handle multiple mentions in single post', async () => {
       const mentions: MediaMention[] = [
         {
           title: 'The Matrix',
@@ -222,13 +222,13 @@ describe('MentionCounter', () => {
         getBranchAuthors: () => ['user1'],
       };
 
-      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+      const counts = await counter.countMentions(mentions, posts, tree as ThreadTree);
 
       expect(counts.get('matrix')).toBe(1);
       expect(counts.get('inception')).toBe(1);
     });
 
-    it('should handle reply to post without mention', () => {
+    it('should handle reply to post without mention', async () => {
       const mentions: MediaMention[] = [
         {
           title: 'The Matrix',
@@ -249,12 +249,12 @@ describe('MentionCounter', () => {
         getBranchAuthors: (uri) => (uri === 'post2' ? ['user1', 'user2'] : ['user1']),
       };
 
-      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+      const counts = await counter.countMentions(mentions, posts, tree as ThreadTree);
 
       expect(counts.get('matrix')).toBe(1); // Only in post2, not in parent
     });
 
-    it('should handle missing parent post in tree', () => {
+    it('should handle missing parent post in tree', async () => {
       const mentions: MediaMention[] = [
         {
           title: 'The Matrix',
@@ -275,14 +275,14 @@ describe('MentionCounter', () => {
         getBranchAuthors: (uri) => (uri === 'post2' ? ['user1', 'user2'] : ['user1']),
       };
 
-      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+      const counts = await counter.countMentions(mentions, posts, tree as ThreadTree);
 
       // post2 mentions matrix and agrees, but parent doesn't exist in allPosts
       // so it counts as a novel mention
       expect(counts.get('matrix')).toBe(2);
     });
 
-    it('should handle agreement in nested replies', () => {
+    it('should handle agreement in nested replies', async () => {
       const mentions: MediaMention[] = [
         {
           title: 'The Matrix',
@@ -308,7 +308,7 @@ describe('MentionCounter', () => {
         getBranchAuthors: () => ['user1', 'user2', 'user3'],
       };
 
-      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+      const counts = await counter.countMentions(mentions, posts, tree as ThreadTree);
 
       // post1: counts matrix (+1)
       // post2: replies to post1 but doesn't mention matrix (0)
