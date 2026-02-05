@@ -49,7 +49,6 @@ export class RateLimiter {
 
     // Check if at rate limit
     if (this.requests.length >= this.maxRequests) {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const oldestRequest = this.requests[0]!;
       const windowWait = this.windowMs - (Date.now() - oldestRequest);
       waitMs = Math.max(waitMs, windowWait);
@@ -89,7 +88,6 @@ export class RateLimiter {
     // Calculate when the oldest request will expire
     let windowResetMs = 0;
     if (this.requests.length > 0) {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const oldestRequest = this.requests[0]!;
       windowResetMs = this.windowMs - (Date.now() - oldestRequest);
     }
