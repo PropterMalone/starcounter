@@ -51,7 +51,7 @@ describe('ValidationClient', () => {
   });
 
   it('should batch requests', async () => {
-    const mentions: MediaMention[] = Array(25)
+    const mentions: Array<MediaMention> = Array(25)
       .fill(null)
       .map((_, i) => ({
         title: `Title ${i}`,
