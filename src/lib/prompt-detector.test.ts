@@ -48,11 +48,7 @@ describe('PromptDetector', () => {
     });
 
     it('should return UNKNOWN for ambiguous prompts', () => {
-      const prompts = [
-        'What are you doing?',
-        'How are you?',
-        'Tell me something interesting',
-      ];
+      const prompts = ['What are you doing?', 'How are you?', 'Tell me something interesting'];
 
       prompts.forEach((prompt) => {
         const detected = detector.detectPromptType(prompt);
@@ -74,28 +70,19 @@ describe('PromptDetector', () => {
 
   describe('getConfidence', () => {
     it('should return high confidence for strong keywords', () => {
-      const confidence = detector.getConfidence(
-        'What is your favorite movie?',
-        MediaType.MOVIE
-      );
+      const confidence = detector.getConfidence('What is your favorite movie?', MediaType.MOVIE);
 
       expect(confidence).toBe('high');
     });
 
     it('should return medium confidence for weaker matches', () => {
-      const confidence = detector.getConfidence(
-        'What are you watching?',
-        MediaType.TV_SHOW
-      );
+      const confidence = detector.getConfidence('What are you watching?', MediaType.TV_SHOW);
 
       expect(confidence).toBe('medium');
     });
 
     it('should return low confidence for ambiguous text', () => {
-      const confidence = detector.getConfidence(
-        'Tell me about it',
-        MediaType.MOVIE
-      );
+      const confidence = detector.getConfidence('Tell me about it', MediaType.MOVIE);
 
       expect(confidence).toBe('low');
     });
@@ -110,10 +97,7 @@ describe('PromptDetector', () => {
     });
 
     it('should return low confidence for unknown media type', () => {
-      const confidence = detector.getConfidence(
-        'Some random text',
-        MediaType.UNKNOWN
-      );
+      const confidence = detector.getConfidence('Some random text', MediaType.UNKNOWN);
 
       expect(confidence).toBe('low');
     });
@@ -133,9 +117,7 @@ describe('PromptDetector', () => {
       const text = 'music film show';
       const result = detector.detectPromptType(text);
       // Movie and music both have 10, TV has 10, movie wins
-      expect([MediaType.MOVIE, MediaType.TV_SHOW, MediaType.MUSIC]).toContain(
-        result
-      );
+      expect([MediaType.MOVIE, MediaType.TV_SHOW, MediaType.MUSIC]).toContain(result);
     });
   });
 });
