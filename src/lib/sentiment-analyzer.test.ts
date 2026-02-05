@@ -59,9 +59,11 @@ describe('SentimentAnalyzer', () => {
     it('should return strength indicator', () => {
       const strongPositive = analyzer.analyze('Absolutely amazing! I love it!');
       const moderatePositive = analyzer.analyze('That seems right to me');
+      const weakPositive = analyzer.analyze('ok');
 
       expect(strongPositive.strength).toBe('Strong');
       expect(moderatePositive.strength).toBe('Moderate');
+      expect(weakPositive.strength).toBe('Weak');
     });
   });
 
@@ -86,6 +88,7 @@ describe('SentimentAnalyzer', () => {
       const result = analyzer.analyze('');
       expect(result.classification).toBe('Neutral');
       expect(result.comparative).toBe(0);
+      expect(result.strength).toBe('Weak');
     });
 
     it('should handle very long text', () => {
@@ -99,6 +102,7 @@ describe('SentimentAnalyzer', () => {
       const result = analyzer.analyze('The building has windows and doors');
       expect(result.classification).toBe('Neutral');
       expect(Math.abs(result.comparative)).toBeLessThan(0.05);
+      expect(result.strength).toBe('Weak');
     });
 
     it('should handle mixed sentiment (more positive)', () => {
@@ -112,6 +116,26 @@ describe('SentimentAnalyzer', () => {
       // Both positive and negative should be present
       expect(result.positiveWords.length).toBeGreaterThan(0);
       expect(result.negativeWords.length).toBeGreaterThan(0);
+    });
+
+    it('should correctly classify neutral text with weak strength', () => {
+      const result = analyzer.analyze('ok');
+      expect(result.classification).toBe('Neutral');
+      expect(result.strength).toBe('Weak');
+    });
+
+    it('should return score and comparative values', () => {
+      const result = analyzer.analyze('I love this');
+      expect(typeof result.score).toBe('number');
+      expect(typeof result.comparative).toBe('number');
+      expect(result.score).toBeGreaterThan(0);
+      expect(result.comparative).toBeGreaterThan(0);
+    });
+
+    it('should include positive and negative word lists', () => {
+      const result = analyzer.analyze('I love this but hate that');
+      expect(Array.isArray(result.positiveWords)).toBe(true);
+      expect(Array.isArray(result.negativeWords)).toBe(true);
     });
   });
 });
