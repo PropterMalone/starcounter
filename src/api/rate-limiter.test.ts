@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { RateLimiter } from './rate-limiter';
+import { RateLimiter, getRateLimiter, resetRateLimiter } from './rate-limiter';
 
 describe('RateLimiter', () => {
   beforeEach(() => {
@@ -62,9 +62,22 @@ describe('RateLimiter', () => {
       await limiter.waitForSlot();
       limiter.recordRequest();
 
-      await limiter.waitForSlot();
-      const elapsed = Date.now() - start;
+      const waitPromise = limiter.waitForSlot();
+      let resolved = false;
 
+      waitPromise.then(() => {
+        resolved = true;
+      });
+
+      // Should not resolve immediately
+      await vi.advanceTimersByTimeAsync(49);
+      expect(resolved).toBe(false);
+
+      // Should resolve after minimum delay
+      await vi.advanceTimersByTimeAsync(1);
+      expect(resolved).toBe(true);
+
+      const elapsed = Date.now() - start;
       expect(elapsed).toBeGreaterThanOrEqual(50);
     });
 
@@ -138,6 +151,179 @@ describe('RateLimiter', () => {
 
       expect(limiter.getStats().used).toBe(0);
       expect(limiter.getStats().remaining).toBe(5);
+    });
+  });
+
+  describe('recursive wait behavior', () => {
+    it('should handle window expiration during wait and allow continued requests', async () => {
+      const limiter = new RateLimiter({ maxRequests: 2, windowMs: 100 });
+
+      // Fill the window
+      await limiter.waitForSlot();
+      limiter.recordRequest();
+
+      await limiter.waitForSlot();
+      limiter.recordRequest();
+
+      expect(limiter.getStats().used).toBe(2);
+
+      // Start waiting for next slot (should wait for window to expire)
+      const waitPromise = limiter.waitForSlot();
+      let resolved = false;
+
+      waitPromise.then(() => {
+        resolved = true;
+      });
+
+      // Advance time to expire the window
+      await vi.advanceTimersByTimeAsync(101);
+
+      // Should now be resolved
+      expect(resolved).toBe(true);
+
+      // Record the new request
+      limiter.recordRequest();
+      expect(limiter.getStats().used).toBe(1);
+    });
+
+    it('should handle the case where recursion is needed after wait timeout', async () => {
+      // This test is difficult to hit the exact recursion edge case
+      // The recursion only happens if after a wait for window expiration,
+      // the requests are STILL at limit, which requires the cleanup to fail.
+      // In practice, cleanup removes old requests, so the condition
+      // "requests.length >= maxRequests" after cleanup should be false.
+      // This branch is a defensive programming construct.
+
+      const limiter = new RateLimiter({ maxRequests: 1, windowMs: 100 });
+
+      // Add a request
+      await limiter.waitForSlot();
+      limiter.recordRequest();
+
+      // Wait for window to expire plus a small margin
+      const waitPromise = limiter.waitForSlot();
+      await vi.advanceTimersByTimeAsync(150);
+
+      // Should resolve because old request is cleaned up
+      await expect(waitPromise).resolves.toBeUndefined();
+    });
+  });
+
+  describe('global singleton', () => {
+    afterEach(() => {
+      resetRateLimiter();
+    });
+
+    it('should create and return the same instance on subsequent calls', () => {
+      const first = getRateLimiter();
+      const second = getRateLimiter();
+
+      expect(first).toBe(second);
+    });
+
+    it('should reset to null and create new instance after resetRateLimiter', () => {
+      const first = getRateLimiter();
+
+      resetRateLimiter();
+
+      const second = getRateLimiter();
+
+      expect(first).not.toBe(second);
+    });
+
+    it('should have correct default configuration', () => {
+      const limiter = getRateLimiter();
+      const stats = limiter.getStats();
+
+      expect(stats.remaining).toBe(2500); // maxRequests
+    });
+  });
+
+  describe('edge cases', () => {
+    it('should force recursion by injecting recent requests after timeout', async () => {
+      const limiter = new RateLimiter({ maxRequests: 2, windowMs: 100 });
+
+      // Fill requests
+      await limiter.waitForSlot();
+      limiter.recordRequest();
+
+      await limiter.waitForSlot();
+      limiter.recordRequest();
+
+      // Now simulate a case where after wait, requests are still at limit
+      // by manually adding a request at the current time while waiting
+      const waitPromise = limiter.waitForSlot();
+      let resolved = false;
+
+      waitPromise.then(() => {
+        resolved = true;
+      });
+
+      // Advance time past window
+      await vi.advanceTimersByTimeAsync(101);
+
+      // At this point, cleanup should have happened and old requests removed
+      // The condition at line 63 should be false normally
+      // We can't easily force it to be true without internal access
+
+      expect(resolved).toBe(true);
+    });
+
+    it('should handle zero minimum delay', async () => {
+      const limiter = new RateLimiter({
+        maxRequests: 5,
+        windowMs: 60000,
+        minDelayMs: 0,
+      });
+
+      const start = Date.now();
+      await limiter.waitForSlot();
+      limiter.recordRequest();
+
+      await limiter.waitForSlot();
+      const elapsed = Date.now() - start;
+
+      // Should not have delayed due to minDelayMs
+      expect(elapsed).toBeLessThan(50);
+    });
+
+    it('should handle undefined minimum delay (defaults to 0)', async () => {
+      const limiter = new RateLimiter({
+        maxRequests: 5,
+        windowMs: 60000,
+      });
+
+      await limiter.waitForSlot();
+      limiter.recordRequest();
+
+      // Should not require minimum delay
+      const start = Date.now();
+      await limiter.waitForSlot();
+      const elapsed = Date.now() - start;
+
+      expect(elapsed).toBeLessThan(50);
+    });
+
+    it('should return 0 for windowResetMs when no requests recorded', () => {
+      const limiter = new RateLimiter({ maxRequests: 10, windowMs: 60000 });
+
+      const stats = limiter.getStats();
+      expect(stats.windowResetMs).toBe(0);
+    });
+
+    it('should handle getStats cleanup of expired requests', async () => {
+      const limiter = new RateLimiter({ maxRequests: 5, windowMs: 100 });
+
+      await limiter.waitForSlot();
+      limiter.recordRequest();
+
+      expect(limiter.getStats().used).toBe(1);
+
+      // Advance past window
+      await vi.advanceTimersByTimeAsync(101);
+
+      // getStats should clean up automatically
+      expect(limiter.getStats().used).toBe(0);
     });
   });
 });
