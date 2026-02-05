@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import * as fc from 'fast-check';
 import { MentionExtractor, MediaType } from './mention-extractor';
 
 describe('MentionExtractor', () => {
@@ -155,5 +156,74 @@ describe('MentionExtractor', () => {
     it('should handle titles without articles', () => {
       expect(extractor.normalizeTitle('Inception')).toBe('inception');
     });
+  });
+});
+
+describe('MentionExtractor - Property-Based Tests', () => {
+  const extractor = new MentionExtractor();
+
+  it('should handle arbitrary quoted strings', () => {
+    fc.assert(
+      fc.property(
+        fc.string({ minLength: 3, maxLength: 50 }).filter((s) => !s.includes('"')),
+        (title) => {
+          const text = `I watched "${title}" yesterday`;
+          const mentions = extractor.extractMentions(text, MediaType.MOVIE);
+
+          // Should extract the title (if valid)
+          if (extractor.normalizeTitle(title).length >= 2) {
+            expect(mentions.length).toBeGreaterThanOrEqual(1);
+          }
+        }
+      ),
+      { numRuns: 100 }
+    );
+  });
+
+  it('should produce consistent normalized titles', () => {
+    fc.assert(
+      fc.property(fc.string({ minLength: 3, maxLength: 30 }), (title) => {
+        const normalized1 = extractor.normalizeTitle(title);
+        const normalized2 = extractor.normalizeTitle(title);
+
+        // Normalization is idempotent
+        expect(normalized1).toBe(normalized2);
+      }),
+      { numRuns: 100 }
+    );
+  });
+
+  it('should normalize titles with articles consistently', () => {
+    // Test the specific case: "The Matrix" should normalize same as "Matrix"
+    expect(extractor.normalizeTitle('The Matrix')).toBe(extractor.normalizeTitle('Matrix'));
+    expect(extractor.normalizeTitle('A Star Is Born')).toBe(extractor.normalizeTitle('Star Is Born'));
+    expect(extractor.normalizeTitle('An Unexpected Journey')).toBe(
+      extractor.normalizeTitle('Unexpected Journey')
+    );
+
+    // Property-based: normalize twice is same as normalize once (idempotence)
+    fc.assert(
+      fc.property(fc.string({ minLength: 1, maxLength: 50 }), (title) => {
+        const normalized1 = extractor.normalizeTitle(title);
+        const normalized2 = extractor.normalizeTitle(normalized1);
+        expect(normalized1).toBe(normalized2);
+      }),
+      { numRuns: 100 }
+    );
+  });
+
+  it('should never extract empty titles', () => {
+    fc.assert(
+      fc.property(fc.string({ maxLength: 100 }), (text) => {
+        const mentions = extractor.extractMentions(text, MediaType.MOVIE);
+
+        // All extracted titles must be non-empty
+        mentions.forEach((mention) => {
+          expect(mention.title.length).toBeGreaterThan(0);
+          expect(mention.normalizedTitle.length).toBeGreaterThan(0);
+        });
+      }),
+      { numRuns: 100 }
+    );
   });
 });
