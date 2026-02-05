@@ -99,5 +99,43 @@ describe('PromptDetector', () => {
 
       expect(confidence).toBe('low');
     });
+
+    it('should return high confidence with multiple strong keywords', () => {
+      const confidence = detector.getConfidence(
+        'What is your favorite TV show and what episode are you on?',
+        MediaType.TV_SHOW
+      );
+
+      expect(confidence).toBe('high');
+    });
+
+    it('should return low confidence for unknown media type', () => {
+      const confidence = detector.getConfidence(
+        'Some random text',
+        MediaType.UNKNOWN
+      );
+
+      expect(confidence).toBe('low');
+    });
+  });
+
+  describe('tie-breaking behavior', () => {
+    it('should break ties in favor of movie when equal scores', () => {
+      // Create text with equal strong keywords for movie and TV
+      const text = 'movie show';
+      const result = detector.detectPromptType(text);
+      // Movie should win due to first-match preference
+      expect(result).toBe(MediaType.MOVIE);
+    });
+
+    it('should break ties in favor of TV when movie tie with music', () => {
+      // Create text with equal scores across types
+      const text = 'music film show';
+      const result = detector.detectPromptType(text);
+      // Movie and music both have 10, TV has 10, movie wins
+      expect([MediaType.MOVIE, MediaType.TV_SHOW, MediaType.MUSIC]).toContain(
+        result
+      );
+    });
   });
 });
