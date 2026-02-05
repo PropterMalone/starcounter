@@ -61,12 +61,18 @@
         <section id="results-section" class="card" style="display: none">
           <div class="results-header">
             <h2>Results</h2>
-            <button id="new-analysis-button" class="btn btn-secondary">New Analysis</button>
+            <div class="results-actions">
+              <button id="share-button" class="btn btn-primary">Share Results</button>
+              <button id="new-analysis-button" class="btn btn-secondary">New Analysis</button>
+            </div>
           </div>
           <div class="chart-container">
             <canvas id="results-chart"></canvas>
           </div>
           <p class="chart-hint">Click on a bar to see contributing posts</p>
+          <div id="share-feedback" class="share-feedback" style="display: none">
+            <span id="share-feedback-text">Link copied to clipboard!</span>
+          </div>
         </section>
 
         <!-- Error Section -->
