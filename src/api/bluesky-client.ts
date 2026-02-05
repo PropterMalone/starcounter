@@ -1,3 +1,4 @@
+// pattern: Imperative Shell
 import type {
   AtUri,
   GetPostThreadResponse,
@@ -5,21 +6,21 @@ import type {
   RateLimitInfo,
   Result,
 } from '../types';
-import { getRateLimiter } from './rate-limiter';
+import { getRateLimiter, RateLimiter } from './rate-limiter';
 
 const BASE_URL = 'https://public.api.bsky.app';
 
-export interface GetPostThreadOptions {
-  depth?: number;
-  parentHeight?: number;
-  maxRetries?: number;
-}
+export type GetPostThreadOptions = {
+  readonly depth?: number;
+  readonly parentHeight?: number;
+  readonly maxRetries?: number;
+};
 
-export interface GetQuotesOptions {
-  cursor?: string;
-  limit?: number;
-  maxRetries?: number;
-}
+export type GetQuotesOptions = {
+  readonly cursor?: string;
+  readonly limit?: number;
+  readonly maxRetries?: number;
+};
 
 /**
  * Client for Bluesky AT Protocol public API
@@ -27,7 +28,11 @@ export interface GetQuotesOptions {
  */
 export class BlueskyClient {
   private lastRateLimitInfo: RateLimitInfo | null = null;
-  private readonly rateLimiter = getRateLimiter();
+  private readonly rateLimiter: RateLimiter;
+
+  constructor(rateLimiter?: RateLimiter) {
+    this.rateLimiter = rateLimiter ?? getRateLimiter();
+  }
 
   /**
    * Fetch a post thread with replies
@@ -38,6 +43,13 @@ export class BlueskyClient {
     uri: AtUri,
     options: GetPostThreadOptions = {}
   ): Promise<Result<GetPostThreadResponse>> {
+    if (!uri.startsWith('at://')) {
+      return {
+        ok: false,
+        error: new Error('Invalid AT-URI: must start with "at://"'),
+      };
+    }
+
     const { depth = 6, parentHeight = 80, maxRetries = 3 } = options;
 
     const params = new URLSearchParams({
@@ -57,6 +69,13 @@ export class BlueskyClient {
    * @param options - Pagination cursor, limit, and retry configuration
    */
   async getQuotes(uri: AtUri, options: GetQuotesOptions = {}): Promise<Result<GetQuotesResponse>> {
+    if (!uri.startsWith('at://')) {
+      return {
+        ok: false,
+        error: new Error('Invalid AT-URI: must start with "at://"'),
+      };
+    }
+
     const { cursor, limit = 50, maxRetries = 3 } = options;
 
     const params = new URLSearchParams({
@@ -95,7 +114,7 @@ export class BlueskyClient {
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
       });
 
@@ -115,8 +134,8 @@ export class BlueskyClient {
         }
 
         // Calculate wait time from headers
-        const resetTime = parseInt(response.headers.get('ratelimit-reset') || '0');
-        const retryAfter = parseInt(response.headers.get('retry-after') || '0');
+        const resetTime = parseInt(response.headers.get('ratelimit-reset') || '0', 10);
+        const retryAfter = parseInt(response.headers.get('retry-after') || '0', 10);
 
         const waitTime = resetTime
           ? Math.max(0, resetTime - Math.floor(Date.now() / 1000)) * 1000
@@ -158,9 +177,9 @@ export class BlueskyClient {
 
     if (limit && remaining && reset) {
       this.lastRateLimitInfo = {
-        limit: parseInt(limit),
-        remaining: parseInt(remaining),
-        reset: parseInt(reset),
+        limit: parseInt(limit, 10),
+        remaining: parseInt(remaining, 10),
+        reset: parseInt(reset, 10),
         policy: policy || '',
       };
     }

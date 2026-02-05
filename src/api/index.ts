@@ -1,3 +1,4 @@
+// Barrel export for API module
 export { BlueskyClient } from './bluesky-client';
 export type { GetPostThreadOptions, GetQuotesOptions } from './bluesky-client';
 export { RateLimiter, getRateLimiter, resetRateLimiter } from './rate-limiter';

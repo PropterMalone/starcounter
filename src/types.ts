@@ -1,3 +1,4 @@
+// pattern: Functional Core
 // AT Protocol and Bluesky API type definitions
 
 /**
@@ -24,162 +25,162 @@ export type IsoDateTime = string;
 /**
  * Profile view with basic user information
  */
-export interface ProfileViewBasic {
-  did: Did;
-  handle: string;
-  displayName?: string;
-  avatar?: string;
-  associated?: {
-    lists?: number;
-    feedgens?: number;
-    starterPacks?: number;
-    labeler?: boolean;
-    chat?: {
-      allowIncoming: 'all' | 'none' | 'following';
+export type ProfileViewBasic = {
+  readonly did: Did;
+  readonly handle: string;
+  readonly displayName?: string;
+  readonly avatar?: string;
+  readonly associated?: {
+    readonly lists?: number;
+    readonly feedgens?: number;
+    readonly starterPacks?: number;
+    readonly labeler?: boolean;
+    readonly chat?: {
+      readonly allowIncoming: 'all' | 'none' | 'following';
     };
   };
-  viewer?: {
-    muted?: boolean;
-    blockedBy?: boolean;
-    blocking?: string;
-    blockingByList?: {
-      uri: string;
-      cid: string;
-      name: string;
-      purpose: string;
+  readonly viewer?: {
+    readonly muted?: boolean;
+    readonly blockedBy?: boolean;
+    readonly blocking?: string;
+    readonly blockingByList?: {
+      readonly uri: string;
+      readonly cid: string;
+      readonly name: string;
+      readonly purpose: string;
     };
-    following?: string;
-    followedBy?: string;
+    readonly following?: string;
+    readonly followedBy?: string;
   };
-  labels?: Label[];
-  createdAt?: IsoDateTime;
-}
+  readonly labels?: Array<Label>;
+  readonly createdAt?: IsoDateTime;
+};
 
 /**
  * Content label for moderation
  */
-export interface Label {
-  src: Did;
-  uri: string;
-  cid?: Cid;
-  val: string;
-  neg?: boolean;
-  cts: IsoDateTime;
-  exp?: IsoDateTime;
-  sig?: Uint8Array;
-}
+export type Label = {
+  readonly src: Did;
+  readonly uri: string;
+  readonly cid?: Cid;
+  readonly val: string;
+  readonly neg?: boolean;
+  readonly cts: IsoDateTime;
+  readonly exp?: IsoDateTime;
+  readonly sig?: Uint8Array;
+};
 
 /**
  * Post record content
  */
-export interface PostRecord {
-  text: string;
-  createdAt: IsoDateTime;
-  reply?: {
-    root: { uri: AtUri; cid: Cid };
-    parent: { uri: AtUri; cid: Cid };
+export type PostRecord = {
+  readonly text: string;
+  readonly createdAt: IsoDateTime;
+  readonly reply?: {
+    readonly root: { readonly uri: AtUri; readonly cid: Cid };
+    readonly parent: { readonly uri: AtUri; readonly cid: Cid };
   };
-  embed?: unknown; // Simplified for now
-  entities?: unknown;
-  facets?: unknown;
-  labels?: unknown;
-  langs?: string[];
-  tags?: string[];
-}
+  readonly embed?: unknown; // Simplified for now
+  readonly entities?: unknown;
+  readonly facets?: unknown;
+  readonly labels?: unknown;
+  readonly langs?: Array<string>;
+  readonly tags?: Array<string>;
+};
 
 /**
  * Post view with engagement metrics
  */
-export interface PostView {
-  uri: AtUri;
-  cid: Cid;
-  author: ProfileViewBasic;
-  record: PostRecord;
-  embed?: unknown;
-  replyCount?: number;
-  repostCount?: number;
-  likeCount?: number;
-  quoteCount?: number;
-  indexedAt: IsoDateTime;
-  viewer?: {
-    repost?: string;
-    like?: string;
-    threadMuted?: boolean;
-    replyDisabled?: boolean;
-    embeddingDisabled?: boolean;
-    pinned?: boolean;
+export type PostView = {
+  readonly uri: AtUri;
+  readonly cid: Cid;
+  readonly author: ProfileViewBasic;
+  readonly record: PostRecord;
+  readonly embed?: unknown;
+  readonly replyCount?: number;
+  readonly repostCount?: number;
+  readonly likeCount?: number;
+  readonly quoteCount?: number;
+  readonly indexedAt: IsoDateTime;
+  readonly viewer?: {
+    readonly repost?: string;
+    readonly like?: string;
+    readonly threadMuted?: boolean;
+    readonly replyDisabled?: boolean;
+    readonly embeddingDisabled?: boolean;
+    readonly pinned?: boolean;
   };
-  labels?: Label[];
-  threadgate?: unknown;
-}
+  readonly labels?: Array<Label>;
+  readonly threadgate?: unknown;
+};
 
 /**
  * Post not found (deleted, taken down, or never existed)
  */
-export interface NotFoundPost {
-  uri: AtUri;
-  notFound: true;
-}
+export type NotFoundPost = {
+  readonly uri: AtUri;
+  readonly notFound: true;
+};
 
 /**
  * Post from blocked author
  */
-export interface BlockedPost {
-  uri: AtUri;
-  blocked: true;
-  author: {
-    did: Did;
-    viewer?: {
-      blockedBy?: boolean;
-      blocking?: string;
+export type BlockedPost = {
+  readonly uri: AtUri;
+  readonly blocked: true;
+  readonly author: {
+    readonly did: Did;
+    readonly viewer?: {
+      readonly blockedBy?: boolean;
+      readonly blocking?: string;
     };
   };
-}
+};
 
 /**
  * Thread view post with parent and replies
  */
-export interface ThreadViewPost {
-  post: PostView;
-  parent?: ThreadViewPost | NotFoundPost | BlockedPost;
-  replies?: Array<ThreadViewPost | NotFoundPost | BlockedPost>;
-}
+export type ThreadViewPost = {
+  readonly post: PostView;
+  readonly parent?: ThreadViewPost | NotFoundPost | BlockedPost;
+  readonly replies?: Array<ThreadViewPost | NotFoundPost | BlockedPost>;
+};
 
 /**
  * Response from getPostThread endpoint
  */
-export interface GetPostThreadResponse {
-  thread: ThreadViewPost | NotFoundPost | BlockedPost;
-  threadgate?: unknown;
-}
+export type GetPostThreadResponse = {
+  readonly thread: ThreadViewPost | NotFoundPost | BlockedPost;
+  readonly threadgate?: unknown;
+};
 
 /**
  * Response from getQuotes endpoint
  */
-export interface GetQuotesResponse {
-  uri: AtUri;
-  cid?: Cid;
-  cursor?: string;
-  posts: PostView[];
-}
+export type GetQuotesResponse = {
+  readonly uri: AtUri;
+  readonly cid?: Cid;
+  readonly cursor?: string;
+  readonly posts: Array<PostView>;
+};
 
 /**
  * Rate limit information from response headers
  */
-export interface RateLimitInfo {
-  limit: number;
-  remaining: number;
-  reset: number; // Unix timestamp
-  policy: string; // Format: "limit;w=window"
-}
+export type RateLimitInfo = {
+  readonly limit: number;
+  readonly remaining: number;
+  readonly reset: number; // Unix timestamp
+  readonly policy: string; // Format: "limit;w=window"
+};
 
 /**
- * API error response
+ * API error response (reserved for future use)
  */
-export interface ApiError {
-  error: string;
-  message: string;
-}
+export type ApiError = {
+  readonly error: string;
+  readonly message: string;
+};
 
 /**
  * Result type for operations that can fail

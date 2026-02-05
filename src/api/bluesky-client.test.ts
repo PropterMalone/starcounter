@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { BlueskyClient } from './bluesky-client';
-import { resetRateLimiter } from './rate-limiter';
+import { resetRateLimiter, RateLimiter } from './rate-limiter';
 import type { GetPostThreadResponse, GetQuotesResponse, ThreadViewPost, PostView } from '../types';
 
 describe('BlueskyClient', () => {
@@ -540,6 +540,58 @@ describe('BlueskyClient', () => {
 
       const rateLimitInfo = client.getLastRateLimitInfo();
       expect(rateLimitInfo).toBeNull();
+    });
+
+    it('should reject invalid AT-URIs in getPostThread', async () => {
+      const result = await client.getPostThread('invalid-uri');
+
+      expect(result.ok).toBe(false);
+      if (!result.ok) {
+        expect(result.error.message).toContain('Invalid AT-URI');
+      }
+
+      // Should not call fetch
+      expect(fetchMock).not.toHaveBeenCalled();
+    });
+
+    it('should reject invalid AT-URIs in getQuotes', async () => {
+      const result = await client.getQuotes('https://example.com/post/123');
+
+      expect(result.ok).toBe(false);
+      if (!result.ok) {
+        expect(result.error.message).toContain('Invalid AT-URI');
+      }
+
+      // Should not call fetch
+      expect(fetchMock).not.toHaveBeenCalled();
+    });
+
+    it('should accept custom rate limiter in constructor', async () => {
+      const customLimiter = new RateLimiter({ maxRequests: 10, windowMs: 60000 });
+      const customClient = new BlueskyClient(customLimiter);
+
+      fetchMock.mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        headers: new Headers(),
+        json: async () => ({
+          thread: {
+            post: {
+              uri: 'at://did:plc:test/app.bsky.feed.post/123',
+              cid: 'bafytest',
+              author: { did: 'did:plc:test', handle: 'test.bsky.social' },
+              record: { text: 'Test', createdAt: '2026-02-04T10:00:00.000Z' },
+              indexedAt: '2026-02-04T10:00:05.000Z',
+            },
+            replies: [],
+          },
+        }),
+      });
+
+      const result = await customClient.getPostThread('at://did:plc:test/app.bsky.feed.post/123');
+
+      expect(result.ok).toBe(true);
+      expect(fetchMock).toHaveBeenCalled();
     });
   });
 });
