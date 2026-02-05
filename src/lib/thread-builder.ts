@@ -3,9 +3,7 @@ import type { ThreadViewPost, PostView, NotFoundPost, BlockedPost, Did } from '.
 /**
  * Check if node is a valid post (not NotFound or Blocked)
  */
-function isPostView(
-  node: ThreadViewPost | NotFoundPost | BlockedPost
-): node is ThreadViewPost {
+function isPostView(node: ThreadViewPost | NotFoundPost | BlockedPost): node is ThreadViewPost {
   return 'post' in node && !('notFound' in node) && !('blocked' in node);
 }
 
