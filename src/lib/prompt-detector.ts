@@ -58,10 +58,7 @@ export class PromptDetector {
   /**
    * Get confidence level for a detected type
    */
-  getConfidence(
-    text: string,
-    detectedType: MediaTypeEnum
-  ): 'high' | 'medium' | 'low' {
+  getConfidence(text: string, detectedType: MediaTypeEnum): 'high' | 'medium' | 'low' {
     const textLower = text.toLowerCase();
 
     const keywords =
@@ -83,10 +80,7 @@ export class PromptDetector {
   /**
    * Score text based on keyword matches
    */
-  private scoreKeywords(
-    text: string,
-    keywords: { strong: string[]; weak: string[] }
-  ): number {
+  private scoreKeywords(text: string, keywords: { strong: string[]; weak: string[] }): number {
     let score = 0;
 
     // Strong keywords: 10 points each
