@@ -22,6 +22,14 @@ export interface ThreadTree {
 }
 
 /**
+ * Internal tree node structure for building
+ */
+interface TreeNode {
+  post: PostView;
+  branches: ThreadTree[];
+}
+
+/**
  * Builds thread tree structure from flat post list
  * Identifies branches and parent/child relationships
  */
@@ -44,19 +52,27 @@ export class ThreadBuilder {
 
     const tree = this.buildTreeRecursive(root);
 
+    return this.createThreadTree(tree);
+  }
+
+  /**
+   * Create a ThreadTree object with bound methods
+   */
+  private createThreadTree(node: TreeNode): ThreadTree {
     return {
-      ...tree,
+      post: node.post,
+      branches: node.branches,
       allPosts: this.allPostsList,
       getParent: (uri: string) => this.parentMap.get(uri) ?? null,
       getBranchAuthors: (uri: string) => this.collectBranchAuthors(uri),
-      flattenPosts: () => this.flattenPostsRecursive(tree),
+      flattenPosts: () => this.flattenPostsRecursive(node),
     };
   }
 
   /**
    * Recursive tree builder
    */
-  private buildTreeRecursive(node: ThreadViewPost): { post: PostView; branches: ThreadTree[] } {
+  private buildTreeRecursive(node: ThreadViewPost): TreeNode {
     const post = node.post;
 
     // Add to flat list
@@ -78,13 +94,7 @@ export class ThreadBuilder {
         }
 
         const childTree = this.buildTreeRecursive(reply);
-        branches.push({
-          ...childTree,
-          allPosts: this.allPostsList,
-          getParent: (uri: string) => this.parentMap.get(uri) ?? null,
-          getBranchAuthors: (uri: string) => this.collectBranchAuthors(uri),
-          flattenPosts: () => this.flattenPostsRecursive(childTree),
-        });
+        branches.push(this.createThreadTree(childTree));
       }
     }
 
