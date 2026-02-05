@@ -44,12 +44,15 @@ export class PromptDetector {
       return MediaType.UNKNOWN;
     }
 
-    // Return type with highest score
-    if (movieScore === maxScore) return MediaType.MOVIE;
-    if (tvScore === maxScore) return MediaType.TV_SHOW;
-    if (musicScore === maxScore) return MediaType.MUSIC;
+    // Return type with highest score (prioritize in order of preference)
+    if (movieScore === maxScore) {
+      return MediaType.MOVIE;
+    }
+    if (tvScore === maxScore) {
+      return MediaType.TV_SHOW;
+    }
 
-    return MediaType.UNKNOWN;
+    return MediaType.MUSIC;
   }
 
   /**
