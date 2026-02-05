@@ -3,8 +3,17 @@ import { validateMention } from './validate';
 import handler from './validate';
 import { MediaType } from '../../src/lib/mention-extractor';
 
+// Type for mocked fetch
+type MockedFetch = ReturnType<typeof vi.fn>;
+
+// Type for KV namespace
+interface KVNamespace {
+  get(key: string, options?: { type: string }): Promise<unknown>;
+  put(key: string, value: string, options?: { expirationTtl: number }): Promise<void>;
+}
+
 // Mock fetch globally
-global.fetch = vi.fn();
+global.fetch = vi.fn() as unknown as typeof fetch;
 
 describe('validateMention', () => {
   beforeEach(() => {
@@ -26,7 +35,7 @@ describe('validateMention', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -43,7 +52,7 @@ describe('validateMention', () => {
     });
 
     it('should return low confidence for no matches', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ results: [] }),
       });
@@ -73,7 +82,7 @@ describe('validateMention', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -107,7 +116,7 @@ describe('validateMention', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -124,7 +133,7 @@ describe('validateMention', () => {
     });
 
     it('should use fuzzy search for MusicBrainz', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ recordings: [] }),
       });
@@ -134,14 +143,16 @@ describe('validateMention', () => {
         musicbrainzUserAgent: 'Test/1.0',
       });
 
-      const callUrl = (global.fetch as any).mock.calls[0][0];
+      const callUrl = (
+        (global.fetch as unknown as MockedFetch).mock.calls[0] as unknown[]
+      )[0] as string;
       expect(callUrl).toContain('~'); // Fuzzy operator
     });
   });
 
   describe('confidence scoring', () => {
     it('should return high confidence for exact matches', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => ({
           results: [
@@ -163,7 +174,7 @@ describe('validateMention', () => {
     });
 
     it('should return medium confidence for popular but weak matches', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => ({
           results: [
@@ -187,7 +198,7 @@ describe('validateMention', () => {
 
   describe('error handling', () => {
     it('should handle network errors gracefully', async () => {
-      (global.fetch as any).mockRejectedValueOnce(new Error('Network error'));
+      (global.fetch as unknown as MockedFetch).mockRejectedValueOnce(new Error('Network error'));
 
       const result = await validateMention('The Matrix', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
@@ -199,7 +210,7 @@ describe('validateMention', () => {
     });
 
     it('should handle API errors', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: false,
         status: 500,
         statusText: 'Internal Server Error',
@@ -235,7 +246,7 @@ describe('validateMention', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -243,7 +254,7 @@ describe('validateMention', () => {
       await validateMention('The Matrix', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
-        cache: mockKV as any,
+        cache: mockKV as unknown as KVNamespace,
       });
 
       expect(mockKV.put).toHaveBeenCalled();
@@ -265,17 +276,17 @@ describe('validateMention', () => {
       const result = await validateMention('The Matrix', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
-        cache: mockKV as any,
+        cache: mockKV as unknown as KVNamespace,
       });
 
       expect(result).toEqual(cachedResult);
-      expect((global.fetch as any).mock.calls.length).toBe(0);
+      expect(((global.fetch as unknown as MockedFetch).mock.calls as unknown[][]).length).toBe(0);
     });
   });
 
   describe('edge cases', () => {
     it('should handle TMDB with missing vote_count', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => ({
           results: [
@@ -298,7 +309,7 @@ describe('validateMention', () => {
     });
 
     it('should handle MusicBrainz without artist-credit', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => ({
           recordings: [
@@ -321,7 +332,7 @@ describe('validateMention', () => {
     });
 
     it('should handle UNKNOWN media type', async () => {
-      const result = await validateMention('Unknown Title', 'UNKNOWN' as any, {
+      const result = await validateMention('Unknown Title', 'UNKNOWN' as unknown as MediaType, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
       });
@@ -332,7 +343,7 @@ describe('validateMention', () => {
     });
 
     it('should return low confidence for MusicBrainz with low score', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => ({
           recordings: [
@@ -360,7 +371,7 @@ describe('validateMention', () => {
     });
 
     it('should return medium confidence for MusicBrainz with medium score', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => ({
           recordings: [
@@ -388,7 +399,7 @@ describe('validateMention', () => {
     });
 
     it('should handle TMDB with low votes and popularity', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => ({
           results: [
@@ -411,7 +422,7 @@ describe('validateMention', () => {
     });
 
     it('should handle TMDB error response', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: false,
         status: 404,
         statusText: 'Not Found',
@@ -427,7 +438,7 @@ describe('validateMention', () => {
     });
 
     it('should handle MusicBrainz error response', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: false,
         status: 503,
         statusText: 'Service Unavailable',
@@ -500,7 +511,7 @@ describe('validateMention', () => {
     });
 
     it('should validate and return result on POST', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => ({
           results: [
@@ -556,7 +567,7 @@ describe('validateMention', () => {
         put: vi.fn(),
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => ({
           results: [
@@ -575,15 +586,15 @@ describe('validateMention', () => {
       const result = await validateMention('The Matrix', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
-        cache: mockKV as any,
+        cache: mockKV as unknown as KVNamespace,
       });
 
       expect(result.validated).toBe(true);
-      expect((global.fetch as any).mock.calls.length).toBe(1);
+      expect(((global.fetch as unknown as MockedFetch).mock.calls as unknown[][]).length).toBe(1);
     });
 
     it('should validate when cache is undefined', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => ({
           results: [
