@@ -69,9 +69,7 @@ export class MentionCounter {
           const parentPost = tree.allPosts.find((p) => p.uri === parent);
           if (parentPost) {
             const parentMentions = this.extractMentionsFromPost(parentPost, mentions);
-            const parentHasMention = parentMentions.some(
-              (m) => m.normalizedTitle === normalized
-            );
+            const parentHasMention = parentMentions.some((m) => m.normalizedTitle === normalized);
 
             if (parentHasMention) {
               // Parent mentioned it, check sentiment of current post
@@ -98,10 +96,7 @@ export class MentionCounter {
   /**
    * Extract mentions from a single post
    */
-  private extractMentionsFromPost(
-    post: PostView,
-    allMentions: MediaMention[]
-  ): MediaMention[] {
+  private extractMentionsFromPost(post: PostView, allMentions: MediaMention[]): MediaMention[] {
     return allMentions.filter((mention) => {
       const text = post.record.text.toLowerCase();
       return text.includes(mention.normalizedTitle);
