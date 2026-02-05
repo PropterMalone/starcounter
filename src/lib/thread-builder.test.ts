@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { ThreadBuilder } from './thread-builder';
-import type { ThreadViewPost, PostView, NotFoundPost } from '../types';
+import type { ThreadViewPost, PostView, NotFoundPost, BlockedPost } from '../types';
 
 describe('ThreadBuilder', () => {
   const createMockPost = (uri: string, text: string, replyTo?: string): PostView => ({
@@ -171,14 +171,14 @@ describe('ThreadBuilder', () => {
 
   describe('edge cases', () => {
     it('should handle very deep nesting', () => {
-      let rootPost: ThreadViewPost = {
+      const rootPost: ThreadViewPost = {
         post: {
           ...createMockPost('post1', 'Root'),
           author: { did: 'did:user1', handle: 'user1.bsky.social' },
         },
       };
 
-      let currentReply = rootPost;
+      let currentReply: ThreadViewPost = rootPost;
       for (let i = 2; i <= 10; i++) {
         const newPost: ThreadViewPost = {
           post: {
@@ -246,7 +246,7 @@ describe('ThreadBuilder', () => {
     });
 
     it('should throw error for Blocked root', () => {
-      const blockedRoot = {
+      const blockedRoot: BlockedPost = {
         uri: 'blocked_post',
         blocked: true,
         author: {
@@ -255,7 +255,7 @@ describe('ThreadBuilder', () => {
       };
 
       const builder = new ThreadBuilder();
-      expect(() => builder.buildTree(blockedRoot as any)).toThrow(
+      expect(() => builder.buildTree(blockedRoot)).toThrow(
         'Root post is not available (deleted or blocked)'
       );
     });
