@@ -1,7 +1,7 @@
 import { BlueskyClient } from './api';
-import { ThreadBuilder, MentionExtractor, MentionCounter } from './lib';
+import { ThreadBuilder, MentionExtractor, MentionCounter, decodeResults } from './lib';
 import { ProgressTracker } from './lib/progress-tracker';
-import { InputForm, ProgressBar, ResultsChart, DrillDownModal } from './components';
+import { InputForm, ProgressBar, ResultsChart, DrillDownModal, ShareButton } from './components';
 import type { MentionCount, PostView } from './types';
 
 /**
@@ -20,6 +20,7 @@ class StarcounterApp {
   private progressBar: ProgressBar;
   private resultsChart: ResultsChart;
   private drillDownModal: DrillDownModal;
+  private shareButton: ShareButton;
 
   private abortController: AbortController | null = null;
 
@@ -58,7 +59,14 @@ class StarcounterApp {
       document.getElementById('modal-close-button') as HTMLElement
     );
 
+    this.shareButton = new ShareButton(
+      document.getElementById('share-button') as HTMLButtonElement,
+      document.getElementById('share-feedback') as HTMLElement,
+      document.getElementById('share-feedback-text') as HTMLElement
+    );
+
     this.attachEventListeners();
+    this.checkForSharedResults();
   }
 
   /**
@@ -216,6 +224,7 @@ class StarcounterApp {
     }
 
     this.resultsChart.render(mentionCounts);
+    this.shareButton.setResults(mentionCounts);
   }
 
   /**
@@ -299,6 +308,44 @@ class StarcounterApp {
     }
 
     return result;
+  }
+
+  /**
+   * Check URL for shared results and restore them
+   * This allows users to open shared links directly to results
+   */
+  private checkForSharedResults(): void {
+    const params = new URLSearchParams(window.location.search);
+    const encoded = params.get('r');
+
+    if (!encoded) {
+      return;
+    }
+
+    const results = decodeResults(encoded);
+    if (!results) {
+      console.warn('Failed to decode shared results from URL');
+      return;
+    }
+
+    // Convert ShareableResults to MentionCount[] (without posts)
+    const mentionCounts: MentionCount[] = results.m.map((m) => ({
+      mention: m.n,
+      count: m.c,
+      posts: [], // Posts not available from shared URL
+    }));
+
+    // Hide input section and show results
+    const inputSection = document.getElementById('input-section');
+    if (inputSection) {
+      inputSection.style.display = 'none';
+    }
+
+    this.showResults(mentionCounts);
+
+    // Clean up URL (remove r parameter) without reloading
+    const cleanUrl = `${window.location.origin}${window.location.pathname}`;
+    window.history.replaceState({}, document.title, cleanUrl);
   }
 }
 

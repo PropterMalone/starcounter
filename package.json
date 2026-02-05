@@ -22,6 +22,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "chart.js": "^4.5.1",
     "lz-string": "^1.5.0",
     "sentiment": "^5.0.2"

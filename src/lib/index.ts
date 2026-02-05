@@ -16,3 +16,5 @@ export type {
 } from './validation-client';
 export { ProgressTracker } from './progress-tracker';
 export type { ProgressEvent, ProgressData } from './progress-tracker';
+export { encodeResults, decodeResults, toShareableResults, MAX_URL_LENGTH } from './url-encoder';
+export type { ShareableResults, ShareableMention } from './url-encoder';
