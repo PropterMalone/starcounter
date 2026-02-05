@@ -108,7 +108,7 @@ describe('MentionCounter', () => {
       const tree: Partial<ThreadTree> = {
         allPosts: posts,
         getParent: (uri) => (uri === 'post2' ? 'post1' : null),
-        getBranchAuthors: (uri) => ['user1'],
+        getBranchAuthors: (_uri) => ['user1'],
       };
 
       const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
