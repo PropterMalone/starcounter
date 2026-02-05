@@ -1,20 +1,21 @@
+// pattern: Functional Core
 /**
  * Token bucket rate limiter for Bluesky API
  * Limits: 3000 requests per 5 minutes (conservative: 2500)
  * Minimum delay: 50ms between requests
  */
 
-export interface RateLimiterOptions {
-  maxRequests: number;
-  windowMs: number;
-  minDelayMs?: number;
-}
+export type RateLimiterOptions = {
+  readonly maxRequests: number;
+  readonly windowMs: number;
+  readonly minDelayMs?: number;
+};
 
-export interface RateLimiterStats {
-  used: number;
-  remaining: number;
-  windowResetMs: number;
-}
+export type RateLimiterStats = {
+  readonly used: number;
+  readonly remaining: number;
+  readonly windowResetMs: number;
+};
 
 export class RateLimiter {
   private readonly maxRequests: number;

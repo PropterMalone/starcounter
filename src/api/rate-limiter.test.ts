@@ -325,5 +325,37 @@ describe('RateLimiter', () => {
       // getStats should clean up automatically
       expect(limiter.getStats().used).toBe(0);
     });
+
+    it('should recursively wait when limit still exceeded after cleanup', async () => {
+      const limiter = new RateLimiter({ maxRequests: 2, windowMs: 10000 });
+
+      // Add 2 requests at current time
+      await limiter.waitForSlot();
+      limiter.recordRequest();
+
+      await limiter.waitForSlot();
+      limiter.recordRequest();
+
+      expect(limiter.getStats().used).toBe(2);
+
+      // Now try to get a third slot while at limit
+      // After waiting, the window hasn't expired yet, so it should recursively call waitForSlot
+      vi.useFakeTimers();
+
+      // Make requests appear slightly old but still in window
+      const oldTimestamp = Date.now() - 100;
+      (limiter as { requests: number[] }).requests = [oldTimestamp, oldTimestamp];
+
+      const waitPromise = limiter.waitForSlot();
+
+      // Advance time past window
+      vi.advanceTimersByTime(10100);
+
+      // Now the wait should complete
+      await waitPromise;
+
+      vi.useRealTimers();
+      expect(limiter.getStats().remaining).toBeGreaterThan(0);
+    });
   });
 });
