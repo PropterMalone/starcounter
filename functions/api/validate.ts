@@ -1,5 +1,29 @@
 import type { MediaType } from '../../src/lib/mention-extractor';
 
+interface TMDBResult {
+  id?: number;
+  title?: string;
+  name?: string;
+  release_date?: string;
+  first_air_date?: string;
+  vote_average?: number;
+  vote_count?: number;
+  popularity?: number;
+}
+
+interface MusicBrainzResult {
+  id?: string;
+  title?: string;
+  score?: number;
+  'artist-credit'?: Array<{ name: string }>;
+}
+
+interface CloudflareEnv {
+  TMDB_API_KEY: string;
+  MUSICBRAINZ_USER_AGENT: string;
+  VALIDATION_CACHE?: KVNamespace;
+}
+
 export interface ValidationOptions {
   tmdbApiKey: string;
   musicbrainzUserAgent: string;
@@ -130,7 +154,7 @@ async function validateTMDB(
 /**
  * Calculate confidence from TMDB result
  */
-function calculateTMDBConfidence(result: any): 'high' | 'medium' | 'low' {
+function calculateTMDBConfidence(result: TMDBResult): 'high' | 'medium' | 'low' {
   const voteCount = result.vote_count || 0;
   const popularity = result.popularity || 0;
 
@@ -150,10 +174,7 @@ function calculateTMDBConfidence(result: any): 'high' | 'medium' | 'low' {
 /**
  * Validate music against MusicBrainz
  */
-async function validateMusicBrainz(
-  title: string,
-  userAgent: string
-): Promise<ValidationResult> {
+async function validateMusicBrainz(title: string, userAgent: string): Promise<ValidationResult> {
   // Use fuzzy search with Lucene syntax
   const query = `recording:${title}~0.8`;
   const url = `https://musicbrainz.org/ws/2/recording/?query=${encodeURIComponent(query)}&fmt=json&limit=5`;
@@ -165,9 +186,7 @@ async function validateMusicBrainz(
   });
 
   if (!response.ok) {
-    throw new Error(
-      `MusicBrainz API error: ${response.status} ${response.statusText}`
-    );
+    throw new Error(`MusicBrainz API error: ${response.status} ${response.statusText}`);
   }
 
   const data = await response.json();
@@ -181,10 +200,10 @@ async function validateMusicBrainz(
   }
 
   // Take highest score result
-  const result = data.recordings[0];
+  const result: MusicBrainzResult = data.recordings[0];
 
   // Calculate confidence from MusicBrainz score (0-100)
-  const confidence = calculateMusicBrainzConfidence(result.score);
+  const confidence = calculateMusicBrainzConfidence(result.score ?? 0);
 
   // Extract artist
   const artist =
@@ -217,7 +236,7 @@ function calculateMusicBrainzConfidence(score: number): 'high' | 'medium' | 'low
  * Cloudflare Workers handler
  */
 export default {
-  async fetch(request: Request, env: any): Promise<Response> {
+  async fetch(request: Request, env: CloudflareEnv): Promise<Response> {
     // CORS headers
     const corsHeaders = {
       'Access-Control-Allow-Origin': '*',
