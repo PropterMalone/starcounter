@@ -100,6 +100,22 @@ describe('ProgressTracker', () => {
       expect(listener1).not.toHaveBeenCalled();
       expect(listener2).toHaveBeenCalledTimes(1);
     });
+
+    it('should handle removing listener from event with no listeners', () => {
+      const listener = vi.fn();
+
+      // Try to remove listener from event that has no listeners
+      expect(() => {
+        tracker.off('fetching', listener);
+      }).not.toThrow();
+    });
+
+    it('should emit event even when no listeners registered', () => {
+      // This should not throw
+      expect(() => {
+        tracker.emit('fetching', { fetched: 5, total: 10 });
+      }).not.toThrow();
+    });
   });
 
   describe('heartbeat detection', () => {
