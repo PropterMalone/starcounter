@@ -1,5 +1,11 @@
 import type { MediaMention } from './mention-extractor';
 
+export type ValidatedMention = MediaMention & {
+  validated?: boolean;
+  validationConfidence?: 'high' | 'medium' | 'low';
+  validatedTitle?: string;
+};
+
 export interface ValidationProgress {
   total: number;
   completed: number;
@@ -41,17 +47,15 @@ export class ValidationClient {
   /**
    * Validate multiple mentions with progress reporting
    */
-  async validateMentions(mentions: MediaMention[]): Promise<Array<MediaMention & Partial<ValidationResponse>>> {
-    const validated: Array<MediaMention & Partial<ValidationResponse>> = [];
+  async validateMentions(mentions: MediaMention[]): Promise<ValidatedMention[]> {
+    const validated: ValidatedMention[] = [];
     const total = mentions.length;
 
     // Process in batches to avoid overwhelming the API
     for (let i = 0; i < mentions.length; i += this.options.batchSize) {
       const batch = mentions.slice(i, i + this.options.batchSize);
 
-      const batchResults = await Promise.all(
-        batch.map((mention) => this.validateSingle(mention))
-      );
+      const batchResults = await Promise.all(batch.map((mention) => this.validateSingle(mention)));
 
       validated.push(...batchResults);
 
@@ -74,7 +78,7 @@ export class ValidationClient {
   /**
    * Validate a single mention
    */
-  private async validateSingle(mention: MediaMention): Promise<MediaMention & Partial<ValidationResponse>> {
+  private async validateSingle(mention: MediaMention): Promise<ValidatedMention> {
     try {
       const response = await fetch(this.options.apiUrl, {
         method: 'POST',
@@ -102,7 +106,7 @@ export class ValidationClient {
         validatedTitle: result.title,
         artist: result.artist || mention.artist,
       };
-    } catch (error) {
+    } catch {
       // Network error, return original mention
       return mention;
     }
