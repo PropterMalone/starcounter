@@ -46,7 +46,7 @@ export class BlueskyClient {
     if (!uri.startsWith('at://')) {
       return {
         ok: false,
-        error: new Error('Invalid AT-URI: must start with "at://"'),
+        error: new Error('invalid AT-URI: must start with "at://"'),
       };
     }
 
@@ -72,7 +72,7 @@ export class BlueskyClient {
     if (!uri.startsWith('at://')) {
       return {
         ok: false,
-        error: new Error('Invalid AT-URI: must start with "at://"'),
+        error: new Error('invalid AT-URI: must start with "at://"'),
       };
     }
 
@@ -129,7 +129,7 @@ export class BlueskyClient {
         if (attempt >= maxRetries) {
           return {
             ok: false,
-            error: new Error(`Rate limit exceeded after ${maxRetries} retries`),
+            error: new Error(`rate limit exceeded after ${maxRetries} retries`),
           };
         }
 

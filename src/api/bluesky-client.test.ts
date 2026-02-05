@@ -167,7 +167,7 @@ describe('BlueskyClient', () => {
 
       expect(result.ok).toBe(false);
       if (!result.ok) {
-        expect(result.error.message).toContain('Rate limit exceeded');
+        expect(result.error.message).toContain('rate limit exceeded');
       }
 
       vi.useRealTimers();
@@ -547,7 +547,7 @@ describe('BlueskyClient', () => {
 
       expect(result.ok).toBe(false);
       if (!result.ok) {
-        expect(result.error.message).toContain('Invalid AT-URI');
+        expect(result.error.message).toContain('invalid AT-URI');
       }
 
       // Should not call fetch
@@ -559,7 +559,7 @@ describe('BlueskyClient', () => {
 
       expect(result.ok).toBe(false);
       if (!result.ok) {
-        expect(result.error.message).toContain('Invalid AT-URI');
+        expect(result.error.message).toContain('invalid AT-URI');
       }
 
       // Should not call fetch
