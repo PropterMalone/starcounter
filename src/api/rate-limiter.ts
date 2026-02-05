@@ -21,7 +21,7 @@ export class RateLimiter {
   private readonly maxRequests: number;
   private readonly windowMs: number;
   private readonly minDelayMs: number;
-  private requests: number[] = []; // Timestamps of requests
+  private requests: Array<number> = []; // Timestamps of requests
   private lastRequestTime = 0;
 
   constructor(options: RateLimiterOptions) {

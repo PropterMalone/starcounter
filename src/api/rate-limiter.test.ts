@@ -344,7 +344,7 @@ describe('RateLimiter', () => {
 
       // Make requests appear slightly old but still in window
       const oldTimestamp = Date.now() - 100;
-      (limiter as { requests: number[] }).requests = [oldTimestamp, oldTimestamp];
+      (limiter as { requests: Array<number> }).requests = [oldTimestamp, oldTimestamp];
 
       const waitPromise = limiter.waitForSlot();
 
