@@ -9,7 +9,6 @@ import type { MentionCount } from '../types';
 export class ResultsChart {
   private chart: Chart | null = null;
   private clickCallback: ((mention: string, posts: unknown[]) => void) | null = null;
-  private mentionData: MentionCount[] = [];
 
   constructor(private canvas: HTMLCanvasElement) {}
 
@@ -23,13 +22,8 @@ export class ResultsChart {
       this.chart.destroy();
     }
 
-    // Store data for click handling
-    this.mentionData = mentionCounts;
-
     // Sort by count descending and take top 20
-    const sortedCounts = [...mentionCounts]
-      .sort((a, b) => b.count - a.count)
-      .slice(0, 20);
+    const sortedCounts = [...mentionCounts].sort((a, b) => b.count - a.count).slice(0, 20);
 
     // Prepare chart data
     const labels = sortedCounts.map((item) => item.mention);
@@ -58,13 +52,15 @@ export class ResultsChart {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        onClick: (event, elements) => {
+        onClick: (_event, elements) => {
           if (elements.length > 0 && this.clickCallback) {
-            const index = elements[0].index;
-            const mention = sortedCounts[index].mention;
-            const posts = sortedCounts[index].posts;
-
-            this.clickCallback(mention, posts);
+            const element = elements[0];
+            if (element && typeof element.index === 'number') {
+              const item = sortedCounts[element.index];
+              if (item) {
+                this.clickCallback(item.mention, item.posts);
+              }
+            }
           }
         },
         scales: {
