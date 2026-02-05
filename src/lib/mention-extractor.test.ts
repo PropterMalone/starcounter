@@ -89,6 +89,13 @@ describe('MentionExtractor', () => {
 
         expect(mentions[0].mediaType).toBe(MediaType.MOVIE);
       });
+
+      it('should return UNKNOWN when no context keywords match', () => {
+        const text = 'Some random text with "Title" in it';
+        const mentions = extractor.extractMentions(text);
+
+        expect(mentions[0].mediaType).toBe(MediaType.UNKNOWN);
+      });
     });
 
     describe('edge cases', () => {
@@ -196,7 +203,9 @@ describe('MentionExtractor - Property-Based Tests', () => {
   it('should normalize titles with articles consistently', () => {
     // Test the specific case: "The Matrix" should normalize same as "Matrix"
     expect(extractor.normalizeTitle('The Matrix')).toBe(extractor.normalizeTitle('Matrix'));
-    expect(extractor.normalizeTitle('A Star Is Born')).toBe(extractor.normalizeTitle('Star Is Born'));
+    expect(extractor.normalizeTitle('A Star Is Born')).toBe(
+      extractor.normalizeTitle('Star Is Born')
+    );
     expect(extractor.normalizeTitle('An Unexpected Journey')).toBe(
       extractor.normalizeTitle('Unexpected Journey')
     );
