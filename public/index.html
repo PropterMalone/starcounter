@@ -1,91 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Starcounter - Bluesky Post Analyzer</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="container">
-    <header>
-      <h1>Starcounter</h1>
-      <p class="subtitle">Analyze media mentions in Bluesky threads</p>
-    </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Starcounter - Bluesky Post Analyzer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Starcounter</h1>
+        <p class="subtitle">Analyze media mentions in Bluesky threads</p>
+      </header>
 
-    <main>
-      <!-- Input Form -->
-      <section id="input-section" class="card">
-        <form id="analyze-form">
-          <div class="form-group">
-            <label for="post-url">Bluesky Post URL</label>
-            <input
-              type="url"
-              id="post-url"
-              name="post-url"
-              placeholder="https://bsky.app/profile/handle/post/xxxxx"
-              required
-              pattern="https://bsky\.app/profile/[^/]+/post/[a-zA-Z0-9]+"
-            />
-            <span class="error-message" id="url-error"></span>
+      <main>
+        <!-- Input Form -->
+        <section id="input-section" class="card">
+          <form id="analyze-form">
+            <div class="form-group">
+              <label for="post-url">Bluesky Post URL</label>
+              <input
+                type="url"
+                id="post-url"
+                name="post-url"
+                placeholder="https://bsky.app/profile/handle/post/xxxxx"
+                required
+                pattern="https://bsky\.app/profile/[^/]+/post/[a-zA-Z0-9]+"
+              />
+              <span class="error-message" id="url-error"></span>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" id="analyze-button" class="btn btn-primary">
+                Analyze Thread
+              </button>
+              <button
+                type="button"
+                id="cancel-button"
+                class="btn btn-secondary"
+                style="display: none"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Progress Section -->
+        <section id="progress-section" class="card" style="display: none">
+          <div class="progress-container">
+            <div class="progress-bar-wrapper">
+              <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p class="progress-text" id="progress-text">Starting analysis...</p>
+            <p class="progress-details" id="progress-details"></p>
           </div>
+        </section>
 
-          <div class="form-actions">
-            <button type="submit" id="analyze-button" class="btn btn-primary">
-              Analyze Thread
-            </button>
-            <button type="button" id="cancel-button" class="btn btn-secondary" style="display: none;">
-              Cancel
-            </button>
+        <!-- Results Section -->
+        <section id="results-section" class="card" style="display: none">
+          <div class="results-header">
+            <h2>Results</h2>
+            <button id="new-analysis-button" class="btn btn-secondary">New Analysis</button>
           </div>
-        </form>
-      </section>
-
-      <!-- Progress Section -->
-      <section id="progress-section" class="card" style="display: none;">
-        <div class="progress-container">
-          <div class="progress-bar-wrapper">
-            <div class="progress-bar" id="progress-bar"></div>
+          <div class="chart-container">
+            <canvas id="results-chart"></canvas>
           </div>
-          <p class="progress-text" id="progress-text">Starting analysis...</p>
-          <p class="progress-details" id="progress-details"></p>
-        </div>
-      </section>
+          <p class="chart-hint">Click on a bar to see contributing posts</p>
+        </section>
 
-      <!-- Results Section -->
-      <section id="results-section" class="card" style="display: none;">
-        <div class="results-header">
-          <h2>Results</h2>
-          <button id="new-analysis-button" class="btn btn-secondary">New Analysis</button>
-        </div>
-        <div class="chart-container">
-          <canvas id="results-chart"></canvas>
-        </div>
-        <p class="chart-hint">Click on a bar to see contributing posts</p>
-      </section>
+        <!-- Error Section -->
+        <section id="error-section" class="card error" style="display: none">
+          <h2>Error</h2>
+          <p id="error-message"></p>
+          <button id="retry-button" class="btn btn-primary">Try Again</button>
+        </section>
+      </main>
 
-      <!-- Error Section -->
-      <section id="error-section" class="card error" style="display: none;">
-        <h2>Error</h2>
-        <p id="error-message"></p>
-        <button id="retry-button" class="btn btn-primary">Try Again</button>
-      </section>
-    </main>
-
-    <!-- Drill-Down Modal -->
-    <div id="drill-down-modal" class="modal" style="display: none;">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 id="modal-title">Contributing Posts</h2>
-          <button class="modal-close" id="modal-close-button">&times;</button>
-        </div>
-        <div class="modal-body" id="modal-body">
-          <!-- Posts will be inserted here -->
+      <!-- Drill-Down Modal -->
+      <div id="drill-down-modal" class="modal" style="display: none">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 id="modal-title">Contributing Posts</h2>
+            <button class="modal-close" id="modal-close-button">&times;</button>
+          </div>
+          <div class="modal-body" id="modal-body">
+            <!-- Posts will be inserted here -->
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script type="module" src="bundle.js"></script>
-</body>
+    <script type="module" src="bundle.js"></script>
+  </body>
 </html>

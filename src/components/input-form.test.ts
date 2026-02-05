@@ -42,13 +42,7 @@ describe('InputForm', () => {
 
   describe('initialization', () => {
     it('should attach to form elements', () => {
-      const inputForm = new InputForm(
-        form,
-        input,
-        submitButton,
-        cancelButton,
-        errorSpan
-      );
+      const inputForm = new InputForm(form, input, submitButton, cancelButton, errorSpan);
 
       expect(inputForm).toBeDefined();
     });
@@ -128,6 +122,16 @@ describe('InputForm', () => {
       expect(errorSpan.textContent).toBeTruthy();
     });
 
+    it('should not error when submitting valid URL without callback', () => {
+      new InputForm(form, input, submitButton, cancelButton, errorSpan);
+
+      input.value = 'https://bsky.app/profile/alice.bsky.social/post/3k7qr5xya2c2a';
+
+      const event = new dom.window.Event('submit', { bubbles: true, cancelable: true });
+
+      expect(() => form.dispatchEvent(event)).not.toThrow();
+    });
+
     it('should disable form during analysis', () => {
       const inputForm = new InputForm(form, input, submitButton, cancelButton, errorSpan);
 
@@ -169,6 +173,16 @@ describe('InputForm', () => {
       expect(input.disabled).toBe(false);
       expect(submitButton.disabled).toBe(false);
       expect(cancelButton.style.display).toBe('none');
+    });
+
+    it('should not error when clicking cancel without callback', () => {
+      new InputForm(form, input, submitButton, cancelButton, errorSpan);
+
+      cancelButton.style.display = 'block'; // Make visible for test
+
+      const event = new dom.window.Event('click');
+
+      expect(() => cancelButton.dispatchEvent(event)).not.toThrow();
     });
   });
 
