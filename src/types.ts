@@ -186,3 +186,12 @@ export type ApiError = {
  * Result type for operations that can fail
  */
 export type Result<T, E = Error> = { ok: true; value: T } | { ok: false; error: E };
+
+/**
+ * Mention with count and contributing posts
+ */
+export type MentionCount = {
+  readonly mention: string;
+  readonly count: number;
+  readonly posts: PostView[];
+};

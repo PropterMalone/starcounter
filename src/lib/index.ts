@@ -14,3 +14,5 @@ export type {
   ValidationResponse,
   ValidatedMention,
 } from './validation-client';
+export { ProgressTracker } from './progress-tracker';
+export type { ProgressEvent, ProgressData } from './progress-tracker';
