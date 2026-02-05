@@ -146,5 +146,174 @@ describe('MentionCounter', () => {
 
       expect(counts.get('matrix')).toBe(2); // Both branches count separately
     });
+
+    it('should handle posts with no mentions', () => {
+      const mentions: MediaMention[] = [
+        {
+          title: 'The Matrix',
+          normalizedTitle: 'matrix',
+          mediaType: 'MOVIE',
+          confidence: 'high',
+        },
+      ];
+
+      const posts: PostView[] = [
+        createPost('post1', 'user1', 'Just a regular post'),
+        createPost('post2', 'user2', 'Nothing to see here'),
+      ];
+
+      const tree: Partial<ThreadTree> = {
+        allPosts: posts,
+        getParent: () => null,
+        getBranchAuthors: () => ['user1', 'user2'],
+      };
+
+      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+
+      expect(counts.get('matrix')).toBeUndefined();
+    });
+
+    it('should handle empty posts list', () => {
+      const mentions: MediaMention[] = [
+        {
+          title: 'The Matrix',
+          normalizedTitle: 'matrix',
+          mediaType: 'MOVIE',
+          confidence: 'high',
+        },
+      ];
+
+      const posts: PostView[] = [];
+
+      const tree: Partial<ThreadTree> = {
+        allPosts: posts,
+        getParent: () => null,
+        getBranchAuthors: () => [],
+      };
+
+      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+
+      expect(counts.size).toBe(0);
+    });
+
+    it('should handle multiple mentions in single post', () => {
+      const mentions: MediaMention[] = [
+        {
+          title: 'The Matrix',
+          normalizedTitle: 'matrix',
+          mediaType: 'MOVIE',
+          confidence: 'high',
+        },
+        {
+          title: 'Inception',
+          normalizedTitle: 'inception',
+          mediaType: 'MOVIE',
+          confidence: 'high',
+        },
+      ];
+
+      const posts: PostView[] = [
+        createPost('post1', 'user1', 'I watched The Matrix and Inception'),
+      ];
+
+      const tree: Partial<ThreadTree> = {
+        allPosts: posts,
+        getParent: () => null,
+        getBranchAuthors: () => ['user1'],
+      };
+
+      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+
+      expect(counts.get('matrix')).toBe(1);
+      expect(counts.get('inception')).toBe(1);
+    });
+
+    it('should handle reply to post without mention', () => {
+      const mentions: MediaMention[] = [
+        {
+          title: 'The Matrix',
+          normalizedTitle: 'matrix',
+          mediaType: 'MOVIE',
+          confidence: 'high',
+        },
+      ];
+
+      const posts: PostView[] = [
+        createPost('post1', 'user1', 'Great movie!'),
+        createPost('post2', 'user2', 'I totally agree! The Matrix is amazing.'),
+      ];
+
+      const tree: Partial<ThreadTree> = {
+        allPosts: posts,
+        getParent: (uri) => (uri === 'post2' ? 'post1' : null),
+        getBranchAuthors: (uri) => (uri === 'post2' ? ['user1', 'user2'] : ['user1']),
+      };
+
+      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+
+      expect(counts.get('matrix')).toBe(1); // Only in post2, not in parent
+    });
+
+    it('should handle missing parent post in tree', () => {
+      const mentions: MediaMention[] = [
+        {
+          title: 'The Matrix',
+          normalizedTitle: 'matrix',
+          mediaType: 'MOVIE',
+          confidence: 'high',
+        },
+      ];
+
+      const posts: PostView[] = [
+        createPost('post1', 'user1', 'I watched The Matrix'),
+        createPost('post2', 'user2', 'I totally agree! The Matrix is amazing.'),
+      ];
+
+      const tree: Partial<ThreadTree> = {
+        allPosts: posts,
+        getParent: (uri) => (uri === 'post2' ? 'nonexistent' : null),
+        getBranchAuthors: (uri) => (uri === 'post2' ? ['user1', 'user2'] : ['user1']),
+      };
+
+      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+
+      // post2 mentions matrix and agrees, but parent doesn't exist in allPosts
+      // so it counts as a novel mention
+      expect(counts.get('matrix')).toBe(2);
+    });
+
+    it('should handle agreement in nested replies', () => {
+      const mentions: MediaMention[] = [
+        {
+          title: 'The Matrix',
+          normalizedTitle: 'matrix',
+          mediaType: 'MOVIE',
+          confidence: 'high',
+        },
+      ];
+
+      const posts: PostView[] = [
+        createPost('post1', 'user1', 'I watched The Matrix'),
+        createPost('post2', 'user2', 'So good!'),
+        createPost('post3', 'user3', 'I agree! The Matrix is amazing.'),
+      ];
+
+      const tree: Partial<ThreadTree> = {
+        allPosts: posts,
+        getParent: (uri) => {
+          if (uri === 'post2') return 'post1';
+          if (uri === 'post3') return 'post2';
+          return null;
+        },
+        getBranchAuthors: () => ['user1', 'user2', 'user3'],
+      };
+
+      const counts = counter.countMentions(mentions, posts, tree as ThreadTree);
+
+      // post1: counts matrix (+1)
+      // post2: replies to post1 but doesn't mention matrix (0)
+      // post3: replies to post2 (agrees and mentions matrix, but post2 doesn't have matrix, so counts as novel +1)
+      expect(counts.get('matrix')).toBe(2);
+    });
   });
 });
