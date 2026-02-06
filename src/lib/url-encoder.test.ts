@@ -79,8 +79,11 @@ describe('url-encoder', () => {
 
       const encoded = encodeResults(results);
 
-      // URL-safe characters only (Base64 alphabet)
-      expect(encoded).toMatch(/^[A-Za-z0-9+/=]+$/);
+      // URL-safe characters only (no +, /, or = which cause problems in URLs)
+      // LZ-string's compressToEncodedURIComponent uses a safe alphabet
+      expect(encoded).not.toMatch(/[+/=]/);
+      // Should be able to use as URL param without encoding
+      expect(encodeURIComponent(encoded)).toBe(encoded);
     });
 
     it('should handle unicode characters', () => {
@@ -163,7 +166,7 @@ describe('url-encoder', () => {
       const json = JSON.stringify(wrongStructure);
 
       const LZString = await import('lz-string');
-      const compressed = LZString.compressToBase64(json);
+      const compressed = LZString.compressToEncodedURIComponent(json);
 
       expect(decodeResults(compressed)).toBeNull();
     });
@@ -173,20 +176,20 @@ describe('url-encoder', () => {
 
       // Missing 't' field
       const missingT = { m: [{ n: 'Test', c: 1 }] };
-      expect(decodeResults(LZString.compressToBase64(JSON.stringify(missingT)))).toBeNull();
+      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(missingT)))).toBeNull();
 
       // Missing 'm' field
       const missingM = { t: Date.now() };
-      expect(decodeResults(LZString.compressToBase64(JSON.stringify(missingM)))).toBeNull();
+      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(missingM)))).toBeNull();
     });
 
     it('should return null for non-object values', async () => {
       const LZString = await import('lz-string');
 
       // Primitive value
-      expect(decodeResults(LZString.compressToBase64(JSON.stringify('string')))).toBeNull();
-      expect(decodeResults(LZString.compressToBase64(JSON.stringify(123)))).toBeNull();
-      expect(decodeResults(LZString.compressToBase64(JSON.stringify(null)))).toBeNull();
+      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify('string')))).toBeNull();
+      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(123)))).toBeNull();
+      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(null)))).toBeNull();
     });
 
     it('should return null for invalid mention entries in array', async () => {
@@ -194,11 +197,11 @@ describe('url-encoder', () => {
 
       // Mention is null
       const nullMention = { m: [null], t: Date.now() };
-      expect(decodeResults(LZString.compressToBase64(JSON.stringify(nullMention)))).toBeNull();
+      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(nullMention)))).toBeNull();
 
       // Mention is primitive
       const primitiveMention = { m: ['string'], t: Date.now() };
-      expect(decodeResults(LZString.compressToBase64(JSON.stringify(primitiveMention)))).toBeNull();
+      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(primitiveMention)))).toBeNull();
     });
 
     it('should return null for mention with wrong field types', async () => {
@@ -206,11 +209,11 @@ describe('url-encoder', () => {
 
       // n is not a string
       const wrongN = { m: [{ n: 123, c: 1 }], t: Date.now() };
-      expect(decodeResults(LZString.compressToBase64(JSON.stringify(wrongN)))).toBeNull();
+      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(wrongN)))).toBeNull();
 
       // c is not a number
       const wrongC = { m: [{ n: 'Test', c: 'one' }], t: Date.now() };
-      expect(decodeResults(LZString.compressToBase64(JSON.stringify(wrongC)))).toBeNull();
+      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(wrongC)))).toBeNull();
     });
   });
 

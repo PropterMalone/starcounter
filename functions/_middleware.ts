@@ -29,7 +29,7 @@ function decodeResults(encoded: string): ShareableResults | null {
   }
 
   try {
-    const decompressed = LZString.decompressFromBase64(encoded);
+    const decompressed = LZString.decompressFromEncodedURIComponent(encoded);
     if (!decompressed) {
       return null;
     }
