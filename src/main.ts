@@ -48,11 +48,11 @@ class StarcounterApp {
   private drillDownModal: DrillDownModal;
   private shareButton: ShareButton;
   private advancedToggle: AdvancedToggle;
-  private loginForm: LoginForm;
 
   private abortController: AbortController | null = null;
   private useAdvancedSentiment = false;
   private analysisStartTime: number = 0;
+  private originalPost: PostView | null = null;
 
   constructor() {
     // Initialize auth service first
@@ -92,9 +92,7 @@ class StarcounterApp {
       requireElement<HTMLElement>('progress-details')
     );
 
-    this.resultsChart = new ResultsChart(
-      requireElement<HTMLCanvasElement>('results-chart')
-    );
+    this.resultsChart = new ResultsChart(requireElement<HTMLCanvasElement>('results-chart'));
 
     this.drillDownModal = new DrillDownModal(
       requireElement<HTMLElement>('drill-down-modal'),
@@ -120,10 +118,10 @@ class StarcounterApp {
       this.useAdvancedSentiment = enabled;
     });
 
-    // Initialize login form
+    // Initialize login form (creates UI elements, no need to store reference)
     const loginContainer = document.getElementById('login-container');
     if (loginContainer) {
-      this.loginForm = new LoginForm(loginContainer, this.authService);
+      new LoginForm(loginContainer, this.authService);
     }
 
     this.attachEventListeners();
@@ -200,6 +198,7 @@ class StarcounterApp {
       this.progressBar.reset();
       this.progressTracker.reset();
       this.analysisStartTime = Date.now();
+      this.originalPost = null;
 
       // Extract AT-URI from bsky.app URL
       const atUri = this.convertBskyUrlToAtUri(url);
@@ -228,7 +227,10 @@ class StarcounterApp {
         }))
       );
 
-      console.log(`[Analysis] Extracted ${mentionsWithSource.length} raw mentions:`, mentionsWithSource.map(m => m.title));
+      console.log(
+        `[Analysis] Extracted ${mentionsWithSource.length} raw mentions:`,
+        mentionsWithSource.map((m) => m.title)
+      );
 
       // Create a map from normalized title to source posts (for drilldown later)
       const titleToSourcePosts = new Map<string, PostView[]>();
@@ -283,6 +285,7 @@ class StarcounterApp {
         branches: [],
         allPosts,
         truncatedPosts: [],
+        restrictedPosts: [],
         getParent: () => null,
         getBranchAuthors: () => [],
         flattenPosts: () => allPosts,
@@ -337,28 +340,26 @@ class StarcounterApp {
       // Known phrases where a short word is part of a longer movie title
       // Maps short word → patterns that indicate it's part of a longer title (regex fragments)
       const shortWordPhrasePatterns: Record<string, RegExp[]> = {
-        'red': [
-          /\bred\s+october\b/i,           // Hunt for Red October
-          /\bfor\s+red\b/i,               // "hunt FOR RED october"
-          /\bred\s+dragon\b/i,            // Red Dragon
-          /\bred\s+dawn\b/i,              // Red Dawn
-          /\bred\s+sparrow\b/i,           // Red Sparrow
+        red: [
+          /\bred\s+october\b/i, // Hunt for Red October
+          /\bfor\s+red\b/i, // "hunt FOR RED october"
+          /\bred\s+dragon\b/i, // Red Dragon
+          /\bred\s+dawn\b/i, // Red Dawn
+          /\bred\s+sparrow\b/i, // Red Sparrow
         ],
-        'jones': [
-          /\bindiana\s+jones\b/i,         // Indiana Jones
-          /\bjones\s+and\s+the\b/i,       // "Jones and the..."
-          /\bbridget\s+jones\b/i,         // Bridget Jones
+        jones: [
+          /\bindiana\s+jones\b/i, // Indiana Jones
+          /\bjones\s+and\s+the\b/i, // "Jones and the..."
+          /\bbridget\s+jones\b/i, // Bridget Jones
         ],
-        'ugly': [
-          /\bgood[,]?\s*(the\s+)?bad[,]?\s*(and\s+)?(the\s+)?ugly\b/i,  // The Good, the Bad and the Ugly
+        ugly: [
+          /\bgood[,]?\s*(the\s+)?bad[,]?\s*(and\s+)?(the\s+)?ugly\b/i, // The Good, the Bad and the Ugly
           /\bbad\s+(and\s+)?(the\s+)?ugly\b/i,
         ],
-        'oceans': [
-          /\bocean'?s?\s+(eleven|twelve|thirteen|8|eight)\b/i,  // Ocean's Eleven/Twelve/etc
+        oceans: [
+          /\bocean'?s?\s+(eleven|twelve|thirteen|8|eight)\b/i, // Ocean's Eleven/Twelve/etc
         ],
-        'ocean': [
-          /\bocean'?s?\s+(eleven|twelve|thirteen|8|eight)\b/i,
-        ],
+        ocean: [/\bocean'?s?\s+(eleven|twelve|thirteen|8|eight)\b/i],
       };
 
       // Check if a short word appears ONLY in known phrase patterns (not standalone)
@@ -370,7 +371,7 @@ class StarcounterApp {
         const lowerText = text.toLowerCase();
 
         // Check if the word appears in any of the known phrase patterns
-        const appearsInPhrase = patterns.some(pattern => pattern.test(lowerText));
+        const appearsInPhrase = patterns.some((pattern) => pattern.test(lowerText));
         if (!appearsInPhrase) return false; // Word doesn't appear in any known phrase
 
         // Check if word appears OUTSIDE of the phrase patterns (standalone)
@@ -403,7 +404,7 @@ class StarcounterApp {
         const normalizedTitle = normalizeForSearch(title);
         searchTerms.add(normalizedTitle);
         if (normalizedTitle.includes(':')) {
-          const baseTitle = normalizedTitle.split(':')[0].trim();
+          const baseTitle = normalizedTitle.split(':')[0]?.trim() ?? '';
           const wordCount = baseTitle.split(/\s+/).length;
           if (wordCount >= 2 || baseTitle.length >= 10) {
             searchTerms.add(baseTitle);
@@ -430,7 +431,10 @@ class StarcounterApp {
         // E.g., if post matches both "RED" and "Hunt for Red October", keep only the longer one
         const filteredTitles = matchedTitles.filter((title) => {
           const myTerms = allTitleSearchTerms.get(title)!;
-          const myLongestTerm = Array.from(myTerms).reduce((a, b) => (a.length > b.length ? a : b), '');
+          const myLongestTerm = Array.from(myTerms).reduce(
+            (a, b) => (a.length > b.length ? a : b),
+            ''
+          );
 
           // Check if this title's terms are substrings of another matched title's terms
           for (const otherTitle of matchedTitles) {
@@ -526,6 +530,9 @@ class StarcounterApp {
       resultsSection.style.display = 'block';
     }
 
+    // Display the original prompt post
+    this.displayOriginalPost();
+
     // Display analysis stats (elapsed time and post count)
     const statsEl = document.getElementById('analysis-stats');
     if (statsEl) {
@@ -545,6 +552,53 @@ class StarcounterApp {
   }
 
   /**
+   * Display the original prompt post above results
+   */
+  private displayOriginalPost(): void {
+    const promptContainer = document.getElementById('original-prompt');
+    if (!promptContainer) return;
+
+    if (!this.originalPost) {
+      promptContainer.style.display = 'none';
+      return;
+    }
+
+    const post = this.originalPost;
+    const author = post.author;
+    const displayName = author.displayName || author.handle;
+
+    // Build the Bluesky URL for the post
+    const postId = post.uri.split('/').pop();
+    const postUrl = `https://bsky.app/profile/${author.handle}/post/${postId}`;
+
+    promptContainer.innerHTML = `
+      <div class="prompt-post">
+        <div class="prompt-author">
+          ${author.avatar ? `<img src="${author.avatar}" alt="" class="prompt-avatar">` : ''}
+          <div class="prompt-author-info">
+            <span class="prompt-display-name">${this.escapeHtml(displayName)}</span>
+            <span class="prompt-handle">@${this.escapeHtml(author.handle)}</span>
+          </div>
+        </div>
+        <div class="prompt-text">${this.escapeHtml(post.record.text)}</div>
+        <a href="${postUrl}" target="_blank" rel="noopener noreferrer" class="prompt-link">
+          View original post →
+        </a>
+      </div>
+    `;
+    promptContainer.style.display = 'block';
+  }
+
+  /**
+   * Escape HTML to prevent XSS
+   */
+  private escapeHtml(text: string): string {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  /**
    * Categorize error and return user-friendly message
    */
   private categorizeError(message: string): string {
@@ -561,12 +615,20 @@ class StarcounterApp {
     }
 
     // Rate limiting
-    if (lowerMessage.includes('429') || lowerMessage.includes('rate limit') || lowerMessage.includes('too many')) {
+    if (
+      lowerMessage.includes('429') ||
+      lowerMessage.includes('rate limit') ||
+      lowerMessage.includes('too many')
+    ) {
       return 'Too many requests. Please wait a few seconds and try again.';
     }
 
     // Authentication
-    if (lowerMessage.includes('401') || lowerMessage.includes('unauthorized') || lowerMessage.includes('auth')) {
+    if (
+      lowerMessage.includes('401') ||
+      lowerMessage.includes('unauthorized') ||
+      lowerMessage.includes('auth')
+    ) {
       return 'This post may be private or restricted. Try logging in with your Bluesky account.';
     }
 
@@ -652,7 +714,9 @@ class StarcounterApp {
   ): Promise<PostView[]> {
     const MAX_DEPTH = 5;
     if (depth > MAX_DEPTH || visited.has(uri)) {
-      console.log(`[fetchAllPosts] Skipping uri=${uri} (depth=${depth}, visited=${visited.has(uri)})`);
+      console.log(
+        `[fetchAllPosts] Skipping uri=${uri} (depth=${depth}, visited=${visited.has(uri)})`
+      );
       return [];
     }
     visited.add(uri);
@@ -663,12 +727,19 @@ class StarcounterApp {
     let didBasedUri = uri; // Will be updated to DID-based URI from thread response
 
     // Fetch the thread (includes nested replies) with high depth to capture full conversation
-    const threadResult = await this.blueskyClient.getPostThread(uri, { depth: 1000, parentHeight: 1000 });
+    const threadResult = await this.blueskyClient.getPostThread(uri, {
+      depth: 1000,
+      parentHeight: 1000,
+    });
     if (threadResult.ok) {
       const tree = this.threadBuilder.buildTree(threadResult.value.thread);
-      console.log(`[fetchAllPosts] Thread returned ${tree.allPosts.length} posts, ${tree.truncatedPosts.length} truncated, ${tree.restrictedPosts.length} restricted`);
+      console.log(
+        `[fetchAllPosts] Thread returned ${tree.allPosts.length} posts, ${tree.truncatedPosts.length} truncated, ${tree.restrictedPosts.length} restricted`
+      );
       if (tree.restrictedPosts.length > 0) {
-        console.log(`[fetchAllPosts] ${tree.restrictedPosts.length} posts require authentication to view`);
+        console.log(
+          `[fetchAllPosts] ${tree.restrictedPosts.length} posts require authentication to view`
+        );
       }
       allPosts.push(...tree.allPosts);
 
@@ -676,6 +747,11 @@ class StarcounterApp {
       if (tree.post?.uri) {
         didBasedUri = tree.post.uri;
         console.log(`[fetchAllPosts] Resolved to DID-based URI: ${didBasedUri}`);
+
+        // Store the original (root) post for display at depth 0
+        if (depth === 0) {
+          this.originalPost = tree.post;
+        }
       }
 
       // Mark all thread posts as visited (using their DID-based URIs)
@@ -688,13 +764,17 @@ class StarcounterApp {
         console.log(`[fetchAllPosts] Fetching ${tree.truncatedPosts.length} truncated subtrees`);
         for (const truncated of tree.truncatedPosts) {
           const missingCount = truncated.expectedReplies - truncated.actualReplies;
-          console.log(`[fetchAllPosts] Truncated post ${truncated.uri}: expected=${truncated.expectedReplies}, got=${truncated.actualReplies}, missing=${missingCount}`);
+          console.log(
+            `[fetchAllPosts] Truncated post ${truncated.uri}: expected=${truncated.expectedReplies}, got=${truncated.actualReplies}, missing=${missingCount}`
+          );
 
           // Fetch this post's thread to get its missing replies
           // Note: we use depth + 1 to track overall recursion, but this is a sibling fetch, not a deeper nesting
           const subtreePosts = await this.fetchTruncatedSubtree(truncated.uri, visited);
           if (subtreePosts.length > 0) {
-            console.log(`[fetchAllPosts] Fetched ${subtreePosts.length} additional posts from truncated subtree`);
+            console.log(
+              `[fetchAllPosts] Fetched ${subtreePosts.length} additional posts from truncated subtree`
+            );
             allPosts.push(...subtreePosts);
           }
         }
@@ -720,7 +800,9 @@ class StarcounterApp {
       cursor = quotesResult.value.cursor;
       totalQuotesFetched += quotes.length;
 
-      console.log(`[fetchAllPosts] Quotes page returned ${quotes.length} posts (total fetched: ${totalQuotesFetched}, cursor: ${cursor ? 'yes' : 'no'})`);
+      console.log(
+        `[fetchAllPosts] Quotes page returned ${quotes.length} posts (total fetched: ${totalQuotesFetched}, cursor: ${cursor ? 'yes' : 'no'})`
+      );
 
       // Collect unvisited quotes from this page
       const unvisitedQuotes = quotes.filter((quote) => !visited.has(quote.uri));
@@ -740,7 +822,9 @@ class StarcounterApp {
       for (let i = 0; i < unvisitedQuotes.length; i += QUOTE_BATCH_SIZE) {
         const batch = unvisitedQuotes.slice(i, i + QUOTE_BATCH_SIZE);
 
-        console.log(`[fetchAllPosts] Fetching ${batch.length} quote threads in parallel (batch ${Math.floor(i / QUOTE_BATCH_SIZE) + 1})`);
+        console.log(
+          `[fetchAllPosts] Fetching ${batch.length} quote threads in parallel (batch ${Math.floor(i / QUOTE_BATCH_SIZE) + 1})`
+        );
 
         const threadResults = await Promise.allSettled(
           batch.map((quote) =>
@@ -775,7 +859,9 @@ class StarcounterApp {
       }
     } while (cursor);
 
-    console.log(`[fetchAllPosts] Total quotes fetched: ${totalQuotesFetched}, new quotes added: ${newQuotesAdded}`);
+    console.log(
+      `[fetchAllPosts] Total quotes fetched: ${totalQuotesFetched}, new quotes added: ${newQuotesAdded}`
+    );
 
     return allPosts;
   }
@@ -786,7 +872,10 @@ class StarcounterApp {
    */
   private async fetchTruncatedSubtree(uri: string, visited: Set<string>): Promise<PostView[]> {
     // Fetch the thread rooted at this post
-    const threadResult = await this.blueskyClient.getPostThread(uri, { depth: 1000, parentHeight: 0 });
+    const threadResult = await this.blueskyClient.getPostThread(uri, {
+      depth: 1000,
+      parentHeight: 0,
+    });
     if (!threadResult.ok) {
       console.log(`[fetchTruncatedSubtree] Failed to fetch ${uri}:`, threadResult.error);
       return [];
@@ -803,11 +892,15 @@ class StarcounterApp {
       }
     }
 
-    console.log(`[fetchTruncatedSubtree] Found ${newPosts.length} new posts out of ${tree.allPosts.length} total`);
+    console.log(
+      `[fetchTruncatedSubtree] Found ${newPosts.length} new posts out of ${tree.allPosts.length} total`
+    );
 
     // Check for further truncation in this subtree
     if (tree.truncatedPosts.length > 0) {
-      console.log(`[fetchTruncatedSubtree] Subtree has ${tree.truncatedPosts.length} more truncated posts`);
+      console.log(
+        `[fetchTruncatedSubtree] Subtree has ${tree.truncatedPosts.length} more truncated posts`
+      );
       for (const truncated of tree.truncatedPosts) {
         // Only fetch if we haven't already fetched this post's full subtree
         if (!visited.has(`${truncated.uri}:fetched`)) {
@@ -884,7 +977,10 @@ class StarcounterApp {
           }
 
           // Use word boundary to match - "red" should match in "hunt for red october"
-          const pattern = new RegExp(`\\b${normalizedTitle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+          const pattern = new RegExp(
+            `\\b${normalizedTitle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`,
+            'i'
+          );
           if (pattern.test(longerNormalized)) {
             canonical = longer;
             break; // Use the longest matching title
@@ -942,13 +1038,13 @@ class StarcounterApp {
     // - Starts with number: "Alien 3", "Die Hard 2"
     // - Starts with "Part": "The Godfather Part II"
     const sequelPatterns = [
-      /^:/,                           // Colon subtitle
-      /^[IVX]+\b/i,                   // Roman numerals
-      /^\d+/,                         // Numbers
-      /^part\s/i,                     // "Part X"
-      /^chapter\s/i,                  // "Chapter X"
-      /^episode\s/i,                  // "Episode X"
-      /^vol(\.|ume)?\s/i,             // "Vol. X" or "Volume X"
+      /^:/, // Colon subtitle
+      /^[IVX]+\b/i, // Roman numerals
+      /^\d+/, // Numbers
+      /^part\s/i, // "Part X"
+      /^chapter\s/i, // "Chapter X"
+      /^episode\s/i, // "Episode X"
+      /^vol(\.|ume)?\s/i, // "Vol. X" or "Volume X"
     ];
 
     return sequelPatterns.some((pattern) => pattern.test(suffix));

@@ -17,7 +17,7 @@ export const OG_CACHE_MAX_AGE = 86400;
 /**
  * Maximum number of mentions to display in chart
  */
-const MAX_CHART_ITEMS = 10;
+const _MAX_CHART_ITEMS = 10;
 
 /**
  * Maximum title length before truncation
@@ -194,17 +194,20 @@ export async function generateOGImage(results: ShareableResults): Promise<Respon
               flex: 1,
               justifyContent: 'center',
             },
-            children: barRows.length > 0 ? barRows : {
-              type: 'div',
-              props: {
-                style: {
-                  fontSize: 24,
-                  color: '#64748b',
-                  textAlign: 'center',
-                },
-                children: 'No mentions found',
-              },
-            },
+            children:
+              barRows.length > 0
+                ? barRows
+                : {
+                    type: 'div',
+                    props: {
+                      style: {
+                        fontSize: 24,
+                        color: '#64748b',
+                        textAlign: 'center',
+                      },
+                      children: 'No mentions found',
+                    },
+                  },
           },
         },
         // Footer
