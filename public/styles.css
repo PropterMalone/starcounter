@@ -381,85 +381,6 @@ header h1 {
   text-decoration: underline;
 }
 
-/* Login Section */
-.login-section {
-  margin: 1rem 0;
-  padding: 0.75rem;
-  background: var(--background);
-  border-radius: 4px;
-  border: 1px solid var(--border-color);
-}
-
-.login-toggle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 0.5rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--text-secondary);
-  font-size: 0.875rem;
-}
-
-.login-toggle:hover {
-  color: var(--text-primary);
-}
-
-.login-status {
-  font-weight: 500;
-}
-
-.login-status.logged-in {
-  color: var(--success-color);
-}
-
-.login-toggle-icon {
-  font-size: 0.75rem;
-}
-
-.login-form-container {
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--border-color);
-}
-
-.login-hint {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  margin-bottom: 0.75rem;
-}
-
-.login-hint a {
-  color: var(--primary-color);
-  text-decoration: none;
-}
-
-.login-hint a:hover {
-  text-decoration: underline;
-}
-
-.login-error {
-  color: var(--error-color);
-  font-size: 0.875rem;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  background: rgba(217, 48, 37, 0.1);
-  border-radius: 4px;
-}
-
-.login-actions {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
-}
-
-.btn-small {
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-}
-
 @media (max-width: 640px) {
   .container {
     padding: 1rem 0.5rem;
@@ -590,4 +511,179 @@ header h1 {
 
 .prompt-link:hover {
   text-decoration: underline;
+}
+
+/* Results options */
+.results-options {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* Excluded categories */
+.excluded-categories {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: var(--background);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.excluded-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.excluded-list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.excluded-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: var(--secondary-color);
+  color: white;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.excluded-restore {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+.excluded-restore:hover {
+  opacity: 1;
+}
+
+/* Modal actions */
+.modal-actions {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Post footer */
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Post assignment dropdown */
+.post-assign {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.assign-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.assign-select {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  background: white;
+  cursor: pointer;
+}
+
+.assign-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Cluster Review Modal */
+.modal-wide {
+  max-width: 900px;
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.cluster-item {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: var(--background);
+}
+
+.cluster-item:last-child {
+  margin-bottom: 0;
+}
+
+.cluster-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.cluster-title {
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--text-primary);
+}
+
+.cluster-stats {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.cluster-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cluster-posts {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.post-preview {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background: var(--card-background);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.post-preview:last-child {
+  margin-bottom: 0;
+}
+
+.post-preview-author {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.post-preview-text {
+  color: var(--text-primary);
 }

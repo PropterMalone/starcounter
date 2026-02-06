@@ -19,15 +19,31 @@ type MusicBrainzResult = {
   readonly 'artist-credit'?: Array<{ readonly name: string }>;
 };
 
+type IGDBResult = {
+  readonly id?: number;
+  readonly name?: string;
+  readonly slug?: string;
+  readonly first_release_date?: number; // Unix timestamp
+  readonly rating?: number; // IGDB user rating (0-100)
+  readonly rating_count?: number;
+  readonly aggregated_rating?: number; // Critics rating (0-100)
+  readonly aggregated_rating_count?: number;
+  readonly total_rating?: number; // Combined rating
+};
+
 type CloudflareEnv = {
   readonly TMDB_API_KEY: string;
   readonly MUSICBRAINZ_USER_AGENT: string;
+  readonly TWITCH_CLIENT_ID: string;
+  readonly TWITCH_CLIENT_SECRET: string;
   readonly VALIDATION_CACHE?: KVNamespace;
 };
 
 export type ValidationOptions = {
   readonly tmdbApiKey: string;
   readonly musicbrainzUserAgent: string;
+  readonly twitchClientId: string;
+  readonly twitchClientSecret: string;
   readonly cache?: KVNamespace; // Cloudflare KV for caching
 };
 
@@ -35,13 +51,14 @@ export type ValidationResult = {
   readonly title: string;
   readonly validated: boolean;
   readonly confidence: 'high' | 'medium' | 'low';
-  readonly source?: 'tmdb' | 'musicbrainz';
+  readonly source?: 'tmdb' | 'musicbrainz' | 'igdb';
   readonly artist?: string; // For music
   readonly metadata?: {
     readonly id?: string | number;
     readonly releaseDate?: string;
     readonly voteAverage?: number;
     readonly popularity?: number;
+    readonly metacritic?: number; // For video games
   };
   readonly error?: string;
 };
@@ -112,6 +129,8 @@ export async function validateMention(
       );
     } else if (mediaType === 'MUSIC') {
       result = await validateMusicBrainz(title, options.musicbrainzUserAgent);
+    } else if (mediaType === 'VIDEO_GAME') {
+      result = await validateIGDB(title, options.twitchClientId, options.twitchClientSecret);
     } else {
       result = {
         title,
@@ -481,6 +500,147 @@ function calculateMusicBrainzConfidence(score: number): 'high' | 'medium' | 'low
   return 'low';
 }
 
+/**
+ * Get Twitch OAuth token for IGDB API
+ * Tokens last 60 days, so we fetch fresh each time (could cache in KV for optimization)
+ */
+async function getTwitchAccessToken(clientId: string, clientSecret: string): Promise<string> {
+  const response = await fetch(
+    `https://id.twitch.tv/oauth2/token?client_id=${clientId}&client_secret=${clientSecret}&grant_type=client_credentials`,
+    { method: 'POST' }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Twitch OAuth error: ${response.status} ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data.access_token;
+}
+
+/**
+ * Validate video game against IGDB API
+ */
+async function validateIGDB(
+  title: string,
+  clientId: string,
+  clientSecret: string
+): Promise<ValidationResult> {
+  const titleLower = title.toLowerCase().trim();
+
+  // Reject very short titles
+  if (title.length < 2) {
+    return {
+      title,
+      validated: false,
+      confidence: 'low',
+    };
+  }
+
+  // Reject generic single words that are unlikely to be game titles
+  const wordCount = titleLower.split(/\s+/).length;
+  if (wordCount === 1 && GENERIC_WORDS.has(titleLower)) {
+    return {
+      title,
+      validated: false,
+      confidence: 'low',
+    };
+  }
+
+  // Get Twitch access token
+  const accessToken = await getTwitchAccessToken(clientId, clientSecret);
+
+  // IGDB uses a POST body with their query language
+  const query = `search "${title.replace(/"/g, '\\"')}"; fields name,slug,first_release_date,rating,rating_count,aggregated_rating,aggregated_rating_count,total_rating; limit 10;`;
+
+  const response = await fetch('https://api.igdb.com/v4/games', {
+    method: 'POST',
+    headers: {
+      'Client-ID': clientId,
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'text/plain',
+    },
+    body: query,
+  });
+
+  if (!response.ok) {
+    throw new Error(`IGDB API error: ${response.status} ${response.statusText}`);
+  }
+
+  const results: IGDBResult[] = await response.json();
+
+  if (!results || results.length === 0) {
+    return {
+      title,
+      validated: false,
+      confidence: 'low',
+    };
+  }
+
+  // Score all results and pick the best match
+  let bestMatch: { result: IGDBResult; score: number } | null = null;
+
+  for (const result of results.slice(0, 10)) {
+    const resultTitle = result.name ?? '';
+    const score = scoreTitleMatch(title, resultTitle);
+
+    if (score > 0 && (!bestMatch || score > bestMatch.score)) {
+      bestMatch = { result, score };
+    }
+  }
+
+  if (bestMatch) {
+    const confidence = calculateIGDBConfidence(bestMatch.result);
+
+    // Convert Unix timestamp to ISO date string
+    const releaseDate = bestMatch.result.first_release_date
+      ? new Date(bestMatch.result.first_release_date * 1000).toISOString().split('T')[0]
+      : undefined;
+
+    return {
+      title: bestMatch.result.name,
+      validated: true,
+      confidence,
+      source: 'igdb',
+      metadata: {
+        id: bestMatch.result.id,
+        releaseDate,
+        voteAverage: bestMatch.result.total_rating
+          ? Math.round(bestMatch.result.total_rating) / 10
+          : undefined, // Convert 0-100 to 0-10 scale
+      },
+    };
+  }
+
+  // No good match found
+  return {
+    title,
+    validated: false,
+    confidence: 'low',
+  };
+}
+
+/**
+ * Calculate confidence from IGDB result
+ */
+function calculateIGDBConfidence(result: IGDBResult): 'high' | 'medium' | 'low' {
+  const ratingCount = result.rating_count || 0;
+  const aggregatedRatingCount = result.aggregated_rating_count || 0;
+  const totalRatings = ratingCount + aggregatedRatingCount;
+
+  // High confidence: has both user and critic ratings, or many user ratings
+  if ((ratingCount >= 50 && aggregatedRatingCount >= 5) || ratingCount >= 500) {
+    return 'high';
+  }
+
+  // Medium confidence: some ratings
+  if (totalRatings >= 20 || aggregatedRatingCount >= 3) {
+    return 'medium';
+  }
+
+  return 'low';
+}
+
 // CORS headers
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -516,6 +676,8 @@ export async function onRequestPost(context: PagesContext): Promise<Response> {
     const result = await validateMention(title, mediaType as MediaType, {
       tmdbApiKey: env.TMDB_API_KEY,
       musicbrainzUserAgent: env.MUSICBRAINZ_USER_AGENT,
+      twitchClientId: env.TWITCH_CLIENT_ID,
+      twitchClientSecret: env.TWITCH_CLIENT_SECRET,
       cache: env.VALIDATION_CACHE,
     });
 

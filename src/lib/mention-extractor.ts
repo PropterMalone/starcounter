@@ -1,10 +1,11 @@
 // pattern: Functional Core
-export type MediaType = 'MOVIE' | 'TV_SHOW' | 'MUSIC' | 'UNKNOWN';
+export type MediaType = 'MOVIE' | 'TV_SHOW' | 'MUSIC' | 'VIDEO_GAME' | 'UNKNOWN';
 
 export const MediaType = {
   MOVIE: 'MOVIE' as const,
   TV_SHOW: 'TV_SHOW' as const,
   MUSIC: 'MUSIC' as const,
+  VIDEO_GAME: 'VIDEO_GAME' as const,
   UNKNOWN: 'UNKNOWN' as const,
 };
 
@@ -28,6 +29,36 @@ const MUSIC_KEYWORDS = [
   'track',
   'music',
   'playing',
+];
+
+const VIDEO_GAME_KEYWORDS = [
+  'played',
+  'playing',
+  'beat',
+  'completed',
+  'finished',
+  'gaming',
+  'gamer',
+  'game',
+  'games',
+  'videogame',
+  'video game',
+  'steam',
+  'playstation',
+  'xbox',
+  'nintendo',
+  'switch',
+  'pc',
+  'console',
+  'rpg',
+  'mmo',
+  'fps',
+  'roguelike',
+  'metroidvania',
+  'souls',
+  'soulslike',
+  'platinum',
+  'speedrun',
 ];
 
 const NOISE_WORDS = new Set([
@@ -160,6 +191,15 @@ const COMMON_WORDS = new Set([
   'speak',
   'read',
   'spend',
+  'recommend',
+  'suggest',
+  'try',
+  'enjoy',
+  'play',
+  'played',
+  'playing',
+  'check',
+  'checking',
   'grow',
   'open',
   'walk',
@@ -490,6 +530,49 @@ const COMMON_WORDS = new Set([
   'kids',
   'movies',
 
+  // More common nouns that appear in sentences
+  'ending',
+  'beginning',
+  'middle',
+  'mind',
+  'heart',
+  'soul',
+  'thought',
+  'idea',
+  'opinion',
+  'view',
+  'feeling',
+  'sense',
+  'reason',
+  'meaning',
+  'purpose',
+  'goal',
+  'plan',
+  'decision',
+  'choice',
+  'chance',
+  'luck',
+  'fate',
+  'truth',
+  'lie',
+  'secret',
+  'surprise',
+  'shock',
+  'joy',
+  'pain',
+  'pleasure',
+  'fun',
+  'music',
+  'sound',
+  'voice',
+  'noise',
+  'silence',
+  'scene',
+  'shot',
+  'moment',
+  'second',
+  'hour',
+
   // Adjectives (often before nouns, not titles)
   'good',
   'great',
@@ -621,6 +704,11 @@ export class MentionExtractor {
       // Catches titles like "Ronin", "Amélie", "Tenet" that are uncommon English words
       const rareWordMentions = this.extractRareWords(line, defaultMediaType);
       mentions.push(...rareWordMentions);
+
+      // Strategy 5: Lowercase multi-word phrases (low confidence - relies on validation)
+      // Catches casual mentions like "disco elysium", "baldur's gate 3", "elden ring"
+      const lowercaseMentions = this.extractLowercaseMultiWord(line, defaultMediaType);
+      mentions.push(...lowercaseMentions);
     }
 
     // Deduplicate by normalized title, preferring longer titles when one is a substring of another
@@ -755,6 +843,9 @@ export class MentionExtractor {
       }
       let title = captured.trim();
       const position = match.index;
+
+      // Strip trailing possessive 's from last word (e.g., "The Matrix's" -> "The Matrix")
+      title = title.replace(/'s$/i, '');
 
       // Check if first word is at sentence start
       if (this.isAtSentenceStart(position, sentenceStarts)) {
@@ -1086,6 +1177,189 @@ export class MentionExtractor {
   }
 
   /**
+   * Extract lowercase multi-word phrases that could be titles
+   * Catches casual mentions like "disco elysium", "baldur's gate 3", "elden ring"
+   * Low confidence - relies heavily on validation to filter noise
+   */
+  private extractLowercaseMultiWord(
+    text: string,
+    defaultMediaType?: MediaType
+  ): Array<MediaMention> {
+    const mentions: Array<MediaMention> = [];
+
+    // Pattern: 2-5 lowercase words, optionally with numbers, apostrophes, or colons
+    // Examples: "disco elysium", "baldur's gate 3", "red dead redemption 2"
+    // Excludes words that are ALL common words
+    const lowercasePattern = /\b([a-z][a-z']+(?:\s+[a-z0-9':][a-z0-9']*){1,4})\b/g;
+    let match;
+
+    while ((match = lowercasePattern.exec(text)) !== null) {
+      const phrase = match[1];
+      if (!phrase) continue;
+
+      const position = match.index;
+
+      // Split into words
+      const words = phrase.split(/\s+/).filter((w) => w.length > 0);
+
+      // Require at least 2 words
+      if (words.length < 2) continue;
+
+      // Skip if ALL words are common (likely just normal text)
+      const nonCommonWords = words.filter((w) => !COMMON_WORDS.has(w.toLowerCase()));
+      if (nonCommonWords.length === 0) continue;
+
+      // Trim leading common words (e.g., "recommend disco elysium" -> "disco elysium")
+      while (words.length > 2) {
+        const firstWord = words[0];
+        if (firstWord && COMMON_WORDS.has(firstWord.toLowerCase())) {
+          words.shift();
+        } else {
+          break;
+        }
+      }
+
+      // Trim trailing common words (e.g., "disco elysium is amazing" -> "disco elysium")
+      // This prevents over-capturing into sentence continuation
+      while (words.length > 2) {
+        const lastWord = words[words.length - 1];
+        if (lastWord && COMMON_WORDS.has(lastWord.toLowerCase())) {
+          words.pop();
+        } else {
+          break;
+        }
+      }
+
+      // After trimming, re-check if we still have non-common words
+      const trimmedNonCommon = words.filter((w) => !COMMON_WORDS.has(w.toLowerCase()));
+      if (trimmedNonCommon.length === 0) continue;
+
+      // Rebuild phrase from trimmed words
+      const trimmedPhrase = words.join(' ');
+
+      // Skip very short phrases (likely noise)
+      if (trimmedPhrase.length < 6) continue;
+
+      // Skip if phrase is just common filler
+      const fillerPhrases = new Set([
+        'i think',
+        'i know',
+        'i love',
+        'i like',
+        'i want',
+        'i need',
+        'i was',
+        'i am',
+        'you know',
+        'you think',
+        'you seen',
+        'you saw',
+        'you are',
+        'you were',
+        'it was',
+        'it is',
+        'that was',
+        'that is',
+        'this is',
+        'this was',
+        'so much',
+        'too much',
+        'a lot',
+        'the best',
+        'the worst',
+        'my favorite',
+        'my favourite',
+        'for me',
+        'to me',
+        'to them',
+        'to him',
+        'to her',
+        'to you',
+        'to us',
+        'of course',
+        'in fact',
+        'as well',
+        'at least',
+        'at all',
+        'right now',
+        'last night',
+        'last week',
+        'last month',
+        'last year',
+        'this year',
+        'this week',
+        'next year',
+        'next week',
+        'one of',
+        'some of',
+        'all of',
+        'none of',
+        'kind of',
+        'sort of',
+        'a bit',
+        'a little',
+        'a few',
+        'have you',
+        'do you',
+        'did you',
+        'can you',
+        'will you',
+        'would you',
+        'could you',
+        'should you',
+        'was mind',
+        'ending was',
+        'beginning was',
+      ]);
+      if (fillerPhrases.has(trimmedPhrase.toLowerCase())) continue;
+
+      // Skip if phrase starts with a pronoun, demonstrative, or common verb (likely sentence fragment)
+      const startsWithCommon =
+        /^(i|you|he|she|it|we|they|that|this|there|here|have|has|had|do|does|did|was|were|is|are|am|been|being|i'm|you're|he's|she's|it's|we're|they're|that's|there's|here's|i've|you've|we've|they've|i'd|you'd|he'd|she'd|we'd|they'd|i'll|you'll|he'll|she'll|we'll|they'll|isn't|aren't|wasn't|weren't|don't|doesn't|didn't|won't|wouldn't|can't|couldn't|shouldn't|haven't|hasn't|hadn't)\s/i;
+      if (startsWithCommon.test(trimmedPhrase)) continue;
+
+      // Convert to Title Case for display
+      const titleCased = this.lowercaseToTitleCase(trimmedPhrase);
+
+      // Get context
+      const contextStart = Math.max(0, position - 50);
+      const contextEnd = Math.min(text.length, position + match[0].length + 50);
+      const context = text.slice(contextStart, contextEnd);
+
+      // Classify media type
+      const mediaType = defaultMediaType ?? this.classifyFromContext(context);
+
+      mentions.push({
+        title: titleCased,
+        normalizedTitle: this.normalizeTitle(titleCased),
+        mediaType,
+        confidence: 'low', // Low confidence - relies on validation
+        context,
+      });
+    }
+
+    return mentions;
+  }
+
+  /**
+   * Convert lowercase phrase to Title Case
+   * "disco elysium" -> "Disco Elysium"
+   * "baldur's gate 3" -> "Baldur's Gate 3"
+   */
+  private lowercaseToTitleCase(text: string): string {
+    return text
+      .split(/\s+/)
+      .map((word) => {
+        if (word.length === 0) return word;
+        // Keep numbers as-is
+        if (/^\d+$/.test(word)) return word;
+        // Capitalize first letter, keep rest (preserves apostrophes)
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      })
+      .join(' ');
+  }
+
+  /**
    * Convert ALL CAPS to Title Case for display
    * "MASTER & COMMANDER" -> "Master & Commander"
    * "TOP GUN: MAVERICK" -> "Top Gun: Maverick"
@@ -1218,9 +1492,10 @@ export class MentionExtractor {
     const movieCount = MOVIE_KEYWORDS.filter((kw) => contextLower.includes(kw)).length;
     const tvCount = TV_KEYWORDS.filter((kw) => contextLower.includes(kw)).length;
     const musicCount = MUSIC_KEYWORDS.filter((kw) => contextLower.includes(kw)).length;
+    const gameCount = VIDEO_GAME_KEYWORDS.filter((kw) => contextLower.includes(kw)).length;
 
     // Return type with most matches
-    const max = Math.max(movieCount, tvCount, musicCount);
+    const max = Math.max(movieCount, tvCount, musicCount, gameCount);
 
     if (max === 0) {
       return MediaType.UNKNOWN;
@@ -1229,6 +1504,7 @@ export class MentionExtractor {
     if (movieCount === max) return MediaType.MOVIE;
     if (tvCount === max) return MediaType.TV_SHOW;
     if (musicCount === max) return MediaType.MUSIC;
+    if (gameCount === max) return MediaType.VIDEO_GAME;
 
     return MediaType.UNKNOWN;
   }

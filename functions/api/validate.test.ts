@@ -43,6 +43,8 @@ describe('validateMention', () => {
       const result = await validateMention('The Matrix', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       expect(result.validated).toBe(true);
@@ -60,6 +62,70 @@ describe('validateMention', () => {
       const result = await validateMention('Nonexistent Movie', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(false);
+      expect(result.confidence).toBe('low');
+    });
+
+    it('should reject generic single-word movie titles', async () => {
+      const result = await validateMention('love', MediaType.MOVIE, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(false);
+      expect(result.confidence).toBe('low');
+    });
+
+    it('should reject cruft phrases like "dad movie"', async () => {
+      const result = await validateMention('dad movie', MediaType.MOVIE, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(false);
+      expect(result.confidence).toBe('low');
+    });
+
+    it('should reject very short movie titles', async () => {
+      const result = await validateMention('AB', MediaType.MOVIE, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(false);
+      expect(result.confidence).toBe('low');
+    });
+
+    it('should return false when TMDB results exist but none match', async () => {
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          results: [
+            {
+              id: 99999,
+              title: 'Xyz Qwerty Zyx',
+              vote_count: 1000,
+              popularity: 50,
+            },
+          ],
+        }),
+      });
+
+      const result = await validateMention('Elden Ring', MediaType.MOVIE, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       expect(result.validated).toBe(false);
@@ -90,6 +156,8 @@ describe('validateMention', () => {
       const result = await validateMention('Breaking Bad', MediaType.TV_SHOW, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       expect(result.validated).toBe(true);
@@ -124,6 +192,8 @@ describe('validateMention', () => {
       const result = await validateMention('Bohemian Rhapsody', MediaType.MUSIC, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       expect(result.validated).toBe(true);
@@ -141,12 +211,201 @@ describe('validateMention', () => {
       await validateMention('Bohemian Rhapsody', MediaType.MUSIC, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       const callUrl = (
         (global.fetch as unknown as MockedFetch).mock.calls[0] as unknown[]
       )[0] as string;
       expect(callUrl).toContain('~'); // Fuzzy operator
+    });
+  });
+
+  describe('IGDB video game validation', () => {
+    // Helper to mock both Twitch OAuth and IGDB API calls
+    const mockIGDBCalls = (igdbResponse: unknown[]) => {
+      // First call: Twitch OAuth token
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ access_token: 'mock_token' }),
+      });
+      // Second call: IGDB API
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
+        ok: true,
+        json: async () => igdbResponse,
+      });
+    };
+
+    it('should validate video game against IGDB', async () => {
+      mockIGDBCalls([
+        {
+          id: 3498,
+          name: 'Grand Theft Auto V',
+          slug: 'grand-theft-auto-v',
+          first_release_date: 1379376000, // 2013-09-17
+          rating: 92,
+          rating_count: 600,
+          aggregated_rating: 97,
+          aggregated_rating_count: 10,
+          total_rating: 94,
+        },
+      ]);
+
+      const result = await validateMention('Grand Theft Auto V', MediaType.VIDEO_GAME, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(true);
+      expect(result.title).toBe('Grand Theft Auto V');
+      expect(result.confidence).toBe('high');
+      expect(result.source).toBe('igdb');
+      expect(result.metadata?.voteAverage).toBe(9.4); // 94 / 10
+    });
+
+    it('should return low confidence for no matches', async () => {
+      mockIGDBCalls([]);
+
+      const result = await validateMention('Nonexistent Game', MediaType.VIDEO_GAME, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(false);
+      expect(result.confidence).toBe('low');
+    });
+
+    it('should return medium confidence for games with some ratings', async () => {
+      mockIGDBCalls([
+        {
+          id: 12345,
+          name: 'Indie Game',
+          rating_count: 30,
+          aggregated_rating_count: 5,
+        },
+      ]);
+
+      const result = await validateMention('Indie Game', MediaType.VIDEO_GAME, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(true);
+      expect(result.confidence).toBe('medium');
+    });
+
+    it('should handle Twitch OAuth errors', async () => {
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
+        ok: false,
+        status: 401,
+        statusText: 'Unauthorized',
+      });
+
+      const result = await validateMention('Some Game', MediaType.VIDEO_GAME, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(false);
+      expect(result.error).toContain('Twitch OAuth error');
+    });
+
+    it('should handle IGDB API errors', async () => {
+      // Twitch OAuth succeeds
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ access_token: 'mock_token' }),
+      });
+      // IGDB fails
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
+        ok: false,
+        status: 500,
+        statusText: 'Internal Server Error',
+      });
+
+      const result = await validateMention('Some Game', MediaType.VIDEO_GAME, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(false);
+      expect(result.error).toContain('IGDB API error');
+    });
+
+    it('should reject very short titles', async () => {
+      const result = await validateMention('A', MediaType.VIDEO_GAME, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(false);
+      expect(result.confidence).toBe('low');
+    });
+
+    it('should reject generic single-word titles', async () => {
+      const result = await validateMention('love', MediaType.VIDEO_GAME, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(false);
+      expect(result.confidence).toBe('low');
+    });
+
+    it('should return low confidence for games with few ratings', async () => {
+      mockIGDBCalls([
+        {
+          id: 99999,
+          name: 'Obscure Game',
+          rating_count: 5,
+          aggregated_rating_count: 0,
+        },
+      ]);
+
+      const result = await validateMention('Obscure Game', MediaType.VIDEO_GAME, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(true);
+      expect(result.confidence).toBe('low');
+    });
+
+    it('should return false when title match score is zero', async () => {
+      mockIGDBCalls([
+        {
+          id: 12345,
+          name: 'Xyz Abc Qwerty',
+          rating_count: 1000,
+        },
+      ]);
+
+      const result = await validateMention('Elden Ring', MediaType.VIDEO_GAME, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(false);
+      expect(result.confidence).toBe('low');
     });
   });
 
@@ -168,6 +427,8 @@ describe('validateMention', () => {
       const result = await validateMention('The Matrix', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       expect(result.confidence).toBe('high');
@@ -190,6 +451,8 @@ describe('validateMention', () => {
       const result = await validateMention('The Matrix', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       expect(result.confidence).toBe('medium');
@@ -203,6 +466,8 @@ describe('validateMention', () => {
       const result = await validateMention('The Matrix', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       expect(result.validated).toBe(false);
@@ -219,6 +484,8 @@ describe('validateMention', () => {
       const result = await validateMention('The Matrix', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       expect(result.validated).toBe(false);
@@ -254,6 +521,8 @@ describe('validateMention', () => {
       await validateMention('The Matrix', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
         cache: mockKV as unknown as KVNamespace,
       });
 
@@ -276,6 +545,8 @@ describe('validateMention', () => {
       const result = await validateMention('The Matrix', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
         cache: mockKV as unknown as KVNamespace,
       });
 
@@ -302,6 +573,8 @@ describe('validateMention', () => {
       const result = await validateMention('The Matrix', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       expect(result.validated).toBe(true);
@@ -325,6 +598,8 @@ describe('validateMention', () => {
       const result = await validateMention('Bohemian Rhapsody', MediaType.MUSIC, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       expect(result.validated).toBe(true);
@@ -341,6 +616,8 @@ describe('validateMention', () => {
       const result = await validateMention('Unknown Title', 'UNKNOWN' as unknown as MediaType, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       // Should attempt TMDB search (returns low confidence on no match)
@@ -371,6 +648,8 @@ describe('validateMention', () => {
       const result = await validateMention('Bohemian Rhapsody', MediaType.MUSIC, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       expect(result.validated).toBe(true);
@@ -399,6 +678,8 @@ describe('validateMention', () => {
       const result = await validateMention('Bohemian Rhapsody', MediaType.MUSIC, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       expect(result.validated).toBe(true);
@@ -422,6 +703,8 @@ describe('validateMention', () => {
       const result = await validateMention('Obscure Movie', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       expect(result.validated).toBe(true);
@@ -438,6 +721,8 @@ describe('validateMention', () => {
       const result = await validateMention('The Matrix', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       expect(result.validated).toBe(false);
@@ -454,6 +739,8 @@ describe('validateMention', () => {
       const result = await validateMention('Bohemian Rhapsody', MediaType.MUSIC, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       expect(result.validated).toBe(false);
@@ -470,6 +757,8 @@ describe('validateMention', () => {
       const response = await handler.fetch(request, {
         TMDB_API_KEY: 'test',
         MUSICBRAINZ_USER_AGENT: 'test',
+        TWITCH_CLIENT_ID: 'test_twitch_id',
+        TWITCH_CLIENT_SECRET: 'test_twitch_secret',
       });
 
       expect(response.status).toBe(200);
@@ -484,6 +773,8 @@ describe('validateMention', () => {
       const response = await handler.fetch(request, {
         TMDB_API_KEY: 'test',
         MUSICBRAINZ_USER_AGENT: 'test',
+        TWITCH_CLIENT_ID: 'test_twitch_id',
+        TWITCH_CLIENT_SECRET: 'test_twitch_secret',
       });
 
       expect(response.status).toBe(405);
@@ -498,6 +789,8 @@ describe('validateMention', () => {
       const response = await handler.fetch(request, {
         TMDB_API_KEY: 'test',
         MUSICBRAINZ_USER_AGENT: 'test',
+        TWITCH_CLIENT_ID: 'test_twitch_id',
+        TWITCH_CLIENT_SECRET: 'test_twitch_secret',
       });
 
       expect(response.status).toBe(400);
@@ -512,6 +805,8 @@ describe('validateMention', () => {
       const response = await handler.fetch(request, {
         TMDB_API_KEY: 'test',
         MUSICBRAINZ_USER_AGENT: 'test',
+        TWITCH_CLIENT_ID: 'test_twitch_id',
+        TWITCH_CLIENT_SECRET: 'test_twitch_secret',
       });
 
       expect(response.status).toBe(400);
@@ -542,6 +837,8 @@ describe('validateMention', () => {
       const response = await handler.fetch(request, {
         TMDB_API_KEY: 'test_key',
         MUSICBRAINZ_USER_AGENT: 'test',
+        TWITCH_CLIENT_ID: 'test_twitch_id',
+        TWITCH_CLIENT_SECRET: 'test_twitch_secret',
       });
 
       expect(response.status).toBe(200);
@@ -559,6 +856,8 @@ describe('validateMention', () => {
       const response = await handler.fetch(request, {
         TMDB_API_KEY: 'test',
         MUSICBRAINZ_USER_AGENT: 'test',
+        TWITCH_CLIENT_ID: 'test_twitch_id',
+        TWITCH_CLIENT_SECRET: 'test_twitch_secret',
       });
 
       expect(response.status).toBe(500);
@@ -593,6 +892,8 @@ describe('validateMention', () => {
       const result = await validateMention('The Matrix', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
         cache: mockKV as unknown as KVNamespace,
       });
 
@@ -620,6 +921,8 @@ describe('validateMention', () => {
       const result = await validateMention('The Matrix', MediaType.MOVIE, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
       });
 
       expect(result.validated).toBe(true);

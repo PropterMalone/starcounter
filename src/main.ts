@@ -1,5 +1,12 @@
-import { BlueskyClient, AuthService } from './api';
-import { ThreadBuilder, MentionExtractor, MentionCounter, decodeResults } from './lib';
+import { BlueskyClient } from './api';
+import {
+  ThreadBuilder,
+  MentionExtractor,
+  MentionCounter,
+  decodeResults,
+  fingerprint,
+  fingerprintContains,
+} from './lib';
 import { ProgressTracker } from './lib/progress-tracker';
 import { createSentimentAnalyzer } from './lib/sentiment-factory';
 import { ValidationClient } from './lib/validation-client';
@@ -8,10 +15,11 @@ import {
   ProgressBar,
   ResultsChart,
   DrillDownModal,
+  ClusterReviewModal,
   ShareButton,
   AdvancedToggle,
-  LoginForm,
 } from './components';
+import { suggestClusters } from './lib/clustering';
 import type { MentionCount, PostView } from './types';
 import type { MediaMention } from './lib/mention-extractor';
 
@@ -35,7 +43,6 @@ function requireElement<T extends HTMLElement>(id: string): T {
  */
 
 class StarcounterApp {
-  private authService: AuthService;
   private blueskyClient: BlueskyClient;
   private threadBuilder: ThreadBuilder;
   private mentionExtractor: MentionExtractor;
@@ -46,6 +53,7 @@ class StarcounterApp {
   private progressBar: ProgressBar;
   private resultsChart: ResultsChart;
   private drillDownModal: DrillDownModal;
+  private clusterReviewModal: ClusterReviewModal;
   private shareButton: ShareButton;
   private advancedToggle: AdvancedToggle;
 
@@ -54,27 +62,21 @@ class StarcounterApp {
   private analysisStartTime: number = 0;
   private originalPost: PostView | null = null;
 
-  constructor() {
-    // Initialize auth service first
-    this.authService = new AuthService();
+  // State for re-rendering with uncategorized toggle
+  private lastMentionCounts: MentionCount[] = [];
+  private lastUncategorizedPosts: PostView[] = [];
 
+  // User refinement state
+  private excludedCategories: Set<string> = new Set();
+  private manualAssignments: Map<string, string> = new Map(); // postUri → category
+
+  constructor() {
     // Initialize backend services
     this.blueskyClient = new BlueskyClient();
     this.threadBuilder = new ThreadBuilder();
     this.mentionExtractor = new MentionExtractor();
     this.counter = new MentionCounter();
     this.progressTracker = new ProgressTracker();
-
-    // Sync auth state with BlueskyClient
-    const session = this.authService.getSession();
-    if (session) {
-      this.blueskyClient.setAccessToken(session.accessJwt);
-    }
-
-    // Listen for auth changes
-    this.authService.onSessionChange((newSession) => {
-      this.blueskyClient.setAccessToken(newSession?.accessJwt ?? null);
-    });
 
     // Initialize UI components with null-safe element access
     this.inputForm = new InputForm(
@@ -101,6 +103,13 @@ class StarcounterApp {
       requireElement<HTMLElement>('modal-close-button')
     );
 
+    this.clusterReviewModal = new ClusterReviewModal(
+      requireElement<HTMLElement>('cluster-review-modal'),
+      requireElement<HTMLElement>('cluster-modal-title'),
+      requireElement<HTMLElement>('cluster-modal-body'),
+      requireElement<HTMLElement>('cluster-modal-close-button')
+    );
+
     this.shareButton = new ShareButton(
       requireElement<HTMLButtonElement>('share-button'),
       requireElement<HTMLElement>('share-feedback'),
@@ -117,12 +126,6 @@ class StarcounterApp {
     this.advancedToggle.onChange((enabled) => {
       this.useAdvancedSentiment = enabled;
     });
-
-    // Initialize login form (creates UI elements, no need to store reference)
-    const loginContainer = document.getElementById('login-container');
-    if (loginContainer) {
-      new LoginForm(loginContainer, this.authService);
-    }
 
     this.attachEventListeners();
     this.checkForSharedResults();
@@ -154,9 +157,42 @@ class StarcounterApp {
       this.resetToInput();
     });
 
+    // Uncategorized posts toggle
+    const uncategorizedCheckbox = document.getElementById('show-uncategorized');
+    uncategorizedCheckbox?.addEventListener('change', () => {
+      this.refreshResultsDisplay();
+    });
+
     // Chart clicks (drill-down)
     this.resultsChart.onClick((mention, posts) => {
       this.drillDownModal.show(mention, posts as PostView[]);
+    });
+
+    // Drill-down modal callbacks for user refinement
+    this.drillDownModal.setCallbacks({
+      onExclude: (category) => this.excludeCategory(category),
+      onAssign: (postUri, category) => this.assignPostToCategory(postUri, category),
+      getCategories: () => this.getAvailableCategories(),
+    });
+
+    // Cluster review modal callbacks
+    this.clusterReviewModal.setCallbacks({
+      onAcceptCluster: (postUris, category) => {
+        // Assign all posts in cluster to the category
+        for (const uri of postUris) {
+          this.manualAssignments.set(uri, category);
+        }
+        this.refreshResultsDisplay();
+      },
+      onDismissCluster: () => {
+        // Dismissal is handled internally by the modal
+      },
+    });
+
+    // Review suggestions button
+    const reviewSuggestionsButton = document.getElementById('review-suggestions-button');
+    reviewSuggestionsButton?.addEventListener('click', () => {
+      this.showClusterReviewModal();
     });
 
     // Progress tracker events (type-safe - data is correctly typed for each event)
@@ -199,6 +235,11 @@ class StarcounterApp {
       this.progressTracker.reset();
       this.analysisStartTime = Date.now();
       this.originalPost = null;
+
+      // Reset user refinement state
+      this.excludedCategories.clear();
+      this.manualAssignments.clear();
+      this.clusterReviewModal.reset();
 
       // Extract AT-URI from bsky.app URL
       const atUri = this.convertBskyUrlToAtUri(url);
@@ -393,9 +434,10 @@ class StarcounterApp {
       // E.g., "Red" should merge into "The Hunt for Red October"
       const mergedValidatedCountMap = this.mergeSubstringTitles(validatedCountMap);
 
-      // Build a map of all validated titles and their search terms
+      // Build a map of all validated titles and their search terms + fingerprints
       // This is needed to detect when a short title is part of a longer title
       const allTitleSearchTerms = new Map<string, Set<string>>();
+      const allTitleFingerprints = new Map<string, string>();
       for (const [title, data] of mergedValidatedCountMap.entries()) {
         const searchTerms = new Set<string>();
         for (const m of data.mentions) {
@@ -411,6 +453,8 @@ class StarcounterApp {
           }
         }
         allTitleSearchTerms.set(title, searchTerms);
+        // Store fingerprint for fallback matching
+        allTitleFingerprints.set(title, fingerprint(title));
       }
 
       // For each post, find which titles it matches, preferring longer/more specific matches
@@ -420,10 +464,22 @@ class StarcounterApp {
         const text = normalizeForSearch(post.record.text);
         const matchedTitles: string[] = [];
 
-        // Find all titles this post matches
+        // Find all titles this post matches via word-boundary regex
         for (const [title, searchTerms] of allTitleSearchTerms.entries()) {
           if (Array.from(searchTerms).some((term) => textContainsTerm(text, term))) {
             matchedTitles.push(title);
+          }
+        }
+
+        // Fallback: try fingerprint matching for posts with no word-boundary matches
+        // This catches typos and word-order variations like "october red hunt"
+        if (matchedTitles.length === 0) {
+          const postFp = fingerprint(post.record.text);
+          for (const [title, titleFp] of allTitleFingerprints.entries()) {
+            // Only match if fingerprint has 2+ tokens (avoid single-word false positives)
+            if (titleFp.split(' ').length >= 2 && fingerprintContains(postFp, titleFp)) {
+              matchedTitles.push(title);
+            }
           }
         }
 
@@ -490,10 +546,16 @@ class StarcounterApp {
       // Only use validated results - don't fall back to unvalidated cruft
       const finalMentionCounts = validatedMentionCounts;
 
+      // Find posts that didn't contribute to ANY category (for debug)
+      const uncategorizedPosts = allPosts.filter((post) => {
+        const titles = postToTitles.get(post.uri);
+        return !titles || titles.size === 0;
+      });
+
       // Stage 5: Display results
       this.progressTracker.emit('complete', { mentionCounts: finalMentionCounts });
 
-      this.showResults(finalMentionCounts, allPosts.length);
+      this.showResults(finalMentionCounts, allPosts.length, uncategorizedPosts);
     } catch (error) {
       if (error instanceof Error) {
         this.progressTracker.emit('error', { error });
@@ -522,7 +584,15 @@ class StarcounterApp {
   /**
    * Show results section with chart
    */
-  private showResults(mentionCounts: MentionCount[], postCount?: number): void {
+  private showResults(
+    mentionCounts: MentionCount[],
+    postCount?: number,
+    uncategorizedPosts?: PostView[]
+  ): void {
+    // Store state for re-rendering with toggle
+    this.lastMentionCounts = mentionCounts;
+    this.lastUncategorizedPosts = uncategorizedPosts ?? [];
+
     this.hideAllSections();
 
     const resultsSection = document.getElementById('results-section');
@@ -547,8 +617,242 @@ class StarcounterApp {
       }
     }
 
-    this.resultsChart.render(mentionCounts);
-    this.shareButton.setResults(mentionCounts);
+    // Build final counts, optionally including uncategorized
+    const finalCounts = this.buildFinalCounts(mentionCounts, uncategorizedPosts ?? []);
+
+    this.resultsChart.render(finalCounts);
+    this.shareButton.setResults(mentionCounts); // Share excludes uncategorized
+
+    // Show/hide "Review Suggestions" button based on uncategorized posts
+    this.updateReviewSuggestionsButton();
+  }
+
+  /**
+   * Update visibility of the "Review Suggestions" button
+   */
+  private updateReviewSuggestionsButton(): void {
+    const button = document.getElementById('review-suggestions-button');
+    if (!button) return;
+
+    // Get remaining uncategorized posts (minus manually assigned ones)
+    const remainingUncategorized = this.lastUncategorizedPosts.filter(
+      (p) => !this.manualAssignments.has(p.uri)
+    );
+
+    // Only show if there are uncategorized posts
+    if (remainingUncategorized.length === 0) {
+      button.style.display = 'none';
+      return;
+    }
+
+    // Check if there are potential suggestions
+    const uncategorizedTexts = new Map<string, string>();
+    for (const post of remainingUncategorized) {
+      uncategorizedTexts.set(post.uri, post.record.text);
+    }
+
+    const categories = this.getAvailableCategories();
+    const suggestions = suggestClusters(uncategorizedTexts, categories);
+
+    if (suggestions.length > 0) {
+      button.style.display = 'inline-block';
+      button.textContent = `Review Suggestions (${suggestions.reduce((sum, s) => sum + s.postUris.length, 0)} posts)`;
+    } else {
+      button.style.display = 'none';
+    }
+  }
+
+  /**
+   * Build final mention counts with exclusions, manual assignments, and uncategorized
+   */
+  private buildFinalCounts(
+    mentionCounts: MentionCount[],
+    uncategorizedPosts: PostView[]
+  ): MentionCount[] {
+    // Start with a mutable copy of counts
+    const countsByMention = new Map<string, { count: number; posts: PostView[] }>();
+
+    for (const mc of mentionCounts) {
+      countsByMention.set(mc.mention, { count: mc.count, posts: [...mc.posts] });
+    }
+
+    // Track which posts have been manually assigned (to remove from uncategorized)
+    const manuallyAssignedUris = new Set<string>();
+
+    // Apply manual assignments: move posts from uncategorized to their assigned category
+    for (const [postUri, category] of this.manualAssignments) {
+      manuallyAssignedUris.add(postUri);
+
+      // Find the post in uncategorized
+      const post = uncategorizedPosts.find((p) => p.uri === postUri);
+      if (!post) continue;
+
+      // Add to the target category
+      const existing = countsByMention.get(category);
+      if (existing) {
+        // Only add if not already in the category
+        if (!existing.posts.some((p) => p.uri === postUri)) {
+          existing.posts.push(post);
+          existing.count++;
+        }
+      } else {
+        // Category doesn't exist yet (shouldn't happen with current UI, but be safe)
+        countsByMention.set(category, { count: 1, posts: [post] });
+      }
+    }
+
+    // Filter out excluded categories and rebuild array
+    const result: MentionCount[] = [];
+    for (const [mention, data] of countsByMention) {
+      if (!this.excludedCategories.has(mention)) {
+        result.push({ mention, count: data.count, posts: data.posts });
+      }
+    }
+
+    // Sort by count descending
+    result.sort((a, b) => b.count - a.count);
+
+    // Handle uncategorized posts (minus manually assigned ones)
+    const showUncategorized = document.getElementById(
+      'show-uncategorized'
+    ) as HTMLInputElement | null;
+
+    const remainingUncategorized = uncategorizedPosts.filter(
+      (p) => !manuallyAssignedUris.has(p.uri)
+    );
+
+    if (showUncategorized?.checked && remainingUncategorized.length > 0) {
+      result.push({
+        mention: '(Uncategorized)',
+        count: remainingUncategorized.length,
+        posts: remainingUncategorized,
+      });
+    }
+
+    return result;
+  }
+
+  /**
+   * Refresh results display when uncategorized toggle changes
+   */
+  private refreshResultsDisplay(): void {
+    if (this.lastMentionCounts.length === 0) return;
+
+    const finalCounts = this.buildFinalCounts(this.lastMentionCounts, this.lastUncategorizedPosts);
+    this.resultsChart.render(finalCounts);
+    this.updateExcludedCategoriesUI();
+    this.updateReviewSuggestionsButton();
+  }
+
+  /**
+   * Exclude a category from results
+   */
+  private excludeCategory(category: string): void {
+    this.excludedCategories.add(category);
+    this.refreshResultsDisplay();
+  }
+
+  /**
+   * Restore a previously excluded category
+   */
+  private restoreCategory(category: string): void {
+    this.excludedCategories.delete(category);
+    this.refreshResultsDisplay();
+  }
+
+  /**
+   * Manually assign a post to a category
+   */
+  private assignPostToCategory(postUri: string, category: string): void {
+    this.manualAssignments.set(postUri, category);
+    this.refreshResultsDisplay();
+  }
+
+  /**
+   * Get list of available categories for manual assignment
+   */
+  private getAvailableCategories(): string[] {
+    return this.lastMentionCounts
+      .filter((mc) => !this.excludedCategories.has(mc.mention))
+      .map((mc) => mc.mention);
+  }
+
+  /**
+   * Show cluster review modal with suggestions for uncategorized posts
+   */
+  private showClusterReviewModal(): void {
+    // Get remaining uncategorized posts (minus manually assigned ones)
+    const remainingUncategorized = this.lastUncategorizedPosts.filter(
+      (p) => !this.manualAssignments.has(p.uri)
+    );
+
+    if (remainingUncategorized.length === 0) {
+      return;
+    }
+
+    // Build a map of post URIs to their text for the clustering algorithm
+    const uncategorizedTexts = new Map<string, string>();
+    for (const post of remainingUncategorized) {
+      uncategorizedTexts.set(post.uri, post.record.text);
+    }
+
+    // Get current category names
+    const categories = this.getAvailableCategories();
+
+    // Get cluster suggestions
+    const suggestions = suggestClusters(uncategorizedTexts, categories);
+
+    if (suggestions.length === 0) {
+      return;
+    }
+
+    // Build a map of post URIs to PostView for the modal to render
+    const postsByUri = new Map<string, PostView>();
+    for (const post of remainingUncategorized) {
+      postsByUri.set(post.uri, post);
+    }
+
+    // Show the modal
+    this.clusterReviewModal.show({
+      suggestions,
+      postsByUri,
+    });
+  }
+
+  /**
+   * Update the excluded categories UI
+   */
+  private updateExcludedCategoriesUI(): void {
+    const container = document.getElementById('excluded-categories');
+    if (!container) return;
+
+    if (this.excludedCategories.size === 0) {
+      container.style.display = 'none';
+      return;
+    }
+
+    container.style.display = 'block';
+
+    const list = container.querySelector('.excluded-list');
+    if (!list) return;
+
+    list.innerHTML = '';
+
+    for (const category of this.excludedCategories) {
+      const item = document.createElement('span');
+      item.className = 'excluded-item';
+      item.innerHTML = `
+        ${this.escapeHtml(category)}
+        <button class="excluded-restore" aria-label="Restore ${this.escapeHtml(category)}">×</button>
+      `;
+
+      const restoreBtn = item.querySelector('.excluded-restore');
+      restoreBtn?.addEventListener('click', () => {
+        this.restoreCategory(category);
+      });
+
+      list.appendChild(item);
+    }
   }
 
   /**
@@ -629,7 +933,7 @@ class StarcounterApp {
       lowerMessage.includes('unauthorized') ||
       lowerMessage.includes('auth')
     ) {
-      return 'This post may be private or restricted. Try logging in with your Bluesky account.';
+      return 'This post may be private or restricted.';
     }
 
     // Not found

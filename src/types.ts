@@ -147,28 +147,6 @@ export type RestrictedPost = {
 };
 
 /**
- * Bluesky authentication session
- */
-export type BlueskySession = {
-  readonly accessJwt: string;
-  readonly refreshJwt: string;
-  readonly did: Did;
-  readonly handle: string;
-};
-
-/**
- * Response from com.atproto.server.createSession
- */
-export type CreateSessionResponse = {
-  readonly accessJwt: string;
-  readonly refreshJwt: string;
-  readonly did: Did;
-  readonly handle: string;
-  readonly email?: string;
-  readonly emailConfirmed?: boolean;
-};
-
-/**
  * Thread view post with parent and replies
  */
 export type ThreadViewPost = {
