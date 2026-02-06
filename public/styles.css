@@ -611,3 +611,79 @@ header h1 {
   outline: none;
   border-color: var(--primary-color);
 }
+
+/* Cluster Review Modal */
+.modal-wide {
+  max-width: 900px;
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.cluster-item {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: var(--background);
+}
+
+.cluster-item:last-child {
+  margin-bottom: 0;
+}
+
+.cluster-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.cluster-title {
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--text-primary);
+}
+
+.cluster-stats {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.cluster-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cluster-posts {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.post-preview {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background: var(--card-background);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.post-preview:last-child {
+  margin-bottom: 0;
+}
+
+.post-preview-author {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.post-preview-text {
+  color: var(--text-primary);
+}

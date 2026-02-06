@@ -1,5 +1,12 @@
 import { BlueskyClient } from './api';
-import { ThreadBuilder, MentionExtractor, MentionCounter, decodeResults } from './lib';
+import {
+  ThreadBuilder,
+  MentionExtractor,
+  MentionCounter,
+  decodeResults,
+  fingerprint,
+  fingerprintContains,
+} from './lib';
 import { ProgressTracker } from './lib/progress-tracker';
 import { createSentimentAnalyzer } from './lib/sentiment-factory';
 import { ValidationClient } from './lib/validation-client';
@@ -8,9 +15,11 @@ import {
   ProgressBar,
   ResultsChart,
   DrillDownModal,
+  ClusterReviewModal,
   ShareButton,
   AdvancedToggle,
 } from './components';
+import { suggestClusters } from './lib/clustering';
 import type { MentionCount, PostView } from './types';
 import type { MediaMention } from './lib/mention-extractor';
 
@@ -44,6 +53,7 @@ class StarcounterApp {
   private progressBar: ProgressBar;
   private resultsChart: ResultsChart;
   private drillDownModal: DrillDownModal;
+  private clusterReviewModal: ClusterReviewModal;
   private shareButton: ShareButton;
   private advancedToggle: AdvancedToggle;
 
@@ -91,6 +101,13 @@ class StarcounterApp {
       requireElement<HTMLElement>('modal-title'),
       requireElement<HTMLElement>('modal-body'),
       requireElement<HTMLElement>('modal-close-button')
+    );
+
+    this.clusterReviewModal = new ClusterReviewModal(
+      requireElement<HTMLElement>('cluster-review-modal'),
+      requireElement<HTMLElement>('cluster-modal-title'),
+      requireElement<HTMLElement>('cluster-modal-body'),
+      requireElement<HTMLElement>('cluster-modal-close-button')
     );
 
     this.shareButton = new ShareButton(
@@ -158,6 +175,26 @@ class StarcounterApp {
       getCategories: () => this.getAvailableCategories(),
     });
 
+    // Cluster review modal callbacks
+    this.clusterReviewModal.setCallbacks({
+      onAcceptCluster: (postUris, category) => {
+        // Assign all posts in cluster to the category
+        for (const uri of postUris) {
+          this.manualAssignments.set(uri, category);
+        }
+        this.refreshResultsDisplay();
+      },
+      onDismissCluster: () => {
+        // Dismissal is handled internally by the modal
+      },
+    });
+
+    // Review suggestions button
+    const reviewSuggestionsButton = document.getElementById('review-suggestions-button');
+    reviewSuggestionsButton?.addEventListener('click', () => {
+      this.showClusterReviewModal();
+    });
+
     // Progress tracker events (type-safe - data is correctly typed for each event)
     this.progressTracker.on('fetching', (data) => {
       this.progressBar.updateFetching(data.fetched, data.total);
@@ -202,6 +239,7 @@ class StarcounterApp {
       // Reset user refinement state
       this.excludedCategories.clear();
       this.manualAssignments.clear();
+      this.clusterReviewModal.reset();
 
       // Extract AT-URI from bsky.app URL
       const atUri = this.convertBskyUrlToAtUri(url);
@@ -396,9 +434,10 @@ class StarcounterApp {
       // E.g., "Red" should merge into "The Hunt for Red October"
       const mergedValidatedCountMap = this.mergeSubstringTitles(validatedCountMap);
 
-      // Build a map of all validated titles and their search terms
+      // Build a map of all validated titles and their search terms + fingerprints
       // This is needed to detect when a short title is part of a longer title
       const allTitleSearchTerms = new Map<string, Set<string>>();
+      const allTitleFingerprints = new Map<string, string>();
       for (const [title, data] of mergedValidatedCountMap.entries()) {
         const searchTerms = new Set<string>();
         for (const m of data.mentions) {
@@ -414,6 +453,8 @@ class StarcounterApp {
           }
         }
         allTitleSearchTerms.set(title, searchTerms);
+        // Store fingerprint for fallback matching
+        allTitleFingerprints.set(title, fingerprint(title));
       }
 
       // For each post, find which titles it matches, preferring longer/more specific matches
@@ -423,10 +464,22 @@ class StarcounterApp {
         const text = normalizeForSearch(post.record.text);
         const matchedTitles: string[] = [];
 
-        // Find all titles this post matches
+        // Find all titles this post matches via word-boundary regex
         for (const [title, searchTerms] of allTitleSearchTerms.entries()) {
           if (Array.from(searchTerms).some((term) => textContainsTerm(text, term))) {
             matchedTitles.push(title);
+          }
+        }
+
+        // Fallback: try fingerprint matching for posts with no word-boundary matches
+        // This catches typos and word-order variations like "october red hunt"
+        if (matchedTitles.length === 0) {
+          const postFp = fingerprint(post.record.text);
+          for (const [title, titleFp] of allTitleFingerprints.entries()) {
+            // Only match if fingerprint has 2+ tokens (avoid single-word false positives)
+            if (titleFp.split(' ').length >= 2 && fingerprintContains(postFp, titleFp)) {
+              matchedTitles.push(title);
+            }
           }
         }
 
@@ -569,6 +622,44 @@ class StarcounterApp {
 
     this.resultsChart.render(finalCounts);
     this.shareButton.setResults(mentionCounts); // Share excludes uncategorized
+
+    // Show/hide "Review Suggestions" button based on uncategorized posts
+    this.updateReviewSuggestionsButton();
+  }
+
+  /**
+   * Update visibility of the "Review Suggestions" button
+   */
+  private updateReviewSuggestionsButton(): void {
+    const button = document.getElementById('review-suggestions-button');
+    if (!button) return;
+
+    // Get remaining uncategorized posts (minus manually assigned ones)
+    const remainingUncategorized = this.lastUncategorizedPosts.filter(
+      (p) => !this.manualAssignments.has(p.uri)
+    );
+
+    // Only show if there are uncategorized posts
+    if (remainingUncategorized.length === 0) {
+      button.style.display = 'none';
+      return;
+    }
+
+    // Check if there are potential suggestions
+    const uncategorizedTexts = new Map<string, string>();
+    for (const post of remainingUncategorized) {
+      uncategorizedTexts.set(post.uri, post.record.text);
+    }
+
+    const categories = this.getAvailableCategories();
+    const suggestions = suggestClusters(uncategorizedTexts, categories);
+
+    if (suggestions.length > 0) {
+      button.style.display = 'inline-block';
+      button.textContent = `Review Suggestions (${suggestions.reduce((sum, s) => sum + s.postUris.length, 0)} posts)`;
+    } else {
+      button.style.display = 'none';
+    }
   }
 
   /**
@@ -650,6 +741,7 @@ class StarcounterApp {
     const finalCounts = this.buildFinalCounts(this.lastMentionCounts, this.lastUncategorizedPosts);
     this.resultsChart.render(finalCounts);
     this.updateExcludedCategoriesUI();
+    this.updateReviewSuggestionsButton();
   }
 
   /**
@@ -683,6 +775,48 @@ class StarcounterApp {
     return this.lastMentionCounts
       .filter((mc) => !this.excludedCategories.has(mc.mention))
       .map((mc) => mc.mention);
+  }
+
+  /**
+   * Show cluster review modal with suggestions for uncategorized posts
+   */
+  private showClusterReviewModal(): void {
+    // Get remaining uncategorized posts (minus manually assigned ones)
+    const remainingUncategorized = this.lastUncategorizedPosts.filter(
+      (p) => !this.manualAssignments.has(p.uri)
+    );
+
+    if (remainingUncategorized.length === 0) {
+      return;
+    }
+
+    // Build a map of post URIs to their text for the clustering algorithm
+    const uncategorizedTexts = new Map<string, string>();
+    for (const post of remainingUncategorized) {
+      uncategorizedTexts.set(post.uri, post.record.text);
+    }
+
+    // Get current category names
+    const categories = this.getAvailableCategories();
+
+    // Get cluster suggestions
+    const suggestions = suggestClusters(uncategorizedTexts, categories);
+
+    if (suggestions.length === 0) {
+      return;
+    }
+
+    // Build a map of post URIs to PostView for the modal to render
+    const postsByUri = new Map<string, PostView>();
+    for (const post of remainingUncategorized) {
+      postsByUri.set(post.uri, post);
+    }
+
+    // Show the modal
+    this.clusterReviewModal.show({
+      suggestions,
+      postsByUri,
+    });
   }
 
   /**

@@ -18,3 +18,14 @@ export { ProgressTracker } from './progress-tracker';
 export type { ProgressEvent, ProgressEventData, ProgressData } from './progress-tracker';
 export { encodeResults, decodeResults, toShareableResults, MAX_URL_LENGTH } from './url-encoder';
 export type { ShareableResults, ShareableMention } from './url-encoder';
+export {
+  fingerprint,
+  ngrams,
+  ngramSimilarity,
+  levenshtein,
+  editSimilarity,
+  fingerprintContains,
+  findBestMatch,
+  suggestClusters,
+} from './clustering';
+export type { MatchResult, ClusterSuggestion } from './clustering';
