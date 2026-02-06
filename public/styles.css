@@ -533,3 +533,61 @@ header h1 {
 .share-feedback.fade-out {
   animation: fadeOutDown 0.3s ease-out forwards;
 }
+
+/* Original prompt post */
+#original-prompt {
+  margin-bottom: 1.5rem;
+}
+
+.prompt-post {
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.prompt-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.prompt-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.prompt-author-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.prompt-display-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.prompt-handle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.prompt-text {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.prompt-link {
+  font-size: 0.875rem;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.prompt-link:hover {
+  text-decoration: underline;
+}

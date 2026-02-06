@@ -56,7 +56,12 @@ function decodeResults(encoded: string): ShareableResults | null {
 /**
  * Generate dynamic OG tags based on decoded results.
  */
-function generateOGTags(results: ShareableResults, url: string, encoded: string, origin: string): string {
+function generateOGTags(
+  results: ShareableResults,
+  url: string,
+  encoded: string,
+  origin: string
+): string {
   const mentions = results.m;
   const topMentions = mentions.slice(0, 5);
 
@@ -111,15 +116,11 @@ function escapeHtml(text: string): string {
  */
 function injectDynamicOGTags(html: string, dynamicTags: string): string {
   // Remove existing OG and Twitter meta tags
-  const ogTagPattern =
-    /<meta\s+(?:property="og:|name="twitter:)[^>]*>\s*/gi;
+  const ogTagPattern = /<meta\s+(?:property="og:|name="twitter:)[^>]*>\s*/gi;
   let cleanedHtml = html.replace(ogTagPattern, '');
 
   // Also remove the comment
-  cleanedHtml = cleanedHtml.replace(
-    /<!-- Open Graph meta tags for social sharing -->\s*/gi,
-    ''
-  );
+  cleanedHtml = cleanedHtml.replace(/<!-- Open Graph meta tags for social sharing -->\s*/gi, '');
   cleanedHtml = cleanedHtml.replace(
     /<!-- Twitter Card meta tags \(also used by Bluesky\) -->\s*/gi,
     ''
@@ -129,11 +130,7 @@ function injectDynamicOGTags(html: string, dynamicTags: string): string {
   const titleEndIndex = cleanedHtml.indexOf('</title>');
   if (titleEndIndex !== -1) {
     const insertPoint = titleEndIndex + '</title>'.length;
-    return (
-      cleanedHtml.slice(0, insertPoint) +
-      dynamicTags +
-      cleanedHtml.slice(insertPoint)
-    );
+    return cleanedHtml.slice(0, insertPoint) + dynamicTags + cleanedHtml.slice(insertPoint);
   }
 
   return cleanedHtml;
@@ -148,8 +145,7 @@ export async function onRequest(context: PagesContext): Promise<Response> {
   const url = new URL(request.url);
 
   // Only process requests to the main page (not API, not assets)
-  const isMainPage =
-    url.pathname === '/' || url.pathname === '/index.html';
+  const isMainPage = url.pathname === '/' || url.pathname === '/index.html';
   const hasResultsParam = url.searchParams.has('r');
 
   // Pass through non-main-page requests

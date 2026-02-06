@@ -64,13 +64,21 @@ async function safeKVGet(cache: KVNamespace, key: string): Promise<ValidationRes
 /**
  * Safely write to KV cache, silently ignoring errors (e.g., quota exceeded)
  */
-async function safeKVPut(cache: KVNamespace, key: string, value: string, ttl: number): Promise<void> {
+async function safeKVPut(
+  cache: KVNamespace,
+  key: string,
+  value: string,
+  ttl: number
+): Promise<void> {
   try {
     await cache.put(key, value, { expirationTtl: ttl });
   } catch (error) {
     // KV write failed (likely quota exceeded on free tier: 1000 puts/day)
     // Log but continue - caching is an optimization, not a requirement
-    console.warn(`KV cache write failed for key "${key}":`, error instanceof Error ? error.message : error);
+    console.warn(
+      `KV cache write failed for key "${key}":`,
+      error instanceof Error ? error.message : error
+    );
   }
 }
 
@@ -97,7 +105,11 @@ export async function validateMention(
   try {
     if (mediaType === 'MOVIE' || mediaType === 'TV_SHOW' || mediaType === 'UNKNOWN') {
       // For UNKNOWN, default to movie search since this is primarily a movie analyzer
-      result = await validateTMDB(title, mediaType === 'UNKNOWN' ? 'MOVIE' : mediaType, options.tmdbApiKey);
+      result = await validateTMDB(
+        title,
+        mediaType === 'UNKNOWN' ? 'MOVIE' : mediaType,
+        options.tmdbApiKey
+      );
     } else if (mediaType === 'MUSIC') {
       result = await validateMusicBrainz(title, options.musicbrainzUserAgent);
     } else {
@@ -127,25 +139,105 @@ export async function validateMention(
 
 // Common words that shouldn't be movie titles on their own
 const GENERIC_WORDS = new Set([
-  'good', 'great', 'bad', 'best', 'worst', 'nice', 'cool', 'awesome',
-  'night', 'day', 'morning', 'evening', 'today', 'yesterday', 'tomorrow',
-  'still', 'stuff', 'thing', 'things', 'every', 'which', 'what', 'where', 'when', 'who', 'how',
-  'father', 'mother', 'brother', 'sister', 'son', 'daughter', 'dad', 'mom',
-  'hunt', 'master', 'commander', 'bride', 'last', 'first', 'field', 'dreams',
-  'movie', 'film', 'show', 'watch', 'watching', 'watched', 'seen', 'see',
-  'love', 'like', 'hate', 'want', 'need', 'think', 'know', 'feel',
-  'time', 'year', 'years', 'old', 'new', 'big', 'small', 'long', 'short',
-  'man', 'woman', 'people', 'person', 'life', 'world', 'way', 'part',
-  'just', 'really', 'actually', 'probably', 'maybe', 'always', 'never',
-  'dad movie', 'mom movie', 'classic', 'favorite', 'favourite',
-  'ocean', 'oceans', // Often false positive from "Ocean's Eleven" without apostrophe
+  'good',
+  'great',
+  'bad',
+  'best',
+  'worst',
+  'nice',
+  'cool',
+  'awesome',
+  'night',
+  'day',
+  'morning',
+  'evening',
+  'today',
+  'yesterday',
+  'tomorrow',
+  'still',
+  'stuff',
+  'thing',
+  'things',
+  'every',
+  'which',
+  'what',
+  'where',
+  'when',
+  'who',
+  'how',
+  'father',
+  'mother',
+  'brother',
+  'sister',
+  'son',
+  'daughter',
+  'dad',
+  'mom',
+  'hunt',
+  'master',
+  'commander',
+  'bride',
+  'last',
+  'first',
+  'field',
+  'dreams',
+  'movie',
+  'film',
+  'show',
+  'watch',
+  'watching',
+  'watched',
+  'seen',
+  'see',
+  'love',
+  'like',
+  'hate',
+  'want',
+  'need',
+  'think',
+  'know',
+  'feel',
+  'time',
+  'year',
+  'years',
+  'old',
+  'new',
+  'big',
+  'small',
+  'long',
+  'short',
+  'man',
+  'woman',
+  'people',
+  'person',
+  'life',
+  'world',
+  'way',
+  'part',
+  'just',
+  'really',
+  'actually',
+  'probably',
+  'maybe',
+  'always',
+  'never',
+  'dad movie',
+  'mom movie',
+  'classic',
+  'favorite',
+  'favourite',
+  'ocean',
+  'oceans', // Often false positive from "Ocean's Eleven" without apostrophe
 ]);
 
 /**
  * Normalize title for matching: lowercase, trim, and convert & to "and"
  */
 function normalizeForMatching(title: string): string {
-  return title.toLowerCase().trim().replace(/\s*&\s*/g, ' and ');
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/\s*&\s*/g, ' and ');
 }
 
 /**
@@ -196,9 +288,9 @@ function scoreTitleMatch(searchTitle: string, resultTitle: string): number {
   }
 
   // Partial word match - weakest
-  const searchWords = searchLower.split(/\s+/).filter(w => w.length > 2);
+  const searchWords = searchLower.split(/\s+/).filter((w) => w.length > 2);
   const resultWords = new Set(resultLower.split(/\s+/));
-  const matchingWords = searchWords.filter(w => resultWords.has(w));
+  const matchingWords = searchWords.filter((w) => resultWords.has(w));
 
   if (searchWords.length > 0 && matchingWords.length >= searchWords.length * 0.5) {
     // Score based on percentage of words matching
