@@ -1,5 +1,5 @@
 // pattern: Imperative Shell
-import { Resvg } from '@cf-wasm/resvg';
+import { ImageResponse } from '@cf-wasm/og';
 import { decodeResults } from '../../src/lib/url-encoder';
 import type { ShareableResults, ShareableMention } from '../../src/lib/url-encoder';
 
@@ -63,117 +63,164 @@ function truncateTitle(title: string, maxLength: number = MAX_TITLE_LENGTH): str
 }
 
 /**
- * Escape special XML/HTML characters
+ * Generate OG image as PNG using Satori/ImageResponse
  */
-function escapeXml(text: string): string {
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;');
-}
-
-/**
- * Generate SVG for the OG image
- */
-function generateSVG(results: ShareableResults): string {
-  const width = OG_IMAGE_WIDTH;
-  const height = OG_IMAGE_HEIGHT;
-
-  // Chart area dimensions
-  const chartPadding = { top: 100, right: 50, bottom: 60, left: 200 };
-  const chartWidth = width - chartPadding.left - chartPadding.right;
-  const chartHeight = height - chartPadding.top - chartPadding.bottom;
-
-  // Get top mentions (up to MAX_CHART_ITEMS)
-  const topMentions = results.m.slice(0, MAX_CHART_ITEMS);
+export async function generateOGImage(results: ShareableResults): Promise<Response> {
+  const topMentions = results.m.slice(0, 5); // Show top 5 for cleaner layout
   const maxCount = Math.max(...topMentions.map((m) => m.c), 1);
-
-  // Calculate bar dimensions
-  const barCount = topMentions.length || 1;
-  const barGap = 10;
-  const barHeight = Math.min((chartHeight - barGap * (barCount - 1)) / barCount, 40);
-  const actualChartHeight = barCount * barHeight + (barCount - 1) * barGap;
-  const chartStartY = chartPadding.top + (chartHeight - actualChartHeight) / 2;
-
-  // Generate bar elements with repeating rainbow colors
-  const bars = topMentions
-    .map((mention: ShareableMention, index: number) => {
-      const barWidth = (mention.c / maxCount) * chartWidth;
-      const y = chartStartY + index * (barHeight + barGap);
-      const title = escapeXml(truncateTitle(mention.n));
-      const barColor = BAR_COLORS[index % BAR_COLORS.length];
-
-      return `
-      <!-- Bar ${index + 1}: ${title} -->
-      <rect x="${chartPadding.left}" y="${y}" width="${barWidth}" height="${barHeight}"
-            fill="${barColor}" rx="4" ry="4"/>
-      <text x="${chartPadding.left - 10}" y="${y + barHeight / 2 + 5}"
-            text-anchor="end" fill="#e2e8f0" font-size="16" font-family="system-ui, sans-serif">
-        ${title}
-      </text>
-      <text x="${chartPadding.left + barWidth + 10}" y="${y + barHeight / 2 + 5}"
-            text-anchor="start" fill="#94a3b8" font-size="14" font-family="system-ui, sans-serif">
-        ${mention.c}
-      </text>
-    `;
-    })
-    .join('');
-
-  // Handle empty results
-  const emptyMessage =
-    topMentions.length === 0
-      ? `<text x="${width / 2}" y="${height / 2}" text-anchor="middle" fill="#94a3b8"
-           font-size="20" font-family="system-ui, sans-serif">No mentions found</text>`
-      : '';
-
-  // Total count
   const totalCount = results.m.reduce((sum: number, m: ShareableMention) => sum + m.c, 0);
   const totalMentions = results.m.length;
 
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"
-     xmlns="http://www.w3.org/2000/svg">
-  <!-- Background -->
-  <rect width="100%" height="100%" fill="#0f172a"/>
-
-  <!-- Title -->
-  <text x="50" y="55" fill="#f8fafc" font-size="32" font-weight="bold"
-        font-family="system-ui, sans-serif">
-    ⭐ Starcounter Analysis
-  </text>
-
-  <!-- Subtitle with stats -->
-  <text x="50" y="80" fill="#94a3b8" font-size="16" font-family="system-ui, sans-serif">
-    ${totalMentions} unique mentions • ${totalCount} total references
-  </text>
-
-  ${emptyMessage || bars}
-
-  <!-- Footer -->
-  <text x="${width - 50}" y="${height - 25}" text-anchor="end" fill="#64748b"
-        font-size="14" font-family="system-ui, sans-serif">
-    starcounter.app
-  </text>
-</svg>`;
-}
-
-/**
- * Generate OG image as PNG (returns Uint8Array for Workers compatibility)
- */
-export async function generateOGImage(results: ShareableResults): Promise<Uint8Array> {
-  const svg = generateSVG(results);
-
-  const resvg = new Resvg(svg, {
-    fitTo: {
-      mode: 'width',
-      value: OG_IMAGE_WIDTH,
+  // Build bar rows
+  const barRows = topMentions.map((mention: ShareableMention, index: number) => ({
+    type: 'div',
+    props: {
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        marginBottom: 12,
+      },
+      children: [
+        // Label
+        {
+          type: 'div',
+          props: {
+            style: {
+              width: 200,
+              fontSize: 18,
+              color: '#e2e8f0',
+              textAlign: 'right',
+              paddingRight: 16,
+            },
+            children: truncateTitle(mention.n),
+          },
+        },
+        // Bar container
+        {
+          type: 'div',
+          props: {
+            style: {
+              display: 'flex',
+              flex: 1,
+              height: 36,
+              backgroundColor: '#1e293b',
+              borderRadius: 6,
+            },
+            children: [
+              // Filled bar
+              {
+                type: 'div',
+                props: {
+                  style: {
+                    width: `${(mention.c / maxCount) * 100}%`,
+                    height: '100%',
+                    backgroundColor: BAR_COLORS[index % BAR_COLORS.length],
+                    borderRadius: 6,
+                  },
+                },
+              },
+            ],
+          },
+        },
+        // Count
+        {
+          type: 'div',
+          props: {
+            style: {
+              width: 50,
+              fontSize: 16,
+              color: '#94a3b8',
+              textAlign: 'left',
+              paddingLeft: 12,
+            },
+            children: String(mention.c),
+          },
+        },
+      ],
     },
-  });
+  }));
 
-  const pngData = resvg.render();
-  return pngData.asPng();
+  // Create simple element structure for Satori
+  const element = {
+    type: 'div',
+    props: {
+      style: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#0f172a',
+        padding: 50,
+      },
+      children: [
+        // Title
+        {
+          type: 'div',
+          props: {
+            style: {
+              fontSize: 42,
+              fontWeight: 700,
+              color: '#f8fafc',
+              marginBottom: 8,
+            },
+            children: 'Starcounter Analysis',
+          },
+        },
+        // Subtitle
+        {
+          type: 'div',
+          props: {
+            style: {
+              fontSize: 20,
+              color: '#94a3b8',
+              marginBottom: 40,
+            },
+            children: `${totalMentions} unique mentions · ${totalCount} total references`,
+          },
+        },
+        // Chart area
+        {
+          type: 'div',
+          props: {
+            style: {
+              display: 'flex',
+              flexDirection: 'column',
+              flex: 1,
+              justifyContent: 'center',
+            },
+            children: barRows.length > 0 ? barRows : {
+              type: 'div',
+              props: {
+                style: {
+                  fontSize: 24,
+                  color: '#64748b',
+                  textAlign: 'center',
+                },
+                children: 'No mentions found',
+              },
+            },
+          },
+        },
+        // Footer
+        {
+          type: 'div',
+          props: {
+            style: {
+              fontSize: 16,
+              color: '#64748b',
+              textAlign: 'right',
+            },
+            children: 'starcounter.pages.dev',
+          },
+        },
+      ],
+    },
+  };
+
+  return new ImageResponse(element, {
+    width: OG_IMAGE_WIDTH,
+    height: OG_IMAGE_HEIGHT,
+  });
 }
 
 /**
@@ -191,9 +238,12 @@ export async function onRequest(context: { request: Request }): Promise<Response
   }
 
   try {
-    const pngBuffer = await generateOGImage(results);
+    const response = await generateOGImage(results);
 
-    return new Response(pngBuffer, {
+    // Get the image data and create new response with cache headers
+    const imageData = await response.arrayBuffer();
+
+    return new Response(imageData, {
       status: 200,
       headers: {
         'Content-Type': 'image/png',
@@ -201,8 +251,10 @@ export async function onRequest(context: { request: Request }): Promise<Response
       },
     });
   } catch (error) {
-    console.error('OG image generation failed:', error);
-    return new Response('Failed to generate image', {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    const errorStack = error instanceof Error ? error.stack : '';
+    console.error('OG image generation failed:', errorMessage, errorStack);
+    return new Response(`Failed to generate image: ${errorMessage}`, {
       status: 500,
       headers: { 'Content-Type': 'text/plain' },
     });
