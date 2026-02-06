@@ -86,7 +86,7 @@ describe('OG Image Generator', () => {
   });
 
   describe('generateOGImage', () => {
-    it('should return a Uint8Array for valid results', async () => {
+    it('should return a Response for valid results', async () => {
       const results: ShareableResults = {
         m: [
           { n: 'The Matrix', c: 5 },
@@ -95,10 +95,10 @@ describe('OG Image Generator', () => {
         t: Date.now(),
       };
 
-      const buffer = await generateOGImage(results);
+      const response = await generateOGImage(results);
 
-      expect(buffer).toBeInstanceOf(Uint8Array);
-      expect(buffer.length).toBeGreaterThan(0);
+      expect(response).toBeInstanceOf(Response);
+      expect(response.status).toBe(200);
     });
 
     it('should generate PNG format', async () => {
@@ -107,7 +107,8 @@ describe('OG Image Generator', () => {
         t: Date.now(),
       };
 
-      const buffer = await generateOGImage(results);
+      const response = await generateOGImage(results);
+      const buffer = new Uint8Array(await response.arrayBuffer());
 
       // PNG magic bytes: 137 80 78 71 13 10 26 10
       const pngSignature = new Uint8Array([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
@@ -120,10 +121,10 @@ describe('OG Image Generator', () => {
         t: Date.now(),
       };
 
-      const buffer = await generateOGImage(results);
+      const response = await generateOGImage(results);
 
-      expect(buffer).toBeInstanceOf(Uint8Array);
-      expect(buffer.length).toBeGreaterThan(0);
+      expect(response).toBeInstanceOf(Response);
+      expect(response.status).toBe(200);
     });
 
     it('should handle results with many mentions (top 10 only)', async () => {
@@ -135,10 +136,10 @@ describe('OG Image Generator', () => {
         t: Date.now(),
       };
 
-      const buffer = await generateOGImage(results);
+      const response = await generateOGImage(results);
 
       // Should succeed without error
-      expect(buffer).toBeInstanceOf(Uint8Array);
+      expect(response).toBeInstanceOf(Response);
     });
 
     it('should handle unicode in titles', async () => {
@@ -150,9 +151,9 @@ describe('OG Image Generator', () => {
         t: Date.now(),
       };
 
-      const buffer = await generateOGImage(results);
+      const response = await generateOGImage(results);
 
-      expect(buffer).toBeInstanceOf(Uint8Array);
+      expect(response).toBeInstanceOf(Response);
     });
 
     it('should handle long titles by truncating', async () => {
@@ -166,9 +167,9 @@ describe('OG Image Generator', () => {
         t: Date.now(),
       };
 
-      const buffer = await generateOGImage(results);
+      const response = await generateOGImage(results);
 
-      expect(buffer).toBeInstanceOf(Uint8Array);
+      expect(response).toBeInstanceOf(Response);
     });
   });
 
