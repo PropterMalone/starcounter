@@ -1,4 +1,4 @@
-import { BlueskyClient, AuthService } from './api';
+import { BlueskyClient } from './api';
 import { ThreadBuilder, MentionExtractor, MentionCounter, decodeResults } from './lib';
 import { ProgressTracker } from './lib/progress-tracker';
 import { createSentimentAnalyzer } from './lib/sentiment-factory';
@@ -10,7 +10,6 @@ import {
   DrillDownModal,
   ShareButton,
   AdvancedToggle,
-  LoginForm,
 } from './components';
 import type { MentionCount, PostView } from './types';
 import type { MediaMention } from './lib/mention-extractor';
@@ -35,7 +34,6 @@ function requireElement<T extends HTMLElement>(id: string): T {
  */
 
 class StarcounterApp {
-  private authService: AuthService;
   private blueskyClient: BlueskyClient;
   private threadBuilder: ThreadBuilder;
   private mentionExtractor: MentionExtractor;
@@ -63,26 +61,12 @@ class StarcounterApp {
   private manualAssignments: Map<string, string> = new Map(); // postUri → category
 
   constructor() {
-    // Initialize auth service first
-    this.authService = new AuthService();
-
     // Initialize backend services
     this.blueskyClient = new BlueskyClient();
     this.threadBuilder = new ThreadBuilder();
     this.mentionExtractor = new MentionExtractor();
     this.counter = new MentionCounter();
     this.progressTracker = new ProgressTracker();
-
-    // Sync auth state with BlueskyClient
-    const session = this.authService.getSession();
-    if (session) {
-      this.blueskyClient.setAccessToken(session.accessJwt);
-    }
-
-    // Listen for auth changes
-    this.authService.onSessionChange((newSession) => {
-      this.blueskyClient.setAccessToken(newSession?.accessJwt ?? null);
-    });
 
     // Initialize UI components with null-safe element access
     this.inputForm = new InputForm(
@@ -125,12 +109,6 @@ class StarcounterApp {
     this.advancedToggle.onChange((enabled) => {
       this.useAdvancedSentiment = enabled;
     });
-
-    // Initialize login form (creates UI elements, no need to store reference)
-    const loginContainer = document.getElementById('login-container');
-    if (loginContainer) {
-      new LoginForm(loginContainer, this.authService);
-    }
 
     this.attachEventListeners();
     this.checkForSharedResults();
@@ -821,7 +799,7 @@ class StarcounterApp {
       lowerMessage.includes('unauthorized') ||
       lowerMessage.includes('auth')
     ) {
-      return 'This post may be private or restricted. Try logging in with your Bluesky account.';
+      return 'This post may be private or restricted.';
     }
 
     // Not found
