@@ -86,7 +86,7 @@ describe('OG Image Generator', () => {
   });
 
   describe('generateOGImage', () => {
-    it('should return a Buffer for valid results', async () => {
+    it('should return a Uint8Array for valid results', async () => {
       const results: ShareableResults = {
         m: [
           { n: 'The Matrix', c: 5 },
@@ -97,7 +97,7 @@ describe('OG Image Generator', () => {
 
       const buffer = await generateOGImage(results);
 
-      expect(buffer).toBeInstanceOf(Buffer);
+      expect(buffer).toBeInstanceOf(Uint8Array);
       expect(buffer.length).toBeGreaterThan(0);
     });
 
@@ -110,7 +110,7 @@ describe('OG Image Generator', () => {
       const buffer = await generateOGImage(results);
 
       // PNG magic bytes: 137 80 78 71 13 10 26 10
-      const pngSignature = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+      const pngSignature = new Uint8Array([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
       expect(buffer.slice(0, 8)).toEqual(pngSignature);
     });
 
@@ -122,7 +122,7 @@ describe('OG Image Generator', () => {
 
       const buffer = await generateOGImage(results);
 
-      expect(buffer).toBeInstanceOf(Buffer);
+      expect(buffer).toBeInstanceOf(Uint8Array);
       expect(buffer.length).toBeGreaterThan(0);
     });
 
@@ -138,7 +138,7 @@ describe('OG Image Generator', () => {
       const buffer = await generateOGImage(results);
 
       // Should succeed without error
-      expect(buffer).toBeInstanceOf(Buffer);
+      expect(buffer).toBeInstanceOf(Uint8Array);
     });
 
     it('should handle unicode in titles', async () => {
@@ -152,7 +152,7 @@ describe('OG Image Generator', () => {
 
       const buffer = await generateOGImage(results);
 
-      expect(buffer).toBeInstanceOf(Buffer);
+      expect(buffer).toBeInstanceOf(Uint8Array);
     });
 
     it('should handle long titles by truncating', async () => {
@@ -168,7 +168,7 @@ describe('OG Image Generator', () => {
 
       const buffer = await generateOGImage(results);
 
-      expect(buffer).toBeInstanceOf(Buffer);
+      expect(buffer).toBeInstanceOf(Uint8Array);
     });
   });
 

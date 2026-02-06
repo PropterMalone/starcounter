@@ -56,7 +56,7 @@ function decodeResults(encoded: string): ShareableResults | null {
 /**
  * Generate dynamic OG tags based on decoded results.
  */
-function generateOGTags(results: ShareableResults, url: string): string {
+function generateOGTags(results: ShareableResults, url: string, encoded: string): string {
   const mentions = results.m;
   const topMentions = mentions.slice(0, 5);
 
@@ -72,8 +72,8 @@ function generateOGTags(results: ShareableResults, url: string): string {
       ? topMentions.map((m, i) => `${i + 1}. ${m.n} (${m.c})`).join(', ')
       : 'Bluesky thread analysis results';
 
-  // Use the static OG image for now
-  const imageUrl = 'https://starcounter.pages.dev/og-image.png';
+  // Dynamic OG image showing the top results chart
+  const imageUrl = `https://starcounter.pages.dev/api/og?r=${encoded}`;
 
   return `
     <!-- Dynamic Open Graph meta tags for shared results -->
@@ -184,7 +184,7 @@ export async function onRequest(context: PagesContext): Promise<Response> {
 
   // Get HTML and inject dynamic OG tags
   const html = await response.text();
-  const dynamicTags = generateOGTags(results, url.toString());
+  const dynamicTags = generateOGTags(results, url.toString(), encoded);
   const modifiedHtml = injectDynamicOGTags(html, dynamicTags);
 
   // Return modified response

@@ -1,19 +1,15 @@
-name = "starcounter-validation"
-main = "functions/api/validate.ts"
-compatibility_date = "2024-01-01"
-
-[env.production]
-name = "starcounter-validation-prod"
-
-[env.development]
-name = "starcounter-validation-dev"
+name = "starcounter"
+pages_build_output_dir = "public"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
 
 # Environment variables (set via Cloudflare dashboard or wrangler secret)
 # TMDB_API_KEY - TMDB Bearer token
 # MUSICBRAINZ_USER_AGENT - User-Agent string for MusicBrainz
 
-# KV namespace for caching (create via: wrangler kv:namespace create "VALIDATION_CACHE")
+# KV namespace for caching validation results
+# Note: Free tier has 1000 puts/day limit - code gracefully falls back if exceeded
 [[kv_namespaces]]
 binding = "VALIDATION_CACHE"
-id = "placeholder_id" # Replace with actual KV namespace ID
-preview_id = "placeholder_preview_id" # Replace with preview namespace ID
+id = "c666774805084ce4a6288a73dad8da80"
+preview_id = "4b787f602d81488b94801913a68ab13c"
