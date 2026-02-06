@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Starcounter - Bluesky Post Analyzer</title>
+
+    <!-- Open Graph meta tags for social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Starcounter" />
+    <meta property="og:title" content="Starcounter - Bluesky Post Analyzer" />
+    <meta property="og:description" content="Analyze media mentions in Bluesky threads. See what movies, TV shows, and music people are talking about." />
+    <meta property="og:image" content="https://starcounter.pages.dev/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://starcounter.pages.dev/" />
+
+    <!-- Twitter Card meta tags (also used by Bluesky) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Starcounter - Bluesky Post Analyzer" />
+    <meta name="twitter:description" content="Analyze media mentions in Bluesky threads. See what movies, TV shows, and music people are talking about." />
+    <meta name="twitter:image" content="https://starcounter.pages.dev/og-image.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Starcounter</h1>
+        <p class="subtitle">Analyze media mentions in Bluesky threads</p>
+      </header>
+
+      <main>
+        <!-- Input Form -->
+        <section id="input-section" class="card">
+          <form id="analyze-form">
+            <div class="form-group">
+              <label for="post-url">Bluesky Post URL</label>
+              <input
+                type="url"
+                id="post-url"
+                name="post-url"
+                placeholder="https://bsky.app/profile/handle/post/xxxxx"
+                required
+                pattern="https://bsky\.app/profile/.+/post/[a-zA-Z0-9]+"
+              />
+              <span class="error-message" id="url-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label>Search For</label>
+              <div class="checkbox-group" id="media-type-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="media-movies" name="media-type" value="MOVIE" checked />
+                  <span>Movies</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="media-tv" name="media-type" value="TV_SHOW" checked />
+                  <span>TV Shows</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="media-music" name="media-type" value="MUSIC" />
+                  <span>Music</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- TODO: Re-enable when sentiment analysis is properly integrated with recursive fetching -->
+            <div class="form-options" style="display: none;">
+              <label class="toggle-label">
+                <input type="checkbox" id="advanced-mode" disabled />
+                <span class="toggle-text">Advanced Sentiment Analysis</span>
+                <span class="toggle-hint">(Coming soon)</span>
+              </label>
+              <span id="advanced-status" class="toggle-status"></span>
+            </div>
+
+            <!-- Login Section (optional) -->
+            <div id="login-container"></div>
+
+            <div class="form-actions">
+              <button type="submit" id="analyze-button" class="btn btn-primary">
+                Analyze Thread
+              </button>
+              <button
+                type="button"
+                id="cancel-button"
+                class="btn btn-secondary"
+                style="display: none"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Progress Section -->
+        <section id="progress-section" class="card" style="display: none">
+          <div class="progress-container">
+            <div
+              class="progress-bar-wrapper"
+              role="progressbar"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="Analysis progress"
+            >
+              <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p class="progress-text" id="progress-text" aria-live="polite">
+              Starting analysis...
+            </p>
+            <p class="progress-details" id="progress-details" aria-live="polite"></p>
+          </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results-section" class="card" style="display: none">
+          <div class="results-header">
+            <h2>Results</h2>
+            <div class="results-actions">
+              <button id="share-button" class="btn btn-primary">Share Results</button>
+              <button id="new-analysis-button" class="btn btn-secondary">New Analysis</button>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas
+              id="results-chart"
+              role="img"
+              aria-label="Bar chart showing media mention counts"
+            ></canvas>
+          </div>
+          <p class="chart-hint">Click on a bar to see contributing posts</p>
+          <p id="analysis-stats" class="analysis-stats"></p>
+          <div id="share-feedback" class="share-feedback" style="display: none">
+            <span id="share-feedback-text">Link copied to clipboard!</span>
+          </div>
+        </section>
+
+        <!-- Error Section -->
+        <section id="error-section" class="card error" style="display: none">
+          <h2>Error</h2>
+          <p id="error-message"></p>
+          <button id="retry-button" class="btn btn-primary">Try Again</button>
+        </section>
+      </main>
+
+      <!-- Drill-Down Modal -->
+      <div
+        id="drill-down-modal"
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        style="display: none"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 id="modal-title">Contributing Posts</h2>
+            <button
+              class="modal-close"
+              id="modal-close-button"
+              aria-label="Close dialog"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="modal-body" id="modal-body">
+            <!-- Posts will be inserted here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="bundle.js"></script>
+  </body>
+</html>

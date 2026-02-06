@@ -1,4 +1,12 @@
 .worktrees/
 node_modules/
-dist/
+coverage/
 .env
+
+# Build output (generated in public/)
+public/bundle.js
+public/bundle.js.map
+
+# Cloudflare Workers
+.wrangler/
+wrangler.toml.bak
