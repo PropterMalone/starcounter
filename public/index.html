@@ -4,6 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Starcounter - Bluesky Post Analyzer</title>
+
+    <!-- Open Graph meta tags for social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Starcounter" />
+    <meta property="og:title" content="Starcounter - Bluesky Post Analyzer" />
+    <meta property="og:description" content="Analyze media mentions in Bluesky threads. See what movies, TV shows, and music people are talking about." />
+    <meta property="og:image" content="https://starcounter.pages.dev/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://starcounter.pages.dev/" />
+
+    <!-- Twitter Card meta tags (also used by Bluesky) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Starcounter - Bluesky Post Analyzer" />
+    <meta name="twitter:description" content="Analyze media mentions in Bluesky threads. See what movies, TV shows, and music people are talking about." />
+    <meta name="twitter:image" content="https://starcounter.pages.dev/og-image.png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -25,19 +41,41 @@
                 name="post-url"
                 placeholder="https://bsky.app/profile/handle/post/xxxxx"
                 required
-                pattern="https://bsky\.app/profile/[^/]+/post/[a-zA-Z0-9]+"
+                pattern="https://bsky\.app/profile/.+/post/[a-zA-Z0-9]+"
               />
               <span class="error-message" id="url-error"></span>
             </div>
 
-            <div class="form-options">
+            <div class="form-group">
+              <label>Search For</label>
+              <div class="checkbox-group" id="media-type-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="media-movies" name="media-type" value="MOVIE" checked />
+                  <span>Movies</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="media-tv" name="media-type" value="TV_SHOW" checked />
+                  <span>TV Shows</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="media-music" name="media-type" value="MUSIC" />
+                  <span>Music</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- TODO: Re-enable when sentiment analysis is properly integrated with recursive fetching -->
+            <div class="form-options" style="display: none;">
               <label class="toggle-label">
-                <input type="checkbox" id="advanced-mode" />
+                <input type="checkbox" id="advanced-mode" disabled />
                 <span class="toggle-text">Advanced Sentiment Analysis</span>
-                <span class="toggle-hint">(ML-powered, ~30MB download)</span>
+                <span class="toggle-hint">(Coming soon)</span>
               </label>
               <span id="advanced-status" class="toggle-status"></span>
             </div>
+
+            <!-- Login Section (optional) -->
+            <div id="login-container"></div>
 
             <div class="form-actions">
               <button type="submit" id="analyze-button" class="btn btn-primary">
@@ -79,6 +117,7 @@
             <canvas id="results-chart"></canvas>
           </div>
           <p class="chart-hint">Click on a bar to see contributing posts</p>
+          <p id="analysis-stats" class="analysis-stats"></p>
           <div id="share-feedback" class="share-feedback" style="display: none">
             <span id="share-feedback-text">Link copied to clipboard!</span>
           </div>
