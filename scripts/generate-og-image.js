@@ -72,4 +72,6 @@ console.log('2. Take a screenshot at exactly 1200x630 pixels');
 console.log('3. Save as public/og-image.png');
 console.log('');
 console.log('Or use a tool like Playwright:');
-console.log('  npx playwright screenshot --viewport-size=1200,630 public/og-image-template.html public/og-image.png');
+console.log(
+  '  npx playwright screenshot --viewport-size=1200,630 public/og-image-template.html public/og-image.png'
+);

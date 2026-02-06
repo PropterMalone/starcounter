@@ -1,5 +1,12 @@
 // pattern: Functional Core
-import type { ThreadViewPost, PostView, NotFoundPost, BlockedPost, RestrictedPost, Did } from '../types';
+import type {
+  ThreadViewPost,
+  PostView,
+  NotFoundPost,
+  BlockedPost,
+  RestrictedPost,
+  Did,
+} from '../types';
 
 /**
  * Check if node is a valid post (not NotFound, Blocked, or Restricted)

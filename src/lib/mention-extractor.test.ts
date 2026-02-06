@@ -128,7 +128,7 @@ describe('MentionExtractor', () => {
 
     describe('ALL CAPS extraction', () => {
       it('should extract ALL CAPS movie titles', () => {
-        const text = 'If STAR TREK II counts, that\'s another one.';
+        const text = "If STAR TREK II counts, that's another one.";
         const mentions = extractor.extractMentions(text, MediaType.MOVIE);
 
         expect(mentions).toHaveLength(1);
@@ -277,7 +277,9 @@ describe('MentionExtractor', () => {
 
       const titles = mentions.map((m) => m.normalizedTitle);
       // Should have "hunt for red october" but NOT standalone "red"
-      expect(titles.some((t) => t.includes('hunt') && t.includes('red') && t.includes('october'))).toBe(true);
+      expect(
+        titles.some((t) => t.includes('hunt') && t.includes('red') && t.includes('october'))
+      ).toBe(true);
       expect(titles.some((t) => t === 'red')).toBe(false);
     });
 

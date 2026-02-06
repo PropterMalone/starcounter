@@ -176,20 +176,28 @@ describe('url-encoder', () => {
 
       // Missing 't' field
       const missingT = { m: [{ n: 'Test', c: 1 }] };
-      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(missingT)))).toBeNull();
+      expect(
+        decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(missingT)))
+      ).toBeNull();
 
       // Missing 'm' field
       const missingM = { t: Date.now() };
-      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(missingM)))).toBeNull();
+      expect(
+        decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(missingM)))
+      ).toBeNull();
     });
 
     it('should return null for non-object values', async () => {
       const LZString = await import('lz-string');
 
       // Primitive value
-      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify('string')))).toBeNull();
+      expect(
+        decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify('string')))
+      ).toBeNull();
       expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(123)))).toBeNull();
-      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(null)))).toBeNull();
+      expect(
+        decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(null)))
+      ).toBeNull();
     });
 
     it('should return null for invalid mention entries in array', async () => {
@@ -197,11 +205,15 @@ describe('url-encoder', () => {
 
       // Mention is null
       const nullMention = { m: [null], t: Date.now() };
-      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(nullMention)))).toBeNull();
+      expect(
+        decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(nullMention)))
+      ).toBeNull();
 
       // Mention is primitive
       const primitiveMention = { m: ['string'], t: Date.now() };
-      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(primitiveMention)))).toBeNull();
+      expect(
+        decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(primitiveMention)))
+      ).toBeNull();
     });
 
     it('should return null for mention with wrong field types', async () => {
@@ -209,11 +221,15 @@ describe('url-encoder', () => {
 
       // n is not a string
       const wrongN = { m: [{ n: 123, c: 1 }], t: Date.now() };
-      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(wrongN)))).toBeNull();
+      expect(
+        decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(wrongN)))
+      ).toBeNull();
 
       // c is not a number
       const wrongC = { m: [{ n: 'Test', c: 'one' }], t: Date.now() };
-      expect(decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(wrongC)))).toBeNull();
+      expect(
+        decodeResults(LZString.compressToEncodedURIComponent(JSON.stringify(wrongC)))
+      ).toBeNull();
     });
   });
 
