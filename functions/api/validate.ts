@@ -46,7 +46,33 @@ export type ValidationResult = {
   readonly error?: string;
 };
 
-const CACHE_TTL = 15 * 60; // 15 minutes in seconds
+const CACHE_TTL = 60 * 60 * 24; // 24 hours - shorter to pick up scoring improvements faster
+const CACHE_VERSION = 'v4'; // Increment to invalidate stale entries after scoring changes
+
+/**
+ * Safely read from KV cache, returning null on any error
+ */
+async function safeKVGet(cache: KVNamespace, key: string): Promise<ValidationResult | null> {
+  try {
+    return await cache.get(key, 'json');
+  } catch {
+    // KV read failed (quota, network, etc.) - continue without cache
+    return null;
+  }
+}
+
+/**
+ * Safely write to KV cache, silently ignoring errors (e.g., quota exceeded)
+ */
+async function safeKVPut(cache: KVNamespace, key: string, value: string, ttl: number): Promise<void> {
+  try {
+    await cache.put(key, value, { expirationTtl: ttl });
+  } catch (error) {
+    // KV write failed (likely quota exceeded on free tier: 1000 puts/day)
+    // Log but continue - caching is an optimization, not a requirement
+    console.warn(`KV cache write failed for key "${key}":`, error instanceof Error ? error.message : error);
+  }
+}
 
 /**
  * Validate a mention against external APIs
@@ -56,20 +82,22 @@ export async function validateMention(
   mediaType: MediaType,
   options: ValidationOptions
 ): Promise<ValidationResult> {
-  // Check cache
+  const cacheKey = `${CACHE_VERSION}:${mediaType}:${title.toLowerCase()}`;
+
+  // Check cache (with graceful fallback on error)
   if (options.cache) {
-    const cacheKey = `${mediaType}:${title.toLowerCase()}`;
-    const cached = await options.cache.get(cacheKey, 'json');
+    const cached = await safeKVGet(options.cache, cacheKey);
     if (cached) {
-      return cached as ValidationResult;
+      return cached;
     }
   }
 
   let result: ValidationResult;
 
   try {
-    if (mediaType === 'MOVIE' || mediaType === 'TV_SHOW') {
-      result = await validateTMDB(title, mediaType, options.tmdbApiKey);
+    if (mediaType === 'MOVIE' || mediaType === 'TV_SHOW' || mediaType === 'UNKNOWN') {
+      // For UNKNOWN, default to movie search since this is primarily a movie analyzer
+      result = await validateTMDB(title, mediaType === 'UNKNOWN' ? 'MOVIE' : mediaType, options.tmdbApiKey);
     } else if (mediaType === 'MUSIC') {
       result = await validateMusicBrainz(title, options.musicbrainzUserAgent);
     } else {
@@ -89,15 +117,95 @@ export async function validateMention(
     };
   }
 
-  // Cache result
+  // Cache result (with graceful fallback on quota exceeded)
   if (options.cache) {
-    const cacheKey = `${mediaType}:${title.toLowerCase()}`;
-    await options.cache.put(cacheKey, JSON.stringify(result), {
-      expirationTtl: CACHE_TTL,
-    });
+    await safeKVPut(options.cache, cacheKey, JSON.stringify(result), CACHE_TTL);
   }
 
   return result;
+}
+
+// Common words that shouldn't be movie titles on their own
+const GENERIC_WORDS = new Set([
+  'good', 'great', 'bad', 'best', 'worst', 'nice', 'cool', 'awesome',
+  'night', 'day', 'morning', 'evening', 'today', 'yesterday', 'tomorrow',
+  'still', 'stuff', 'thing', 'things', 'every', 'which', 'what', 'where', 'when', 'who', 'how',
+  'father', 'mother', 'brother', 'sister', 'son', 'daughter', 'dad', 'mom',
+  'hunt', 'master', 'commander', 'bride', 'last', 'first', 'field', 'dreams',
+  'movie', 'film', 'show', 'watch', 'watching', 'watched', 'seen', 'see',
+  'love', 'like', 'hate', 'want', 'need', 'think', 'know', 'feel',
+  'time', 'year', 'years', 'old', 'new', 'big', 'small', 'long', 'short',
+  'man', 'woman', 'people', 'person', 'life', 'world', 'way', 'part',
+  'just', 'really', 'actually', 'probably', 'maybe', 'always', 'never',
+  'dad movie', 'mom movie', 'classic', 'favorite', 'favourite',
+  'ocean', 'oceans', // Often false positive from "Ocean's Eleven" without apostrophe
+]);
+
+/**
+ * Normalize title for matching: lowercase, trim, and convert & to "and"
+ */
+function normalizeForMatching(title: string): string {
+  return title.toLowerCase().trim().replace(/\s*&\s*/g, ' and ');
+}
+
+/**
+ * Score how well a search title matches a result title.
+ * Higher score = better match. Returns 0 for no match.
+ */
+function scoreTitleMatch(searchTitle: string, resultTitle: string): number {
+  const searchLower = normalizeForMatching(searchTitle);
+  const resultLower = normalizeForMatching(resultTitle);
+
+  // Exact match - best possible
+  if (searchLower === resultLower) return 100;
+
+  // Result is search + common prefix like "The" (e.g., "Blues Brothers" → "The Blues Brothers")
+  const articlesPattern = /^(the|a|an)\s+/i;
+  const resultWithoutArticle = resultLower.replace(articlesPattern, '');
+  const searchWithoutArticle = searchLower.replace(articlesPattern, '');
+  if (searchWithoutArticle === resultWithoutArticle) return 95;
+
+  // Search matches result exactly after stripping article from result
+  if (searchLower === resultWithoutArticle) return 90;
+
+  // Result contains search as complete phrase, but has extra words
+  // Penalize by how much extra content there is
+  if (resultLower.includes(searchLower)) {
+    const extraChars = resultLower.length - searchLower.length;
+    // "Blues Brothers" (14) in "Blues Brothers 2000" (19) = 5 extra chars → score 75
+    // "Blues Brothers" (14) in "The Blues Brothers" (18) = 4 extra chars → score 76
+    // Cap penalty at 30 points
+    const penalty = Math.min(extraChars * 2, 30);
+    return 80 - penalty;
+  }
+
+  // Search contains result (unusual - search is longer than result)
+  // Be very strict here: if the result is much shorter, it's likely a false match
+  // e.g., searching "Oceans Eleven" should NOT match "Oceans" (6 chars vs 13 chars)
+  if (searchLower.includes(resultLower)) {
+    // Reject if result is less than 60% of search length
+    // This prevents "Oceans" (6) matching "Oceans Eleven" (13) - ratio 0.46
+    // But allows "Matrix" (6) matching "The Matrix" (10) - ratio 0.6
+    const lengthRatio = resultLower.length / searchLower.length;
+    if (lengthRatio < 0.6) {
+      return 0; // Too short - likely wrong match
+    }
+    const extraChars = searchLower.length - resultLower.length;
+    const penalty = Math.min(extraChars * 2, 30);
+    return 70 - penalty;
+  }
+
+  // Partial word match - weakest
+  const searchWords = searchLower.split(/\s+/).filter(w => w.length > 2);
+  const resultWords = new Set(resultLower.split(/\s+/));
+  const matchingWords = searchWords.filter(w => resultWords.has(w));
+
+  if (searchWords.length > 0 && matchingWords.length >= searchWords.length * 0.5) {
+    // Score based on percentage of words matching
+    return Math.floor(40 * (matchingWords.length / searchWords.length));
+  }
+
+  return 0; // No match
 }
 
 /**
@@ -108,8 +216,40 @@ async function validateTMDB(
   mediaType: MediaType,
   apiKey: string
 ): Promise<ValidationResult> {
-  const endpoint = mediaType === 'MOVIE' ? '/3/search/movie' : '/3/search/tv';
-  const url = `https://api.themoviedb.org/3${endpoint}?query=${encodeURIComponent(title)}`;
+  const titleLower = title.toLowerCase().trim();
+  const wordCount = titleLower.split(/\s+/).length;
+
+  // Reject generic single words (but allow multi-word titles containing them)
+  if (wordCount === 1 && GENERIC_WORDS.has(titleLower)) {
+    return {
+      title,
+      validated: false,
+      confidence: 'low',
+    };
+  }
+
+  // Reject known cruft phrases (multi-word non-titles)
+  if (titleLower === 'dad movie' || titleLower === 'mom movie') {
+    return {
+      title,
+      validated: false,
+      confidence: 'low',
+    };
+  }
+
+  // Reject very short titles (likely not real movie names)
+  if (title.length < 3) {
+    return {
+      title,
+      validated: false,
+      confidence: 'low',
+    };
+  }
+
+  const endpoint = mediaType === 'MOVIE' ? '/search/movie' : '/search/tv';
+  // Normalize the search query: convert & to "and" for better TMDB matching
+  const searchQuery = title.replace(/\s*&\s*/g, ' and ');
+  const url = `https://api.themoviedb.org/3${endpoint}?query=${encodeURIComponent(searchQuery)}`;
 
   const response = await fetch(url, {
     headers: {
@@ -131,24 +271,40 @@ async function validateTMDB(
     };
   }
 
-  // Take first result (sorted by popularity)
-  const result = data.results[0];
-  const resultTitle = mediaType === 'MOVIE' ? result.title : result.name;
+  // Score all results and pick the best match
+  let bestMatch: { result: TMDBResult; resultTitle: string; score: number } | null = null;
 
-  // Calculate confidence based on vote_count and popularity
-  const confidence = calculateTMDBConfidence(result);
+  for (const result of data.results.slice(0, 10)) {
+    const resultTitle = mediaType === 'MOVIE' ? result.title : result.name;
+    const score = scoreTitleMatch(title, resultTitle);
 
+    if (score > 0 && (!bestMatch || score > bestMatch.score)) {
+      bestMatch = { result, resultTitle, score };
+    }
+  }
+
+  if (bestMatch) {
+    const confidence = calculateTMDBConfidence(bestMatch.result);
+
+    return {
+      title: bestMatch.resultTitle,
+      validated: true,
+      confidence,
+      source: 'tmdb',
+      metadata: {
+        id: bestMatch.result.id,
+        releaseDate: bestMatch.result.release_date || bestMatch.result.first_air_date,
+        voteAverage: bestMatch.result.vote_average,
+        popularity: bestMatch.result.popularity,
+      },
+    };
+  }
+
+  // No good match found
   return {
-    title: resultTitle,
-    validated: true,
-    confidence,
-    source: 'tmdb',
-    metadata: {
-      id: result.id,
-      releaseDate: result.release_date || result.first_air_date,
-      voteAverage: result.vote_average,
-      popularity: result.popularity,
-    },
+    title,
+    validated: false,
+    confidence: 'low',
   };
 }
 
@@ -233,60 +389,63 @@ function calculateMusicBrainzConfidence(score: number): 'high' | 'medium' | 'low
   return 'low';
 }
 
+// CORS headers
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
+
+type PagesContext = {
+  request: Request;
+  env: CloudflareEnv;
+};
+
 /**
- * Cloudflare Workers handler
+ * Cloudflare Pages Functions handler for OPTIONS (CORS preflight)
  */
-export default {
-  async fetch(request: Request, env: CloudflareEnv): Promise<Response> {
-    // CORS headers
-    const corsHeaders = {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-    };
+export async function onRequestOptions(): Promise<Response> {
+  return new Response(null, { headers: corsHeaders });
+}
 
-    // Handle OPTIONS (CORS preflight)
-    if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: corsHeaders });
+/**
+ * Cloudflare Pages Functions handler for POST
+ */
+export async function onRequestPost(context: PagesContext): Promise<Response> {
+  const { request, env } = context;
+
+  try {
+    const { title, mediaType } = await request.json();
+
+    if (!title || !mediaType) {
+      return new Response('Missing title or mediaType', { status: 400 });
     }
 
-    // Only POST allowed
-    if (request.method !== 'POST') {
-      return new Response('Method not allowed', { status: 405 });
-    }
+    const result = await validateMention(title, mediaType as MediaType, {
+      tmdbApiKey: env.TMDB_API_KEY,
+      musicbrainzUserAgent: env.MUSICBRAINZ_USER_AGENT,
+      cache: env.VALIDATION_CACHE,
+    });
 
-    try {
-      const { title, mediaType } = await request.json();
-
-      if (!title || !mediaType) {
-        return new Response('Missing title or mediaType', { status: 400 });
-      }
-
-      const result = await validateMention(title, mediaType as MediaType, {
-        tmdbApiKey: env.TMDB_API_KEY,
-        musicbrainzUserAgent: env.MUSICBRAINZ_USER_AGENT,
-        cache: env.VALIDATION_CACHE,
-      });
-
-      return new Response(JSON.stringify(result), {
+    return new Response(JSON.stringify(result), {
+      headers: {
+        ...corsHeaders,
+        'Content-Type': 'application/json',
+      },
+    });
+  } catch (error) {
+    return new Response(
+      JSON.stringify({
+        error: error instanceof Error ? error.message : 'Unknown error',
+      }),
+      {
+        status: 500,
         headers: {
           ...corsHeaders,
           'Content-Type': 'application/json',
         },
-      });
-    } catch (error) {
-      return new Response(
-        JSON.stringify({
-          error: error instanceof Error ? error.message : 'Unknown error',
-        }),
-        {
-          status: 500,
-          headers: {
-            ...corsHeaders,
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-    }
-  },
-};
+      }
+    );
+  }
+}
+// Deployed at Thu, Feb  5, 2026  2:15:18 PM
