@@ -109,6 +109,13 @@ describe('MentionExtractor', () => {
         expect(mentions[0].mediaType).toBe(MediaType.MUSIC);
       });
 
+      it('should detect video game context', () => {
+        const text = 'Just beat Elden Ring on Steam';
+        const mentions = extractor.extractMentions(text);
+
+        expect(mentions[0].mediaType).toBe(MediaType.VIDEO_GAME);
+      });
+
       it('should default to provided media type when context unclear', () => {
         // Title must not be at sentence start (would be filtered as sentence-starting word)
         const text = 'I think The Matrix is great';
@@ -311,15 +318,15 @@ describe('MentionExtractor - Property-Based Tests', () => {
   it('should handle arbitrary quoted strings', () => {
     fc.assert(
       fc.property(
-        fc.string({ minLength: 3, maxLength: 50 }).filter((s) => !s.includes('"')),
+        fc
+          .string({ minLength: 3, maxLength: 50 })
+          .filter((s) => !s.includes('"') && s.trim().length >= 2),
         (title) => {
           const text = `I watched "${title}" yesterday`;
           const mentions = extractor.extractMentions(text, MediaType.MOVIE);
 
-          // Should extract the title (if valid)
-          if (extractor.normalizeTitle(title).length >= 2) {
-            expect(mentions.length).toBeGreaterThanOrEqual(1);
-          }
+          // Should extract the title (if valid after trimming)
+          expect(mentions.length).toBeGreaterThanOrEqual(1);
         }
       ),
       { numRuns: 100 }
