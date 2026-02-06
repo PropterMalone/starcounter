@@ -73,6 +73,10 @@
                   <input type="checkbox" id="media-music" name="media-type" value="MUSIC" />
                   <span>Music</span>
                 </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="media-games" name="media-type" value="VIDEO_GAME" />
+                  <span>Video Games</span>
+                </label>
               </div>
             </div>
 
@@ -85,9 +89,6 @@
               </label>
               <span id="advanced-status" class="toggle-status"></span>
             </div>
-
-            <!-- Login Section (optional) -->
-            <div id="login-container"></div>
 
             <div class="form-actions">
               <button type="submit" id="analyze-button" class="btn btn-primary">
@@ -142,6 +143,24 @@
             ></canvas>
           </div>
           <p class="chart-hint">Click on a bar to see contributing posts</p>
+          <!-- Excluded categories (shown when user excludes categories) -->
+          <div id="excluded-categories" class="excluded-categories" style="display: none">
+            <span class="excluded-label">Excluded:</span>
+            <div class="excluded-list"></div>
+          </div>
+          <div class="results-options">
+            <label class="checkbox-label">
+              <input type="checkbox" id="show-uncategorized" />
+              <span>Show uncategorized posts</span>
+            </label>
+            <button
+              id="review-suggestions-button"
+              class="btn btn-secondary btn-small"
+              style="display: none"
+            >
+              Review Suggestions
+            </button>
+          </div>
           <p id="analysis-stats" class="analysis-stats"></p>
           <div id="share-feedback" class="share-feedback" style="display: none">
             <span id="share-feedback-text">Link copied to clipboard!</span>
@@ -174,6 +193,28 @@
           </div>
           <div class="modal-body" id="modal-body">
             <!-- Posts will be inserted here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Cluster Review Modal -->
+      <div
+        id="cluster-review-modal"
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cluster-modal-title"
+        style="display: none"
+      >
+        <div class="modal-content modal-wide">
+          <div class="modal-header">
+            <h2 id="cluster-modal-title">Review Suggestions</h2>
+            <button class="modal-close" id="cluster-modal-close-button" aria-label="Close dialog">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body" id="cluster-modal-body">
+            <!-- Clusters will be inserted here -->
           </div>
         </div>
       </div>
