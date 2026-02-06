@@ -1,12 +1,5 @@
 // Tree-shaken Chart.js imports - only include what we need for horizontal bar charts
-import {
-  Chart,
-  BarController,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-  Tooltip,
-} from 'chart.js';
+import { Chart, BarController, BarElement, CategoryScale, LinearScale, Tooltip } from 'chart.js';
 import type { MentionCount } from '../types';
 
 // Register only the components we use
@@ -22,16 +15,16 @@ const EXPANDED_DISPLAY_COUNT = 50;
 
 // Vibrant rainbow colors (repeating pattern)
 const CHART_COLORS = [
-  { bg: 'rgba(255, 99, 132, 0.8)', border: 'rgba(255, 99, 132, 1)' },   // Hot pink
-  { bg: 'rgba(255, 127, 80, 0.8)', border: 'rgba(255, 127, 80, 1)' },   // Coral
-  { bg: 'rgba(255, 159, 64, 0.8)', border: 'rgba(255, 159, 64, 1)' },   // Orange
-  { bg: 'rgba(255, 193, 7, 0.8)', border: 'rgba(255, 193, 7, 1)' },     // Amber
-  { bg: 'rgba(205, 220, 57, 0.8)', border: 'rgba(205, 220, 57, 1)' },   // Lime
-  { bg: 'rgba(76, 175, 80, 0.8)', border: 'rgba(76, 175, 80, 1)' },     // Green
-  { bg: 'rgba(0, 188, 212, 0.8)', border: 'rgba(0, 188, 212, 1)' },     // Cyan
-  { bg: 'rgba(33, 150, 243, 0.8)', border: 'rgba(33, 150, 243, 1)' },   // Blue
-  { bg: 'rgba(103, 58, 183, 0.8)', border: 'rgba(103, 58, 183, 1)' },   // Deep purple
-  { bg: 'rgba(156, 39, 176, 0.8)', border: 'rgba(156, 39, 176, 1)' },   // Purple
+  { bg: 'rgba(255, 99, 132, 0.8)', border: 'rgba(255, 99, 132, 1)' }, // Hot pink
+  { bg: 'rgba(255, 127, 80, 0.8)', border: 'rgba(255, 127, 80, 1)' }, // Coral
+  { bg: 'rgba(255, 159, 64, 0.8)', border: 'rgba(255, 159, 64, 1)' }, // Orange
+  { bg: 'rgba(255, 193, 7, 0.8)', border: 'rgba(255, 193, 7, 1)' }, // Amber
+  { bg: 'rgba(205, 220, 57, 0.8)', border: 'rgba(205, 220, 57, 1)' }, // Lime
+  { bg: 'rgba(76, 175, 80, 0.8)', border: 'rgba(76, 175, 80, 1)' }, // Green
+  { bg: 'rgba(0, 188, 212, 0.8)', border: 'rgba(0, 188, 212, 1)' }, // Cyan
+  { bg: 'rgba(33, 150, 243, 0.8)', border: 'rgba(33, 150, 243, 1)' }, // Blue
+  { bg: 'rgba(103, 58, 183, 0.8)', border: 'rgba(103, 58, 183, 1)' }, // Deep purple
+  { bg: 'rgba(156, 39, 176, 0.8)', border: 'rgba(156, 39, 176, 1)' }, // Purple
 ];
 
 /**
@@ -44,7 +37,7 @@ function generateBarColors(count: number): { backgrounds: string[]; borders: str
   for (let i = 0; i < count; i++) {
     // Cycle through colors repeatedly
     const colorIndex = i % CHART_COLORS.length;
-    const color = CHART_COLORS[colorIndex] ?? CHART_COLORS[0];
+    const color = CHART_COLORS[colorIndex] ?? CHART_COLORS[0]!;
     backgrounds.push(color.bg);
     borders.push(color.border);
   }
@@ -107,7 +100,6 @@ export class ResultsChart {
     if (!this.showMoreButton) return;
 
     const totalCount = this.allMentionCounts.length;
-    const _currentLimit = this.isExpanded ? EXPANDED_DISPLAY_COUNT : INITIAL_DISPLAY_COUNT;
 
     if (totalCount <= INITIAL_DISPLAY_COUNT) {
       // No need for button if we have fewer results than initial display
