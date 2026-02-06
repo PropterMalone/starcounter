@@ -1,5 +1,5 @@
 // pattern: Imperative Shell
-import { Resvg } from '@resvg/resvg-js';
+import { Resvg } from '@cf-wasm/resvg';
 import { decodeResults } from '../../src/lib/url-encoder';
 import type { ShareableResults, ShareableMention } from '../../src/lib/url-encoder';
 
@@ -23,6 +23,22 @@ const MAX_CHART_ITEMS = 10;
  * Maximum title length before truncation
  */
 const MAX_TITLE_LENGTH = 30;
+
+/**
+ * Rainbow colors matching the chart (repeating pattern)
+ */
+const BAR_COLORS = [
+  '#ff6384', // Hot pink
+  '#ff7f50', // Coral
+  '#ff9f40', // Orange
+  '#ffc107', // Amber
+  '#cddc39', // Lime
+  '#4caf50', // Green
+  '#00bcd4', // Cyan
+  '#2196f3', // Blue
+  '#673ab7', // Deep purple
+  '#9c27b0', // Purple
+];
 
 /**
  * Parse OG request URL and extract ShareableResults
@@ -81,17 +97,18 @@ function generateSVG(results: ShareableResults): string {
   const actualChartHeight = barCount * barHeight + (barCount - 1) * barGap;
   const chartStartY = chartPadding.top + (chartHeight - actualChartHeight) / 2;
 
-  // Generate bar elements
+  // Generate bar elements with repeating rainbow colors
   const bars = topMentions
     .map((mention: ShareableMention, index: number) => {
       const barWidth = (mention.c / maxCount) * chartWidth;
       const y = chartStartY + index * (barHeight + barGap);
       const title = escapeXml(truncateTitle(mention.n));
+      const barColor = BAR_COLORS[index % BAR_COLORS.length];
 
       return `
       <!-- Bar ${index + 1}: ${title} -->
       <rect x="${chartPadding.left}" y="${y}" width="${barWidth}" height="${barHeight}"
-            fill="#3b82f6" rx="4" ry="4"/>
+            fill="${barColor}" rx="4" ry="4"/>
       <text x="${chartPadding.left - 10}" y="${y + barHeight / 2 + 5}"
             text-anchor="end" fill="#e2e8f0" font-size="16" font-family="system-ui, sans-serif">
         ${title}
@@ -143,9 +160,9 @@ function generateSVG(results: ShareableResults): string {
 }
 
 /**
- * Generate OG image as PNG buffer
+ * Generate OG image as PNG (returns Uint8Array for Workers compatibility)
  */
-export async function generateOGImage(results: ShareableResults): Promise<Buffer> {
+export async function generateOGImage(results: ShareableResults): Promise<Uint8Array> {
   const svg = generateSVG(results);
 
   const resvg = new Resvg(svg, {
