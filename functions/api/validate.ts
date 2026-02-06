@@ -47,7 +47,7 @@ export type ValidationResult = {
 };
 
 const CACHE_TTL = 60 * 60 * 24; // 24 hours - shorter to pick up scoring improvements faster
-const CACHE_VERSION = 'v4'; // Increment to invalidate stale entries after scoring changes
+const CACHE_VERSION = 'v5'; // Increment to invalidate stale entries after scoring changes
 
 /**
  * Safely read from KV cache, returning null on any error
