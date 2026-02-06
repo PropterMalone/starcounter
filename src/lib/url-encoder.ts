@@ -42,11 +42,11 @@ export function toShareableResults(mentionCounts: MentionCount[]): ShareableResu
 
 /**
  * Encode ShareableResults to a URL-safe compressed string.
- * Uses LZ-string compression with Base64 encoding.
+ * Uses LZ-string compression with URI-safe encoding (no +, /, or = chars).
  */
 export function encodeResults(results: ShareableResults): string {
   const json = JSON.stringify(results);
-  const compressed = LZString.compressToBase64(json);
+  const compressed = LZString.compressToEncodedURIComponent(json);
   return compressed;
 }
 
@@ -60,7 +60,7 @@ export function decodeResults(encoded: string): ShareableResults | null {
   }
 
   try {
-    const decompressed = LZString.decompressFromBase64(encoded);
+    const decompressed = LZString.decompressFromEncodedURIComponent(encoded);
     if (!decompressed) {
       return null;
     }
