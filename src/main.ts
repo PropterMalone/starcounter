@@ -54,6 +54,14 @@ class StarcounterApp {
   private analysisStartTime: number = 0;
   private originalPost: PostView | null = null;
 
+  // State for re-rendering with uncategorized toggle
+  private lastMentionCounts: MentionCount[] = [];
+  private lastUncategorizedPosts: PostView[] = [];
+
+  // User refinement state
+  private excludedCategories: Set<string> = new Set();
+  private manualAssignments: Map<string, string> = new Map(); // postUri → category
+
   constructor() {
     // Initialize auth service first
     this.authService = new AuthService();
@@ -154,9 +162,22 @@ class StarcounterApp {
       this.resetToInput();
     });
 
+    // Uncategorized posts toggle
+    const uncategorizedCheckbox = document.getElementById('show-uncategorized');
+    uncategorizedCheckbox?.addEventListener('change', () => {
+      this.refreshResultsDisplay();
+    });
+
     // Chart clicks (drill-down)
     this.resultsChart.onClick((mention, posts) => {
       this.drillDownModal.show(mention, posts as PostView[]);
+    });
+
+    // Drill-down modal callbacks for user refinement
+    this.drillDownModal.setCallbacks({
+      onExclude: (category) => this.excludeCategory(category),
+      onAssign: (postUri, category) => this.assignPostToCategory(postUri, category),
+      getCategories: () => this.getAvailableCategories(),
     });
 
     // Progress tracker events (type-safe - data is correctly typed for each event)
@@ -199,6 +220,10 @@ class StarcounterApp {
       this.progressTracker.reset();
       this.analysisStartTime = Date.now();
       this.originalPost = null;
+
+      // Reset user refinement state
+      this.excludedCategories.clear();
+      this.manualAssignments.clear();
 
       // Extract AT-URI from bsky.app URL
       const atUri = this.convertBskyUrlToAtUri(url);
@@ -490,10 +515,16 @@ class StarcounterApp {
       // Only use validated results - don't fall back to unvalidated cruft
       const finalMentionCounts = validatedMentionCounts;
 
+      // Find posts that didn't contribute to ANY category (for debug)
+      const uncategorizedPosts = allPosts.filter((post) => {
+        const titles = postToTitles.get(post.uri);
+        return !titles || titles.size === 0;
+      });
+
       // Stage 5: Display results
       this.progressTracker.emit('complete', { mentionCounts: finalMentionCounts });
 
-      this.showResults(finalMentionCounts, allPosts.length);
+      this.showResults(finalMentionCounts, allPosts.length, uncategorizedPosts);
     } catch (error) {
       if (error instanceof Error) {
         this.progressTracker.emit('error', { error });
@@ -522,7 +553,15 @@ class StarcounterApp {
   /**
    * Show results section with chart
    */
-  private showResults(mentionCounts: MentionCount[], postCount?: number): void {
+  private showResults(
+    mentionCounts: MentionCount[],
+    postCount?: number,
+    uncategorizedPosts?: PostView[]
+  ): void {
+    // Store state for re-rendering with toggle
+    this.lastMentionCounts = mentionCounts;
+    this.lastUncategorizedPosts = uncategorizedPosts ?? [];
+
     this.hideAllSections();
 
     const resultsSection = document.getElementById('results-section');
@@ -547,8 +586,161 @@ class StarcounterApp {
       }
     }
 
-    this.resultsChart.render(mentionCounts);
-    this.shareButton.setResults(mentionCounts);
+    // Build final counts, optionally including uncategorized
+    const finalCounts = this.buildFinalCounts(mentionCounts, uncategorizedPosts ?? []);
+
+    this.resultsChart.render(finalCounts);
+    this.shareButton.setResults(mentionCounts); // Share excludes uncategorized
+  }
+
+  /**
+   * Build final mention counts with exclusions, manual assignments, and uncategorized
+   */
+  private buildFinalCounts(
+    mentionCounts: MentionCount[],
+    uncategorizedPosts: PostView[]
+  ): MentionCount[] {
+    // Start with a mutable copy of counts
+    const countsByMention = new Map<string, { count: number; posts: PostView[] }>();
+
+    for (const mc of mentionCounts) {
+      countsByMention.set(mc.mention, { count: mc.count, posts: [...mc.posts] });
+    }
+
+    // Track which posts have been manually assigned (to remove from uncategorized)
+    const manuallyAssignedUris = new Set<string>();
+
+    // Apply manual assignments: move posts from uncategorized to their assigned category
+    for (const [postUri, category] of this.manualAssignments) {
+      manuallyAssignedUris.add(postUri);
+
+      // Find the post in uncategorized
+      const post = uncategorizedPosts.find((p) => p.uri === postUri);
+      if (!post) continue;
+
+      // Add to the target category
+      const existing = countsByMention.get(category);
+      if (existing) {
+        // Only add if not already in the category
+        if (!existing.posts.some((p) => p.uri === postUri)) {
+          existing.posts.push(post);
+          existing.count++;
+        }
+      } else {
+        // Category doesn't exist yet (shouldn't happen with current UI, but be safe)
+        countsByMention.set(category, { count: 1, posts: [post] });
+      }
+    }
+
+    // Filter out excluded categories and rebuild array
+    const result: MentionCount[] = [];
+    for (const [mention, data] of countsByMention) {
+      if (!this.excludedCategories.has(mention)) {
+        result.push({ mention, count: data.count, posts: data.posts });
+      }
+    }
+
+    // Sort by count descending
+    result.sort((a, b) => b.count - a.count);
+
+    // Handle uncategorized posts (minus manually assigned ones)
+    const showUncategorized = document.getElementById(
+      'show-uncategorized'
+    ) as HTMLInputElement | null;
+
+    const remainingUncategorized = uncategorizedPosts.filter(
+      (p) => !manuallyAssignedUris.has(p.uri)
+    );
+
+    if (showUncategorized?.checked && remainingUncategorized.length > 0) {
+      result.push({
+        mention: '(Uncategorized)',
+        count: remainingUncategorized.length,
+        posts: remainingUncategorized,
+      });
+    }
+
+    return result;
+  }
+
+  /**
+   * Refresh results display when uncategorized toggle changes
+   */
+  private refreshResultsDisplay(): void {
+    if (this.lastMentionCounts.length === 0) return;
+
+    const finalCounts = this.buildFinalCounts(this.lastMentionCounts, this.lastUncategorizedPosts);
+    this.resultsChart.render(finalCounts);
+    this.updateExcludedCategoriesUI();
+  }
+
+  /**
+   * Exclude a category from results
+   */
+  private excludeCategory(category: string): void {
+    this.excludedCategories.add(category);
+    this.refreshResultsDisplay();
+  }
+
+  /**
+   * Restore a previously excluded category
+   */
+  private restoreCategory(category: string): void {
+    this.excludedCategories.delete(category);
+    this.refreshResultsDisplay();
+  }
+
+  /**
+   * Manually assign a post to a category
+   */
+  private assignPostToCategory(postUri: string, category: string): void {
+    this.manualAssignments.set(postUri, category);
+    this.refreshResultsDisplay();
+  }
+
+  /**
+   * Get list of available categories for manual assignment
+   */
+  private getAvailableCategories(): string[] {
+    return this.lastMentionCounts
+      .filter((mc) => !this.excludedCategories.has(mc.mention))
+      .map((mc) => mc.mention);
+  }
+
+  /**
+   * Update the excluded categories UI
+   */
+  private updateExcludedCategoriesUI(): void {
+    const container = document.getElementById('excluded-categories');
+    if (!container) return;
+
+    if (this.excludedCategories.size === 0) {
+      container.style.display = 'none';
+      return;
+    }
+
+    container.style.display = 'block';
+
+    const list = container.querySelector('.excluded-list');
+    if (!list) return;
+
+    list.innerHTML = '';
+
+    for (const category of this.excludedCategories) {
+      const item = document.createElement('span');
+      item.className = 'excluded-item';
+      item.innerHTML = `
+        ${this.escapeHtml(category)}
+        <button class="excluded-restore" aria-label="Restore ${this.escapeHtml(category)}">×</button>
+      `;
+
+      const restoreBtn = item.querySelector('.excluded-restore');
+      restoreBtn?.addEventListener('click', () => {
+        this.restoreCategory(category);
+      });
+
+      list.appendChild(item);
+    }
   }
 
   /**
