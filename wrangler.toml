@@ -6,6 +6,8 @@ compatibility_flags = ["nodejs_compat"]
 # Environment variables (set via Cloudflare dashboard or wrangler secret)
 # TMDB_API_KEY - TMDB Bearer token
 # MUSICBRAINZ_USER_AGENT - User-Agent string for MusicBrainz
+# TWITCH_CLIENT_ID - Twitch app client ID for IGDB authentication
+# TWITCH_CLIENT_SECRET - Twitch app client secret for IGDB authentication
 
 # KV namespace for caching validation results
 # Note: Free tier has 1000 puts/day limit - code gracefully falls back if exceeded
