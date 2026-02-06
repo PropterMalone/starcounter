@@ -56,7 +56,7 @@ function decodeResults(encoded: string): ShareableResults | null {
 /**
  * Generate dynamic OG tags based on decoded results.
  */
-function generateOGTags(results: ShareableResults, url: string, encoded: string): string {
+function generateOGTags(results: ShareableResults, url: string, encoded: string, origin: string): string {
   const mentions = results.m;
   const topMentions = mentions.slice(0, 5);
 
@@ -72,8 +72,9 @@ function generateOGTags(results: ShareableResults, url: string, encoded: string)
       ? topMentions.map((m, i) => `${i + 1}. ${m.n} (${m.c})`).join(', ')
       : 'Bluesky thread analysis results';
 
-  // Dynamic OG image showing the top results chart
-  const imageUrl = `https://starcounter.pages.dev/api/og?r=${encoded}`;
+  // Dynamic OG image showing the top results chart (use same origin as request)
+  // encodeURIComponent ensures + becomes %2B so it's preserved through URL parsing
+  const imageUrl = `${origin}/api/og?r=${encodeURIComponent(encoded)}`;
 
   return `
     <!-- Dynamic Open Graph meta tags for shared results -->
@@ -162,10 +163,12 @@ export async function onRequest(context: PagesContext): Promise<Response> {
   }
 
   // Decode the results
-  const encoded = url.searchParams.get('r');
-  if (!encoded) {
+  // Note: URL parser decodes + as space, but LZ-string uses + in its alphabet
+  const encodedRaw = url.searchParams.get('r');
+  if (!encodedRaw) {
     return next();
   }
+  const encoded = encodedRaw.replace(/ /g, '+');
 
   const results = decodeResults(encoded);
   if (!results) {
@@ -184,7 +187,7 @@ export async function onRequest(context: PagesContext): Promise<Response> {
 
   // Get HTML and inject dynamic OG tags
   const html = await response.text();
-  const dynamicTags = generateOGTags(results, url.toString(), encoded);
+  const dynamicTags = generateOGTags(results, url.toString(), encoded, url.origin);
   const modifiedHtml = injectDynamicOGTags(html, dynamicTags);
 
   // Return modified response
