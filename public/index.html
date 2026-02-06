@@ -73,6 +73,10 @@
                   <input type="checkbox" id="media-music" name="media-type" value="MUSIC" />
                   <span>Music</span>
                 </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="media-games" name="media-type" value="VIDEO_GAME" />
+                  <span>Video Games</span>
+                </label>
               </div>
             </div>
 
@@ -142,6 +146,17 @@
             ></canvas>
           </div>
           <p class="chart-hint">Click on a bar to see contributing posts</p>
+          <!-- Excluded categories (shown when user excludes categories) -->
+          <div id="excluded-categories" class="excluded-categories" style="display: none">
+            <span class="excluded-label">Excluded:</span>
+            <div class="excluded-list"></div>
+          </div>
+          <div class="results-options">
+            <label class="checkbox-label">
+              <input type="checkbox" id="show-uncategorized" />
+              <span>Show uncategorized posts (debug)</span>
+            </label>
+          </div>
           <p id="analysis-stats" class="analysis-stats"></p>
           <div id="share-feedback" class="share-feedback" style="display: none">
             <span id="share-feedback-text">Link copied to clipboard!</span>
