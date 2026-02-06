@@ -34,6 +34,17 @@ export class ProgressBar {
   }
 
   /**
+   * Enable/disable indeterminate shimmer animation
+   */
+  setIndeterminate(indeterminate: boolean): void {
+    if (indeterminate) {
+      this.progressBar.classList.add('indeterminate');
+    } else {
+      this.progressBar.classList.remove('indeterminate');
+    }
+  }
+
+  /**
    * Set progress text message
    */
   setText(text: string): void {
@@ -63,6 +74,7 @@ export class ProgressBar {
    * Update for extracting stage
    */
   updateExtracting(): void {
+    this.setIndeterminate(false);
     this.setText('Extracting mentions...');
     this.setDetails('');
     this.setProgress(80);
@@ -72,17 +84,23 @@ export class ProgressBar {
    * Update for counting stage
    */
   updateCounting(): void {
+    this.setIndeterminate(false);
     this.setText('Counting mentions...');
     this.setDetails('');
     this.setProgress(85);
   }
 
   /**
-   * Update for validating stage
+   * Update for validating stage - shows shimmer animation
    */
   updateValidating(validated: number, total: number): void {
     this.setText('Validating mentions...');
     this.setDetails(`Validated ${validated} of ${total} mentions`);
+
+    // Show shimmer effect during validation (waiting on external APIs)
+    if (validated === 0 && total > 0) {
+      this.setIndeterminate(true);
+    }
 
     // Progress: 85-95% during validation
     const progress = total > 0 ? 85 + (validated / total) * 10 : 85;
@@ -93,6 +111,7 @@ export class ProgressBar {
    * Update for complete stage
    */
   updateComplete(mentionCount: number): void {
+    this.setIndeterminate(false);
     this.setText('Analysis complete!');
     this.setDetails(`Found ${mentionCount} mention${mentionCount === 1 ? '' : 's'}`);
     this.setProgress(100);
@@ -102,6 +121,7 @@ export class ProgressBar {
    * Reset to initial state
    */
   reset(): void {
+    this.setIndeterminate(false);
     this.setProgress(0);
     this.setText('');
     this.setDetails('');

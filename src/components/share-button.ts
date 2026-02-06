@@ -69,7 +69,7 @@ export class ShareButton {
   }
 
   /**
-   * Show feedback message temporarily
+   * Show feedback message temporarily with smooth fadeout
    */
   private showFeedback(message: string): void {
     // Clear any existing timeout
@@ -77,12 +77,20 @@ export class ShareButton {
       clearTimeout(this.feedbackTimeout);
     }
 
+    // Reset state: remove fadeout class and show
+    this.feedback.classList.remove('fade-out');
     this.feedbackText.textContent = message;
     this.feedback.style.display = 'block';
 
-    // Auto-hide after 3 seconds
+    // Start fadeout after 2.5 seconds (animation takes 0.3s, totaling ~3s visible)
     this.feedbackTimeout = setTimeout(() => {
-      this.feedback.style.display = 'none';
-    }, 3000);
+      this.feedback.classList.add('fade-out');
+
+      // Hide after fadeout animation completes
+      setTimeout(() => {
+        this.feedback.style.display = 'none';
+        this.feedback.classList.remove('fade-out');
+      }, 300);
+    }, 2500);
   }
 }

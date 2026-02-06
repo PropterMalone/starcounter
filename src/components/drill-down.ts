@@ -6,12 +6,19 @@ import type { PostView } from '../types';
  */
 
 export class DrillDownModal {
+  /** Element that was focused before modal opened, to restore on close */
+  private previouslyFocusedElement: HTMLElement | null = null;
+
+  /** Bound keyboard handler for cleanup */
+  private boundKeydownHandler: (e: KeyboardEvent) => void;
+
   constructor(
     private modal: HTMLElement,
     private modalTitle: HTMLElement,
     private modalBody: HTMLElement,
     private closeButton: HTMLElement
   ) {
+    this.boundKeydownHandler = this.handleKeydown.bind(this);
     this.attachEventListeners();
   }
 
@@ -19,9 +26,18 @@ export class DrillDownModal {
    * Show modal with mention and contributing posts
    */
   show(mention: string, posts: PostView[]): void {
+    // Save currently focused element to restore later
+    this.previouslyFocusedElement = document.activeElement as HTMLElement;
+
     this.modalTitle.textContent = `Contributing Posts for "${mention}"`;
     this.renderPosts(posts);
     this.modal.style.display = 'flex';
+
+    // Add keyboard listener for Escape key
+    document.addEventListener('keydown', this.boundKeydownHandler);
+
+    // Focus the close button for keyboard accessibility
+    this.closeButton.focus();
   }
 
   /**
@@ -29,6 +45,24 @@ export class DrillDownModal {
    */
   hide(): void {
     this.modal.style.display = 'none';
+
+    // Remove keyboard listener
+    document.removeEventListener('keydown', this.boundKeydownHandler);
+
+    // Restore focus to previously focused element
+    if (this.previouslyFocusedElement) {
+      this.previouslyFocusedElement.focus();
+      this.previouslyFocusedElement = null;
+    }
+  }
+
+  /**
+   * Handle keyboard events (Escape to close)
+   */
+  private handleKeydown(event: KeyboardEvent): void {
+    if (event.key === 'Escape') {
+      this.hide();
+    }
   }
 
   /**

@@ -8,7 +8,8 @@ import type {
 } from '../types';
 import { getRateLimiter, RateLimiter } from './rate-limiter';
 
-const BASE_URL = 'https://public.api.bsky.app';
+const PUBLIC_BASE_URL = 'https://public.api.bsky.app';
+const AUTH_BASE_URL = 'https://bsky.social';
 
 export type GetPostThreadOptions = {
   readonly depth?: number;
@@ -23,15 +24,38 @@ export type GetQuotesOptions = {
 };
 
 /**
- * Client for Bluesky AT Protocol public API
- * Handles thread fetching, quote fetching, and rate limiting
+ * Client for Bluesky AT Protocol API
+ * Handles thread fetching, quote fetching, rate limiting, and optional authentication
  */
 export class BlueskyClient {
   private lastRateLimitInfo: RateLimitInfo | null = null;
   private readonly rateLimiter: RateLimiter;
+  private accessToken: string | null = null;
 
   constructor(rateLimiter?: RateLimiter) {
     this.rateLimiter = rateLimiter ?? getRateLimiter();
+  }
+
+  /**
+   * Set access token for authenticated requests
+   * When set, uses authenticated endpoint instead of public
+   */
+  setAccessToken(token: string | null): void {
+    this.accessToken = token;
+  }
+
+  /**
+   * Check if client has an access token set
+   */
+  hasAccessToken(): boolean {
+    return this.accessToken !== null;
+  }
+
+  /**
+   * Get the appropriate base URL based on authentication state
+   */
+  private getBaseUrl(): string {
+    return this.accessToken ? AUTH_BASE_URL : PUBLIC_BASE_URL;
   }
 
   /**
@@ -58,7 +82,7 @@ export class BlueskyClient {
       parentHeight: String(parentHeight),
     });
 
-    const url = `${BASE_URL}/xrpc/app.bsky.feed.getPostThread?${params}`;
+    const url = `${this.getBaseUrl()}/xrpc/app.bsky.feed.getPostThread?${params}`;
 
     return this.fetchWithRetry<GetPostThreadResponse>(url, maxRetries);
   }
@@ -87,7 +111,7 @@ export class BlueskyClient {
       params.set('cursor', cursor);
     }
 
-    const url = `${BASE_URL}/xrpc/app.bsky.feed.getQuotes?${params}`;
+    const url = `${this.getBaseUrl()}/xrpc/app.bsky.feed.getQuotes?${params}`;
 
     return this.fetchWithRetry<GetQuotesResponse>(url, maxRetries);
   }
@@ -111,11 +135,18 @@ export class BlueskyClient {
     await this.rateLimiter.waitForSlot();
 
     try {
+      const headers: HeadersInit = {
+        Accept: 'application/json',
+      };
+
+      // Add auth header if token is set
+      if (this.accessToken) {
+        headers['Authorization'] = `Bearer ${this.accessToken}`;
+      }
+
       const response = await fetch(url, {
         method: 'GET',
-        headers: {
-          Accept: 'application/json',
-        },
+        headers,
       });
 
       // Record request with rate limiter

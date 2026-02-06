@@ -3,7 +3,12 @@ import { ThreadBuilder } from './thread-builder';
 import type { ThreadViewPost, PostView, NotFoundPost, BlockedPost } from '../types';
 
 describe('ThreadBuilder', () => {
-  const createMockPost = (uri: string, text: string, replyTo?: string): PostView => ({
+  const createMockPost = (
+    uri: string,
+    text: string,
+    replyTo?: string,
+    replyCount?: number
+  ): PostView => ({
     uri,
     cid: `cid_${uri}`,
     author: {
@@ -21,6 +26,7 @@ describe('ThreadBuilder', () => {
       }),
     },
     indexedAt: new Date().toISOString(),
+    ...(replyCount !== undefined && { replyCount }),
   });
 
   describe('buildTree', () => {
@@ -340,6 +346,95 @@ describe('ThreadBuilder', () => {
       const authors = tree.getBranchAuthors('post2');
       expect(authors).toHaveLength(1);
       expect(authors[0]).toBe('did:user1');
+    });
+  });
+
+  describe('truncation detection', () => {
+    it('should detect truncated posts where replyCount > replies.length', () => {
+      const rootPost: ThreadViewPost = {
+        post: createMockPost('post1', 'Root', undefined, 5), // claims 5 replies
+        replies: [
+          { post: createMockPost('post2', 'Reply 1', 'post1') },
+          { post: createMockPost('post3', 'Reply 2', 'post1') },
+        ], // only 2 replies returned
+      };
+
+      const builder = new ThreadBuilder();
+      const tree = builder.buildTree(rootPost);
+
+      expect(tree.truncatedPosts).toHaveLength(1);
+      expect(tree.truncatedPosts[0]).toEqual({
+        uri: 'post1',
+        expectedReplies: 5,
+        actualReplies: 2,
+      });
+    });
+
+    it('should not flag posts with matching replyCount', () => {
+      const rootPost: ThreadViewPost = {
+        post: createMockPost('post1', 'Root', undefined, 2), // claims 2 replies
+        replies: [
+          { post: createMockPost('post2', 'Reply 1', 'post1') },
+          { post: createMockPost('post3', 'Reply 2', 'post1') },
+        ], // exactly 2 replies returned
+      };
+
+      const builder = new ThreadBuilder();
+      const tree = builder.buildTree(rootPost);
+
+      expect(tree.truncatedPosts).toHaveLength(0);
+    });
+
+    it('should not flag posts with no replyCount', () => {
+      const rootPost: ThreadViewPost = {
+        post: createMockPost('post1', 'Root'), // no replyCount
+        replies: [{ post: createMockPost('post2', 'Reply 1', 'post1') }],
+      };
+
+      const builder = new ThreadBuilder();
+      const tree = builder.buildTree(rootPost);
+
+      expect(tree.truncatedPosts).toHaveLength(0);
+    });
+
+    it('should detect truncation at multiple levels', () => {
+      const rootPost: ThreadViewPost = {
+        post: createMockPost('post1', 'Root', undefined, 3), // truncated: claims 3, has 1
+        replies: [
+          {
+            post: createMockPost('post2', 'Reply 1', 'post1', 5), // truncated: claims 5, has 1
+            replies: [{ post: createMockPost('post3', 'Nested', 'post2') }],
+          },
+        ],
+      };
+
+      const builder = new ThreadBuilder();
+      const tree = builder.buildTree(rootPost);
+
+      expect(tree.truncatedPosts).toHaveLength(2);
+      expect(tree.truncatedPosts.map((t) => t.uri)).toContain('post1');
+      expect(tree.truncatedPosts.map((t) => t.uri)).toContain('post2');
+    });
+
+    it('should exclude NotFoundPost from actual reply count', () => {
+      const rootPost: ThreadViewPost = {
+        post: createMockPost('post1', 'Root', undefined, 3), // claims 3 replies
+        replies: [
+          { post: createMockPost('post2', 'Reply 1', 'post1') },
+          { uri: 'deleted', notFound: true }, // NotFound doesn't count
+        ],
+      };
+
+      const builder = new ThreadBuilder();
+      const tree = builder.buildTree(rootPost);
+
+      // Actual is 1 (only valid post), expected is 3, so truncated
+      expect(tree.truncatedPosts).toHaveLength(1);
+      expect(tree.truncatedPosts[0]).toEqual({
+        uri: 'post1',
+        expectedReplies: 3,
+        actualReplies: 1,
+      });
     });
   });
 });

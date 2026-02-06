@@ -38,8 +38,8 @@ export class ValidationClient {
 
   constructor(options: ValidationClientOptions) {
     this.options = {
-      batchSize: 10,
-      batchDelayMs: 100,
+      batchSize: 50, // Increased from 10 for better throughput
+      batchDelayMs: 50, // Reduced from 100ms
       onProgress: () => {},
       ...options,
     };

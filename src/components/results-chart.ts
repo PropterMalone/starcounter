@@ -1,5 +1,16 @@
-import Chart from 'chart.js/auto';
+// Tree-shaken Chart.js imports - only include what we need for horizontal bar charts
+import {
+  Chart,
+  BarController,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+} from 'chart.js';
 import type { MentionCount } from '../types';
+
+// Register only the components we use
+Chart.register(BarController, BarElement, CategoryScale, LinearScale, Tooltip);
 
 /**
  * Results chart component using Chart.js
@@ -96,7 +107,7 @@ export class ResultsChart {
     if (!this.showMoreButton) return;
 
     const totalCount = this.allMentionCounts.length;
-    const currentLimit = this.isExpanded ? EXPANDED_DISPLAY_COUNT : INITIAL_DISPLAY_COUNT;
+    const _currentLimit = this.isExpanded ? EXPANDED_DISPLAY_COUNT : INITIAL_DISPLAY_COUNT;
 
     if (totalCount <= INITIAL_DISPLAY_COUNT) {
       // No need for button if we have fewer results than initial display
@@ -122,6 +133,26 @@ export class ResultsChart {
     this.isExpanded = false;
     this.renderChart();
     this.updateShowMoreButton();
+    this.updateAriaLabel();
+  }
+
+  /**
+   * Update the canvas aria-label with a description of chart results
+   * for screen reader accessibility
+   */
+  private updateAriaLabel(): void {
+    const count = this.allMentionCounts.length;
+    if (count === 0) {
+      this.canvas.setAttribute('aria-label', 'No media mentions found');
+      return;
+    }
+
+    const top = this.allMentionCounts[0];
+    const topTitle = top?.mention ?? 'Unknown';
+    const topCount = top?.count ?? 0;
+
+    const description = `Bar chart showing ${count} media mention${count === 1 ? '' : 's'}. ${topTitle} leads with ${topCount} mention${topCount === 1 ? '' : 's'}.`;
+    this.canvas.setAttribute('aria-label', description);
   }
 
   /**

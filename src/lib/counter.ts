@@ -50,16 +50,26 @@ export class MentionCounter {
     posts: PostView[],
     tree: ThreadTree
   ): Promise<Map<string, number>> {
+    // Build canonical title mapping: short variants → longest containing title
+    // This ensures "red", "red october" → "hunt for red october"
+    const canonicalMap = this.buildCanonicalTitleMap(mentions);
+
     const counts = new Map<string, number>();
+
+    // Build post lookup map for O(1) access instead of O(n) find()
+    const postByUri = new Map<string, PostView>(tree.allPosts.map((p) => [p.uri, p]));
 
     // Track which authors have mentioned each title in each branch
     const branchMentions = new Map<string, Map<string, Set<Did>>>();
 
     for (const post of posts) {
+      // Use original mentions for matching, but map to canonical titles for counting
       const postMentions = this.extractMentionsFromPost(post, mentions);
 
       for (const mention of postMentions) {
         const normalized = mention.normalizedTitle;
+        // Map to canonical title for consistent tracking
+        const canonical = canonicalMap.get(normalized) ?? normalized;
 
         // Get branch root (top-most ancestor)
         const branchRoot = this.getBranchRoot(post.uri, tree);
@@ -70,10 +80,10 @@ export class MentionCounter {
         }
         const branchMap = branchMentions.get(branchRoot)!;
 
-        if (!branchMap.has(normalized)) {
-          branchMap.set(normalized, new Set());
+        if (!branchMap.has(canonical)) {
+          branchMap.set(canonical, new Set());
         }
-        const authorsWhoMentioned = branchMap.get(normalized)!;
+        const authorsWhoMentioned = branchMap.get(canonical)!;
 
         // Rule 1: Same author already mentioned in this branch → skip
         if (authorsWhoMentioned.has(post.author.did)) {
@@ -83,11 +93,14 @@ export class MentionCounter {
         // Rule 2: Check if this is a reply with sentiment
         const parent = tree.getParent(post.uri);
         if (parent) {
-          // Get parent post
-          const parentPost = tree.allPosts.find((p: PostView) => p.uri === parent);
+          // Get parent post using O(1) map lookup instead of O(n) find
+          const parentPost = postByUri.get(parent);
           if (parentPost) {
             const parentMentions = this.extractMentionsFromPost(parentPost, mentions);
-            const parentHasMention = parentMentions.some((m) => m.normalizedTitle === normalized);
+            // Check if parent mentioned this title (or any variant mapping to same canonical)
+            const parentHasMention = parentMentions.some(
+              (m) => (canonicalMap.get(m.normalizedTitle) ?? m.normalizedTitle) === canonical
+            );
 
             if (parentHasMention) {
               // Parent mentioned it, check sentiment of current post
@@ -103,8 +116,8 @@ export class MentionCounter {
           }
         }
 
-        // Count this mention
-        counts.set(normalized, (counts.get(normalized) || 0) + 1);
+        // Count this mention using canonical title
+        counts.set(canonical, (counts.get(canonical) || 0) + 1);
         authorsWhoMentioned.add(post.author.did);
       }
     }
@@ -120,6 +133,46 @@ export class MentionCounter {
       const text = post.record.text.toLowerCase();
       return text.includes(mention.normalizedTitle);
     });
+  }
+
+  /**
+   * Build a map from each normalized title to its canonical (longest) form.
+   * If "red", "red october", and "hunt for red october" all exist,
+   * they all map to "hunt for red october".
+   */
+  private buildCanonicalTitleMap(mentions: MediaMention[]): Map<string, string> {
+    // Get unique normalized titles
+    const uniqueTitles = [...new Set(mentions.map((m) => m.normalizedTitle))];
+
+    // Sort by length descending (longest first)
+    uniqueTitles.sort((a, b) => b.length - a.length);
+
+    // Build canonical mapping: each title → longest containing title
+    const canonicalMap = new Map<string, string>();
+
+    for (const title of uniqueTitles) {
+      // Check if this title is a word-bounded substring of a longer title
+      let canonical = title;
+      for (const longer of uniqueTitles) {
+        if (longer.length > title.length) {
+          const pattern = new RegExp(`\\b${this.escapeRegex(title)}\\b`, 'i');
+          if (pattern.test(longer)) {
+            canonical = longer;
+            break; // Use the longest one (they're sorted by length desc)
+          }
+        }
+      }
+      canonicalMap.set(title, canonical);
+    }
+
+    return canonicalMap;
+  }
+
+  /**
+   * Escape special regex characters
+   */
+  private escapeRegex(str: string): string {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
   /**

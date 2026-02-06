@@ -331,15 +331,22 @@ describe('validateMention', () => {
       expect(result.artist).toBeUndefined();
     });
 
-    it('should handle UNKNOWN media type', async () => {
+    it('should handle UNKNOWN media type by defaulting to MOVIE search', async () => {
+      // UNKNOWN media type falls back to MOVIE validation
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ results: [] }), // No matches
+      });
+
       const result = await validateMention('Unknown Title', 'UNKNOWN' as unknown as MediaType, {
         tmdbApiKey: 'test_key',
         musicbrainzUserAgent: 'Test/1.0',
       });
 
+      // Should attempt TMDB search (returns low confidence on no match)
       expect(result.validated).toBe(false);
       expect(result.confidence).toBe('low');
-      expect(result.error).toBe('Unknown media type');
+      expect(result.error).toBeUndefined();
     });
 
     it('should return low confidence for MusicBrainz with low score', async () => {
