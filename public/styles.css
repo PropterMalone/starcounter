@@ -222,8 +222,28 @@ header h1 {
 .progress-bar {
   height: 100%;
   background-color: var(--primary-color);
-  transition: width 0.3s ease;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   width: 0%;
+}
+
+.progress-bar.indeterminate {
+  background: linear-gradient(
+    90deg,
+    var(--primary-color) 0%,
+    var(--primary-hover) 50%,
+    var(--primary-color) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite ease-in-out;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .progress-text {
@@ -497,4 +517,19 @@ header h1 {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
   }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(1rem);
+  }
+}
+
+.share-feedback.fade-out {
+  animation: fadeOutDown 0.3s ease-out forwards;
 }

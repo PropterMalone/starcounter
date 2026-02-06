@@ -315,5 +315,117 @@ describe('MentionCounter', () => {
       // post3: replies to post2 (agrees and mentions matrix, but post2 doesn't have matrix, so counts as novel +1)
       expect(counts.get('matrix')).toBe(2);
     });
+
+    it('should merge variant titles to canonical form', async () => {
+      // Simulates: "RED" and "Hunt for Red October" extracted from different posts
+      // Both should count towards "hunt for red october"
+      const mentions: MediaMention[] = [
+        {
+          title: 'Hunt for Red October',
+          normalizedTitle: 'hunt for red october',
+          mediaType: 'MOVIE',
+          confidence: 'high',
+        },
+        {
+          title: 'RED',
+          normalizedTitle: 'red',
+          mediaType: 'MOVIE',
+          confidence: 'medium',
+        },
+        {
+          title: 'Red October',
+          normalizedTitle: 'red october',
+          mediaType: 'MOVIE',
+          confidence: 'medium',
+        },
+      ];
+
+      const posts: PostView[] = [
+        createPost('post1', 'user1', 'Hunt for Red October is great'),
+        createPost('post2', 'user2', 'I love RED'),
+        createPost('post3', 'user3', 'Red October is a classic'),
+      ];
+
+      const tree: Partial<ThreadTree> = {
+        allPosts: posts,
+        getParent: () => null,
+        getBranchAuthors: () => ['user1', 'user2', 'user3'],
+      };
+
+      const counts = await counter.countMentions(mentions, posts, tree as ThreadTree);
+
+      // All three should be merged into "hunt for red october"
+      expect(counts.get('hunt for red october')).toBe(3);
+      expect(counts.get('red')).toBeUndefined();
+      expect(counts.get('red october')).toBeUndefined();
+    });
+
+    it('should merge Indiana Jones variants', async () => {
+      const mentions: MediaMention[] = [
+        {
+          title: 'Indiana Jones',
+          normalizedTitle: 'indiana jones',
+          mediaType: 'MOVIE',
+          confidence: 'high',
+        },
+        {
+          title: 'JONES',
+          normalizedTitle: 'jones',
+          mediaType: 'MOVIE',
+          confidence: 'low',
+        },
+      ];
+
+      const posts: PostView[] = [
+        createPost('post1', 'user1', 'Indiana Jones is my favorite'),
+        createPost('post2', 'user2', 'JONES is iconic'),
+      ];
+
+      const tree: Partial<ThreadTree> = {
+        allPosts: posts,
+        getParent: () => null,
+        getBranchAuthors: () => ['user1', 'user2'],
+      };
+
+      const counts = await counter.countMentions(mentions, posts, tree as ThreadTree);
+
+      // Both should be merged into "indiana jones"
+      expect(counts.get('indiana jones')).toBe(2);
+      expect(counts.get('jones')).toBeUndefined();
+    });
+
+    it('should keep unrelated titles separate', async () => {
+      const mentions: MediaMention[] = [
+        {
+          title: 'The Matrix',
+          normalizedTitle: 'matrix',
+          mediaType: 'MOVIE',
+          confidence: 'high',
+        },
+        {
+          title: 'Inception',
+          normalizedTitle: 'inception',
+          mediaType: 'MOVIE',
+          confidence: 'high',
+        },
+      ];
+
+      const posts: PostView[] = [
+        createPost('post1', 'user1', 'The Matrix is great'),
+        createPost('post2', 'user2', 'Inception is better'),
+      ];
+
+      const tree: Partial<ThreadTree> = {
+        allPosts: posts,
+        getParent: () => null,
+        getBranchAuthors: () => ['user1', 'user2'],
+      };
+
+      const counts = await counter.countMentions(mentions, posts, tree as ThreadTree);
+
+      // Unrelated titles should remain separate
+      expect(counts.get('matrix')).toBe(1);
+      expect(counts.get('inception')).toBe(1);
+    });
   });
 });

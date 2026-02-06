@@ -138,19 +138,50 @@ export type BlockedPost = {
 };
 
 /**
+ * Post that requires authentication to view
+ * Returned as threadItemNoUnauthenticated in API responses
+ */
+export type RestrictedPost = {
+  readonly uri: AtUri;
+  readonly restricted: true;
+};
+
+/**
+ * Bluesky authentication session
+ */
+export type BlueskySession = {
+  readonly accessJwt: string;
+  readonly refreshJwt: string;
+  readonly did: Did;
+  readonly handle: string;
+};
+
+/**
+ * Response from com.atproto.server.createSession
+ */
+export type CreateSessionResponse = {
+  readonly accessJwt: string;
+  readonly refreshJwt: string;
+  readonly did: Did;
+  readonly handle: string;
+  readonly email?: string;
+  readonly emailConfirmed?: boolean;
+};
+
+/**
  * Thread view post with parent and replies
  */
 export type ThreadViewPost = {
   readonly post: PostView;
-  readonly parent?: ThreadViewPost | NotFoundPost | BlockedPost;
-  readonly replies?: Array<ThreadViewPost | NotFoundPost | BlockedPost>;
+  readonly parent?: ThreadViewPost | NotFoundPost | BlockedPost | RestrictedPost;
+  readonly replies?: Array<ThreadViewPost | NotFoundPost | BlockedPost | RestrictedPost>;
 };
 
 /**
  * Response from getPostThread endpoint
  */
 export type GetPostThreadResponse = {
-  readonly thread: ThreadViewPost | NotFoundPost | BlockedPost;
+  readonly thread: ThreadViewPost | NotFoundPost | BlockedPost | RestrictedPost;
   readonly threadgate?: unknown;
 };
 

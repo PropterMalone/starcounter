@@ -4,3 +4,4 @@ export { ResultsChart } from './results-chart';
 export { DrillDownModal } from './drill-down';
 export { ShareButton } from './share-button';
 export { AdvancedToggle } from './advanced-toggle';
+export { LoginForm } from './login-form';

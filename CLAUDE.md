@@ -15,7 +15,7 @@ Starcounter is a web application that analyzes Bluesky threads and tallies media
 ### Build and Bundling
 
 - **esbuild 0.27** - Fast bundling to single ES module
-- **Bundle output:** Single `dist/bundle.js` (ES2020 ESM format)
+- **Bundle output:** Single `public/bundle.js` (ES2020 ESM format)
 
 ### Frontend
 
@@ -57,10 +57,11 @@ Starcounter is a web application that analyzes Bluesky threads and tallies media
 │   └── sentiment/              # Advanced sentiment analysis (Phase 8)
 ├── public/
 │   ├── index.html              # Main HTML page
-│   └── styles.css              # Global styles
+│   ├── styles.css              # Global styles
+│   ├── bundle.js               # Build output (gitignored)
+│   └── bundle.js.map           # Sourcemap (gitignored)
 ├── scripts/
 │   └── bundle.js               # esbuild bundling script
-├── dist/                       # Build output (gitignored)
 ├── coverage/                   # Test coverage reports (gitignored)
 └── docs/
     └── implementation-plans/   # Phase implementation guides
@@ -186,11 +187,12 @@ npm run validate     # Runs all above checks sequentially
 
 ## Deployment
 
-Static web application deployed to:
+Static web application deployed to Cloudflare Pages:
 
-- **Build output:** `dist/bundle.js` (single ES module)
+- **Build output:** `public/bundle.js` (single ES module)
 - **Assets:** `public/index.html`, `public/styles.css`
-- **No backend:** Serverless functions only (future phases)
+- **Deploy command:** `npx wrangler pages deploy public --project-name=starcounter`
+- **Backend:** Cloudflare Pages Functions in `functions/api/`
 
 ---
 

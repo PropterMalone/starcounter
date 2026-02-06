@@ -1,16 +1,16 @@
 import esbuild from 'esbuild';
 import { existsSync, mkdirSync } from 'fs';
 
-// Ensure dist directory exists
-if (!existsSync('dist')) {
-  mkdirSync('dist', { recursive: true });
+// Ensure public directory exists
+if (!existsSync('public')) {
+  mkdirSync('public', { recursive: true });
 }
 
 // Build configuration
 const buildOptions = {
   entryPoints: ['src/main.ts'],
   bundle: true,
-  outfile: 'dist/bundle.js',
+  outfile: 'public/bundle.js',
   platform: 'browser',
   target: 'es2020',
   format: 'esm',

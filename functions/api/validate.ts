@@ -448,4 +448,24 @@ export async function onRequestPost(context: PagesContext): Promise<Response> {
     );
   }
 }
-// Deployed at Thu, Feb  5, 2026  2:15:18 PM
+
+/**
+ * Default export for Cloudflare Workers compatibility
+ * Provides the standard `fetch` handler interface
+ */
+export default {
+  async fetch(request: Request, env: CloudflareEnv): Promise<Response> {
+    if (request.method === 'OPTIONS') {
+      return onRequestOptions();
+    }
+
+    if (request.method === 'POST') {
+      return onRequestPost({ request, env });
+    }
+
+    return new Response('Method not allowed', {
+      status: 405,
+      headers: corsHeaders,
+    });
+  },
+};

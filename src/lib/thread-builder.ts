@@ -1,11 +1,31 @@
 // pattern: Functional Core
-import type { ThreadViewPost, PostView, NotFoundPost, BlockedPost, Did } from '../types';
+import type { ThreadViewPost, PostView, NotFoundPost, BlockedPost, RestrictedPost, Did } from '../types';
 
 /**
- * Check if node is a valid post (not NotFound or Blocked)
+ * Check if node is a valid post (not NotFound, Blocked, or Restricted)
  */
-function isPostView(node: ThreadViewPost | NotFoundPost | BlockedPost): node is ThreadViewPost {
-  return 'post' in node && !('notFound' in node) && !('blocked' in node);
+function isPostView(
+  node: ThreadViewPost | NotFoundPost | BlockedPost | RestrictedPost
+): node is ThreadViewPost {
+  return 'post' in node && !('notFound' in node) && !('blocked' in node) && !('restricted' in node);
+}
+
+/**
+ * Check if node is a restricted post (requires authentication)
+ */
+function isRestrictedPost(
+  node: ThreadViewPost | NotFoundPost | BlockedPost | RestrictedPost
+): node is RestrictedPost {
+  return 'restricted' in node && node.restricted === true;
+}
+
+/**
+ * Post with truncated replies (replyCount > actual replies returned)
+ */
+export interface TruncatedPost {
+  uri: string;
+  expectedReplies: number;
+  actualReplies: number;
 }
 
 /**
@@ -15,6 +35,8 @@ export interface ThreadTree {
   post: PostView;
   branches: Array<ThreadTree>;
   allPosts: Array<PostView>;
+  truncatedPosts: Array<TruncatedPost>;
+  restrictedPosts: Array<RestrictedPost>;
   getParent(uri: string): string | null;
   getBranchAuthors(uri: string): Array<Did>;
   flattenPosts(): Array<PostView>;
@@ -35,14 +57,25 @@ interface TreeNode {
 export class ThreadBuilder {
   private parentMap: Map<string, string> = new Map();
   private allPostsList: Array<PostView> = [];
+  private postByUri: Map<string, PostView> = new Map(); // O(1) lookup by URI
+  private truncatedPostsList: Array<TruncatedPost> = [];
+  private restrictedPostsList: Array<RestrictedPost> = [];
 
   /**
    * Build tree from ThreadViewPost response
-   * Filters out NotFoundPost and BlockedPost nodes
+   * Filters out NotFoundPost, BlockedPost, and RestrictedPost nodes
    */
-  buildTree(root: ThreadViewPost | NotFoundPost | BlockedPost): ThreadTree {
+  buildTree(root: ThreadViewPost | NotFoundPost | BlockedPost | RestrictedPost): ThreadTree {
     this.parentMap = new Map();
     this.allPostsList = [];
+    this.postByUri = new Map();
+    this.truncatedPostsList = [];
+    this.restrictedPostsList = [];
+
+    // Handle restricted root
+    if (isRestrictedPost(root)) {
+      throw new Error('Root post requires authentication to view');
+    }
 
     // Handle NotFound/Blocked root
     if (!isPostView(root)) {
@@ -62,6 +95,8 @@ export class ThreadBuilder {
       post: node.post,
       branches: node.branches,
       allPosts: this.allPostsList,
+      truncatedPosts: this.truncatedPostsList,
+      restrictedPosts: this.restrictedPostsList,
       getParent: (uri: string) => this.parentMap.get(uri) ?? null,
       getBranchAuthors: (uri: string) => this.collectBranchAuthors(uri),
       flattenPosts: () => this.flattenPostsRecursive(node),
@@ -74,8 +109,9 @@ export class ThreadBuilder {
   private buildTreeRecursive(node: ThreadViewPost): TreeNode {
     const post = node.post;
 
-    // Add to flat list
+    // Add to flat list and lookup map
     this.allPostsList.push(post);
+    this.postByUri.set(post.uri, post);
 
     // Track parent relationship
     if (post.record.reply?.parent) {
@@ -84,9 +120,16 @@ export class ThreadBuilder {
 
     // Build child branches
     const branches: ThreadTree[] = [];
+    const actualReplies = node.replies?.filter(isPostView).length ?? 0;
 
     if (node.replies) {
       for (const reply of node.replies) {
+        // Track restricted posts
+        if (isRestrictedPost(reply)) {
+          this.restrictedPostsList.push(reply);
+          continue;
+        }
+
         // Skip NotFound and Blocked posts
         if (!isPostView(reply)) {
           continue;
@@ -95,6 +138,16 @@ export class ThreadBuilder {
         const childTree = this.buildTreeRecursive(reply);
         branches.push(this.createThreadTree(childTree));
       }
+    }
+
+    // Detect truncation: API returned fewer replies than post.replyCount indicates
+    const expectedReplies = post.replyCount ?? 0;
+    if (expectedReplies > actualReplies) {
+      this.truncatedPostsList.push({
+        uri: post.uri,
+        expectedReplies,
+        actualReplies,
+      });
     }
 
     return { post, branches };
@@ -107,10 +160,10 @@ export class ThreadBuilder {
     const authors: Array<Did> = [];
     const seen = new Set<Did>();
 
-    // Walk up to root
+    // Walk up to root using O(1) map lookup instead of O(n) find
     let currentUri: string | null = uri;
     while (currentUri) {
-      const post = this.allPostsList.find((p) => p.uri === currentUri);
+      const post = this.postByUri.get(currentUri);
       if (post && !seen.has(post.author.did)) {
         authors.push(post.author.did);
         seen.add(post.author.did);

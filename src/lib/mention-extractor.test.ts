@@ -45,12 +45,38 @@ describe('MentionExtractor', () => {
         expect(mentions[0].confidence).toBe('medium');
       });
 
-      it('should handle single-word titles', () => {
-        const text = 'Have you seen Inception?';
+      it('should extract titles with common words joined by connectors', () => {
+        // "Master" and "Commander" are both in COMMON_WORDS, but "and" connector signals a title
+        const text = 'Master and Commander is a great movie';
         const mentions = extractor.extractMentions(text, MediaType.MOVIE);
 
         expect(mentions).toHaveLength(1);
-        expect(mentions[0].title).toBe('Inception');
+        expect(mentions[0].title).toBe('Master and Commander');
+      });
+
+      it('should extract single-word rare titles mid-sentence', () => {
+        // Single rare words (not common words, not at sentence start) can be extracted
+        // This catches titles like "Ronin", "Inception", "Tenet", "Amélie"
+        const textMidSentence = 'Have you seen Inception?';
+        const mentionsMid = extractor.extractMentions(textMidSentence, MediaType.MOVIE);
+        expect(mentionsMid).toHaveLength(1);
+        expect(mentionsMid[0].title).toBe('Inception');
+        expect(mentionsMid[0].confidence).toBe('low'); // Low confidence, relies on TMDB validation
+      });
+
+      it('should NOT extract single-word titles at sentence start', () => {
+        // Sentence-starting words are too noisy even if not in COMMON_WORDS
+        const textAtStart = 'Inception was great!';
+        const mentionsStart = extractor.extractMentions(textAtStart, MediaType.MOVIE);
+        expect(mentionsStart).toHaveLength(0);
+      });
+
+      it('should NOT extract common single words even mid-sentence', () => {
+        // Words in COMMON_WORDS should never be extracted alone
+        const textCommon = 'I think Something is wrong';
+        const mentionsCommon = extractor.extractMentions(textCommon, MediaType.MOVIE);
+        // "Something" is in COMMON_WORDS
+        expect(mentionsCommon.filter((m) => m.title === 'Something')).toHaveLength(0);
       });
 
       it('should not extract common phrases', () => {
@@ -84,9 +110,11 @@ describe('MentionExtractor', () => {
       });
 
       it('should default to provided media type when context unclear', () => {
-        const text = 'The Matrix is great';
+        // Title must not be at sentence start (would be filtered as sentence-starting word)
+        const text = 'I think The Matrix is great';
         const mentions = extractor.extractMentions(text, MediaType.MOVIE);
 
+        expect(mentions).toHaveLength(1);
         expect(mentions[0].mediaType).toBe(MediaType.MOVIE);
       });
 
@@ -95,6 +123,82 @@ describe('MentionExtractor', () => {
         const mentions = extractor.extractMentions(text);
 
         expect(mentions[0].mediaType).toBe(MediaType.UNKNOWN);
+      });
+    });
+
+    describe('ALL CAPS extraction', () => {
+      it('should extract ALL CAPS movie titles', () => {
+        const text = 'If STAR TREK II counts, that\'s another one.';
+        const mentions = extractor.extractMentions(text, MediaType.MOVIE);
+
+        expect(mentions).toHaveLength(1);
+        expect(mentions[0].title).toBe('Star Trek Ii');
+        expect(mentions[0].confidence).toBe('medium');
+      });
+
+      it('should extract ALL CAPS with ampersand connector', () => {
+        const text = 'And MASTER & COMMANDER is great.';
+        const mentions = extractor.extractMentions(text, MediaType.MOVIE);
+
+        expect(mentions).toHaveLength(1);
+        expect(mentions[0].title).toBe('Master & Commander');
+      });
+
+      it('should extract ALL CAPS with colon connector', () => {
+        const text = 'TOP GUN: MAVERICK was amazing.';
+        const mentions = extractor.extractMentions(text, MediaType.MOVIE);
+
+        expect(mentions).toHaveLength(1);
+        expect(mentions[0].title).toBe('Top Gun: Maverick');
+      });
+
+      it('should extract multiple ALL CAPS titles from list', () => {
+        const text = 'MASTER & COMMANDER, TOP GUN: MAVERICK, and THE LAST OF THE MOHICANS.';
+        const mentions = extractor.extractMentions(text, MediaType.MOVIE);
+
+        expect(mentions.length).toBeGreaterThanOrEqual(2);
+        const titles = mentions.map((m) => m.title.toLowerCase());
+        expect(titles).toContain('master & commander');
+      });
+
+      it('should not extract single ALL CAPS words', () => {
+        const text = 'I said THE and MOVIE';
+        const mentions = extractor.extractMentions(text, MediaType.MOVIE);
+
+        expect(mentions).toHaveLength(0);
+      });
+
+      it('should not extract common ALL CAPS phrases', () => {
+        const text = 'THE AND OF IN AT';
+        const mentions = extractor.extractMentions(text, MediaType.MOVIE);
+
+        expect(mentions).toHaveLength(0);
+      });
+
+      it('should handle ALL CAPS on newlines', () => {
+        const text = 'ROCKY / CREED\nTHE FUGITIVE\nTHE HUNT FOR RED OCTOBER';
+        const mentions = extractor.extractMentions(text, MediaType.MOVIE);
+
+        // Should find "Hunt for Red October" (after removing leading "THE" at line start)
+        const titles = mentions.map((m) => m.normalizedTitle);
+        expect(titles.some((t) => t.includes('hunt') && t.includes('october'))).toBe(true);
+      });
+
+      it('should convert ALL CAPS to Title Case', () => {
+        const text = 'Check out MASTER & COMMANDER sometime.';
+        const mentions = extractor.extractMentions(text, MediaType.MOVIE);
+
+        expect(mentions).toHaveLength(1);
+        // Should be title cased, not ALL CAPS
+        expect(mentions[0].title).toBe('Master & Commander');
+        expect(mentions[0].title).not.toBe('MASTER & COMMANDER');
+      });
+
+      it('should handle Roman numerals in ALL CAPS', () => {
+        const text = 'STAR WARS IV and ROCKY III are classics';
+        const mentions = extractor.extractMentions(text, MediaType.MOVIE);
+
+        expect(mentions.length).toBeGreaterThanOrEqual(1);
       });
     });
 
@@ -162,6 +266,39 @@ describe('MentionExtractor', () => {
 
     it('should handle titles without articles', () => {
       expect(extractor.normalizeTitle('Inception')).toBe('inception');
+    });
+  });
+
+  describe('substring deduplication', () => {
+    it('should prefer "Hunt for Red October" over "RED"', () => {
+      // When both RED and Hunt for Red October are mentioned, keep only the longer one
+      const text = 'THE HUNT FOR RED OCTOBER is a classic submarine movie about RED October';
+      const mentions = extractor.extractMentions(text, MediaType.MOVIE);
+
+      const titles = mentions.map((m) => m.normalizedTitle);
+      // Should have "hunt for red october" but NOT standalone "red"
+      expect(titles.some((t) => t.includes('hunt') && t.includes('red') && t.includes('october'))).toBe(true);
+      expect(titles.some((t) => t === 'red')).toBe(false);
+    });
+
+    it('should prefer "Indiana Jones" over "JONES"', () => {
+      // When both JONES and Indiana Jones appear, keep only the longer one
+      const text = 'INDIANA JONES is great, JONES is such a cool character';
+      const mentions = extractor.extractMentions(text, MediaType.MOVIE);
+
+      const titles = mentions.map((m) => m.normalizedTitle);
+      // Should have "indiana jones" but NOT standalone "jones"
+      expect(titles.some((t) => t.includes('indiana') && t.includes('jones'))).toBe(true);
+      expect(titles.some((t) => t === 'jones')).toBe(false);
+    });
+
+    it('should keep both titles when neither is substring of other', () => {
+      const text = 'I love THE DARK KNIGHT and TOP GUN: MAVERICK';
+      const mentions = extractor.extractMentions(text, MediaType.MOVIE);
+
+      const titles = mentions.map((m) => m.normalizedTitle);
+      expect(titles.some((t) => t.includes('dark') && t.includes('knight'))).toBe(true);
+      expect(titles.some((t) => t.includes('top') && t.includes('gun'))).toBe(true);
     });
   });
 });
