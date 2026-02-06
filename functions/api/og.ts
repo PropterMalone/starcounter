@@ -44,11 +44,13 @@ const BAR_COLORS = [
  * Parse OG request URL and extract ShareableResults
  */
 export function parseOGRequest(url: URL): ShareableResults | null {
-  const encoded = url.searchParams.get('r');
-  if (!encoded) {
+  const encodedRaw = url.searchParams.get('r');
+  if (!encodedRaw) {
     return null;
   }
 
+  // URL parser decodes + as space, but LZ-string uses + in its alphabet
+  const encoded = encodedRaw.replace(/ /g, '+');
   return decodeResults(encoded);
 }
 
@@ -78,7 +80,8 @@ export async function generateOGImage(results: ShareableResults): Promise<Respon
       style: {
         display: 'flex',
         alignItems: 'center',
-        marginBottom: 12,
+        marginBottom: 16,
+        height: 40,
       },
       children: [
         // Label
@@ -86,13 +89,16 @@ export async function generateOGImage(results: ShareableResults): Promise<Respon
           type: 'div',
           props: {
             style: {
-              width: 200,
-              fontSize: 18,
+              width: 280,
+              fontSize: 16,
               color: '#e2e8f0',
               textAlign: 'right',
               paddingRight: 16,
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
             },
-            children: truncateTitle(mention.n),
+            children: truncateTitle(mention.n, 35),
           },
         },
         // Bar container
