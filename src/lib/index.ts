@@ -38,5 +38,15 @@ export {
   buildValidationLookup,
   discoverDictionary,
 } from './thread-dictionary';
-export type { DictionaryEntry, ThreadDictionary, ValidationLookupEntry } from './thread-dictionary';
+export type {
+  DictionaryEntry,
+  ThreadDictionary,
+  ValidationLookupEntry,
+  DiscoverDictionaryOptions,
+} from './thread-dictionary';
 export { labelPosts } from './post-labeler';
+export {
+  extractCategoryWords,
+  buildSelfValidatedLookup,
+  buildListValidatedLookup,
+} from './self-validation';

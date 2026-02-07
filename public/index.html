@@ -9,10 +9,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Starcounter" />
     <meta property="og:title" content="Starcounter - Bluesky Post Analyzer" />
-    <meta
-      property="og:description"
-      content="Analyze media mentions in Bluesky threads. See what movies, TV shows, and music people are talking about."
-    />
+    <meta property="og:description" content="Tabulate answers to clickbait prompts on Bluesky." />
     <meta property="og:image" content="https://starcounter.pages.dev/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -21,10 +18,7 @@
     <!-- Twitter Card meta tags (also used by Bluesky) -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Starcounter - Bluesky Post Analyzer" />
-    <meta
-      name="twitter:description"
-      content="Analyze media mentions in Bluesky threads. See what movies, TV shows, and music people are talking about."
-    />
+    <meta name="twitter:description" content="Tabulate answers to clickbait prompts on Bluesky." />
     <meta name="twitter:image" content="https://starcounter.pages.dev/og-image.png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -32,7 +26,7 @@
     <div class="container">
       <header>
         <h1>Starcounter</h1>
-        <p class="subtitle">Analyze media mentions in Bluesky threads</p>
+        <p class="subtitle">Tabulate answers to clickbait prompts on Bluesky</p>
       </header>
 
       <main>
@@ -53,7 +47,7 @@
             </div>
 
             <div class="form-group">
-              <label>Search For</label>
+              <label>Validate Against</label>
               <div class="checkbox-group" id="media-type-group">
                 <label class="checkbox-label">
                   <input
@@ -63,21 +57,33 @@
                     value="MOVIE"
                     checked
                   />
-                  <span>Movies</span>
+                  <span>Movies (TMDB)</span>
                 </label>
                 <label class="checkbox-label">
                   <input type="checkbox" id="media-tv" name="media-type" value="TV_SHOW" checked />
-                  <span>TV Shows</span>
+                  <span>TV Shows (TMDB)</span>
                 </label>
                 <label class="checkbox-label">
                   <input type="checkbox" id="media-music" name="media-type" value="MUSIC" />
-                  <span>Music</span>
+                  <span>Music (MusicBrainz)</span>
                 </label>
                 <label class="checkbox-label">
                   <input type="checkbox" id="media-games" name="media-type" value="VIDEO_GAME" />
-                  <span>Video Games</span>
+                  <span>Video Games (IGDB)</span>
                 </label>
               </div>
+              <p class="form-hint">Uncheck all for open-ended threads</p>
+            </div>
+
+            <div id="custom-list-group" class="form-group" style="display: none">
+              <label for="custom-list"
+                >Custom answer list <span class="optional">(optional)</span></label
+              >
+              <textarea
+                id="custom-list"
+                rows="4"
+                placeholder="Paste one answer per line, or leave blank to auto-detect"
+              ></textarea>
             </div>
 
             <!-- TODO: Re-enable when sentiment analysis is properly integrated with recursive fetching -->

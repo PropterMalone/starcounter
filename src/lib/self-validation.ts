@@ -1,0 +1,239 @@
+// pattern: Functional Core
+// Self-validation and list-validation for open-ended threads.
+//
+// When no external API checkboxes are selected, the pipeline needs an
+// alternative way to build the ValidationLookupEntry map that
+// discoverDictionary and labelPosts expect.
+//
+// Two modes:
+//   1. List-validated — user pastes a list of canonical answers
+//   2. Self-validated — structural heuristics, trust the thread
+
+import type { ValidationLookupEntry } from './thread-dictionary';
+
+// ---------------------------------------------------------------------------
+// Category word extraction
+// ---------------------------------------------------------------------------
+
+const PROMPT_PATTERN =
+  /your\s+(?:(?:home|favorite|fav|go-to|all-time|top|first|best|worst|least\s+favorite|most\s+hated|childhood|guilty\s+pleasure)\s+)*(.+?)(?:\?|$)/i;
+
+const ADJECTIVES = new Set([
+  'home',
+  'favorite',
+  'fav',
+  'go-to',
+  'all-time',
+  'top',
+  'first',
+  'best',
+  'worst',
+  'childhood',
+  'guilty',
+  'pleasure',
+  'least',
+  'most',
+  'hated',
+]);
+
+/**
+ * Extract category words from a root post prompt.
+ *
+ * Examples:
+ *   "what is your home river?" → ["river"]
+ *   "share your favorite board game" → ["board", "game"]
+ *   "what's your go-to comfort food?" → ["comfort", "food"]
+ *   "hello world" → [] (no match)
+ */
+export function extractCategoryWords(rootText: string): string[] {
+  const match = rootText.match(PROMPT_PATTERN);
+  if (!match || !match[1]) return [];
+
+  const words = match[1]
+    .toLowerCase()
+    .replace(/[^\w\s]/g, '')
+    .split(/\s+/)
+    .filter((w) => w && !ADJECTIVES.has(w));
+
+  return words;
+}
+
+// ---------------------------------------------------------------------------
+// Normalization helpers
+// ---------------------------------------------------------------------------
+
+const LEADING_ARTICLE_RE = /^(the|a|an)\s+/i;
+
+function stripArticle(s: string): string {
+  return s.replace(LEADING_ARTICLE_RE, '').trim();
+}
+
+function stripTrailingCategoryWords(s: string, categoryWords: string[]): string {
+  if (categoryWords.length === 0) return s;
+
+  // Also try plural forms
+  const patterns = new Set<string>();
+  for (const w of categoryWords) {
+    patterns.add(w);
+    patterns.add(w + 's');
+    patterns.add(w + 'es');
+    if (w.endsWith('y')) {
+      patterns.add(w.slice(0, -1) + 'ies');
+    }
+  }
+
+  const words = s.split(/\s+/);
+  // Strip matching words from the end
+  while (words.length > 1 && words[words.length - 1] && patterns.has(words[words.length - 1]!)) {
+    words.pop();
+  }
+  return words.join(' ');
+}
+
+function normalize(s: string, categoryWords: string[]): string {
+  let n = s.toLowerCase().trim();
+  n = stripArticle(n);
+  n = stripTrailingCategoryWords(n, categoryWords);
+  n = n
+    .replace(/[^\w\s]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return n;
+}
+
+function toTitleCase(s: string): string {
+  return s
+    .split(/\s+/)
+    .map((w) => (w.length > 0 ? w.charAt(0).toUpperCase() + w.slice(1) : w))
+    .join(' ');
+}
+
+// ---------------------------------------------------------------------------
+// Self-validated lookup
+// ---------------------------------------------------------------------------
+
+/**
+ * Build a validation lookup without any external source.
+ *
+ * Groups candidates by normalized form, picks the most common surface form
+ * as canonical (on tie, shortest), and builds a lookup map.
+ */
+export function buildSelfValidatedLookup(
+  candidates: ReadonlySet<string>,
+  rootText: string
+): Map<string, ValidationLookupEntry> {
+  const categoryWords = extractCategoryWords(rootText);
+  const MAX_WORDS = 5;
+
+  // Group candidates by normalization key
+  const groups = new Map<string, string[]>();
+
+  for (const candidate of candidates) {
+    if (candidate.split(/\s+/).length > MAX_WORDS) continue;
+
+    const normKey = normalize(candidate, categoryWords);
+    if (normKey.length === 0) continue;
+
+    const group = groups.get(normKey);
+    if (group) {
+      group.push(candidate);
+    } else {
+      groups.set(normKey, [candidate]);
+    }
+  }
+
+  // For each group, pick canonical = most common surface form (title-cased, article stripped)
+  const lookup = new Map<string, ValidationLookupEntry>();
+
+  for (const [normKey, members] of groups) {
+    // Count surface forms (after article stripping + title-casing)
+    const formCounts = new Map<string, number>();
+    for (const m of members) {
+      const form = toTitleCase(stripArticle(m.toLowerCase()).trim());
+      formCounts.set(form, (formCounts.get(form) ?? 0) + 1);
+    }
+
+    // Pick: highest count, then shortest
+    let canonical = '';
+    let bestCount = 0;
+    for (const [form, count] of formCounts) {
+      if (
+        count > bestCount ||
+        (count === bestCount && (canonical === '' || form.length < canonical.length))
+      ) {
+        canonical = form;
+        bestCount = count;
+      }
+    }
+
+    if (!canonical) {
+      canonical = toTitleCase(normKey);
+    }
+
+    // Map every member (lowercased) to the canonical
+    for (const m of members) {
+      lookup.set(m.toLowerCase(), { canonical, confidence: 'high' });
+    }
+  }
+
+  return lookup;
+}
+
+// ---------------------------------------------------------------------------
+// List-validated lookup
+// ---------------------------------------------------------------------------
+
+/**
+ * Build a validation lookup from a user-provided list of canonical answers.
+ *
+ * For each candidate, fuzzy-match against the list:
+ *   - Normalize both sides: lowercase, strip leading "The"/"A", strip trailing punctuation
+ *   - Match if normalized candidate equals or is contained within a normalized list item (or vice versa)
+ *   - Matched candidates get the list item as canonical with high confidence
+ */
+export function buildListValidatedLookup(
+  candidates: ReadonlySet<string>,
+  listItems: readonly string[]
+): Map<string, ValidationLookupEntry> {
+  const lookup = new Map<string, ValidationLookupEntry>();
+
+  // Pre-normalize list items
+  const normalizedList = listItems.map((item) => ({
+    original: item,
+    normalized: stripArticle(
+      item
+        .toLowerCase()
+        .replace(/[^\w\s]/g, '')
+        .trim()
+    ),
+  }));
+
+  for (const candidate of candidates) {
+    const normCandidate = stripArticle(
+      candidate
+        .toLowerCase()
+        .replace(/[^\w\s]/g, '')
+        .trim()
+    );
+    if (normCandidate.length === 0) continue;
+
+    for (const listItem of normalizedList) {
+      if (listItem.normalized.length === 0) continue;
+
+      // Exact match or containment in either direction
+      if (
+        normCandidate === listItem.normalized ||
+        listItem.normalized.includes(normCandidate) ||
+        normCandidate.includes(listItem.normalized)
+      ) {
+        lookup.set(candidate.toLowerCase(), {
+          canonical: listItem.original,
+          confidence: 'high',
+        });
+        break;
+      }
+    }
+  }
+
+  return lookup;
+}

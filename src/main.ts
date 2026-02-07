@@ -19,6 +19,7 @@ import {
   AdvancedToggle,
 } from './components';
 import { suggestClusters } from './lib/clustering';
+import { buildSelfValidatedLookup, buildListValidatedLookup } from './lib/self-validation';
 import type { MentionCount, PostView } from './types';
 import type { MediaMention } from './lib/mention-extractor';
 import type { PostTextContent } from './lib/text-extractor';
@@ -146,6 +147,22 @@ class StarcounterApp {
     retryButton?.addEventListener('click', () => {
       this.resetToInput();
     });
+
+    // Media type checkbox toggle → show/hide custom list textarea
+    const mediaCheckboxes = Array.from(
+      document.querySelectorAll<HTMLInputElement>('#media-type-group input[type="checkbox"]')
+    );
+    const customListGroup = document.getElementById('custom-list-group');
+    const updateCustomListVisibility = () => {
+      const anyChecked = mediaCheckboxes.some((cb) => cb.checked);
+      if (customListGroup) {
+        customListGroup.style.display = anyChecked ? 'none' : 'block';
+      }
+    };
+    for (const cb of mediaCheckboxes) {
+      cb.addEventListener('change', updateCustomListVisibility);
+    }
+    updateCustomListVisibility();
 
     // Uncategorized posts toggle
     const uncategorizedCheckbox = document.getElementById('show-uncategorized');
@@ -284,50 +301,82 @@ class StarcounterApp {
 
       console.log(`[Analysis] Found ${uniqueCandidates.size} unique candidates`);
 
-      // Stage 4: Validate unique candidates (~300 instead of ~12,000)
+      // Stage 4: Validate unique candidates — three tiers
       const candidateArray = [...uniqueCandidates];
-      this.progressTracker.emit('validating', { validated: 0, total: candidateArray.length });
+      const customList = this.getCustomValidationList();
 
-      // Convert candidates to MediaMention format for the validation client
-      const candidateMentions: MediaMention[] = candidateArray.map((title) => {
-        const mediaType =
-          selectedTypes.length === 1 && selectedTypes[0]
-            ? (selectedTypes[0] as MediaMention['mediaType'])
-            : ('UNKNOWN' as MediaMention['mediaType']);
-        return {
-          title,
-          normalizedTitle: title.toLowerCase(),
-          mediaType,
-          confidence: 'medium' as const,
-        };
-      });
+      let validationLookup: Map<string, import('./lib/thread-dictionary').ValidationLookupEntry>;
 
-      const validationClient = new ValidationClient({
-        apiUrl: '/api/validate',
-        onProgress: (progress) => {
-          this.progressTracker.emit('validating', {
-            validated: progress.completed,
-            total: progress.total,
-          });
-        },
-      });
+      if (selectedTypes.length > 0) {
+        // Tier 1: API validation (external APIs checked)
+        this.progressTracker.emit('validating', { validated: 0, total: candidateArray.length });
 
-      const validatedMentions = await validationClient.validateMentions(candidateMentions);
-      const validationLookup = buildValidationLookup(validatedMentions);
+        const candidateMentions: MediaMention[] = candidateArray.map((title) => {
+          const mediaType =
+            selectedTypes.length === 1 && selectedTypes[0]
+              ? (selectedTypes[0] as MediaMention['mediaType'])
+              : ('UNKNOWN' as MediaMention['mediaType']);
+          return {
+            title,
+            normalizedTitle: title.toLowerCase(),
+            mediaType,
+            confidence: 'medium' as const,
+          };
+        });
 
-      console.log(
-        `[Analysis] Validated ${validationLookup.size} candidates out of ${candidateArray.length}`
-      );
+        const validationClient = new ValidationClient({
+          apiUrl: '/api/validate',
+          onProgress: (progress) => {
+            this.progressTracker.emit('validating', {
+              validated: progress.completed,
+              total: progress.total,
+            });
+          },
+        });
+
+        const validatedMentions = await validationClient.validateMentions(candidateMentions);
+        validationLookup = buildValidationLookup(validatedMentions);
+
+        console.log(
+          `[Analysis] API-validated ${validationLookup.size} candidates out of ${candidateArray.length}`
+        );
+      } else if (customList.length > 0) {
+        // Tier 2: List validation (user pasted a list)
+        this.progressTracker.emit('validating', {
+          validated: candidateArray.length,
+          total: candidateArray.length,
+        });
+
+        validationLookup = buildListValidatedLookup(uniqueCandidates, customList);
+
+        console.log(
+          `[Analysis] List-validated ${validationLookup.size} candidates against ${customList.length} list items`
+        );
+      } else {
+        // Tier 3: Self-validation (structural heuristics)
+        this.progressTracker.emit('validating', {
+          validated: candidateArray.length,
+          total: candidateArray.length,
+        });
+
+        validationLookup = buildSelfValidatedLookup(uniqueCandidates, rootTextLower);
+
+        console.log(
+          `[Analysis] Self-validated ${validationLookup.size} candidates out of ${candidateArray.length}`
+        );
+      }
 
       // Stage 5: Build dictionary (Phase 1)
       this.progressTracker.emit('counting', {});
 
+      const useRelaxedRules = selectedTypes.length === 0;
       const dictionary = discoverDictionary(
         allPosts,
         postTexts,
         validationLookup,
         rootAtUri,
-        rootTextLower
+        rootTextLower,
+        useRelaxedRules ? { minConfidentForShortTitle: 1 } : undefined
       );
 
       console.log(`[Analysis] Dictionary: ${dictionary.entries.size} titles discovered`);
@@ -1168,9 +1217,16 @@ class StarcounterApp {
     const checkboxes = document.querySelectorAll<HTMLInputElement>(
       '#media-type-group input[type="checkbox"]:checked'
     );
-    const types = Array.from(checkboxes).map((cb) => cb.value);
-    // Default to all types if none selected
-    return types.length > 0 ? types : ['MOVIE', 'TV_SHOW', 'MUSIC'];
+    return Array.from(checkboxes).map((cb) => cb.value);
+  }
+
+  private getCustomValidationList(): string[] {
+    const textarea = document.querySelector<HTMLTextAreaElement>('#custom-list');
+    if (!textarea || !textarea.value.trim()) return [];
+    return textarea.value
+      .split('\n')
+      .map((s) => s.trim())
+      .filter(Boolean);
   }
 
   /**
