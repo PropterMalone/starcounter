@@ -1,8 +1,19 @@
 // pattern: Imperative Shell tests
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { ShareButton } from './share-button';
-import type { MentionCount } from '../types';
-import { decodeResults } from '../lib/url-encoder';
+import type { ShareState } from './share-button';
+
+function makeState(overrides: Partial<ShareState> = {}): ShareState {
+  return {
+    mentionCounts: [{ mention: 'Test Movie', count: 10, posts: [] }],
+    uncategorizedPosts: [],
+    excludedCategories: [],
+    manualAssignments: {},
+    originalPost: null,
+    postCount: 100,
+    ...overrides,
+  };
+}
 
 describe('ShareButton', () => {
   let button: HTMLButtonElement;
@@ -33,73 +44,99 @@ describe('ShareButton', () => {
       },
     });
 
+    // Mock fetch for /api/share
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: 'abc12345' }),
+      })
+    );
+
     shareButton = new ShareButton(button, feedback, feedbackText);
   });
 
   afterEach(() => {
     document.body.innerHTML = '';
     vi.restoreAllMocks();
+    vi.unstubAllGlobals();
   });
 
-  describe('setResults', () => {
-    it('should store results for sharing', () => {
-      const results: MentionCount[] = [
-        { mention: 'The Matrix', count: 5, posts: [] },
-        { mention: 'Inception', count: 3, posts: [] },
-      ];
-
-      shareButton.setResults(results);
-
-      // Should not throw, results stored internally
-      expect(() => shareButton.setResults(results)).not.toThrow();
+  describe('setStateProvider', () => {
+    it('should accept a state provider function', () => {
+      expect(() => shareButton.setStateProvider(() => makeState())).not.toThrow();
     });
   });
 
   describe('share button click', () => {
-    it('should copy URL to clipboard when clicked', async () => {
-      const results: MentionCount[] = [{ mention: 'Test Movie', count: 10, posts: [] }];
-      shareButton.setResults(results);
+    it('should POST to /api/share and copy URL to clipboard', async () => {
+      shareButton.setStateProvider(() => makeState());
 
-      // Click the share button
       button.click();
-
-      // Wait for async clipboard operation
       await new Promise((resolve) => setTimeout(resolve, 0));
 
+      // Should have called fetch with POST to /api/share
+      expect(fetch).toHaveBeenCalledWith('/api/share', expect.objectContaining({ method: 'POST' }));
+
+      // Should have copied a URL with ?s= parameter
       expect(navigator.clipboard.writeText).toHaveBeenCalledTimes(1);
+      const copiedUrl = vi.mocked(navigator.clipboard.writeText).mock.calls[0]![0]!;
+      expect(copiedUrl).toContain('?s=abc12345');
     });
 
-    it('should generate URL with encoded results', async () => {
-      const results: MentionCount[] = [
-        { mention: 'The Matrix', count: 5, posts: [] },
-        { mention: 'Inception', count: 3, posts: [] },
-      ];
-      shareButton.setResults(results);
+    it('should serialize mentionCounts with stored posts', async () => {
+      const state = makeState({
+        mentionCounts: [
+          {
+            mention: 'The Nile',
+            count: 5,
+            posts: [
+              {
+                uri: 'at://did:plc:abc/app.bsky.feed.post/xyz',
+                cid: 'cid123',
+                author: { did: 'did:plc:abc', handle: 'alice.bsky.social', displayName: 'Alice' },
+                record: { text: 'Nile!', createdAt: '2026-01-01T00:00:00Z' },
+                indexedAt: '2026-01-01T00:00:00Z',
+              },
+            ],
+          },
+        ],
+      });
+      shareButton.setStateProvider(() => state);
 
       button.click();
       await new Promise((resolve) => setTimeout(resolve, 0));
 
-      const clipboardCall = vi.mocked(navigator.clipboard.writeText).mock.calls[0];
-      const copiedUrl = clipboardCall[0];
+      const fetchCall = vi.mocked(fetch).mock.calls[0]!;
+      const body = JSON.parse(fetchCall[1]?.body as string);
 
-      // URL should contain r parameter
-      expect(copiedUrl).toContain('?r=');
+      expect(body.mentionCounts[0].mention).toBe('The Nile');
+      expect(body.mentionCounts[0].count).toBe(5);
+      // Post should be in compact StoredPost format
+      expect(body.mentionCounts[0].posts[0].u).toBe('at://did:plc:abc/app.bsky.feed.post/xyz');
+      expect(body.mentionCounts[0].posts[0].h).toBe('alice.bsky.social');
+      expect(body.mentionCounts[0].posts[0].t).toBe('Nile!');
+    });
 
-      // Extract and decode the results
-      const url = new URL(copiedUrl);
-      const encoded = url.searchParams.get('r');
-      expect(encoded).not.toBeNull();
+    it('should include user tweaks in shared data', async () => {
+      const state = makeState({
+        excludedCategories: ['Category A'],
+        manualAssignments: { 'at://post1': 'Category B' },
+      });
+      shareButton.setStateProvider(() => state);
 
-      const decoded = decodeResults(encoded!);
-      expect(decoded).not.toBeNull();
-      expect(decoded!.m).toHaveLength(2);
-      expect(decoded!.m[0].n).toBe('The Matrix');
-      expect(decoded!.m[0].c).toBe(5);
+      button.click();
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
+      const fetchCall = vi.mocked(fetch).mock.calls[0]!;
+      const body = JSON.parse(fetchCall[1]?.body as string);
+
+      expect(body.excludedCategories).toEqual(['Category A']);
+      expect(body.manualAssignments).toEqual({ 'at://post1': 'Category B' });
     });
 
     it('should show feedback after copying', async () => {
-      const results: MentionCount[] = [{ mention: 'Movie', count: 1, posts: [] }];
-      shareButton.setResults(results);
+      shareButton.setStateProvider(() => makeState());
 
       button.click();
       await new Promise((resolve) => setTimeout(resolve, 0));
@@ -111,8 +148,7 @@ describe('ShareButton', () => {
     it('should auto-hide feedback after delay', async () => {
       vi.useFakeTimers();
 
-      const results: MentionCount[] = [{ mention: 'Movie', count: 1, posts: [] }];
-      shareButton.setResults(results);
+      shareButton.setStateProvider(() => makeState());
 
       button.click();
       await vi.runAllTimersAsync();
@@ -125,22 +161,71 @@ describe('ShareButton', () => {
       vi.useRealTimers();
     });
 
-    it('should not share if no results set', async () => {
+    it('should not share if no state provider set', async () => {
       button.click();
       await new Promise((resolve) => setTimeout(resolve, 0));
 
+      expect(fetch).not.toHaveBeenCalled();
       expect(navigator.clipboard.writeText).not.toHaveBeenCalled();
+    });
+
+    it('should not share if mentionCounts is empty', async () => {
+      shareButton.setStateProvider(() => makeState({ mentionCounts: [] }));
+
+      button.click();
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
+      expect(fetch).not.toHaveBeenCalled();
+    });
+
+    it('should disable button during upload', async () => {
+      // Use a slow-resolving fetch
+      let resolvePost!: (value: unknown) => void;
+      vi.mocked(fetch).mockReturnValue(
+        new Promise((resolve) => {
+          resolvePost = resolve;
+        }) as Promise<Response>
+      );
+
+      shareButton.setStateProvider(() => makeState());
+
+      button.click();
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
+      expect(button.disabled).toBe(true);
+
+      // Resolve the fetch
+      resolvePost({ ok: true, json: () => Promise.resolve({ id: 'xyz' }) });
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
+      expect(button.disabled).toBe(false);
     });
   });
 
-  describe('clipboard error handling', () => {
+  describe('error handling', () => {
+    it('should show error feedback when upload fails', async () => {
+      vi.mocked(fetch).mockResolvedValueOnce({
+        ok: false,
+        status: 500,
+      } as Response);
+
+      shareButton.setStateProvider(() => makeState());
+
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      button.click();
+      await new Promise((resolve) => setTimeout(resolve, 10));
+
+      expect(feedbackText.textContent).toContain('Failed');
+
+      consoleSpy.mockRestore();
+    });
+
     it('should show error feedback when clipboard fails', async () => {
       vi.mocked(navigator.clipboard.writeText).mockRejectedValueOnce(new Error('Clipboard error'));
 
-      const results: MentionCount[] = [{ mention: 'Movie', count: 1, posts: [] }];
-      shareButton.setResults(results);
+      shareButton.setStateProvider(() => makeState());
 
-      // Spy on console.error
       const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
       button.click();
@@ -154,7 +239,6 @@ describe('ShareButton', () => {
 
   describe('URL generation', () => {
     it('should use current window location as base URL', async () => {
-      // Set up window location
       Object.defineProperty(window, 'location', {
         value: {
           origin: 'https://starcounter.app',
@@ -163,14 +247,13 @@ describe('ShareButton', () => {
         writable: true,
       });
 
-      const results: MentionCount[] = [{ mention: 'Test', count: 1, posts: [] }];
-      shareButton.setResults(results);
+      shareButton.setStateProvider(() => makeState());
 
       button.click();
       await new Promise((resolve) => setTimeout(resolve, 0));
 
-      const copiedUrl = vi.mocked(navigator.clipboard.writeText).mock.calls[0][0];
-      expect(copiedUrl).toMatch(/^https:\/\/starcounter\.app\/?\?r=/);
+      const copiedUrl = vi.mocked(navigator.clipboard.writeText).mock.calls[0]![0]!;
+      expect(copiedUrl).toMatch(/^https:\/\/starcounter\.app\/?\?s=abc12345$/);
     });
   });
 });

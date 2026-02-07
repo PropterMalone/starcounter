@@ -1,13 +1,26 @@
 // pattern: Imperative Shell
-import type { MentionCount } from '../types';
-import { toShareableResults, encodeResults } from '../lib/url-encoder';
+import type { MentionCount, PostView } from '../types';
+import { toStoredPost } from '../lib/share-types';
 
 /**
- * Share button component for copying shareable URLs
- * Generates compressed URL with analysis results
+ * State snapshot captured at share time.
+ * Includes drill-down posts and user tweaks so shared links preserve full functionality.
+ */
+export type ShareState = {
+  readonly mentionCounts: MentionCount[];
+  readonly uncategorizedPosts: PostView[];
+  readonly excludedCategories: string[];
+  readonly manualAssignments: Record<string, string>;
+  readonly originalPost: PostView | null;
+  readonly postCount: number;
+};
+
+/**
+ * Share button component for copying shareable URLs.
+ * POSTs full results to D1-backed API so shared links include drill-down data.
  */
 export class ShareButton {
-  private results: MentionCount[] | null = null;
+  private stateProvider: (() => ShareState) | null = null;
   private feedbackTimeout: ReturnType<typeof setTimeout> | null = null;
 
   constructor(
@@ -28,44 +41,67 @@ export class ShareButton {
   }
 
   /**
-   * Set results to share
+   * Set a provider function that returns current app state on demand.
+   * Called at share time so tweaks (exclusions, reassignments) are captured.
    */
-  setResults(results: MentionCount[]): void {
-    this.results = results;
+  setStateProvider(provider: () => ShareState): void {
+    this.stateProvider = provider;
   }
 
   /**
-   * Handle share button click
+   * Handle share button click — upload to D1 and copy link
    */
   private async handleShare(): Promise<void> {
-    if (!this.results) {
+    if (!this.stateProvider) {
       return;
     }
 
+    const state = this.stateProvider();
+    if (state.mentionCounts.length === 0) {
+      return;
+    }
+
+    // Disable button during upload
+    this.button.disabled = true;
+    this.showFeedback('Uploading...');
+
     try {
-      const url = this.generateShareUrl();
+      const sharedData = {
+        mentionCounts: state.mentionCounts.map((mc) => ({
+          mention: mc.mention,
+          count: mc.count,
+          posts: mc.posts.map(toStoredPost),
+        })),
+        uncategorizedPosts: state.uncategorizedPosts.map(toStoredPost),
+        excludedCategories: state.excludedCategories,
+        manualAssignments: state.manualAssignments,
+        originalPost: state.originalPost ? toStoredPost(state.originalPost) : null,
+        postCount: state.postCount,
+        timestamp: Date.now(),
+      };
+
+      const response = await fetch('/api/share', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(sharedData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`upload failed: ${response.status}`);
+      }
+
+      const { id } = await response.json();
+      const baseUrl = `${window.location.origin}${window.location.pathname}`;
+      const url = `${baseUrl}?s=${id}`;
+
       await navigator.clipboard.writeText(url);
       this.showFeedback('Link copied to clipboard!');
     } catch (error) {
-      console.error('Failed to copy to clipboard:', error);
-      this.showFeedback('Failed to copy link');
+      console.error('Failed to share results:', error);
+      this.showFeedback('Failed to share results');
+    } finally {
+      this.button.disabled = false;
     }
-  }
-
-  /**
-   * Generate shareable URL with encoded results
-   */
-  private generateShareUrl(): string {
-    if (!this.results) {
-      throw new Error('No results to share');
-    }
-
-    const shareable = toShareableResults(this.results);
-    const encoded = encodeResults(shareable);
-
-    // Use current page URL as base
-    const baseUrl = `${window.location.origin}${window.location.pathname}`;
-    return `${baseUrl}?r=${encoded}`;
   }
 
   /**

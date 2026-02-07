@@ -13,6 +13,16 @@ type ShareableResults = {
   readonly t: number; // timestamp
 };
 
+type StoredMention = {
+  readonly mention: string;
+  readonly count: number;
+};
+
+type SharedData = {
+  readonly mentionCounts: readonly StoredMention[];
+  readonly postCount: number;
+};
+
 type PagesContext = {
   request: Request;
   next: () => Promise<Response>;
@@ -20,7 +30,7 @@ type PagesContext = {
 };
 
 /**
- * Decode compressed results from URL parameter.
+ * Decode compressed results from legacy URL parameter (?r=).
  * Returns null if decoding fails.
  */
 function decodeResults(encoded: string): ShareableResults | null {
@@ -54,15 +64,13 @@ function decodeResults(encoded: string): ShareableResults | null {
 }
 
 /**
- * Generate dynamic OG tags based on decoded results.
+ * Generate dynamic OG tags from mention names and counts.
  */
 function generateOGTags(
-  results: ShareableResults,
+  mentions: readonly { name: string; count: number }[],
   url: string,
-  encoded: string,
-  origin: string
+  imageUrl: string
 ): string {
-  const mentions = results.m;
   const topMentions = mentions.slice(0, 5);
 
   // Build title
@@ -74,12 +82,8 @@ function generateOGTags(
   // Build description with top mentions
   const description =
     topMentions.length > 0
-      ? topMentions.map((m, i) => `${i + 1}. ${m.n} (${m.c})`).join(', ')
+      ? topMentions.map((m, i) => `${i + 1}. ${m.name} (${m.count})`).join(', ')
       : 'Bluesky thread analysis results';
-
-  // Dynamic OG image showing the top results chart (use same origin as request)
-  // encodeURIComponent ensures + becomes %2B so it's preserved through URL parsing
-  const imageUrl = `${origin}/api/og?r=${encodeURIComponent(encoded)}`;
 
   return `
     <!-- Dynamic Open Graph meta tags for shared results -->
@@ -137,38 +141,89 @@ function injectDynamicOGTags(html: string, dynamicTags: string): string {
 }
 
 /**
+ * Extract mentions from legacy ?r= parameter.
+ */
+function getMentionsFromLegacyParam(
+  encoded: string
+): { mentions: { name: string; count: number }[]; imageUrl: string; origin: string } | null {
+  const decoded = decodeResults(encoded);
+  if (!decoded) return null;
+
+  return {
+    mentions: decoded.m.map((m) => ({ name: m.n, count: m.c })),
+    imageUrl: '', // Will be set by caller
+    origin: '',
+  };
+}
+
+/**
+ * Extract mentions from D1-backed ?s= parameter.
+ */
+async function getMentionsFromD1(
+  shareId: string,
+  env: Record<string, unknown>
+): Promise<{ name: string; count: number }[] | null> {
+  const db = env['SHARED_RESULTS'] as D1Database | undefined;
+  if (!db) return null;
+
+  try {
+    const row = await db
+      .prepare('SELECT data FROM shared_results WHERE id = ?')
+      .bind(shareId)
+      .first<{ data: string }>();
+
+    if (!row) return null;
+
+    const data: SharedData = JSON.parse(row.data);
+    return data.mentionCounts.map((mc) => ({ name: mc.mention, count: mc.count }));
+  } catch {
+    return null;
+  }
+}
+
+/**
  * Cloudflare Pages middleware handler.
  * Intercepts requests to inject dynamic OG tags for shared results.
  */
 export async function onRequest(context: PagesContext): Promise<Response> {
-  const { request, next } = context;
+  const { request, next, env } = context;
   const url = new URL(request.url);
 
   // Only process requests to the main page (not API, not assets)
   const isMainPage = url.pathname === '/' || url.pathname === '/index.html';
-  const hasResultsParam = url.searchParams.has('r');
 
   // Pass through non-main-page requests
   if (!isMainPage) {
     return next();
   }
 
-  // If no results param, just serve the page with static OG tags
-  if (!hasResultsParam) {
+  const hasShareParam = url.searchParams.has('s');
+  const hasResultsParam = url.searchParams.has('r');
+
+  // If no sharing params, just serve the page with static OG tags
+  if (!hasShareParam && !hasResultsParam) {
     return next();
   }
 
-  // Decode the results
-  // Note: URL parser decodes + as space, but LZ-string uses + in its alphabet
-  const encodedRaw = url.searchParams.get('r');
-  if (!encodedRaw) {
-    return next();
-  }
-  const encoded = encodedRaw.replace(/ /g, '+');
+  // Resolve mentions from whichever param is present
+  let mentions: { name: string; count: number }[] | null = null;
 
-  const results = decodeResults(encoded);
-  if (!results) {
-    // Invalid results param - serve page normally
+  if (hasShareParam) {
+    const shareId = url.searchParams.get('s');
+    if (shareId) {
+      mentions = await getMentionsFromD1(shareId, env);
+    }
+  } else if (hasResultsParam) {
+    // Legacy ?r= parameter
+    const encodedRaw = url.searchParams.get('r');
+    if (encodedRaw) {
+      const encoded = encodedRaw.replace(/ /g, '+');
+      const result = getMentionsFromLegacyParam(encoded);
+      mentions = result?.mentions ?? null;
+    }
+  }
+
+  if (!mentions) {
     return next();
   }
 
@@ -181,9 +236,18 @@ export async function onRequest(context: PagesContext): Promise<Response> {
     return response;
   }
 
+  // Build OG image URL — for ?r= use the encoded param, for ?s= use the share ID
+  let imageUrl: string;
+  if (hasShareParam) {
+    imageUrl = `${url.origin}/api/og?s=${encodeURIComponent(url.searchParams.get('s') || '')}`;
+  } else {
+    const encoded = (url.searchParams.get('r') || '').replace(/ /g, '+');
+    imageUrl = `${url.origin}/api/og?r=${encodeURIComponent(encoded)}`;
+  }
+
   // Get HTML and inject dynamic OG tags
   const html = await response.text();
-  const dynamicTags = generateOGTags(results, url.toString(), encoded, url.origin);
+  const dynamicTags = generateOGTags(mentions, url.toString(), imageUrl);
   const modifiedHtml = injectDynamicOGTags(html, dynamicTags);
 
   // Return modified response

@@ -15,3 +15,9 @@ compatibility_flags = ["nodejs_compat"]
 binding = "VALIDATION_CACHE"
 id = "c666774805084ce4a6288a73dad8da80"
 preview_id = "4b787f602d81488b94801913a68ab13c"
+
+# D1 database for shared results (preserves drill-down data in share links)
+[[d1_databases]]
+binding = "SHARED_RESULTS"
+database_name = "starcounter-shares"
+database_id = "ee38b6e0-65d7-4955-93b5-f384325079a7"
