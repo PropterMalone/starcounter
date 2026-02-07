@@ -37,6 +37,23 @@ describe('extractCategoryWords', () => {
   it('handles prompts without question mark', () => {
     expect(extractCategoryWords('tell us your childhood cartoon')).toEqual(['cartoon']);
   });
+
+  it('stops at function words in complex sentences', () => {
+    const text =
+      'My favorite Twitter prompt was "RT this with your home river," so reskeet this with your home river.';
+    expect(extractCategoryWords(text)).toEqual(['river']);
+  });
+
+  it('stops at function words even without punctuation', () => {
+    const text = 'reskeet this with your home river so we can see them all';
+    expect(extractCategoryWords(text)).toEqual(['river']);
+  });
+
+  it('limits to 3 category words max', () => {
+    const text = 'what is your favorite video game console brand name';
+    const result = extractCategoryWords(text);
+    expect(result.length).toBeLessThanOrEqual(3);
+  });
 });
 
 // ---------------------------------------------------------------------------

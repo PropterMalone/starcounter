@@ -15,8 +15,9 @@ import type { ValidationLookupEntry } from './thread-dictionary';
 // Category word extraction
 // ---------------------------------------------------------------------------
 
+// Matches "your (adjectives)* WORDS" — captures everything after adjectives
 const PROMPT_PATTERN =
-  /your\s+(?:(?:home|favorite|fav|go-to|all-time|top|first|best|worst|least\s+favorite|most\s+hated|childhood|guilty\s+pleasure)\s+)*(.+?)(?:\?|$)/i;
+  /\byour\s+(?:(?:home|favorite|fav|go-to|all-time|top|first|best|worst|least\s+favorite|most\s+hated|childhood|guilty\s+pleasure)\s+)*(\w+(?:\s+\w+){0,4})/i;
 
 const ADJECTIVES = new Set([
   'home',
@@ -36,6 +37,93 @@ const ADJECTIVES = new Set([
   'hated',
 ]);
 
+// Function words that end the noun phrase — if we hit one, stop collecting
+const FUNCTION_WORDS = new Set([
+  'so',
+  'and',
+  'or',
+  'but',
+  'for',
+  'from',
+  'with',
+  'the',
+  'a',
+  'an',
+  'in',
+  'on',
+  'at',
+  'to',
+  'of',
+  'is',
+  'are',
+  'was',
+  'were',
+  'be',
+  'been',
+  'being',
+  'have',
+  'has',
+  'had',
+  'do',
+  'does',
+  'did',
+  'will',
+  'would',
+  'could',
+  'should',
+  'may',
+  'might',
+  'shall',
+  'can',
+  'must',
+  'that',
+  'which',
+  'who',
+  'this',
+  'these',
+  'those',
+  'my',
+  'your',
+  'his',
+  'her',
+  'its',
+  'our',
+  'their',
+  'mine',
+  'yours',
+  'it',
+  'they',
+  'we',
+  'he',
+  'she',
+  'me',
+  'him',
+  'us',
+  'them',
+  'i',
+  'you',
+  'not',
+  'no',
+  'if',
+  'when',
+  'where',
+  'how',
+  'what',
+  'why',
+  'because',
+  'since',
+  'although',
+  'though',
+  'while',
+  'until',
+  'after',
+  'before',
+  'during',
+  'about',
+  'into',
+  'through',
+]);
+
 /**
  * Extract category words from a root post prompt.
  *
@@ -43,6 +131,7 @@ const ADJECTIVES = new Set([
  *   "what is your home river?" → ["river"]
  *   "share your favorite board game" → ["board", "game"]
  *   "what's your go-to comfort food?" → ["comfort", "food"]
+ *   "your home river, so reskeet..." → ["river"]
  *   "hello world" → [] (no match)
  */
 export function extractCategoryWords(rootText: string): string[] {
@@ -55,7 +144,15 @@ export function extractCategoryWords(rootText: string): string[] {
     .split(/\s+/)
     .filter((w) => w && !ADJECTIVES.has(w));
 
-  return words;
+  // Take words until we hit a function word — the noun phrase ends there
+  const result: string[] = [];
+  for (const w of words) {
+    if (FUNCTION_WORDS.has(w)) break;
+    result.push(w);
+    if (result.length >= 3) break;
+  }
+
+  return result;
 }
 
 // ---------------------------------------------------------------------------

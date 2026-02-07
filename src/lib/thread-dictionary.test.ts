@@ -116,6 +116,40 @@ describe('extractCandidates', () => {
     const matrixCount = result.filter((c) => c === 'The Matrix').length;
     expect(matrixCount).toBe(1);
   });
+
+  it('extracts per-line candidates from multi-line lists', () => {
+    const result = extractCandidates('In chronological order:\nMersey\nDee\nSevern\nAvon');
+    expect(result).toContain('Mersey');
+    expect(result).toContain('Dee');
+    expect(result).toContain('Severn');
+    expect(result).toContain('Avon');
+  });
+
+  it('does not merge title case words across newlines', () => {
+    const result = extractCandidates('Thames\nSeine\nConnecticut');
+    // Should NOT produce "Thames Seine Connecticut" as one candidate
+    expect(result).not.toContain('Thames Seine Connecticut');
+    expect(result).not.toContain('Thames\nSeine\nConnecticut');
+    expect(result).toContain('Thames');
+    expect(result).toContain('Seine');
+    expect(result).toContain('Connecticut');
+  });
+
+  it('filters sentence-starter lines from per-line extraction', () => {
+    const result = extractCandidates('Growing up near a river\nI loved the water');
+    expect(result).not.toContain('Growing up near a river');
+    expect(result).not.toContain('I loved the water');
+  });
+
+  it('skips all-caps single words in per-line extraction', () => {
+    expect(extractCandidates('LMAO')).toHaveLength(0);
+    expect(extractCandidates('WTF')).toHaveLength(0);
+  });
+
+  it('skips reaction stopwords in per-line extraction', () => {
+    const result = extractCandidates('Great');
+    expect(result).not.toContain('Great');
+  });
 });
 
 // ---------------------------------------------------------------------------
@@ -152,6 +186,15 @@ describe('extractShortTextCandidate', () => {
 
   it('returns null for too many words', () => {
     expect(extractShortTextCandidate('one two three four five six seven eight nine')).toBeNull();
+  });
+
+  it('takes only first line of multi-line posts', () => {
+    expect(extractShortTextCandidate('Potomac.\nWas James, Elizabeth and Thames.')).toBe('Potomac');
+  });
+
+  it('returns null when first line of multi-line post is too long', () => {
+    const long = 'x'.repeat(81);
+    expect(extractShortTextCandidate(long + '\nShort')).toBeNull();
   });
 });
 
