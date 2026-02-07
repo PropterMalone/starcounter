@@ -300,9 +300,7 @@ describe('OG Image Generator', () => {
       };
       const encoded = encodeResults(results);
       // Both params present but no env — should use ?r=
-      const request = new Request(
-        `https://starcounter.app/api/og?s=abc12345&r=${encoded}`
-      );
+      const request = new Request(`https://starcounter.app/api/og?s=abc12345&r=${encoded}`);
 
       const response = await onRequest({ request });
 

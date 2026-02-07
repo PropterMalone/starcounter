@@ -57,10 +57,7 @@ export function parseOGRequest(url: URL): ShareableResults | null {
 /**
  * Load shared results from D1 and convert to ShareableResults for image generation.
  */
-async function loadFromD1(
-  shareId: string,
-  db: D1Database
-): Promise<ShareableResults | null> {
+async function loadFromD1(shareId: string, db: D1Database): Promise<ShareableResults | null> {
   try {
     const row = await db
       .prepare('SELECT data FROM shared_results WHERE id = ?')
@@ -316,6 +313,5 @@ export async function onRequest(context: {
 }
 
 export default {
-  fetch: (request: Request, env?: { SHARED_RESULTS?: D1Database }) =>
-    onRequest({ request, env }),
+  fetch: (request: Request, env?: { SHARED_RESULTS?: D1Database }) => onRequest({ request, env }),
 };
