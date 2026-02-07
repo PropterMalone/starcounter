@@ -1,7 +1,17 @@
+import type { FetchStage } from '../lib/progress-tracker';
+
 /**
  * Progress bar component for visualizing analysis progress
  * Updates bar width, text, and stage-specific messages
  */
+
+// Each fetch stage maps to a progress range within 0-80%
+const STAGE_PROGRESS: Record<FetchStage, { start: number; label: string }> = {
+  thread: { start: 0, label: 'Fetching thread...' },
+  truncated: { start: 15, label: 'Expanding truncated replies...' },
+  quotes: { start: 25, label: 'Fetching quote threads...' },
+  recursive: { start: 60, label: 'Fetching recursive quotes...' },
+};
 
 export class ProgressBar {
   constructor(
@@ -59,15 +69,14 @@ export class ProgressBar {
   }
 
   /**
-   * Update for fetching stage
+   * Update for fetching stage — shows shimmer + post counter per sub-stage
    */
-  updateFetching(fetched: number, total: number): void {
-    this.setText('Fetching posts...');
-    this.setDetails(`Fetched ${fetched} of ${total} posts`);
-
-    // Progress: 0-80% during fetching (leave room for other stages)
-    const progress = total > 0 ? (fetched / total) * 80 : 0;
-    this.setProgress(progress);
+  updateFetching(fetched: number, stage: FetchStage): void {
+    const stageInfo = STAGE_PROGRESS[stage];
+    this.setIndeterminate(true);
+    this.setText(stageInfo.label);
+    this.setDetails(fetched > 0 ? `${fetched} posts found` : '');
+    this.setProgress(stageInfo.start);
   }
 
   /**

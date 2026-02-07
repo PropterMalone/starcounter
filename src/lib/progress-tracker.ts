@@ -7,8 +7,10 @@
  * Type-safe mapping of event names to their data payloads.
  * Each event has a specific data shape that TypeScript enforces.
  */
+export type FetchStage = 'thread' | 'truncated' | 'quotes' | 'recursive';
+
 export type ProgressEventData = {
-  fetching: { fetched: number; total: number };
+  fetching: { fetched: number; stage: FetchStage };
   extracting: Record<string, never>;
   counting: Record<string, never>;
   validating: { validated: number; total: number };

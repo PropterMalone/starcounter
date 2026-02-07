@@ -13,9 +13,9 @@ describe('ProgressTracker', () => {
       const listener = vi.fn();
       tracker.on('fetching', listener);
 
-      tracker.emit('fetching', { fetched: 10, total: 100 });
+      tracker.emit('fetching', { fetched: 10, stage: 'thread' as const });
 
-      expect(listener).toHaveBeenCalledWith({ fetched: 10, total: 100 });
+      expect(listener).toHaveBeenCalledWith({ fetched: 10, stage: 'thread' as const });
     });
 
     it('should emit extracting event', () => {
@@ -78,7 +78,7 @@ describe('ProgressTracker', () => {
       tracker.on('fetching', listener1);
       tracker.on('fetching', listener2);
 
-      tracker.emit('fetching', { fetched: 5, total: 10 });
+      tracker.emit('fetching', { fetched: 5, stage: 'thread' as const });
 
       expect(listener1).toHaveBeenCalledTimes(1);
       expect(listener2).toHaveBeenCalledTimes(1);
@@ -95,7 +95,7 @@ describe('ProgressTracker', () => {
 
       tracker.off('fetching', listener1);
 
-      tracker.emit('fetching', { fetched: 5, total: 10 });
+      tracker.emit('fetching', { fetched: 5, stage: 'thread' as const });
 
       expect(listener1).not.toHaveBeenCalled();
       expect(listener2).toHaveBeenCalledTimes(1);
@@ -113,7 +113,7 @@ describe('ProgressTracker', () => {
     it('should emit event even when no listeners registered', () => {
       // This should not throw
       expect(() => {
-        tracker.emit('fetching', { fetched: 5, total: 10 });
+        tracker.emit('fetching', { fetched: 5, stage: 'thread' as const });
       }).not.toThrow();
     });
   });
@@ -141,11 +141,11 @@ describe('ProgressTracker', () => {
 
       // Emit event before timeout
       vi.advanceTimersByTime(500);
-      tracker.emit('fetching', { fetched: 10, total: 100 });
+      tracker.emit('fetching', { fetched: 10, stage: 'thread' as const });
 
       // Advance more time
       vi.advanceTimersByTime(500);
-      tracker.emit('fetching', { fetched: 20, total: 100 });
+      tracker.emit('fetching', { fetched: 20, stage: 'thread' as const });
 
       // Total 1000ms passed, but no stall because events were emitted
       expect(stallCallback).not.toHaveBeenCalled();
@@ -179,7 +179,7 @@ describe('ProgressTracker', () => {
 
       tracker.reset();
 
-      tracker.emit('fetching', { fetched: 5, total: 10 });
+      tracker.emit('fetching', { fetched: 5, stage: 'thread' as const });
       tracker.emit('complete', {});
 
       expect(listener1).not.toHaveBeenCalled();

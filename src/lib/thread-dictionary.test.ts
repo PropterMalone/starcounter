@@ -196,6 +196,20 @@ describe('extractShortTextCandidate', () => {
     const long = 'x'.repeat(81);
     expect(extractShortTextCandidate(long + '\nShort')).toBeNull();
   });
+
+  it('filters sentence-starting prefixes', () => {
+    expect(extractShortTextCandidate('I was thinking about rivers')).toBeNull();
+    expect(extractShortTextCandidate('My home river is great')).toBeNull();
+    expect(extractShortTextCandidate('Here is mine')).toBeNull();
+    expect(extractShortTextCandidate('What a question')).toBeNull();
+    expect(extractShortTextCandidate('This is so fun')).toBeNull();
+  });
+
+  it('keeps titles that do not match sentence prefixes', () => {
+    expect(extractShortTextCandidate('Mississippi')).toBe('Mississippi');
+    expect(extractShortTextCandidate('East River')).toBe('East River');
+    expect(extractShortTextCandidate('Thames')).toBe('Thames');
+  });
 });
 
 // ---------------------------------------------------------------------------
