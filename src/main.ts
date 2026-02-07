@@ -251,52 +251,57 @@ class StarcounterApp {
       // Extract AT-URI from bsky.app URL
       const atUri = this.convertBskyUrlToAtUri(url);
 
-      // Stage 1: Fetch thread and quotes recursively
+      // Stage 1+2+3: Fetch thread and extract text/candidates incrementally
       this.progressTracker.emit('fetching', { fetched: 0, total: 0 });
-
-      const allPosts = await this.fetchAllPostsRecursively(atUri);
-
-      this.progressTracker.emit('fetching', { fetched: allPosts.length, total: allPosts.length });
-
-      // Stage 2: Extract text from all posts (rich text including embeds)
-      this.progressTracker.emit('extracting', {});
 
       const selectedTypes = this.getSelectedMediaTypes();
 
+      // Shared state for incremental extraction during fetch
+      const postTexts = new Map<string, PostTextContent>();
+      const uniqueCandidates = new Set<string>();
+      let rootAtUri = '';
+      let rootTextLower = '';
+
+      // Callback processes posts as they arrive, overlapping extraction with fetching
+      const processPostsBatch = (posts: readonly PostView[]) => {
+        for (const post of posts) {
+          if (postTexts.has(post.uri)) continue;
+          const textContent = extractPostText(post);
+          postTexts.set(post.uri, textContent);
+
+          // First post processed becomes root
+          if (rootAtUri === '') {
+            rootAtUri = post.uri;
+            rootTextLower = post.record.text.toLowerCase();
+            continue; // Skip root for candidate extraction
+          }
+
+          // Extract candidates incrementally
+          let searchText = textContent.ownText;
+          if (textContent.quotedText && textContent.quotedUri !== rootAtUri) {
+            searchText += '\n' + textContent.quotedText;
+          }
+          if (textContent.quotedAltText) {
+            searchText += '\n' + textContent.quotedAltText.join('\n');
+          }
+
+          for (const c of extractCandidates(searchText)) {
+            uniqueCandidates.add(c);
+          }
+          const shortCandidate = extractShortTextCandidate(post.record.text);
+          if (shortCandidate) uniqueCandidates.add(shortCandidate);
+        }
+      };
+
+      const allPosts = await this.fetchAllPostsRecursively(atUri, processPostsBatch);
+
+      this.progressTracker.emit('fetching', { fetched: allPosts.length, total: allPosts.length });
+
       console.log(`[Analysis] Processing ${allPosts.length} total posts`);
 
-      const postTexts = new Map<string, PostTextContent>();
-      for (const post of allPosts) {
-        postTexts.set(post.uri, extractPostText(post));
-      }
-
-      // Stage 3: Extract unique candidates from all posts
       const rootPost = allPosts[0];
       if (!rootPost) {
         throw new Error('no posts found in thread');
-      }
-      const rootAtUri = rootPost.uri;
-      const rootTextLower = rootPost.record.text.toLowerCase();
-
-      const uniqueCandidates = new Set<string>();
-      for (const post of allPosts) {
-        if (post.uri === rootAtUri) continue;
-        const textContent = postTexts.get(post.uri);
-        if (!textContent) continue;
-
-        let searchText = textContent.ownText;
-        if (textContent.quotedText && textContent.quotedUri !== rootAtUri) {
-          searchText += '\n' + textContent.quotedText;
-        }
-        if (textContent.quotedAltText) {
-          searchText += '\n' + textContent.quotedAltText.join('\n');
-        }
-
-        for (const c of extractCandidates(searchText)) {
-          uniqueCandidates.add(c);
-        }
-        const shortCandidate = extractShortTextCandidate(post.record.text);
-        if (shortCandidate) uniqueCandidates.add(shortCandidate);
       }
 
       console.log(`[Analysis] Found ${uniqueCandidates.size} unique candidates`);
@@ -887,6 +892,7 @@ class StarcounterApp {
    */
   private async fetchAllPostsRecursively(
     uri: string,
+    onPostsBatch?: (posts: readonly PostView[]) => void,
     visited: Set<string> = new Set(),
     depth: number = 0
   ): Promise<PostView[]> {
@@ -920,6 +926,7 @@ class StarcounterApp {
         );
       }
       allPosts.push(...tree.allPosts);
+      onPostsBatch?.(tree.allPosts);
 
       // Get the DID-based URI from the root post (getQuotes requires DID-based URIs)
       if (tree.post?.uri) {
@@ -945,16 +952,28 @@ class StarcounterApp {
           console.log(
             `[fetchAllPosts] Truncated post ${truncated.uri}: expected=${truncated.expectedReplies}, got=${truncated.actualReplies}, missing=${missingCount}`
           );
+        }
 
-          // Fetch this post's thread to get its missing replies
-          // Note: we use depth + 1 to track overall recursion, but this is a sibling fetch, not a deeper nesting
-          const subtreePosts = await this.fetchTruncatedSubtree(truncated.uri, visited);
-          if (subtreePosts.length > 0) {
-            console.log(
-              `[fetchAllPosts] Fetched ${subtreePosts.length} additional posts from truncated subtree`
-            );
-            allPosts.push(...subtreePosts);
+        // Fetch truncated subtrees in parallel batches
+        const TRUNCATED_BATCH_SIZE = 10;
+        for (let i = 0; i < tree.truncatedPosts.length; i += TRUNCATED_BATCH_SIZE) {
+          const batch = tree.truncatedPosts.slice(i, i + TRUNCATED_BATCH_SIZE);
+          const results = await Promise.allSettled(
+            batch.map((truncated) => this.fetchTruncatedSubtree(truncated.uri, visited))
+          );
+          for (const result of results) {
+            if (result.status === 'fulfilled' && result.value.length > 0) {
+              console.log(
+                `[fetchAllPosts] Fetched ${result.value.length} additional posts from truncated subtree`
+              );
+              allPosts.push(...result.value);
+              onPostsBatch?.(result.value);
+            }
           }
+          this.progressTracker.emit('fetching', {
+            fetched: allPosts.length,
+            total: allPosts.length,
+          });
         }
       }
     } else {
@@ -991,12 +1010,15 @@ class StarcounterApp {
         allPosts.push(quote);
         visited.add(quote.uri);
       }
+      if (unvisitedQuotes.length > 0) {
+        onPostsBatch?.(unvisitedQuotes);
+      }
 
       // Update progress
       this.progressTracker.emit('fetching', { fetched: allPosts.length, total: allPosts.length });
 
-      // Fetch quote threads in parallel batches (5 concurrent to avoid rate limits)
-      const QUOTE_BATCH_SIZE = 5;
+      // Fetch quote threads in parallel batches
+      const QUOTE_BATCH_SIZE = 10;
       for (let i = 0; i < unvisitedQuotes.length; i += QUOTE_BATCH_SIZE) {
         const batch = unvisitedQuotes.slice(i, i + QUOTE_BATCH_SIZE);
 
@@ -1015,19 +1037,20 @@ class StarcounterApp {
           const result = threadResults[j];
           if (result && result.status === 'fulfilled' && result.value.ok) {
             const quoteTree = this.threadBuilder.buildTree(result.value.value.thread);
-            let newReplyCount = 0;
+            const newPosts: PostView[] = [];
 
             // Add only posts not already visited
             for (const post of quoteTree.allPosts) {
               if (!visited.has(post.uri)) {
                 allPosts.push(post);
                 visited.add(post.uri);
-                newReplyCount++;
+                newPosts.push(post);
               }
             }
 
-            if (newReplyCount > 0) {
-              console.log(`[fetchAllPosts] Quote thread added ${newReplyCount} reply posts`);
+            if (newPosts.length > 0) {
+              console.log(`[fetchAllPosts] Quote thread added ${newPosts.length} reply posts`);
+              onPostsBatch?.(newPosts);
             }
           }
         }
@@ -1060,85 +1083,116 @@ class StarcounterApp {
       `[fetchAllPosts] Recursive QT crawl: ${qtQueue.length} posts with ${MIN_REPOSTS_FOR_QT_FETCH}+ quotes to check`
     );
 
+    const QT_CRAWL_BATCH_SIZE = 5;
     while (qtQueue.length > 0) {
-      const item = qtQueue.shift()!;
-      if (fetchedQtSources.has(item.uri)) continue;
-      if (item.depth > MAX_QT_DEPTH) {
-        depthCapHits++;
-        console.log(
-          `[fetchAllPosts] Depth cap hit (depth=${item.depth}, quoteCount=${item.quoteCount}, uri=${item.uri})`
-        );
-        continue;
+      // Drain up to QT_CRAWL_BATCH_SIZE eligible items from the queue
+      const batch: QueueItem[] = [];
+      while (batch.length < QT_CRAWL_BATCH_SIZE && qtQueue.length > 0) {
+        const item = qtQueue.shift()!;
+        if (fetchedQtSources.has(item.uri)) continue;
+        if (item.depth > MAX_QT_DEPTH) {
+          depthCapHits++;
+          console.log(
+            `[fetchAllPosts] Depth cap hit (depth=${item.depth}, quoteCount=${item.quoteCount}, uri=${item.uri})`
+          );
+          continue;
+        }
+        fetchedQtSources.add(item.uri);
+        batch.push(item);
       }
-      fetchedQtSources.add(item.uri);
+      if (batch.length === 0) continue;
 
       console.log(
-        `[fetchAllPosts] [depth=${item.depth}] Fetching QTs of post with ${item.quoteCount} quotes`
+        `[fetchAllPosts] QT crawl: fetching quotes for ${batch.length} posts in parallel`
       );
 
-      // Paginate through all QTs of this post
-      let qtCursor: string | undefined;
-      const newQtsThisPost: PostView[] = [];
-      do {
-        const quotesResult = await this.blueskyClient.getQuotes(item.uri, {
-          cursor: qtCursor,
-          limit: 100,
-        });
-        if (!quotesResult.ok) break;
-        qtCursor = quotesResult.value.cursor;
-        const quotes = quotesResult.value.posts;
+      // Fetch QTs for all batch items in parallel (each may paginate)
+      const batchQtResults = await Promise.allSettled(
+        batch.map(async (item) => {
+          const newQts: PostView[] = [];
+          let qtCursor: string | undefined;
+          do {
+            const quotesResult = await this.blueskyClient.getQuotes(item.uri, {
+              cursor: qtCursor,
+              limit: 100,
+            });
+            if (!quotesResult.ok) break;
+            qtCursor = quotesResult.value.cursor;
+            for (const quote of quotesResult.value.posts) {
+              if (!visited.has(quote.uri)) {
+                visited.add(quote.uri);
+                newQts.push(quote);
+              }
+            }
+          } while (qtCursor);
+          return { item, newQts };
+        })
+      );
 
-        for (const quote of quotes) {
-          if (!visited.has(quote.uri)) {
-            visited.add(quote.uri);
-            newQtsThisPost.push(quote);
-            allPosts.push(quote);
-            recursiveQtCount++;
+      // Collect all new QTs and add to allPosts
+      const allNewQts: { item: QueueItem; qts: PostView[] }[] = [];
+      for (const result of batchQtResults) {
+        if (result.status === 'fulfilled') {
+          const { item, newQts } = result.value;
+          if (newQts.length > 0) {
+            console.log(`[fetchAllPosts]   [depth=${item.depth}] Found ${newQts.length} new QTs`);
           }
+          allPosts.push(...newQts);
+          onPostsBatch?.(newQts);
+          recursiveQtCount += newQts.length;
+          allNewQts.push({ item, qts: newQts });
         }
-      } while (qtCursor);
-
-      if (newQtsThisPost.length > 0) {
-        console.log(`[fetchAllPosts]   Found ${newQtsThisPost.length} new QTs`);
       }
 
-      // Fetch reply threads for each new QT
-      const QUOTE_BATCH_SIZE = 5;
-      for (let i = 0; i < newQtsThisPost.length; i += QUOTE_BATCH_SIZE) {
-        const batch = newQtsThisPost.slice(i, i + QUOTE_BATCH_SIZE);
+      // Fetch reply threads for all new QTs in parallel batches
+      const REPLY_BATCH_SIZE = 10;
+      const allQtPosts = allNewQts.flatMap(({ item, qts }) =>
+        qts.map((qt) => ({ qt, depth: item.depth }))
+      );
+
+      for (let i = 0; i < allQtPosts.length; i += REPLY_BATCH_SIZE) {
+        const replyBatch = allQtPosts.slice(i, i + REPLY_BATCH_SIZE);
         const replyResults = await Promise.allSettled(
-          batch
-            .filter((qt) => (qt.replyCount ?? 0) > 0)
-            .map((qt) => this.blueskyClient.getPostThread(qt.uri, { depth: 1000, parentHeight: 0 }))
+          replyBatch
+            .filter(({ qt }) => (qt.replyCount ?? 0) > 0)
+            .map(({ qt }) =>
+              this.blueskyClient.getPostThread(qt.uri, { depth: 1000, parentHeight: 0 })
+            )
         );
 
         for (const result of replyResults) {
           if (result.status === 'fulfilled' && result.value.ok) {
             const tree = this.threadBuilder.buildTree(result.value.value.thread);
+            const newPosts: PostView[] = [];
             for (const post of tree.allPosts) {
               if (!visited.has(post.uri)) {
                 allPosts.push(post);
                 visited.add(post.uri);
+                newPosts.push(post);
                 recursiveQtCount++;
 
-                // Queue high-quote replies for further QT fetching
                 if (
                   (post.quoteCount ?? 0) >= MIN_REPOSTS_FOR_QT_FETCH &&
                   !fetchedQtSources.has(post.uri)
                 ) {
                   qtQueue.push({
                     uri: post.uri,
-                    depth: item.depth + 1,
+                    depth: replyBatch[0]!.depth + 1,
                     quoteCount: post.quoteCount ?? 0,
                   });
                 }
               }
             }
+            if (newPosts.length > 0) {
+              onPostsBatch?.(newPosts);
+            }
           }
         }
+      }
 
-        // Also queue the QTs themselves for further QT fetching
-        for (const qt of batch) {
+      // Queue the QTs themselves for further QT fetching
+      for (const { item, qts } of allNewQts) {
+        for (const qt of qts) {
           if ((qt.quoteCount ?? 0) >= MIN_REPOSTS_FOR_QT_FETCH && !fetchedQtSources.has(qt.uri)) {
             qtQueue.push({
               uri: qt.uri,
