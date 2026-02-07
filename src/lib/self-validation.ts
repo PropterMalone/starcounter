@@ -209,6 +209,105 @@ function toTitleCase(s: string): string {
 // Self-validated lookup
 // ---------------------------------------------------------------------------
 
+// Common English words that are never valid open-ended answers
+const SELF_VALIDATION_STOP_WORDS = new Set([
+  'here',
+  'there',
+  'what',
+  'when',
+  'where',
+  'how',
+  'why',
+  'then',
+  'now',
+  'just',
+  'also',
+  'not',
+  'too',
+  'oh',
+  'well',
+  'so',
+  'very',
+  'really',
+  'still',
+  'even',
+  'much',
+  'many',
+  'some',
+  'any',
+  'all',
+  'both',
+  'each',
+  'every',
+  'other',
+  'another',
+  'such',
+  'more',
+  'most',
+  'less',
+  'few',
+  'only',
+  'own',
+  'same',
+  'than',
+  'like',
+  'right',
+  'good',
+  'new',
+  'old',
+  'big',
+  'long',
+  'little',
+  'great',
+  'always',
+  'never',
+  'today',
+  'yes',
+  'no',
+  'beautiful',
+  'pretty',
+  'amazing',
+  'awesome',
+  'gorgeous',
+  'incredible',
+  'lovely',
+  'wonderful',
+  'terrible',
+  'horrible',
+  'perfect',
+  'cool',
+  'nice',
+  'fun',
+  'wild',
+  'love',
+  'grew',
+  'lived',
+  'born',
+  'moved',
+  'spent',
+  'miss',
+  'remember',
+  'weird',
+  'funny',
+  'mine',
+  'ours',
+  'lol',
+  'nope',
+  'yep',
+  'yeah',
+  'absolutely',
+  'definitely',
+  'literally',
+  'basically',
+  'obviously',
+  'actually',
+  'honestly',
+  'seriously',
+  'technically',
+]);
+
+const MIN_NORM_KEY_LENGTH = 3;
+
 /**
  * Build a validation lookup without any external source.
  *
@@ -222,6 +321,17 @@ export function buildSelfValidatedLookup(
   const categoryWords = extractCategoryWords(rootText);
   const MAX_WORDS = 5;
 
+  // Build category word set (with plurals) for filtering
+  const categoryWordSet = new Set<string>();
+  for (const w of categoryWords) {
+    categoryWordSet.add(w);
+    categoryWordSet.add(w + 's');
+    categoryWordSet.add(w + 'es');
+    if (w.endsWith('y')) {
+      categoryWordSet.add(w.slice(0, -1) + 'ies');
+    }
+  }
+
   // Group candidates by normalization key
   const groups = new Map<string, string[]>();
 
@@ -229,7 +339,19 @@ export function buildSelfValidatedLookup(
     if (candidate.split(/\s+/).length > MAX_WORDS) continue;
 
     const normKey = normalize(candidate, categoryWords);
-    if (normKey.length === 0) continue;
+    if (normKey.length < MIN_NORM_KEY_LENGTH) continue;
+
+    // Skip if normKey is just a category word
+    if (categoryWordSet.has(normKey)) continue;
+
+    // Skip if every word in normKey is a stop/function/adjective word (catches "my home", "not sure")
+    const normWords = normKey.split(/\s+/);
+    if (
+      normWords.every(
+        (w) => SELF_VALIDATION_STOP_WORDS.has(w) || FUNCTION_WORDS.has(w) || ADJECTIVES.has(w)
+      )
+    )
+      continue;
 
     const group = groups.get(normKey);
     if (group) {

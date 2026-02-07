@@ -214,28 +214,24 @@ class StarcounterApp {
     reviewSuggestionsButton?.addEventListener('click', () => {
       this.showClusterReviewModal();
     });
+  }
 
-    // Progress tracker events (type-safe - data is correctly typed for each event)
+  private attachProgressListeners(): void {
     this.progressTracker.on('fetching', (data) => {
-      this.progressBar.updateFetching(data.fetched, data.total);
+      this.progressBar.updateFetching(data.fetched, data.stage);
     });
-
     this.progressTracker.on('extracting', () => {
       this.progressBar.updateExtracting();
     });
-
     this.progressTracker.on('counting', () => {
       this.progressBar.updateCounting();
     });
-
     this.progressTracker.on('validating', (data) => {
       this.progressBar.updateValidating(data.validated, data.total);
     });
-
     this.progressTracker.on('complete', (data) => {
       this.progressBar.updateComplete(data.mentionCounts.length);
     });
-
     this.progressTracker.on('error', (data) => {
       this.showError(data.error.message);
     });
@@ -253,6 +249,7 @@ class StarcounterApp {
       this.progressBar.show();
       this.progressBar.reset();
       this.progressTracker.reset();
+      this.attachProgressListeners();
       this.analysisStartTime = Date.now();
       this.originalPost = null;
 
@@ -265,7 +262,7 @@ class StarcounterApp {
       const atUri = this.convertBskyUrlToAtUri(url);
 
       // Stage 1+2+3: Fetch thread and extract text/candidates incrementally
-      this.progressTracker.emit('fetching', { fetched: 0, total: 0 });
+      this.progressTracker.emit('fetching', { fetched: 0, stage: 'thread' });
 
       const selectedTypes = this.getSelectedMediaTypes();
 
@@ -308,7 +305,7 @@ class StarcounterApp {
 
       const allPosts = await this.fetchAllPostsRecursively(atUri, processPostsBatch);
 
-      this.progressTracker.emit('fetching', { fetched: allPosts.length, total: allPosts.length });
+      this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'recursive' });
 
       console.log(`[Analysis] Processing ${allPosts.length} total posts`);
 
@@ -942,6 +939,7 @@ class StarcounterApp {
       }
       allPosts.push(...tree.allPosts);
       onPostsBatch?.(tree.allPosts);
+      this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'thread' });
 
       // Get the DID-based URI from the root post (getQuotes requires DID-based URIs)
       if (tree.post?.uri) {
@@ -961,6 +959,7 @@ class StarcounterApp {
 
       // Fetch subtrees for truncated posts (posts where API didn't return all replies)
       if (tree.truncatedPosts.length > 0) {
+        this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'truncated' });
         console.log(`[fetchAllPosts] Fetching ${tree.truncatedPosts.length} truncated subtrees`);
         for (const truncated of tree.truncatedPosts) {
           const missingCount = truncated.expectedReplies - truncated.actualReplies;
@@ -985,10 +984,7 @@ class StarcounterApp {
               onPostsBatch?.(result.value);
             }
           }
-          this.progressTracker.emit('fetching', {
-            fetched: allPosts.length,
-            total: allPosts.length,
-          });
+          this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'truncated' });
         }
       }
     } else {
@@ -997,6 +993,7 @@ class StarcounterApp {
 
     // Fetch ALL quote posts using pagination (required DID-based URI)
     console.log(`[fetchAllPosts] Fetching quotes for DID-based uri=${didBasedUri}`);
+    this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'quotes' });
     let cursor: string | undefined;
     let totalQuotesFetched = 0;
     let newQuotesAdded = 0;
@@ -1030,7 +1027,7 @@ class StarcounterApp {
       }
 
       // Update progress
-      this.progressTracker.emit('fetching', { fetched: allPosts.length, total: allPosts.length });
+      this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'quotes' });
 
       // Fetch quote threads in parallel batches
       const QUOTE_BATCH_SIZE = 10;
@@ -1071,7 +1068,7 @@ class StarcounterApp {
         }
 
         // Update progress after each batch
-        this.progressTracker.emit('fetching', { fetched: allPosts.length, total: allPosts.length });
+        this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'quotes' });
       }
     } while (cursor);
 
@@ -1081,6 +1078,7 @@ class StarcounterApp {
 
     // === Recursive QT crawl: fetch QTs of replies, QTs of QTs, etc. ===
     // Posts with quoteCount > 0 may have their own QTs that the initial fetch missed.
+    this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'recursive' });
     const MIN_REPOSTS_FOR_QT_FETCH = 3;
     const MAX_QT_DEPTH = 10; // configurable cap — see note below
     let recursiveQtCount = 0;
@@ -1218,7 +1216,7 @@ class StarcounterApp {
         }
       }
 
-      this.progressTracker.emit('fetching', { fetched: allPosts.length, total: allPosts.length });
+      this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'recursive' });
     }
 
     console.log(`[fetchAllPosts] Recursive QT crawl added ${recursiveQtCount} posts`);

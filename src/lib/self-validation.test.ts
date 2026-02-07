@@ -144,6 +144,59 @@ describe('buildSelfValidatedLookup', () => {
     expect(lookup.get('pizza')?.canonical).toBe('Pizza');
     expect(lookup.get('sushi')?.canonical).toBe('Sushi');
   });
+
+  it('filters candidates whose normKey is < 3 characters', () => {
+    // "La River" normalizes to "la" (2 chars) after stripping category word "river"
+    const candidates = new Set(['La River', 'Mississippi']);
+    const lookup = buildSelfValidatedLookup(candidates, 'what is your home river?');
+
+    expect(lookup.has('la river')).toBe(false);
+    expect(lookup.has('mississippi')).toBe(true);
+  });
+
+  it('filters candidates that are just the category word', () => {
+    const candidates = new Set(['River', 'Mississippi']);
+    const lookup = buildSelfValidatedLookup(candidates, 'what is your home river?');
+
+    expect(lookup.has('river')).toBe(false);
+    expect(lookup.has('mississippi')).toBe(true);
+  });
+
+  it('filters plural forms of category words', () => {
+    const candidates = new Set(['Games', 'Monopoly']);
+    const lookup = buildSelfValidatedLookup(candidates, 'what is your favorite game?');
+
+    expect(lookup.has('games')).toBe(false);
+    expect(lookup.has('monopoly')).toBe(true);
+  });
+
+  it('filters common stop words like "here", "what", "then"', () => {
+    const candidates = new Set(['Here', 'What', 'Then', 'Mississippi']);
+    const lookup = buildSelfValidatedLookup(candidates, 'what is your home river?');
+
+    expect(lookup.has('here')).toBe(false);
+    expect(lookup.has('what')).toBe(false);
+    expect(lookup.has('then')).toBe(false);
+    expect(lookup.has('mississippi')).toBe(true);
+  });
+
+  it('filters normKeys composed entirely of function/stop words', () => {
+    // "My Home River" → strip article → strip "river" → "my home" — all function words
+    const candidates = new Set(['My Home River', 'Nile']);
+    const lookup = buildSelfValidatedLookup(candidates, 'what is your home river?');
+
+    expect(lookup.has('my home river')).toBe(false);
+    expect(lookup.has('nile')).toBe(true);
+  });
+
+  it('keeps legitimate short normKeys >= 3 chars', () => {
+    const candidates = new Set(['Dee', 'Wye', 'Exe']);
+    const lookup = buildSelfValidatedLookup(candidates, 'what is your home river?');
+
+    expect(lookup.has('dee')).toBe(true);
+    expect(lookup.has('wye')).toBe(true);
+    expect(lookup.has('exe')).toBe(true);
+  });
 });
 
 // ---------------------------------------------------------------------------

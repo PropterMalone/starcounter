@@ -244,6 +244,7 @@ export function extractShortTextCandidate(text: string): string | null {
     .trim();
   if (cleaned.length >= 2 && cleaned.split(/\s+/).length <= 8) {
     if (REACTION_STOPWORDS.has(cleaned.toLowerCase())) return null;
+    if (LINE_SENTENCE_PREFIX_RE.test(cleaned)) return null;
     return cleaned;
   }
   return null;
