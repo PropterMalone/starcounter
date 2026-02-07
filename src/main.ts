@@ -20,6 +20,8 @@ import {
 } from './components';
 import { suggestClusters } from './lib/clustering';
 import { buildSelfValidatedLookup, buildListValidatedLookup } from './lib/self-validation';
+import { fromStoredPost } from './lib/share-types';
+import type { SharedData } from './lib/share-types';
 import type { MentionCount, PostView } from './types';
 import type { MediaMention } from './lib/mention-extractor';
 import type { PostTextContent } from './lib/text-extractor';
@@ -63,6 +65,7 @@ class StarcounterApp {
   // State for re-rendering with uncategorized toggle
   private lastMentionCounts: MentionCount[] = [];
   private lastUncategorizedPosts: PostView[] = [];
+  private lastPostCount: number = 0;
 
   // User refinement state
   private excludedCategories: Set<string> = new Set();
@@ -111,6 +114,16 @@ class StarcounterApp {
       requireElement<HTMLElement>('share-feedback'),
       requireElement<HTMLElement>('share-feedback-text')
     );
+
+    // State provider captures current app state at share time (including user tweaks)
+    this.shareButton.setStateProvider(() => ({
+      mentionCounts: this.lastMentionCounts,
+      uncategorizedPosts: this.lastUncategorizedPosts,
+      excludedCategories: [...this.excludedCategories],
+      manualAssignments: Object.fromEntries(this.manualAssignments),
+      originalPost: this.originalPost,
+      postCount: this.lastPostCount,
+    }));
 
     // AdvancedToggle attaches DOM listeners in its constructor; instance not needed after setup
     new AdvancedToggle(
@@ -468,9 +481,12 @@ class StarcounterApp {
     postCount?: number,
     uncategorizedPosts?: PostView[]
   ): void {
-    // Store state for re-rendering with toggle
+    // Store state for re-rendering with toggle and sharing
     this.lastMentionCounts = mentionCounts;
     this.lastUncategorizedPosts = uncategorizedPosts ?? [];
+    if (postCount !== undefined) {
+      this.lastPostCount = postCount;
+    }
 
     this.hideAllSections();
 
@@ -500,7 +516,6 @@ class StarcounterApp {
     const finalCounts = this.buildFinalCounts(mentionCounts, uncategorizedPosts ?? []);
 
     this.resultsChart.render(finalCounts);
-    this.shareButton.setResults(mentionCounts); // Share excludes uncategorized
 
     // Show/hide "Review Suggestions" button based on uncategorized posts
     this.updateReviewSuggestionsButton();
@@ -1300,17 +1315,92 @@ class StarcounterApp {
   }
 
   /**
-   * Check URL for shared results and restore them
-   * This allows users to open shared links directly to results
+   * Check URL for shared results and restore them.
+   * Supports both D1-backed (?s=) and legacy LZ-compressed (?r=) formats.
    */
   private checkForSharedResults(): void {
     const params = new URLSearchParams(window.location.search);
-    const encoded = params.get('r');
 
-    if (!encoded) {
+    // New D1-backed sharing (?s= parameter) — includes drill-down data
+    const shareId = params.get('s');
+    if (shareId) {
+      this.loadD1SharedResults(shareId);
       return;
     }
 
+    // Legacy URL-encoded sharing (?r= parameter) — counts only, no drill-down
+    const encoded = params.get('r');
+    if (encoded) {
+      this.loadLegacySharedResults(encoded);
+    }
+  }
+
+  /**
+   * Load shared results from D1 database.
+   * Restores full state including drill-down posts and user tweaks.
+   */
+  private async loadD1SharedResults(shareId: string): Promise<void> {
+    // Hide input, show loading state
+    const inputSection = document.getElementById('input-section');
+    if (inputSection) {
+      inputSection.style.display = 'none';
+    }
+    this.progressBar.show();
+    this.progressBar.reset();
+    this.progressBar.setIndeterminate(true);
+    this.progressBar.setText('Loading shared results...');
+
+    try {
+      const response = await fetch(`/api/share?id=${encodeURIComponent(shareId)}`);
+      if (!response.ok) {
+        throw new Error(`failed to load shared results: ${response.status}`);
+      }
+
+      const data: SharedData = await response.json();
+
+      // Restore MentionCount[] with full post data for drill-downs
+      const mentionCounts: MentionCount[] = data.mentionCounts.map((mc) => ({
+        mention: mc.mention,
+        count: mc.count,
+        posts: mc.posts.map(fromStoredPost),
+      }));
+
+      const uncategorizedPosts = data.uncategorizedPosts.map(fromStoredPost);
+
+      // Restore original post for prompt display
+      if (data.originalPost) {
+        this.originalPost = fromStoredPost(data.originalPost);
+      }
+
+      // Restore user tweaks (exclusions and manual assignments)
+      for (const category of data.excludedCategories) {
+        this.excludedCategories.add(category);
+      }
+      for (const [uri, category] of Object.entries(data.manualAssignments)) {
+        this.manualAssignments.set(uri, category);
+      }
+
+      this.showResults(mentionCounts, data.postCount, uncategorizedPosts);
+    } catch (error) {
+      console.warn('Failed to load shared results:', error);
+      // Show input form on failure
+      this.progressBar.hide();
+      if (inputSection) {
+        inputSection.style.display = 'block';
+      }
+      return;
+    }
+
+    // Clean up URL without reloading
+    const cleanUrl = `${window.location.origin}${window.location.pathname}`;
+    window.history.replaceState({}, document.title, cleanUrl);
+  }
+
+  /**
+   * Load legacy shared results from LZ-compressed URL parameter.
+   * Only has names and counts — no drill-down data.
+   */
+  private loadLegacySharedResults(encoded: string): void {
     const results = decodeResults(encoded);
     if (!results) {
       console.warn('Failed to decode shared results from URL');
@@ -1321,7 +1411,7 @@ class StarcounterApp {
     const mentionCounts: MentionCount[] = results.m.map((m) => ({
       mention: m.n,
       count: m.c,
-      posts: [], // Posts not available from shared URL
+      posts: [], // Posts not available from legacy shared URL
     }));
 
     // Hide input section and show results

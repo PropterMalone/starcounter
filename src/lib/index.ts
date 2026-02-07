@@ -50,3 +50,5 @@ export {
   buildSelfValidatedLookup,
   buildListValidatedLookup,
 } from './self-validation';
+export { toStoredPost, fromStoredPost } from './share-types';
+export type { StoredPost, SharedData } from './share-types';
