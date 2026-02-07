@@ -3,3 +3,4 @@ dist/
 coverage/
 .git/
 docs/
+bench/

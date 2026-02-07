@@ -1,14 +1,13 @@
 import { BlueskyClient } from './api';
 import {
   ThreadBuilder,
-  MentionExtractor,
-  MentionCounter,
   decodeResults,
-  fingerprint,
-  fingerprintContains,
+  extractPostText,
+  buildValidationLookup,
+  discoverDictionary,
+  labelPosts,
 } from './lib';
 import { ProgressTracker } from './lib/progress-tracker';
-import { createSentimentAnalyzer } from './lib/sentiment-factory';
 import { ValidationClient } from './lib/validation-client';
 import {
   InputForm,
@@ -22,6 +21,8 @@ import {
 import { suggestClusters } from './lib/clustering';
 import type { MentionCount, PostView } from './types';
 import type { MediaMention } from './lib/mention-extractor';
+import type { PostTextContent } from './lib/text-extractor';
+import { extractCandidates, extractShortTextCandidate } from './lib/thread-dictionary';
 
 /**
  * Get a DOM element by ID with runtime validation.
@@ -45,8 +46,6 @@ function requireElement<T extends HTMLElement>(id: string): T {
 class StarcounterApp {
   private blueskyClient: BlueskyClient;
   private threadBuilder: ThreadBuilder;
-  private mentionExtractor: MentionExtractor;
-  private counter: MentionCounter;
   private progressTracker: ProgressTracker;
 
   private inputForm: InputForm;
@@ -55,10 +54,8 @@ class StarcounterApp {
   private drillDownModal: DrillDownModal;
   private clusterReviewModal: ClusterReviewModal;
   private shareButton: ShareButton;
-  private advancedToggle: AdvancedToggle;
 
   private abortController: AbortController | null = null;
-  private useAdvancedSentiment = false;
   private analysisStartTime: number = 0;
   private originalPost: PostView | null = null;
 
@@ -74,8 +71,6 @@ class StarcounterApp {
     // Initialize backend services
     this.blueskyClient = new BlueskyClient();
     this.threadBuilder = new ThreadBuilder();
-    this.mentionExtractor = new MentionExtractor();
-    this.counter = new MentionCounter();
     this.progressTracker = new ProgressTracker();
 
     // Initialize UI components with null-safe element access
@@ -116,16 +111,11 @@ class StarcounterApp {
       requireElement<HTMLElement>('share-feedback-text')
     );
 
-    this.advancedToggle = new AdvancedToggle(
+    // AdvancedToggle attaches DOM listeners in its constructor; instance not needed after setup
+    new AdvancedToggle(
       requireElement<HTMLInputElement>('advanced-mode'),
       requireElement<HTMLSpanElement>('advanced-status')
     );
-
-    // Track advanced mode state
-    this.useAdvancedSentiment = this.advancedToggle.isEnabled();
-    this.advancedToggle.onChange((enabled) => {
-      this.useAdvancedSentiment = enabled;
-    });
 
     this.attachEventListeners();
     this.checkForSharedResults();
@@ -251,92 +241,66 @@ class StarcounterApp {
 
       this.progressTracker.emit('fetching', { fetched: allPosts.length, total: allPosts.length });
 
-      // Stage 2: Extract mentions
+      // Stage 2: Extract text from all posts (rich text including embeds)
       this.progressTracker.emit('extracting', {});
 
-      // Get user-selected media types
       const selectedTypes = this.getSelectedMediaTypes();
 
       console.log(`[Analysis] Processing ${allPosts.length} total posts`);
 
-      // Extract mentions and track which post each came from
-      type MentionWithSource = MediaMention & { sourcePost: PostView };
-      const mentionsWithSource: MentionWithSource[] = allPosts.flatMap((post) =>
-        this.mentionExtractor.extractMentions(post.record.text).map((m) => ({
-          ...m,
-          sourcePost: post,
-        }))
-      );
-
-      console.log(
-        `[Analysis] Extracted ${mentionsWithSource.length} raw mentions:`,
-        mentionsWithSource.map((m) => m.title)
-      );
-
-      // Create a map from normalized title to source posts (for drilldown later)
-      const titleToSourcePosts = new Map<string, PostView[]>();
-      for (const m of mentionsWithSource) {
-        const existing = titleToSourcePosts.get(m.normalizedTitle);
-        if (existing) {
-          // Only add if not already in the list (same post can have multiple mentions of same title)
-          if (!existing.some((p) => p.uri === m.sourcePost.uri)) {
-            existing.push(m.sourcePost);
-          }
-        } else {
-          titleToSourcePosts.set(m.normalizedTitle, [m.sourcePost]);
-        }
+      const postTexts = new Map<string, PostTextContent>();
+      for (const post of allPosts) {
+        postTexts.set(post.uri, extractPostText(post));
       }
 
-      // For backward compatibility, also create mentions array without source
-      const mentions = mentionsWithSource.map(({ sourcePost: _sourcePost, ...m }) => m);
-
-      // Override media types based on user selection
-      // If user selected specific types, force all mentions to use those types for validation
-      const processedMentions = mentions.map((mention) => {
-        // If only one type selected, force all mentions to that type
-        if (selectedTypes.length === 1 && selectedTypes[0]) {
-          return { ...mention, mediaType: selectedTypes[0] as MediaMention['mediaType'] };
-        }
-        // If multiple types selected and mention type matches one, keep it
-        if (selectedTypes.includes(mention.mediaType)) {
-          return mention;
-        }
-        // If mention type doesn't match selection (e.g., UNKNOWN), default to first selected
-        if (selectedTypes[0]) {
-          return { ...mention, mediaType: selectedTypes[0] as MediaMention['mediaType'] };
-        }
-        return mention;
-      });
-
-      // Stage 3: Count mentions (with appropriate sentiment analyzer)
-      this.progressTracker.emit('counting', {});
-
-      // Set the appropriate sentiment analyzer based on user preference
-      const analyzer = createSentimentAnalyzer(this.useAdvancedSentiment);
-      this.counter.setSentimentAnalyzer(analyzer);
-
-      // Create a minimal tree stub for counting (branch/sentiment analysis disabled for now)
-      // TODO: Build proper tree from recursively fetched posts
-      const firstPost = allPosts[0];
-      if (!firstPost) {
+      // Stage 3: Extract unique candidates from all posts
+      const rootPost = allPosts[0];
+      if (!rootPost) {
         throw new Error('no posts found in thread');
       }
-      const stubTree = {
-        post: firstPost,
-        branches: [],
-        allPosts,
-        truncatedPosts: [],
-        restrictedPosts: [],
-        getParent: () => null,
-        getBranchAuthors: () => [],
-        flattenPosts: () => allPosts,
-      };
-      const countMap = await this.counter.countMentions(processedMentions, allPosts, stubTree);
-      // Note: mentionCounts used for unvalidated results, validatedCountMap used for validated
-      void this.buildMentionCounts(countMap, allPosts);
+      const rootAtUri = rootPost.uri;
+      const rootTextLower = rootPost.record.text.toLowerCase();
 
-      // Stage 4: Validate mentions against TMDB/MusicBrainz
-      this.progressTracker.emit('validating', { validated: 0, total: processedMentions.length });
+      const uniqueCandidates = new Set<string>();
+      for (const post of allPosts) {
+        if (post.uri === rootAtUri) continue;
+        const textContent = postTexts.get(post.uri);
+        if (!textContent) continue;
+
+        let searchText = textContent.ownText;
+        if (textContent.quotedText && textContent.quotedUri !== rootAtUri) {
+          searchText += '\n' + textContent.quotedText;
+        }
+        if (textContent.quotedAltText) {
+          searchText += '\n' + textContent.quotedAltText.join('\n');
+        }
+
+        for (const c of extractCandidates(searchText)) {
+          uniqueCandidates.add(c);
+        }
+        const shortCandidate = extractShortTextCandidate(post.record.text);
+        if (shortCandidate) uniqueCandidates.add(shortCandidate);
+      }
+
+      console.log(`[Analysis] Found ${uniqueCandidates.size} unique candidates`);
+
+      // Stage 4: Validate unique candidates (~300 instead of ~12,000)
+      const candidateArray = [...uniqueCandidates];
+      this.progressTracker.emit('validating', { validated: 0, total: candidateArray.length });
+
+      // Convert candidates to MediaMention format for the validation client
+      const candidateMentions: MediaMention[] = candidateArray.map((title) => {
+        const mediaType =
+          selectedTypes.length === 1 && selectedTypes[0]
+            ? (selectedTypes[0] as MediaMention['mediaType'])
+            : ('UNKNOWN' as MediaMention['mediaType']);
+        return {
+          title,
+          normalizedTitle: title.toLowerCase(),
+          mediaType,
+          confidence: 'medium' as const,
+        };
+      });
 
       const validationClient = new ValidationClient({
         apiUrl: '/api/validate',
@@ -348,211 +312,72 @@ class StarcounterApp {
         },
       });
 
-      const validatedMentions = await validationClient.validateMentions(processedMentions);
+      const validatedMentions = await validationClient.validateMentions(candidateMentions);
+      const validationLookup = buildValidationLookup(validatedMentions);
 
-      // Filter to only validated mentions and rebuild counts
-      const validMentions = validatedMentions.filter(
-        (m) => m.validated && m.validationConfidence !== 'low'
+      console.log(
+        `[Analysis] Validated ${validationLookup.size} candidates out of ${candidateArray.length}`
       );
 
-      // Recount with validated mentions only (use validated titles)
-      const validatedCountMap = new Map<string, { count: number; mentions: MediaMention[] }>();
-      for (const mention of validMentions) {
-        const title = mention.validatedTitle || mention.title;
-        const existing = validatedCountMap.get(title);
-        if (existing) {
-          existing.count++;
-          existing.mentions.push(mention);
-        } else {
-          validatedCountMap.set(title, { count: 1, mentions: [mention] });
+      // Stage 5: Build dictionary (Phase 1)
+      this.progressTracker.emit('counting', {});
+
+      const dictionary = discoverDictionary(
+        allPosts,
+        postTexts,
+        validationLookup,
+        rootAtUri,
+        rootTextLower
+      );
+
+      console.log(`[Analysis] Dictionary: ${dictionary.entries.size} titles discovered`);
+      for (const [title, info] of [...dictionary.entries]
+        .sort((a, b) => b[1].frequency - a[1].frequency)
+        .slice(0, 15)) {
+        console.log(
+          `  ${title.padEnd(45)} ${String(info.confidentCount).padStart(3)} confident, ${String(info.incidentalCount).padStart(3)} incidental`
+        );
+      }
+
+      // Stage 6: Label posts (Phase 2)
+      const postToTitles = labelPosts(
+        allPosts,
+        postTexts,
+        dictionary,
+        validationLookup,
+        rootAtUri,
+        rootTextLower
+      );
+
+      // Stage 7: Build MentionCount[] from postToTitles
+      const titleCounts = new Map<string, PostView[]>();
+      for (const [postUri, titles] of postToTitles) {
+        const post = allPosts.find((p) => p.uri === postUri);
+        if (!post) continue;
+        for (const title of titles) {
+          const existing = titleCounts.get(title);
+          if (existing) {
+            existing.push(post);
+          } else {
+            titleCounts.set(title, [post]);
+          }
         }
       }
 
-      // Helper to normalize text for matching: lowercase and convert & to "and"
-      const normalizeForSearch = (text: string) => text.toLowerCase().replace(/\s*&\s*/g, ' and ');
-
-      // Helper to check if text contains a search term with word boundaries
-      const textContainsTerm = (text: string, term: string): boolean => {
-        // Always use word boundary matching to avoid partial matches
-        const pattern = new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
-        return pattern.test(text);
-      };
-
-      // Known phrases where a short word is part of a longer movie title
-      // Maps short word → patterns that indicate it's part of a longer title (regex fragments)
-      const shortWordPhrasePatterns: Record<string, RegExp[]> = {
-        red: [
-          /\bred\s+october\b/i, // Hunt for Red October
-          /\bfor\s+red\b/i, // "hunt FOR RED october"
-          /\bred\s+dragon\b/i, // Red Dragon
-          /\bred\s+dawn\b/i, // Red Dawn
-          /\bred\s+sparrow\b/i, // Red Sparrow
-        ],
-        jones: [
-          /\bindiana\s+jones\b/i, // Indiana Jones
-          /\bjones\s+and\s+the\b/i, // "Jones and the..."
-          /\bbridget\s+jones\b/i, // Bridget Jones
-        ],
-        ugly: [
-          /\bgood[,]?\s*(the\s+)?bad[,]?\s*(and\s+)?(the\s+)?ugly\b/i, // The Good, the Bad and the Ugly
-          /\bbad\s+(and\s+)?(the\s+)?ugly\b/i,
-        ],
-        oceans: [
-          /\bocean'?s?\s+(eleven|twelve|thirteen|8|eight)\b/i, // Ocean's Eleven/Twelve/etc
-        ],
-        ocean: [/\bocean'?s?\s+(eleven|twelve|thirteen|8|eight)\b/i],
-      };
-
-      // Check if a short word appears ONLY in known phrase patterns (not standalone)
-      const isWordOnlyInPhrases = (text: string, word: string): boolean => {
-        const lowerWord = word.toLowerCase();
-        const patterns = shortWordPhrasePatterns[lowerWord];
-        if (!patterns) return false; // No known patterns, assume standalone
-
-        const lowerText = text.toLowerCase();
-
-        // Check if the word appears in any of the known phrase patterns
-        const appearsInPhrase = patterns.some((pattern) => pattern.test(lowerText));
-        if (!appearsInPhrase) return false; // Word doesn't appear in any known phrase
-
-        // Check if word appears OUTSIDE of the phrase patterns (standalone)
-        // Remove all phrase matches and see if word still appears
-        let textWithoutPhrases = lowerText;
-        for (const pattern of patterns) {
-          textWithoutPhrases = textWithoutPhrases.replace(pattern, ' ');
-        }
-
-        // Check if word still appears after removing phrase matches
-        const wordPattern = new RegExp(`\\b${lowerWord}\\b`, 'i');
-        const stillAppears = wordPattern.test(textWithoutPhrases);
-
-        // If word only appeared in phrases (not standalone), return true
-        return !stillAppears;
-      };
-
-      // Merge validated titles where one is a substring of another
-      // E.g., "Red" should merge into "The Hunt for Red October"
-      const mergedValidatedCountMap = this.mergeSubstringTitles(validatedCountMap);
-
-      // Build a map of all validated titles and their search terms + fingerprints
-      // This is needed to detect when a short title is part of a longer title
-      const allTitleSearchTerms = new Map<string, Set<string>>();
-      const allTitleFingerprints = new Map<string, string>();
-      for (const [title, data] of mergedValidatedCountMap.entries()) {
-        const searchTerms = new Set<string>();
-        for (const m of data.mentions) {
-          searchTerms.add(normalizeForSearch(m.title));
-        }
-        const normalizedTitle = normalizeForSearch(title);
-        searchTerms.add(normalizedTitle);
-        if (normalizedTitle.includes(':')) {
-          const baseTitle = normalizedTitle.split(':')[0]?.trim() ?? '';
-          const wordCount = baseTitle.split(/\s+/).length;
-          if (wordCount >= 2 || baseTitle.length >= 10) {
-            searchTerms.add(baseTitle);
-          }
-        }
-        allTitleSearchTerms.set(title, searchTerms);
-        // Store fingerprint for fallback matching
-        allTitleFingerprints.set(title, fingerprint(title));
-      }
-
-      // For each post, find which titles it matches, preferring longer/more specific matches
-      // This prevents "red october" from counting as both "RED" and "Hunt for Red October"
-      const postToTitles = new Map<string, Set<string>>();
-      for (const post of allPosts) {
-        const text = normalizeForSearch(post.record.text);
-        const matchedTitles: string[] = [];
-
-        // Find all titles this post matches via word-boundary regex
-        for (const [title, searchTerms] of allTitleSearchTerms.entries()) {
-          if (Array.from(searchTerms).some((term) => textContainsTerm(text, term))) {
-            matchedTitles.push(title);
-          }
-        }
-
-        // Fallback: try fingerprint matching for posts with no word-boundary matches
-        // This catches typos and word-order variations like "october red hunt"
-        if (matchedTitles.length === 0) {
-          const postFp = fingerprint(post.record.text);
-          for (const [title, titleFp] of allTitleFingerprints.entries()) {
-            // Only match if fingerprint has 2+ tokens (avoid single-word false positives)
-            if (titleFp.split(' ').length >= 2 && fingerprintContains(postFp, titleFp)) {
-              matchedTitles.push(title);
-            }
-          }
-        }
-
-        // Filter out titles whose search terms are substrings of other matched titles' terms
-        // E.g., if post matches both "RED" and "Hunt for Red October", keep only the longer one
-        const filteredTitles = matchedTitles.filter((title) => {
-          const myTerms = allTitleSearchTerms.get(title)!;
-          const myLongestTerm = Array.from(myTerms).reduce(
-            (a, b) => (a.length > b.length ? a : b),
-            ''
-          );
-
-          // Check if this title's terms are substrings of another matched title's terms
-          for (const otherTitle of matchedTitles) {
-            if (otherTitle === title) continue;
-            const otherTerms = allTitleSearchTerms.get(otherTitle)!;
-
-            // If any of the other title's terms contain our longest term, skip this title
-            for (const otherTerm of otherTerms) {
-              if (otherTerm.length > myLongestTerm.length && otherTerm.includes(myLongestTerm)) {
-                return false; // Our term is a substring of a longer matched title
-              }
-            }
-          }
-
-          // For single-word titles that are known to appear in longer movie titles
-          // (like RED in "Red October", JONES in "Indiana Jones"), check if the word
-          // ONLY appears as part of those longer titles. If so, skip counting.
-          const isSingleWord = !myLongestTerm.includes(' ');
-          if (isSingleWord) {
-            // Check if this word only appears in known phrase patterns
-            if (isWordOnlyInPhrases(post.record.text, myLongestTerm)) {
-              return false; // Word only appears as part of longer movie title phrases
-            }
-          }
-
-          return true;
-        });
-
-        postToTitles.set(post.uri, new Set(filteredTitles));
-      }
-
-      // Build mention counts from validated results
-      const validatedMentionCounts: MentionCount[] = [];
-      for (const [title] of mergedValidatedCountMap.entries()) {
-        // Find posts that match this title (after filtering out substring matches)
-        const contributingPosts = allPosts.filter((post) => {
-          const titles = postToTitles.get(post.uri);
-          return titles?.has(title) ?? false;
-        });
-
-        // Use the number of matching posts as the count, not just extracted mentions
-        // This ensures lowercase mentions like "hunt for red october" are counted
-        validatedMentionCounts.push({
+      const finalMentionCounts: MentionCount[] = [...titleCounts.entries()]
+        .map(([title, posts]) => ({
           mention: title,
-          count: contributingPosts.length,
-          posts: contributingPosts,
-        });
-      }
+          count: posts.length,
+          posts,
+        }))
+        .sort((a, b) => b.count - a.count);
 
-      // Sort by count descending
-      validatedMentionCounts.sort((a, b) => b.count - a.count);
+      // Find uncategorized posts
+      const uncategorizedPosts = allPosts.filter(
+        (post) => post.uri !== rootAtUri && !postToTitles.has(post.uri)
+      );
 
-      // Only use validated results - don't fall back to unvalidated cruft
-      const finalMentionCounts = validatedMentionCounts;
-
-      // Find posts that didn't contribute to ANY category (for debug)
-      const uncategorizedPosts = allPosts.filter((post) => {
-        const titles = postToTitles.get(post.uri);
-        return !titles || titles.size === 0;
-      });
-
-      // Stage 5: Display results
+      // Stage 8: Display results
       this.progressTracker.emit('complete', { mentionCounts: finalMentionCounts });
 
       this.showResults(finalMentionCounts, allPosts.length, uncategorizedPosts);
@@ -1167,6 +992,124 @@ class StarcounterApp {
       `[fetchAllPosts] Total quotes fetched: ${totalQuotesFetched}, new quotes added: ${newQuotesAdded}`
     );
 
+    // === Recursive QT crawl: fetch QTs of replies, QTs of QTs, etc. ===
+    // Posts with quoteCount > 0 may have their own QTs that the initial fetch missed.
+    const MIN_REPOSTS_FOR_QT_FETCH = 3;
+    const MAX_QT_DEPTH = 10; // configurable cap — see note below
+    let recursiveQtCount = 0;
+    let depthCapHits = 0;
+    const fetchedQtSources = new Set([didBasedUri]);
+
+    type QueueItem = { uri: string; depth: number; quoteCount: number };
+    const qtQueue: QueueItem[] = allPosts
+      .filter(
+        (p) => (p.quoteCount ?? 0) >= MIN_REPOSTS_FOR_QT_FETCH && !fetchedQtSources.has(p.uri)
+      )
+      .map((p) => ({ uri: p.uri, depth: 1, quoteCount: p.quoteCount ?? 0 }));
+
+    console.log(
+      `[fetchAllPosts] Recursive QT crawl: ${qtQueue.length} posts with ${MIN_REPOSTS_FOR_QT_FETCH}+ quotes to check`
+    );
+
+    while (qtQueue.length > 0) {
+      const item = qtQueue.shift()!;
+      if (fetchedQtSources.has(item.uri)) continue;
+      if (item.depth > MAX_QT_DEPTH) {
+        depthCapHits++;
+        console.log(
+          `[fetchAllPosts] Depth cap hit (depth=${item.depth}, quoteCount=${item.quoteCount}, uri=${item.uri})`
+        );
+        continue;
+      }
+      fetchedQtSources.add(item.uri);
+
+      console.log(
+        `[fetchAllPosts] [depth=${item.depth}] Fetching QTs of post with ${item.quoteCount} quotes`
+      );
+
+      // Paginate through all QTs of this post
+      let qtCursor: string | undefined;
+      const newQtsThisPost: PostView[] = [];
+      do {
+        const quotesResult = await this.blueskyClient.getQuotes(item.uri, {
+          cursor: qtCursor,
+          limit: 100,
+        });
+        if (!quotesResult.ok) break;
+        qtCursor = quotesResult.value.cursor;
+        const quotes = quotesResult.value.posts;
+
+        for (const quote of quotes) {
+          if (!visited.has(quote.uri)) {
+            visited.add(quote.uri);
+            newQtsThisPost.push(quote);
+            allPosts.push(quote);
+            recursiveQtCount++;
+          }
+        }
+      } while (qtCursor);
+
+      if (newQtsThisPost.length > 0) {
+        console.log(`[fetchAllPosts]   Found ${newQtsThisPost.length} new QTs`);
+      }
+
+      // Fetch reply threads for each new QT
+      const QUOTE_BATCH_SIZE = 5;
+      for (let i = 0; i < newQtsThisPost.length; i += QUOTE_BATCH_SIZE) {
+        const batch = newQtsThisPost.slice(i, i + QUOTE_BATCH_SIZE);
+        const replyResults = await Promise.allSettled(
+          batch
+            .filter((qt) => (qt.replyCount ?? 0) > 0)
+            .map((qt) => this.blueskyClient.getPostThread(qt.uri, { depth: 1000, parentHeight: 0 }))
+        );
+
+        for (const result of replyResults) {
+          if (result.status === 'fulfilled' && result.value.ok) {
+            const tree = this.threadBuilder.buildTree(result.value.value.thread);
+            for (const post of tree.allPosts) {
+              if (!visited.has(post.uri)) {
+                allPosts.push(post);
+                visited.add(post.uri);
+                recursiveQtCount++;
+
+                // Queue high-quote replies for further QT fetching
+                if (
+                  (post.quoteCount ?? 0) >= MIN_REPOSTS_FOR_QT_FETCH &&
+                  !fetchedQtSources.has(post.uri)
+                ) {
+                  qtQueue.push({
+                    uri: post.uri,
+                    depth: item.depth + 1,
+                    quoteCount: post.quoteCount ?? 0,
+                  });
+                }
+              }
+            }
+          }
+        }
+
+        // Also queue the QTs themselves for further QT fetching
+        for (const qt of batch) {
+          if ((qt.quoteCount ?? 0) >= MIN_REPOSTS_FOR_QT_FETCH && !fetchedQtSources.has(qt.uri)) {
+            qtQueue.push({
+              uri: qt.uri,
+              depth: item.depth + 1,
+              quoteCount: qt.quoteCount ?? 0,
+            });
+          }
+        }
+      }
+
+      this.progressTracker.emit('fetching', { fetched: allPosts.length, total: allPosts.length });
+    }
+
+    console.log(`[fetchAllPosts] Recursive QT crawl added ${recursiveQtCount} posts`);
+    if (depthCapHits > 0) {
+      console.log(
+        `[fetchAllPosts] ⚠ Depth cap (${MAX_QT_DEPTH}) was hit ${depthCapHits} time(s) — some content may have been missed`
+      );
+    }
+
     return allPosts;
   }
 
@@ -1244,138 +1187,6 @@ class StarcounterApp {
     const postId = parts[4];
 
     return `at://${handle}/app.bsky.feed.post/${postId}`;
-  }
-
-  /**
-   * Merge validated titles where one is a word-bounded substring of another.
-   * E.g., "Red" merges into "The Hunt for Red October" if both exist.
-   * This prevents short titles from stealing counts from longer, more specific titles.
-   *
-   * EXCEPTION: Don't merge when the shorter title is a prefix of a sequel/subtitle.
-   * E.g., "Top Gun" should NOT merge into "Top Gun: Maverick" (distinct films).
-   */
-  private mergeSubstringTitles(
-    countMap: Map<string, { count: number; mentions: MediaMention[] }>
-  ): Map<string, { count: number; mentions: MediaMention[] }> {
-    const titles = Array.from(countMap.keys());
-
-    // Sort by length descending (longest first)
-    titles.sort((a, b) => b.length - a.length);
-
-    // Build mapping: short title → canonical (longer) title
-    const canonicalMap = new Map<string, string>();
-
-    for (const title of titles) {
-      const normalizedTitle = title.toLowerCase();
-
-      // Check if this title is a word-bounded substring of a longer title
-      let canonical = title;
-      for (const longer of titles) {
-        if (longer.length > title.length) {
-          const longerNormalized = longer.toLowerCase();
-
-          // Don't merge if short title is a prefix before a colon/number (sequel pattern)
-          // E.g., "Top Gun" vs "Top Gun: Maverick" or "Rocky" vs "Rocky II"
-          if (this.isSequelPrefix(normalizedTitle, longerNormalized)) {
-            continue; // Skip this longer title, keep looking or stay with original
-          }
-
-          // Use word boundary to match - "red" should match in "hunt for red october"
-          const pattern = new RegExp(
-            `\\b${normalizedTitle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`,
-            'i'
-          );
-          if (pattern.test(longerNormalized)) {
-            canonical = longer;
-            break; // Use the longest matching title
-          }
-        }
-      }
-      canonicalMap.set(title, canonical);
-    }
-
-    // Merge counts into canonical titles
-    const merged = new Map<string, { count: number; mentions: MediaMention[] }>();
-
-    for (const [title, data] of countMap.entries()) {
-      const canonical = canonicalMap.get(title) ?? title;
-      const existing = merged.get(canonical);
-
-      if (existing) {
-        // Merge into existing canonical entry
-        existing.count += data.count;
-        existing.mentions.push(...data.mentions);
-      } else {
-        // Create new entry (copy to avoid mutating original)
-        merged.set(canonical, { count: data.count, mentions: [...data.mentions] });
-      }
-    }
-
-    return merged;
-  }
-
-  /**
-   * Check if the shorter title is a prefix of the longer title in a sequel/subtitle pattern.
-   * Returns true for cases like:
-   * - "Top Gun" vs "Top Gun: Maverick" (colon subtitle)
-   * - "Rocky" vs "Rocky II" (roman numeral sequel)
-   * - "Alien" vs "Alien 3" (numbered sequel)
-   * - "Star Wars" vs "Star Wars: Episode IV" (franchise with subtitle)
-   */
-  private isSequelPrefix(shorter: string, longer: string): boolean {
-    // Check if longer starts with shorter
-    if (!longer.startsWith(shorter)) {
-      return false;
-    }
-
-    // Get the part after the shorter title
-    const suffix = longer.slice(shorter.length).trim();
-
-    // If no suffix or suffix is empty, not a sequel pattern
-    if (!suffix) {
-      return false;
-    }
-
-    // Check for sequel/subtitle patterns:
-    // - Starts with colon (subtitle): "Top Gun: Maverick"
-    // - Starts with roman numeral: "Rocky II", "Star Trek VI"
-    // - Starts with number: "Alien 3", "Die Hard 2"
-    // - Starts with "Part": "The Godfather Part II"
-    const sequelPatterns = [
-      /^:/, // Colon subtitle
-      /^[IVX]+\b/i, // Roman numerals
-      /^\d+/, // Numbers
-      /^part\s/i, // "Part X"
-      /^chapter\s/i, // "Chapter X"
-      /^episode\s/i, // "Episode X"
-      /^vol(\.|ume)?\s/i, // "Vol. X" or "Volume X"
-    ];
-
-    return sequelPatterns.some((pattern) => pattern.test(suffix));
-  }
-
-  /**
-   * Build MentionCount array from count map
-   * Filters posts that contain each mention
-   */
-  private buildMentionCounts(countMap: Map<string, number>, allPosts: PostView[]): MentionCount[] {
-    const result: MentionCount[] = [];
-
-    for (const [mention, count] of countMap.entries()) {
-      // Find all posts that contain this mention
-      const contributingPosts = allPosts.filter((post) => {
-        const text = post.record.text.toLowerCase();
-        return text.includes(mention.toLowerCase());
-      });
-
-      result.push({
-        mention,
-        count,
-        posts: contributingPosts,
-      });
-    }
-
-    return result;
   }
 
   /**

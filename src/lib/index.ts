@@ -29,3 +29,14 @@ export {
   suggestClusters,
 } from './clustering';
 export type { MatchResult, ClusterSuggestion } from './clustering';
+export { extractPostText } from './text-extractor';
+export type { PostTextContent } from './text-extractor';
+export {
+  extractCandidates,
+  extractShortTextCandidate,
+  isReaction,
+  buildValidationLookup,
+  discoverDictionary,
+} from './thread-dictionary';
+export type { DictionaryEntry, ThreadDictionary, ValidationLookupEntry } from './thread-dictionary';
+export { labelPosts } from './post-labeler';
