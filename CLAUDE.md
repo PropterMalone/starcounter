@@ -189,12 +189,21 @@ npm run validate     # Runs all above checks sequentially
 
 Static web application deployed to Cloudflare Pages:
 
+- **Production URL:** https://starcounter.pages.dev/
+- **Production branch:** `bluesky-post-analyzer` (Cloudflare Pages is configured to deploy from this branch)
 - **Build output:** `public/bundle.js` (single ES module)
 - **Assets:** `public/index.html`, `public/styles.css`
-- **Deploy command:** `npx wrangler pages deploy public --project-name=starcounter`
 - **Backend:** Cloudflare Pages Functions in `functions/api/`
+
+### Deploy to production
+
+```bash
+npm run build && npx wrangler pages deploy public --project-name=starcounter --branch=bluesky-post-analyzer
+```
+
+The `--branch=bluesky-post-analyzer` flag is required. Without it, Cloudflare deploys to Preview (not Production) and the main URL won't update.
 
 ---
 
-**Last updated:** 2026-02-04
+**Last updated:** 2026-02-07
 **Phase:** 2 of 8

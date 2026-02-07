@@ -110,12 +110,16 @@ const CAPS_NOISE_RE = /^(WTAF|OMFG|LMAO|LMBO|OMG|LOL|WTF|IMO|IMHO|IIRC|TIL|PSA|F
 const QUOTED_PREFIX_RE =
   /^(my |your |i |we |he |she |it |this |that |if |but |when |where |what |why |how )/i;
 
+// Sentence-starter prefixes that disqualify a line from being a standalone answer
+const LINE_SENTENCE_PREFIX_RE =
+  /^(i |my |we |he |she |it |they |you |this is|that is|if |but |when |where |what |why |how |there |here |also |just |not |can |could |would |should |do |does |did |have |has |had |was |were |the question|growing up|used to|i've |i'm |it's |that's |there's |in the |in my |in a |in order|in chronological|for the |for my |for a )/i;
+
 /** Extract candidate title strings from text using multiple strategies. */
 export function extractCandidates(text: string): string[] {
   if (!text || text.trim().length === 0) return [];
   const candidates = new Set<string>();
 
-  // Quoted phrases
+  // Quoted phrases (works on full text — quotes don't span lines)
   for (const match of text.matchAll(QUOTED_RE)) {
     const t = (match[1] ?? '').trim();
     if (t.length >= 2 && t.split(/\s+/).length <= 10) {
@@ -128,27 +132,56 @@ export function extractCandidates(text: string): string[] {
     }
   }
 
-  // Title case phrases
-  for (const match of text.matchAll(TITLE_CASE_RE)) {
-    const t = (match[1] ?? '').trim();
-    if (!NOISE.has(t) && t.length >= 3) {
-      candidates.add(t);
+  // Split into lines for Title Case and per-line extraction
+  // This prevents cross-line matches like "Mersey\nDee" → "Mersey Dee"
+  const lines = text.split(/\n/);
+
+  for (const line of lines) {
+    const trimmedLine = line.trim();
+    if (trimmedLine.length === 0) continue;
+
+    // Title case phrases — per line
+    for (const match of trimmedLine.matchAll(TITLE_CASE_RE)) {
+      const t = (match[1] ?? '').trim();
+      if (!NOISE.has(t) && t.length >= 3) {
+        candidates.add(t);
+      }
+    }
+
+    // ALL CAPS phrases — per line
+    for (const match of trimmedLine.matchAll(ALL_CAPS_RE)) {
+      const raw = (match[1] ?? '').trim();
+      if (raw.length >= 4 && !CAPS_NOISE_RE.test(raw)) {
+        const title = raw
+          .split(/\s+/)
+          .map((w) => w.charAt(0) + w.slice(1).toLowerCase())
+          .join(' ');
+        candidates.add(title);
+      }
+    }
+
+    // Per-line standalone candidate: short lines (1-5 words) that look like
+    // a standalone answer rather than a sentence fragment
+    if (trimmedLine.length >= 2 && trimmedLine.length <= 60) {
+      const cleaned = trimmedLine.replace(/[.!?,;:]+$/, '').trim();
+      const wordCount = cleaned.split(/\s+/).length;
+      if (
+        wordCount >= 1 &&
+        wordCount <= 5 &&
+        cleaned.length >= 2 &&
+        /^[A-Z]/.test(cleaned) &&
+        !LINE_SENTENCE_PREFIX_RE.test(cleaned) &&
+        !NOISE.has(cleaned) &&
+        !REACTION_STOPWORDS.has(cleaned.toLowerCase()) &&
+        !CAPS_NOISE_RE.test(cleaned) &&
+        !/^[A-Z]+$/.test(cleaned) // Skip all-caps single words (acronyms/reactions)
+      ) {
+        candidates.add(cleaned);
+      }
     }
   }
 
-  // ALL CAPS phrases
-  for (const match of text.matchAll(ALL_CAPS_RE)) {
-    const raw = (match[1] ?? '').trim();
-    if (raw.length >= 4 && !CAPS_NOISE_RE.test(raw)) {
-      const title = raw
-        .split(/\s+/)
-        .map((w) => w.charAt(0) + w.slice(1).toLowerCase())
-        .join(' ');
-      candidates.add(title);
-    }
-  }
-
-  // Image alt text
+  // Image alt text (works on full text)
   for (const match of text.matchAll(IMAGE_ALT_RE)) {
     const alt = (match[1] ?? '').trim();
     if (alt.length <= 60 && alt.split(/\s+/).length <= 8) {
@@ -187,8 +220,22 @@ const REACTION_STOPWORDS = new Set([
 
 /** Extract a candidate from short posts (≤80 chars) that are likely just a title. */
 export function extractShortTextCandidate(text: string): string | null {
-  if (!text || text.trim().length === 0 || text.length > 80) return null;
-  const cleaned = text
+  if (!text || text.trim().length === 0) return null;
+
+  // For multi-line posts, only consider the first non-empty line.
+  // Other lines are handled by extractCandidates' per-line extraction.
+  let effectiveText = text;
+  if (text.includes('\n')) {
+    const firstLine = text
+      .split('\n')
+      .map((l) => l.trim())
+      .find((l) => l.length > 0);
+    if (!firstLine) return null;
+    effectiveText = firstLine;
+  }
+
+  if (effectiveText.length > 80) return null;
+  const cleaned = effectiveText
     .replace(/[\u{1F000}-\u{1FFFF}]/gu, '')
     .replace(/[#@]\S+/g, '')
     .replace(/https?:\/\/\S+/g, '')
