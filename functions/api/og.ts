@@ -41,7 +41,7 @@ const BAR_COLORS = [
 ];
 
 /**
- * Parse OG request URL and extract ShareableResults
+ * Parse OG request URL and extract ShareableResults from legacy ?r= param
  */
 export function parseOGRequest(url: URL): ShareableResults | null {
   const encodedRaw = url.searchParams.get('r');
@@ -52,6 +52,36 @@ export function parseOGRequest(url: URL): ShareableResults | null {
   // URL parser decodes + as space, but LZ-string uses + in its alphabet
   const encoded = encodedRaw.replace(/ /g, '+');
   return decodeResults(encoded);
+}
+
+/**
+ * Load shared results from D1 and convert to ShareableResults for image generation.
+ */
+async function loadFromD1(
+  shareId: string,
+  db: D1Database
+): Promise<ShareableResults | null> {
+  try {
+    const row = await db
+      .prepare('SELECT data FROM shared_results WHERE id = ?')
+      .bind(shareId)
+      .first<{ data: string }>();
+
+    if (!row) return null;
+
+    const data = JSON.parse(row.data);
+    if (!Array.isArray(data.mentionCounts)) return null;
+
+    return {
+      m: data.mentionCounts.map((mc: { mention: string; count: number }) => ({
+        n: mc.mention,
+        c: mc.count,
+      })),
+      t: data.timestamp ?? Date.now(),
+    };
+  } catch {
+    return null;
+  }
 }
 
 /**
@@ -233,11 +263,26 @@ export async function generateOGImage(results: ShareableResults): Promise<Respon
 }
 
 /**
- * Cloudflare Workers handler for OG image endpoint
+ * Cloudflare Workers handler for OG image endpoint.
+ * Supports both ?r= (legacy LZ-compressed) and ?s= (D1 share ID) params.
  */
-export async function onRequest(context: { request: Request }): Promise<Response> {
+export async function onRequest(context: {
+  request: Request;
+  env?: { SHARED_RESULTS?: D1Database };
+}): Promise<Response> {
   const url = new URL(context.request.url);
-  const results = parseOGRequest(url);
+
+  // Try D1-backed ?s= param first, then fall back to legacy ?r=
+  let results: ShareableResults | null = null;
+
+  const shareId = url.searchParams.get('s');
+  if (shareId && context.env?.SHARED_RESULTS) {
+    results = await loadFromD1(shareId, context.env.SHARED_RESULTS);
+  }
+
+  if (!results) {
+    results = parseOGRequest(url);
+  }
 
   if (!results) {
     return new Response('Missing or invalid results parameter', {
@@ -270,4 +315,7 @@ export async function onRequest(context: { request: Request }): Promise<Response
   }
 }
 
-export default { fetch: onRequest };
+export default {
+  fetch: (request: Request, env?: { SHARED_RESULTS?: D1Database }) =>
+    onRequest({ request, env }),
+};
