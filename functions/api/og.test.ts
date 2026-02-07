@@ -189,7 +189,10 @@ describe('OG Image Generator', () => {
 
   describe('onRequest handler', () => {
     // Import handler dynamically for testing
-    let onRequest: (context: { request: Request }) => Promise<Response>;
+    let onRequest: (context: {
+      request: Request;
+      env?: { SHARED_RESULTS?: D1Database };
+    }) => Promise<Response>;
 
     beforeEach(async () => {
       const module = await import('./og');
@@ -242,6 +245,68 @@ describe('OG Image Generator', () => {
       // Check we can get the array buffer (body exists)
       const arrayBuffer = await response.arrayBuffer();
       expect(arrayBuffer.byteLength).toBeGreaterThan(0);
+    });
+
+    it('should return 200 with PNG for valid ?s= D1 request', async () => {
+      // Mock D1 database
+      const storedData = JSON.stringify({
+        mentionCounts: [
+          { mention: 'Nile', count: 5, posts: [] },
+          { mention: 'Amazon', count: 3, posts: [] },
+        ],
+        timestamp: Date.now(),
+      });
+
+      const mockDb = {
+        prepare: () => ({
+          bind: () => ({
+            first: async () => ({ data: storedData }),
+          }),
+        }),
+      } as unknown as D1Database;
+
+      const request = new Request('https://starcounter.app/api/og?s=abc12345');
+      const response = await onRequest({
+        request,
+        env: { SHARED_RESULTS: mockDb },
+      });
+
+      expect(response.status).toBe(200);
+      expect(response.headers.get('Content-Type')).toBe('image/png');
+    });
+
+    it('should return 400 for ?s= with no D1 match', async () => {
+      const mockDb = {
+        prepare: () => ({
+          bind: () => ({
+            first: async () => null,
+          }),
+        }),
+      } as unknown as D1Database;
+
+      const request = new Request('https://starcounter.app/api/og?s=notfound');
+      const response = await onRequest({
+        request,
+        env: { SHARED_RESULTS: mockDb },
+      });
+
+      expect(response.status).toBe(400);
+    });
+
+    it('should fall back to ?r= if ?s= has no env', async () => {
+      const results: ShareableResults = {
+        m: [{ n: 'Fallback', c: 2 }],
+        t: Date.now(),
+      };
+      const encoded = encodeResults(results);
+      // Both params present but no env — should use ?r=
+      const request = new Request(
+        `https://starcounter.app/api/og?s=abc12345&r=${encoded}`
+      );
+
+      const response = await onRequest({ request });
+
+      expect(response.status).toBe(200);
     });
   });
 });
