@@ -27,8 +27,6 @@ export {
   fingerprint,
   ngrams,
   ngramSimilarity,
-  levenshtein,
-  editSimilarity,
   fingerprintContains,
   findBestMatch,
   suggestClusters,
