@@ -8,7 +8,7 @@
 export type MatchResult = {
   readonly category: string;
   readonly score: number;
-  readonly method: 'fingerprint' | 'ngram' | 'levenshtein';
+  readonly method: 'fingerprint' | 'ngram';
 };
 
 /**
@@ -18,7 +18,7 @@ export type ClusterSuggestion = {
   readonly suggestedCategory: string;
   readonly postUris: readonly string[];
   readonly score: number;
-  readonly method: 'fingerprint' | 'ngram' | 'levenshtein';
+  readonly method: 'fingerprint' | 'ngram';
 };
 
 // Articles and common words to exclude from fingerprints
@@ -113,62 +113,6 @@ export function ngramSimilarity(a: string, b: string, n = 2): number {
 }
 
 /**
- * Compute Levenshtein edit distance between two strings.
- * Returns the minimum number of single-character edits (insertions, deletions,
- * substitutions) needed to transform one string into the other.
- *
- * @param a - First string
- * @param b - Second string
- */
-export function levenshtein(a: string, b: string): number {
-  const aLower = a.toLowerCase();
-  const bLower = b.toLowerCase();
-
-  // Early exits
-  if (aLower === bLower) return 0;
-  if (aLower.length === 0) return bLower.length;
-  if (bLower.length === 0) return aLower.length;
-
-  // Use two rows instead of full matrix for memory efficiency
-  let prevRow = Array.from({ length: bLower.length + 1 }, (_, i) => i);
-  let currRow = new Array<number>(bLower.length + 1);
-
-  for (let i = 1; i <= aLower.length; i++) {
-    currRow[0] = i;
-
-    for (let j = 1; j <= bLower.length; j++) {
-      const cost = aLower[i - 1] === bLower[j - 1] ? 0 : 1;
-      currRow[j] = Math.min(
-        (prevRow[j] ?? 0) + 1, // deletion
-        (currRow[j - 1] ?? 0) + 1, // insertion
-        (prevRow[j - 1] ?? 0) + cost // substitution
-      );
-    }
-
-    // Swap rows
-    [prevRow, currRow] = [currRow, prevRow];
-  }
-
-  return prevRow[bLower.length] ?? 0;
-}
-
-/**
- * Compute normalized edit similarity (0-1) from Levenshtein distance.
- * 1 = identical, 0 = completely different.
- *
- * @param a - First string
- * @param b - Second string
- */
-export function editSimilarity(a: string, b: string): number {
-  const distance = levenshtein(a, b);
-  const maxLen = Math.max(a.length, b.length);
-
-  if (maxLen === 0) return 1; // Both empty = identical
-
-  return 1 - distance / maxLen;
-}
-
-/**
  * Check if a fingerprint contains another (order-independent substring match).
  *
  * @param textFp - Fingerprint of the full text
@@ -203,14 +147,9 @@ export function findBestMatch(
   thresholds: {
     fingerprint?: number;
     ngram?: number;
-    levenshtein?: number;
   } = {}
 ): MatchResult | null {
-  const {
-    fingerprint: fpThreshold = 1.0,
-    ngram: ngThreshold = 0.5,
-    levenshtein: levThreshold = 0.8,
-  } = thresholds;
+  const { fingerprint: fpThreshold = 1.0, ngram: ngThreshold = 0.5 } = thresholds;
 
   const textFp = fingerprint(text);
 
@@ -231,18 +170,7 @@ export function findBestMatch(
       bestNgram = { category, score, method: 'ngram' };
     }
   }
-  if (bestNgram) return bestNgram;
-
-  // Method 3: Edit similarity (for short category names)
-  let bestEdit: MatchResult | null = null;
-  for (const category of categories) {
-    const score = editSimilarity(text, category);
-    if (score >= levThreshold && (!bestEdit || score > bestEdit.score)) {
-      bestEdit = { category, score, method: 'levenshtein' };
-    }
-  }
-
-  return bestEdit;
+  return bestNgram;
 }
 
 /**
@@ -268,7 +196,6 @@ export function suggestClusters(
     const match = findBestMatch(text, categories, {
       fingerprint: 1.0,
       ngram: minScore,
-      levenshtein: minScore,
     });
 
     if (match) {

@@ -3,8 +3,6 @@ import {
   fingerprint,
   ngrams,
   ngramSimilarity,
-  levenshtein,
-  editSimilarity,
   fingerprintContains,
   findBestMatch,
   suggestClusters,
@@ -111,64 +109,6 @@ describe('ngramSimilarity', () => {
   });
 });
 
-describe('levenshtein', () => {
-  it('returns 0 for identical strings', () => {
-    expect(levenshtein('hello', 'hello')).toBe(0);
-  });
-
-  it('is case insensitive', () => {
-    expect(levenshtein('Hello', 'HELLO')).toBe(0);
-  });
-
-  it('counts single character difference', () => {
-    expect(levenshtein('cat', 'bat')).toBe(1);
-    expect(levenshtein('cat', 'cats')).toBe(1);
-    expect(levenshtein('cats', 'cat')).toBe(1);
-  });
-
-  it('handles empty strings', () => {
-    expect(levenshtein('', '')).toBe(0);
-    expect(levenshtein('abc', '')).toBe(3);
-    expect(levenshtein('', 'xyz')).toBe(3);
-  });
-
-  it('calculates correct distance for transpositions', () => {
-    // Transposition requires 2 operations (delete + insert)
-    expect(levenshtein('ab', 'ba')).toBe(2);
-  });
-
-  it('handles real-world typos', () => {
-    expect(levenshtein('Pulp Fiction', 'Pulp Ficton')).toBe(1);
-    expect(levenshtein('The Matrix', 'The Matirx')).toBe(2);
-  });
-
-  it('handles strings of very different lengths', () => {
-    expect(levenshtein('a', 'abcdef')).toBe(5);
-    expect(levenshtein('abcdef', 'a')).toBe(5);
-  });
-});
-
-describe('editSimilarity', () => {
-  it('returns 1 for identical strings', () => {
-    expect(editSimilarity('hello', 'hello')).toBe(1);
-  });
-
-  it('returns 1 for both empty strings', () => {
-    expect(editSimilarity('', '')).toBe(1);
-  });
-
-  it('returns high similarity for strings with one char difference', () => {
-    // "Pulp Fiction" (12 chars) vs "Pulp Ficton" (11 chars) - 1 edit
-    const sim = editSimilarity('Pulp Fiction', 'Pulp Ficton');
-    expect(sim).toBeGreaterThan(0.9);
-  });
-
-  it('returns 0 for completely different strings of same length', () => {
-    const sim = editSimilarity('abc', 'xyz');
-    expect(sim).toBe(0);
-  });
-});
-
 describe('fingerprintContains', () => {
   it('returns true when text contains all category tokens', () => {
     const textFp = fingerprint('I loved The Hunt for Red October last night');
@@ -232,20 +172,12 @@ describe('findBestMatch', () => {
     expect(result?.method).toBe('ngram');
   });
 
-  it('finds levenshtein match for small differences', () => {
-    const result = findBestMatch('The Matirx', categories, { levenshtein: 0.8 });
-    expect(result).not.toBeNull();
-    expect(result?.category).toBe('The Matrix');
-    expect(result?.method).toBe('levenshtein');
-  });
-
   it('returns null when no match found', () => {
     const result = findBestMatch('completely unrelated text', categories);
     expect(result).toBeNull();
   });
 
   it('prefers fingerprint over other methods', () => {
-    // "Pulp Fiction" should match via fingerprint, not levenshtein
     const result = findBestMatch('pulp fiction', categories);
     expect(result).not.toBeNull();
     expect(result?.method).toBe('fingerprint');
@@ -253,10 +185,10 @@ describe('findBestMatch', () => {
 
   it('skips short categories for ngram matching', () => {
     // "RED" (3 chars) should not match via ngram since it's < 6 chars
-    const shortCategories = ['RED', 'IT'];
+    const shortCategories = ['RED'];
     const result = findBestMatch('completely different', shortCategories, { ngram: 0.1 });
-    // Should not match via ngram (categories too short), might match via levenshtein
-    expect(result?.method).not.toBe('ngram');
+    // Should not match via ngram (categories too short), and fingerprint doesn't contain "red"
+    expect(result).toBeNull();
   });
 
   it('selects best ngram match when multiple qualify', () => {
@@ -286,15 +218,6 @@ describe('findBestMatch', () => {
     // Should match second category better via ngram
     expect(result?.method).toBe('ngram');
     expect(result?.category).toBe('AlphaBeta Chars');
-  });
-
-  it('selects best levenshtein match when multiple qualify', () => {
-    // Two similar short categories
-    const similarCategories = ['Cat', 'Bat', 'Hat'];
-    const result = findBestMatch('Cat', similarCategories, { levenshtein: 0.5 });
-    expect(result).not.toBeNull();
-    expect(result?.score).toBe(1); // Exact match
-    expect(result?.category).toBe('Cat');
   });
 
   it('handles empty categories array', () => {

@@ -217,7 +217,7 @@ describe('ClusterReviewModal', () => {
           suggestedCategory: 'Inception',
           postUris: ['post1'],
           score: 0.6,
-          method: 'levenshtein',
+          method: 'ngram',
         },
       ];
 
