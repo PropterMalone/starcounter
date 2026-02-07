@@ -431,6 +431,26 @@ describe('discoverDictionary', () => {
     expect(dict.entries.has('Red October')).toBe(true);
   });
 
+  it('allows single-mention short titles when minConfidentForShortTitle is 1', () => {
+    const { posts, textMap, lookup } = setup(
+      [['uri:1', 'Heat', makeTextContent('Heat')]],
+      [makeValidatedMention('Heat', 'Heat')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText, {
+      minConfidentForShortTitle: 1,
+    });
+    expect(dict.entries.has('Heat')).toBe(true);
+  });
+
+  it('still requires ≥2 confident mentions for short titles with default options', () => {
+    const { posts, textMap, lookup } = setup(
+      [['uri:1', 'Heat', makeTextContent('Heat')]],
+      [makeValidatedMention('Heat', 'Heat')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    expect(dict.entries.has('Heat')).toBe(false);
+  });
+
   it('excludes quoted text from root post in searchText', () => {
     // A post quoting the root should not have the root's text in its searchText
     const { posts, textMap, lookup } = setup(

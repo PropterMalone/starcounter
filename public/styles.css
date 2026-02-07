@@ -118,6 +118,33 @@ header h1 {
   cursor: pointer;
 }
 
+.form-hint {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+.optional {
+  font-weight: normal;
+  color: var(--text-secondary);
+}
+
+#custom-list {
+  width: 100%;
+  font-family: inherit;
+  resize: vertical;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+#custom-list:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
 .form-options {
   margin-bottom: 1.5rem;
   display: flex;

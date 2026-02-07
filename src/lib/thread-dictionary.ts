@@ -33,6 +33,10 @@ export type ValidationLookupEntry = {
   readonly confidence: 'high' | 'medium' | 'low';
 };
 
+export type DiscoverDictionaryOptions = {
+  readonly minConfidentForShortTitle?: number; // default: 2
+};
+
 // ---------------------------------------------------------------------------
 // Candidate extraction (broad, high-recall)
 // ---------------------------------------------------------------------------
@@ -289,13 +293,15 @@ type TitleInfo = {
  * @param lookup Validation lookup map (lowercase candidate → canonical)
  * @param rootUri URI of the root post
  * @param rootText Lowercase text of the root post
+ * @param options Optional configuration (e.g. relax short-title threshold)
  */
 export function discoverDictionary(
   posts: readonly PostView[],
   postTexts: ReadonlyMap<string, PostTextContent>,
   lookup: ReadonlyMap<string, ValidationLookupEntry>,
   rootUri: string,
-  rootText: string
+  rootText: string,
+  options?: DiscoverDictionaryOptions
 ): ThreadDictionary {
   const titleInfo = new Map<string, TitleInfo>();
 
@@ -417,9 +423,10 @@ export function discoverDictionary(
       if (!hasExactMultiWord) continue;
     }
 
-    // Rule 3: Short titles (1-2 words) need ≥2 confident mentions
+    // Rule 3: Short titles (1-2 words) need ≥N confident mentions (default 2)
+    const minConfident = options?.minConfidentForShortTitle ?? 2;
     const wordCount = canonical.split(/\s+/).length;
-    if (wordCount <= 2 && confidentCount < 2) continue;
+    if (wordCount <= 2 && confidentCount < minConfident) continue;
 
     // Rule 4: Alias must share ≥60% of canonical's significant words
     const hasCloseMatch = [...info.aliases].some((alias) => {
