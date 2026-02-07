@@ -15,6 +15,8 @@ type TMDBResult = {
 type MusicBrainzResult = {
   readonly id?: string;
   readonly title?: string;
+  readonly name?: string;
+  readonly 'sort-name'?: string;
   readonly score?: number;
   readonly 'artist-credit'?: Array<{ readonly name: string }>;
 };
@@ -127,8 +129,13 @@ export async function validateMention(
         mediaType === 'UNKNOWN' ? 'MOVIE' : mediaType,
         options.tmdbApiKey
       );
-    } else if (mediaType === 'MUSIC') {
-      result = await validateMusicBrainz(title, options.musicbrainzUserAgent);
+    } else if (
+      mediaType === 'MUSIC' ||
+      mediaType === 'SONG' ||
+      mediaType === 'ALBUM' ||
+      mediaType === 'ARTIST'
+    ) {
+      result = await validateMusicBrainz(title, mediaType, options.musicbrainzUserAgent);
     } else if (mediaType === 'VIDEO_GAME') {
       result = await validateIGDB(title, options.twitchClientId, options.twitchClientSecret);
     } else {
@@ -440,12 +447,39 @@ function calculateTMDBConfidence(result: TMDBResult): 'high' | 'medium' | 'low' 
 }
 
 /**
- * Validate music against MusicBrainz
+ * Validate music against MusicBrainz.
+ *
+ * Routes to the appropriate endpoint based on mediaType:
+ *   SONG / MUSIC → /recording (search by recording title)
+ *   ALBUM        → /release   (search by release title)
+ *   ARTIST       → /artist    (search by artist name)
  */
-async function validateMusicBrainz(title: string, userAgent: string): Promise<ValidationResult> {
-  // Use fuzzy search with Lucene syntax
-  const query = `recording:${title}~0.8`;
-  const url = `https://musicbrainz.org/ws/2/recording/?query=${encodeURIComponent(query)}&fmt=json&limit=5`;
+async function validateMusicBrainz(
+  title: string,
+  mediaType: MediaType,
+  userAgent: string
+): Promise<ValidationResult> {
+  let endpoint: string;
+  let queryField: string;
+  let resultsKey: string;
+
+  if (mediaType === 'ALBUM') {
+    endpoint = 'release';
+    queryField = 'release';
+    resultsKey = 'releases';
+  } else if (mediaType === 'ARTIST') {
+    endpoint = 'artist';
+    queryField = 'artist';
+    resultsKey = 'artists';
+  } else {
+    // SONG, MUSIC, or fallback
+    endpoint = 'recording';
+    queryField = 'recording';
+    resultsKey = 'recordings';
+  }
+
+  const query = `${queryField}:${title}~0.8`;
+  const url = `https://musicbrainz.org/ws/2/${endpoint}/?query=${encodeURIComponent(query)}&fmt=json&limit=5`;
 
   const response = await fetch(url, {
     headers: {
@@ -458,8 +492,9 @@ async function validateMusicBrainz(title: string, userAgent: string): Promise<Va
   }
 
   const data = await response.json();
+  const results: MusicBrainzResult[] = data[resultsKey] ?? [];
 
-  if (data.recordings.length === 0) {
+  if (results.length === 0) {
     return {
       title,
       validated: false,
@@ -467,20 +502,20 @@ async function validateMusicBrainz(title: string, userAgent: string): Promise<Va
     };
   }
 
-  // Take highest score result
-  const result: MusicBrainzResult = data.recordings[0];
-
-  // Calculate confidence from MusicBrainz score (0-100)
+  const result = results[0]!;
   const confidence = calculateMusicBrainzConfidence(result.score ?? 0);
 
-  // Extract artist
+  // Artists use `name`; recordings and releases use `title`
+  const matchedTitle = mediaType === 'ARTIST' ? result.name : result.title;
+
+  // Extract artist credit (not present on artist results)
   const artist =
     result['artist-credit'] && result['artist-credit'][0]
       ? result['artist-credit'][0].name
       : undefined;
 
   return {
-    title: result.title,
+    title: matchedTitle,
     validated: true,
     confidence,
     source: 'musicbrainz',

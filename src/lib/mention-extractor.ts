@@ -1,10 +1,21 @@
 // pattern: Functional Core
-export type MediaType = 'MOVIE' | 'TV_SHOW' | 'MUSIC' | 'VIDEO_GAME' | 'UNKNOWN';
+export type MediaType =
+  | 'MOVIE'
+  | 'TV_SHOW'
+  | 'MUSIC'
+  | 'SONG'
+  | 'ALBUM'
+  | 'ARTIST'
+  | 'VIDEO_GAME'
+  | 'UNKNOWN';
 
 export const MediaType = {
   MOVIE: 'MOVIE' as const,
   TV_SHOW: 'TV_SHOW' as const,
   MUSIC: 'MUSIC' as const,
+  SONG: 'SONG' as const,
+  ALBUM: 'ALBUM' as const,
+  ARTIST: 'ARTIST' as const,
   VIDEO_GAME: 'VIDEO_GAME' as const,
   UNKNOWN: 'UNKNOWN' as const,
 };

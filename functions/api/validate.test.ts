@@ -202,6 +202,40 @@ describe('validateMention', () => {
       expect(result.source).toBe('musicbrainz');
     });
 
+    it('should validate SONG type via recording endpoint', async () => {
+      const mockResponse = {
+        recordings: [
+          {
+            id: 'rec-789',
+            title: 'Stairway to Heaven',
+            score: 95,
+            'artist-credit': [{ name: 'Led Zeppelin' }],
+          },
+        ],
+      };
+
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
+        ok: true,
+        json: async () => mockResponse,
+      });
+
+      const result = await validateMention('Stairway to Heaven', MediaType.SONG, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(true);
+      expect(result.title).toBe('Stairway to Heaven');
+      expect(result.artist).toBe('Led Zeppelin');
+
+      const callUrl = (
+        (global.fetch as unknown as MockedFetch).mock.calls[0] as unknown[]
+      )[0] as string;
+      expect(callUrl).toContain('/recording/');
+    });
+
     it('should use fuzzy search for MusicBrainz', async () => {
       (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
@@ -219,6 +253,111 @@ describe('validateMention', () => {
         (global.fetch as unknown as MockedFetch).mock.calls[0] as unknown[]
       )[0] as string;
       expect(callUrl).toContain('~'); // Fuzzy operator
+    });
+  });
+
+  describe('MusicBrainz album validation', () => {
+    it('should search the release endpoint for ALBUM type', async () => {
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          releases: [
+            {
+              id: 'rel-123',
+              title: 'Abbey Road',
+              score: 95,
+              'artist-credit': [{ name: 'The Beatles' }],
+            },
+          ],
+        }),
+      });
+
+      const result = await validateMention('Abbey Road', MediaType.ALBUM, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(true);
+      expect(result.title).toBe('Abbey Road');
+      expect(result.artist).toBe('The Beatles');
+      expect(result.source).toBe('musicbrainz');
+
+      const callUrl = (
+        (global.fetch as unknown as MockedFetch).mock.calls[0] as unknown[]
+      )[0] as string;
+      expect(callUrl).toContain('/release/');
+      expect(callUrl).toContain('release%3A');
+    });
+
+    it('should return low confidence when no releases match', async () => {
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ releases: [] }),
+      });
+
+      const result = await validateMention('Nonexistent Album', MediaType.ALBUM, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(false);
+      expect(result.confidence).toBe('low');
+    });
+  });
+
+  describe('MusicBrainz artist validation', () => {
+    it('should search the artist endpoint for ARTIST type', async () => {
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          artists: [
+            {
+              id: 'art-456',
+              name: 'Radiohead',
+              'sort-name': 'Radiohead',
+              score: 100,
+            },
+          ],
+        }),
+      });
+
+      const result = await validateMention('Radiohead', MediaType.ARTIST, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(true);
+      expect(result.title).toBe('Radiohead');
+      expect(result.source).toBe('musicbrainz');
+
+      const callUrl = (
+        (global.fetch as unknown as MockedFetch).mock.calls[0] as unknown[]
+      )[0] as string;
+      expect(callUrl).toContain('/artist/');
+      expect(callUrl).toContain('artist%3A');
+    });
+
+    it('should return low confidence when no artists match', async () => {
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ artists: [] }),
+      });
+
+      const result = await validateMention('Nonexistent Artist', MediaType.ARTIST, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(false);
+      expect(result.confidence).toBe('low');
     });
   });
 
