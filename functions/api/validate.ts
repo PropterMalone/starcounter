@@ -66,7 +66,7 @@ export type ValidationResult = {
 };
 
 const CACHE_TTL = 60 * 60 * 24; // 24 hours - shorter to pick up scoring improvements faster
-const CACHE_VERSION = 'v5'; // Increment to invalidate stale entries after scoring changes
+const CACHE_VERSION = 'v6'; // Increment to invalidate stale entries after scoring changes
 
 /**
  * Safely read from KV cache, returning null on any error
@@ -459,6 +459,19 @@ async function validateMusicBrainz(
   mediaType: MediaType,
   userAgent: string
 ): Promise<ValidationResult> {
+  const titleLower = title.toLowerCase().trim();
+  const wordCount = titleLower.split(/\s+/).length;
+
+  // Reject generic single words (same as TMDB/IGDB)
+  if (wordCount === 1 && GENERIC_WORDS.has(titleLower)) {
+    return { title, validated: false, confidence: 'low' };
+  }
+
+  // Reject very short titles
+  if (title.length < 3) {
+    return { title, validated: false, confidence: 'low' };
+  }
+
   let endpoint: string;
   let queryField: string;
   let resultsKey: string;
@@ -478,8 +491,8 @@ async function validateMusicBrainz(
     resultsKey = 'recordings';
   }
 
-  const query = `${queryField}:${title}~0.8`;
-  const url = `https://musicbrainz.org/ws/2/${endpoint}/?query=${encodeURIComponent(query)}&fmt=json&limit=5`;
+  const query = `${queryField}:${title}`;
+  const url = `https://musicbrainz.org/ws/2/${endpoint}/?query=${encodeURIComponent(query)}&fmt=json&limit=20`;
 
   const response = await fetch(url, {
     headers: {
@@ -502,27 +515,48 @@ async function validateMusicBrainz(
     };
   }
 
-  const result = results[0]!;
-  const confidence = calculateMusicBrainzConfidence(result.score ?? 0);
+  // Score all results and pick the best match (same pattern as TMDB/IGDB).
+  // MusicBrainz ranks by term frequency, so "Fear" returns "Fear Fear Fear" first.
+  // Require score >= 75 to reject these false positives.
+  const MIN_MUSICBRAINZ_SCORE = 75;
+  let bestMatch: { result: MusicBrainzResult; resultTitle: string; score: number } | null = null;
 
-  // Artists use `name`; recordings and releases use `title`
-  const matchedTitle = mediaType === 'ARTIST' ? result.name : result.title;
+  for (const result of results) {
+    const resultTitle = mediaType === 'ARTIST' ? result.name : result.title;
+    if (!resultTitle) continue;
+    const score = scoreTitleMatch(title, resultTitle);
 
-  // Extract artist credit (not present on artist results)
-  const artist =
-    result['artist-credit'] && result['artist-credit'][0]
-      ? result['artist-credit'][0].name
-      : undefined;
+    if (score >= MIN_MUSICBRAINZ_SCORE && (!bestMatch || score > bestMatch.score)) {
+      bestMatch = { result, resultTitle, score };
+    }
+  }
 
+  if (bestMatch) {
+    const confidence = calculateMusicBrainzConfidence(bestMatch.result.score ?? 0);
+
+    // Extract artist credit (not present on artist results)
+    const artist =
+      bestMatch.result['artist-credit'] && bestMatch.result['artist-credit'][0]
+        ? bestMatch.result['artist-credit'][0].name
+        : undefined;
+
+    return {
+      title: bestMatch.resultTitle,
+      validated: true,
+      confidence,
+      source: 'musicbrainz',
+      artist,
+      metadata: {
+        id: bestMatch.result.id,
+      },
+    };
+  }
+
+  // No good match found
   return {
-    title: matchedTitle,
-    validated: true,
-    confidence,
-    source: 'musicbrainz',
-    artist,
-    metadata: {
-      id: result.id,
-    },
+    title,
+    validated: false,
+    confidence: 'low',
   };
 }
 
