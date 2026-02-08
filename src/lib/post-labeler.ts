@@ -8,7 +8,7 @@
 import type { PostView } from '../types';
 import type { PostTextContent } from './text-extractor';
 import type { ThreadDictionary, ValidationLookupEntry } from './thread-dictionary';
-import { extractCandidates, extractShortTextCandidate, isReaction } from './thread-dictionary';
+import { extractCandidates, extractShortTextCandidate, isAgreement } from './thread-dictionary';
 
 type ConsumedRange = { readonly start: number; readonly end: number };
 
@@ -128,7 +128,11 @@ export function labelPosts(
   for (const post of posts) {
     if (predictions.has(post.uri)) continue;
     if (post.uri === rootUri) continue;
-    if (!isReaction(post.record.text) && (post.record.text || '').length >= 100) continue;
+
+    // Only inherit for explicit agreement/endorsement (not surprise or amusement).
+    // isReaction is broad (catches "whoa", "lol", emojis) for candidate extraction;
+    // isAgreement is strict (only "yes", "same", "agreed", etc.) for inheritance.
+    if (!isAgreement(post.record.text)) continue;
 
     const parentUri = post.record.reply?.parent.uri;
     if (parentUri) {

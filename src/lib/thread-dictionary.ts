@@ -251,7 +251,7 @@ export function extractShortTextCandidate(text: string): string | null {
 }
 
 // ---------------------------------------------------------------------------
-// Reaction detection (for context inheritance)
+// Reaction detection (for candidate extraction — broad)
 // ---------------------------------------------------------------------------
 
 const REACTION_PATTERNS: RegExp[] = [
@@ -266,6 +266,7 @@ const REACTION_PATTERNS: RegExp[] = [
   /^well,?\s*yes/i,
 ];
 
+/** Broad reaction detection: don't try to extract titles from these posts. */
 export function isReaction(text: string): boolean {
   const trimmed = (text || '').trim();
   if (trimmed.length === 0) return true;
@@ -273,6 +274,33 @@ export function isReaction(text: string): boolean {
     if (REACTION_PATTERNS.some((p) => p.test(trimmed))) return true;
   }
   if (trimmed.length <= 15 && !/[A-Z][a-z]{2,}/.test(trimmed)) return true;
+  return false;
+}
+
+// ---------------------------------------------------------------------------
+// Agreement detection (for context inheritance — strict)
+// ---------------------------------------------------------------------------
+
+// Only explicit agreement/endorsement patterns. Excludes surprise ("whoa"),
+// amusement ("lol"), and generic short text that isReaction catches.
+const AGREEMENT_PATTERNS: RegExp[] = [
+  /^(yes|yep|yeah|yup|agreed|exactly|absolutely|definitely|this|same|correct|100%|💯)/i,
+  /^(so good|great|amazing|incredible|love (it|this)|hell yeah|oh hell yeah)/i,
+  /^(came here to say this|this is (it|the one|mine)|good (call|choice|pick|answer))/i,
+  /^(underrated|overrated|classic|banger|legendary|goat|peak)/i,
+  /^me too/i,
+  /^right\??!*$/i,
+  /^well,?\s*yes/i,
+  /^(👏|👍|💯|🎯|🤝|✅|🙌)+$/,
+];
+
+/** Strict agreement detection: post endorses parent's content, suitable for inheritance. */
+export function isAgreement(text: string): boolean {
+  const trimmed = (text || '').trim();
+  if (trimmed.length === 0) return false; // Empty posts don't agree
+  if (trimmed.length < 50) {
+    if (AGREEMENT_PATTERNS.some((p) => p.test(trimmed))) return true;
+  }
   return false;
 }
 
