@@ -31,6 +31,8 @@ export function labelPosts(
   rootUri: string,
   rootText: string
 ): Map<string, Set<string>> {
+  // Use patched lookup (with merge redirects) if available, otherwise original
+  const effectiveLookup = dictionary.patchedLookup ?? lookup;
   const lowerRootText = rootText.toLowerCase();
   const postsByUri = new Map<string, PostView>();
   for (const p of posts) postsByUri.set(p.uri, p);
@@ -77,7 +79,7 @@ export function labelPosts(
       const candidateLower = candidate.toLowerCase();
       if (consumedCandidates.some((longer) => longer.includes(candidateLower))) continue;
 
-      const entry = lookup.get(candidateLower);
+      const entry = effectiveLookup.get(candidateLower);
       if (entry && dictionary.entries.has(entry.canonical)) {
         validTitles.add(entry.canonical);
         consumedCandidates.push(candidateLower);

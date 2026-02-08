@@ -6,6 +6,7 @@ import {
   isAgreement,
   buildValidationLookup,
   discoverDictionary,
+  normalizeForMerge,
 } from './thread-dictionary';
 import type { PostTextContent } from './text-extractor';
 import type { PostView } from '../types';
@@ -583,5 +584,109 @@ describe('discoverDictionary', () => {
     );
     const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
     expect(dict.entries.has('Die Hard')).toBe(true);
+  });
+
+  it('merges entries with same normalized canonical form', () => {
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'All Coming Back to Me Now', makeTextContent('All Coming Back to Me Now')],
+        [
+          'uri:2',
+          'All Coming Back to Me Now again',
+          makeTextContent('All Coming Back to Me Now again'),
+        ],
+        [
+          'uri:3',
+          "It's All Coming Back to Me Now",
+          makeTextContent("It's All Coming Back to Me Now"),
+        ],
+        [
+          'uri:4',
+          "It's All Coming Back to Me Now!",
+          makeTextContent("It's All Coming Back to Me Now!"),
+        ],
+      ],
+      [
+        makeValidatedMention('All Coming Back to Me Now', 'All Coming Back to Me Now'),
+        makeValidatedMention("It's All Coming Back to Me Now", "It's All Coming Back to Me Now"),
+      ]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    // Both should be merged into one entry
+    const hasFirst = dict.entries.has('All Coming Back to Me Now');
+    const hasSecond = dict.entries.has("It's All Coming Back to Me Now");
+    expect(hasFirst || hasSecond).toBe(true);
+    expect(hasFirst && hasSecond).toBe(false); // only one survives
+  });
+
+  it('provides patchedLookup with redirects from merge', () => {
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'The End of the World', makeTextContent('The End of the World')],
+        ['uri:2', 'The End of the World!', makeTextContent('The End of the World!')],
+        ['uri:3', "It's the End of the World", makeTextContent("It's the End of the World")],
+        ['uri:4', "It's the End of the World!", makeTextContent("It's the End of the World!")],
+      ],
+      [
+        makeValidatedMention('The End of the World', 'The End of the World'),
+        makeValidatedMention("It's the End of the World", "It's the End of the World"),
+      ]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    expect(dict.patchedLookup).toBeDefined();
+    // Every entry in patchedLookup should point to a canonical that exists in the dictionary
+    for (const [, entry] of dict.patchedLookup!) {
+      expect(dict.entries.has(entry.canonical)).toBe(true);
+    }
+  });
+
+  it('merges entries with curly quotes to straight quote equivalents', () => {
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', "It's Good", makeTextContent("It's Good")],
+        ['uri:2', "It's Good yes", makeTextContent("It's Good yes")],
+        ['uri:3', 'It\u2019s Good', makeTextContent('It\u2019s Good')],
+        ['uri:4', 'It\u2019s Good wow', makeTextContent('It\u2019s Good wow')],
+      ],
+      [
+        makeValidatedMention("It's Good", "It's Good"),
+        makeValidatedMention('It\u2019s Good', 'It\u2019s Good'),
+      ]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    // Both should merge — curly and straight quote versions are the same
+    const titles = [...dict.entries.keys()].filter((t) => t.toLowerCase().includes('good'));
+    expect(titles.length).toBe(1);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// normalizeForMerge
+// ---------------------------------------------------------------------------
+
+describe('normalizeForMerge', () => {
+  it('strips leading articles', () => {
+    expect(normalizeForMerge('The Matrix')).toBe('matrix');
+    expect(normalizeForMerge('A Beautiful Mind')).toBe('beautiful mind');
+    expect(normalizeForMerge('An Officer and a Gentleman')).toBe('officer and a gentleman');
+  });
+
+  it('strips leading contractions then articles', () => {
+    expect(normalizeForMerge("It's the End of the World")).toBe('end of the world');
+    expect(normalizeForMerge("Don't Stop Me Now")).toBe('stop me now');
+  });
+
+  it('normalizes curly quotes to straight', () => {
+    expect(normalizeForMerge('It\u2019s All Good')).toBe('all good');
+    expect(normalizeForMerge('It\u2018s All Good')).toBe('all good');
+  });
+
+  it('strips trailing punctuation and plural', () => {
+    expect(normalizeForMerge('Dashboard Lights')).toBe('dashboard light');
+    expect(normalizeForMerge('Dashboard Light.')).toBe('dashboard light');
+  });
+
+  it('collapses whitespace', () => {
+    expect(normalizeForMerge('  Hello   World  ')).toBe('hello world');
   });
 });

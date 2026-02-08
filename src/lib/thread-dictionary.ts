@@ -25,6 +25,8 @@ export type DictionaryEntry = {
 
 export type ThreadDictionary = {
   readonly entries: ReadonlyMap<string, DictionaryEntry>;
+  /** Lookup with merged canonicals redirected. Use this for labeling instead of the original. */
+  readonly patchedLookup?: ReadonlyMap<string, ValidationLookupEntry>;
 };
 
 /** Lookup entry built from validation results. */
@@ -576,5 +578,215 @@ export function discoverDictionary(
     }
   }
 
-  return { entries: dictionary };
+  // --- Canonicalization merge: same song, different API canonical forms ---
+  // MusicBrainz returns different canonical forms for the same song
+  // (e.g., "It's All Coming Back to Me Now" vs "All Coming Back to Me Now").
+  // Merge entries whose normalized forms match or have very high word overlap.
+  // Returns a redirect map so the lookup can be patched.
+  const redirects = mergeDuplicateCanonicals(dictionary);
+
+  // Patch the lookup: redirect merged canonicals to the winner.
+  // Build a new lookup with redirects applied.
+  const patchedLookup = new Map(lookup);
+  for (const [candidate, entry] of patchedLookup) {
+    const redirect = redirects.get(entry.canonical);
+    if (redirect) {
+      patchedLookup.set(candidate, { ...entry, canonical: redirect });
+    }
+  }
+
+  return { entries: dictionary, patchedLookup };
+}
+
+/** Normalize a canonical title for dedup comparison. */
+export function normalizeForMerge(title: string): string {
+  return title
+    .replace(/[\u2018\u2019\u2032]/g, "'") // curly/prime quotes → straight
+    .toLowerCase()
+    .replace(/^(it's|it is|don't|i)\s+/i, '') // strip leading contractions
+    .replace(/^(the|a|an)\s+/i, '') // strip leading articles (chained after contractions)
+    .replace(/[.,!?'"]+$/, '')
+    .replace(/s$/, '') // strip trailing plural
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/** Extract significant words (skip articles/prepositions/contractions). */
+function significantWords(title: string): string[] {
+  const stop = new Set([
+    'the',
+    'a',
+    'an',
+    'of',
+    'and',
+    'in',
+    'on',
+    'at',
+    'to',
+    'for',
+    'from',
+    'with',
+    'by',
+    'or',
+    'is',
+    'it',
+    'its',
+    'as',
+    'so',
+    'but',
+    'not',
+    'no',
+    "it's",
+    "i'm",
+    "don't",
+    "won't",
+    "can't",
+    "didn't",
+    "wasn't",
+    "isn't",
+    "aren't",
+    "couldn't",
+    "wouldn't",
+    "shouldn't",
+    "hasn't",
+    "haven't",
+    "ain't",
+    "let's",
+    "that's",
+    "what's",
+    "who's",
+    "he's",
+    "she's",
+    "we're",
+    "they're",
+    "you're",
+    "i'll",
+    "you'll",
+    "we'll",
+    "they'll",
+  ]);
+  return title
+    .toLowerCase()
+    .split(/[\s:,]+/)
+    .filter((w) => w && !stop.has(w));
+}
+
+/**
+ * Merge dictionary entries that are clearly the same song with different
+ * canonical forms from the validation API.
+ */
+function mergeDuplicateCanonicals(dictionary: Map<string, DictionaryEntry>): Map<string, string> {
+  const redirects = new Map<string, string>();
+  const entries = [...dictionary.entries()];
+
+  // Group by normalized form (catches exact matches after normalization)
+  const groups = new Map<string, string[]>();
+  for (const [canonical] of entries) {
+    const norm = normalizeForMerge(canonical);
+    const group = groups.get(norm) ?? [];
+    group.push(canonical);
+    groups.set(norm, group);
+  }
+
+  // Merge exact-normalized groups
+  for (const [, group] of groups) {
+    if (group.length <= 1) continue;
+    mergeGroup(dictionary, group, redirects);
+  }
+
+  // Second pass: word-set overlap for remaining entries that didn't normalize identically
+  // (catches "Paradise by the Dashboard Light" vs "Paradise by the Dashboard Lights")
+  const remaining = [...dictionary.keys()];
+  const merged = new Set<string>();
+
+  for (let i = 0; i < remaining.length; i++) {
+    if (merged.has(remaining[i]!)) continue;
+    const a = remaining[i]!;
+    const aWords = significantWords(a);
+    if (aWords.length < 2) continue; // skip 1-word titles — too ambiguous
+
+    const group = [a];
+    for (let j = i + 1; j < remaining.length; j++) {
+      if (merged.has(remaining[j]!)) continue;
+      const b = remaining[j]!;
+      const bWords = significantWords(b);
+      if (bWords.length < 2) continue;
+
+      // Check bidirectional overlap: both must share ≥85% of each other's words
+      const aInB = aWords.filter((w) => bWords.includes(w)).length;
+      const bInA = bWords.filter((w) => aWords.includes(w)).length;
+      const overlapA = aInB / aWords.length;
+      const overlapB = bInA / bWords.length;
+
+      if (overlapA >= 0.85 && overlapB >= 0.85) {
+        group.push(b);
+        merged.add(b);
+      }
+    }
+
+    if (group.length > 1) {
+      merged.add(a);
+      mergeGroup(dictionary, group, redirects);
+    }
+  }
+
+  return redirects;
+}
+
+/** Merge a group of dictionary entries into one, keeping the best canonical. */
+function mergeGroup(
+  dictionary: Map<string, DictionaryEntry>,
+  group: string[],
+  redirects: Map<string, string>
+): void {
+  // Pick the canonical with the most confident mentions; on tie, longest name
+  // (longer names are more specific and informative)
+  const sorted = group
+    .map((c) => ({ canonical: c, entry: dictionary.get(c)! }))
+    .filter((x) => x.entry)
+    .sort((a, b) => {
+      const confDiff = b.entry.confidentCount - a.entry.confidentCount;
+      if (confDiff !== 0) return confDiff;
+      return b.canonical.length - a.canonical.length;
+    });
+
+  if (sorted.length <= 1) return;
+
+  const winner = sorted[0]!;
+  const combinedAliases = new Set(winner.entry.aliases);
+  const combinedPostUris = new Set(winner.entry.postUris);
+  let combinedConfident = winner.entry.confidentCount;
+  let combinedIncidental = winner.entry.incidentalCount;
+
+  for (const other of sorted.slice(1)) {
+    for (const alias of other.entry.aliases) combinedAliases.add(alias);
+    for (const uri of other.entry.postUris) combinedPostUris.add(uri);
+    // Don't just add counts — recalculate from combined URIs below
+    dictionary.delete(other.canonical);
+    redirects.set(other.canonical, winner.canonical);
+  }
+
+  // Add all canonicals as aliases too (so reverse lookup finds them)
+  for (const { canonical } of sorted) {
+    combinedAliases.add(canonical.toLowerCase());
+  }
+
+  // Recalculate confident/incidental from merged data
+  // We can't perfectly separate them, so use the winner's ratio scaled up
+  const totalPrev = winner.entry.confidentCount + winner.entry.incidentalCount;
+  if (totalPrev > 0) {
+    const confRatio = winner.entry.confidentCount / totalPrev;
+    combinedConfident = Math.round(combinedPostUris.size * confRatio);
+    combinedIncidental = combinedPostUris.size - combinedConfident;
+  }
+
+  dictionary.set(winner.canonical, {
+    canonical: winner.canonical,
+    aliases: combinedAliases,
+    frequency: combinedPostUris.size,
+    confidence: winner.entry.confidence,
+    confidentCount: combinedConfident,
+    incidentalCount: combinedIncidental,
+    postUris: combinedPostUris,
+  });
 }

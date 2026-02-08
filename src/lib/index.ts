@@ -41,6 +41,7 @@ export {
   isAgreement,
   buildValidationLookup,
   discoverDictionary,
+  normalizeForMerge,
 } from './thread-dictionary';
 export type {
   DictionaryEntry,
