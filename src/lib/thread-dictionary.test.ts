@@ -640,6 +640,70 @@ describe('discoverDictionary', () => {
     }
   });
 
+  // -------------------------------------------------------------------------
+  // Fragment filter (filterFragmentTitles)
+  // -------------------------------------------------------------------------
+
+  it('filters fragment titles with a consistent content-word prefix', () => {
+    // "Stop Me Now" always preceded by "don't" → fragment of "Don't Stop Me Now"
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', "Don't Stop Me Now", makeTextContent("Don't Stop Me Now")],
+        ['uri:2', "don't Stop Me Now!", makeTextContent("don't Stop Me Now!")],
+        ['uri:3', "Don't Stop Me Now is great", makeTextContent("Don't Stop Me Now is great")],
+        ['uri:4', "love Don't Stop Me Now", makeTextContent("love Don't Stop Me Now")],
+      ],
+      [makeValidatedMention('Stop Me Now', 'Stop Me Now')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    expect(dict.entries.has('Stop Me Now')).toBe(false);
+  });
+
+  it('does not filter titles with varied prefixes', () => {
+    // "Field of Dreams" preceded by different words each time → not a fragment
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'watch Field of Dreams', makeTextContent('watch Field of Dreams')],
+        ['uri:2', 'love Field of Dreams', makeTextContent('love Field of Dreams')],
+        ['uri:3', 'saw Field of Dreams', makeTextContent('saw Field of Dreams')],
+        ['uri:4', 'Field of Dreams rules', makeTextContent('Field of Dreams rules')],
+      ],
+      [makeValidatedMention('Field of Dreams', 'Field of Dreams')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    expect(dict.entries.has('Field of Dreams')).toBe(true);
+  });
+
+  it('ignores articles and prepositions as prefix words', () => {
+    // "Great Muppet Caper" always preceded by "the" → NOT a fragment
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'The Great Muppet Caper', makeTextContent('The Great Muppet Caper')],
+        ['uri:2', 'the Great Muppet Caper', makeTextContent('the Great Muppet Caper')],
+        ['uri:3', 'The Great Muppet Caper rules', makeTextContent('The Great Muppet Caper rules')],
+      ],
+      [makeValidatedMention('Great Muppet Caper', 'Great Muppet Caper')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    expect(dict.entries.has('Great Muppet Caper')).toBe(true);
+  });
+
+  it('does not filter when fewer than 3 posts contain the title text', () => {
+    // Only 2 posts have "Stop Me Now" in text → insufficient data for prefix detection
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', "Don't Stop Me Now", makeTextContent("Don't Stop Me Now")],
+        ['uri:2', "don't Stop Me Now", makeTextContent("don't Stop Me Now")],
+        ['uri:3', 'YES', makeTextContent('YES')], // inherited, no title in text
+        ['uri:4', 'Stop Me Now!', makeTextContent('Stop Me Now!')],
+      ],
+      [makeValidatedMention('Stop Me Now', 'Stop Me Now')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    // Only 3 posts contain "stop me now", but only 2 have "don't" prefix → 66% < 70%
+    expect(dict.entries.has('Stop Me Now')).toBe(true);
+  });
+
   it('merges entries with curly quotes to straight quote equivalents', () => {
     const { posts, textMap, lookup } = setup(
       [

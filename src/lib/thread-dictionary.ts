@@ -578,6 +578,11 @@ export function discoverDictionary(
     }
   }
 
+  // --- Quality filter: conversational phrases & embedded fragments ---
+  // Short titles that are common English phrases (e.g., "Good One") or that always
+  // appear inside a longer phrase (e.g., "Stop Me Now" inside "Don't Stop Me Now").
+  filterFragmentTitles(dictionary, postTexts, rootUri);
+
   // --- Canonicalization merge: same song, different API canonical forms ---
   // MusicBrainz returns different canonical forms for the same song
   // (e.g., "It's All Coming Back to Me Now" vs "All Coming Back to Me Now").
@@ -596,6 +601,95 @@ export function discoverDictionary(
   }
 
   return { entries: dictionary, patchedLookup };
+}
+
+/** Words that commonly precede titles without indicating fragmentation. */
+const PREFIX_SKIP_WORDS = new Set([
+  'the',
+  'a',
+  'an', // articles
+  'by',
+  'of',
+  'from',
+  'in',
+  'on',
+  'for',
+  'with',
+  'at',
+  'to',
+  'about', // prepositions
+  'my',
+  'your',
+  'his',
+  'her',
+  'its',
+  'our',
+  'their', // possessives
+  'and',
+  'or',
+  'but', // conjunctions
+]);
+
+/**
+ * Consistent-prefix detection: if a short title always appears preceded by the
+ * same word, it's a fragment of a longer phrase (e.g., "Stop Me Now" → "Don't
+ * Stop Me Now").
+ */
+function filterFragmentTitles(
+  dictionary: Map<string, DictionaryEntry>,
+  postTexts: ReadonlyMap<string, PostTextContent>,
+  rootUri: string
+): void {
+  const toRemove: string[] = [];
+
+  for (const [canonical, info] of dictionary) {
+    const words = canonical.split(/\s+/);
+    if (words.length > 3) continue; // only check short titles
+
+    const lowerCanonical = canonical.toLowerCase();
+    const prefixCounts = new Map<string, number>();
+    let matchedPosts = 0;
+
+    for (const uri of info.postUris) {
+      if (uri === rootUri) continue;
+      const textContent = postTexts.get(uri);
+      if (!textContent) continue;
+      const text = textContent.ownText;
+      if (!text) continue;
+
+      const lowerText = text.toLowerCase();
+      const idx = lowerText.indexOf(lowerCanonical);
+      if (idx === -1) continue;
+      matchedPosts++;
+
+      // Track the word immediately before the match (skip articles/attribution)
+      if (idx > 1) {
+        const beforeChunk = text.substring(Math.max(0, idx - 20), idx).trimEnd();
+        const lastWord = beforeChunk.split(/\s+/).pop()?.toLowerCase();
+        if (lastWord && /^[a-z']+$/.test(lastWord) && !PREFIX_SKIP_WORDS.has(lastWord)) {
+          prefixCounts.set(lastWord, (prefixCounts.get(lastWord) ?? 0) + 1);
+        }
+      }
+    }
+
+    // Need enough posts containing the title for reliable detection
+    if (matchedPosts < 3) continue;
+
+    // If one specific word appears before the title in >70% of text occurrences,
+    // it's a fragment of a longer phrase.
+    // E.g., "Stop Me Now" preceded by "don't" in 80% of posts → "Don't Stop Me Now".
+    // But "Apollo 13" preceded by "watch"/"love"/"saw" (different each time) → NOT a fragment.
+    for (const [, count] of prefixCounts) {
+      if (count / matchedPosts > 0.7) {
+        toRemove.push(canonical);
+        break;
+      }
+    }
+  }
+
+  for (const canonical of toRemove) {
+    dictionary.delete(canonical);
+  }
 }
 
 /** Normalize a canonical title for dedup comparison. */
