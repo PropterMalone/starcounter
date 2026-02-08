@@ -236,7 +236,61 @@ describe('validateMention', () => {
       expect(callUrl).toContain('/recording/');
     });
 
-    it('should use fuzzy search for MusicBrainz', async () => {
+    it('should reject repeated-word titles from MusicBrainz', async () => {
+      // MusicBrainz returns "Fear Fear Fear" as top result for "Fear"
+      const mockResponse = {
+        recordings: [
+          { id: 'r1', title: 'Fear Fear Fear', score: 100 },
+          { id: 'r2', title: 'Fear, Fear, Fear', score: 100 },
+          { id: 'r3', title: 'Fear Fear', score: 96 },
+          { id: 'r4', title: 'Fear of Fear', score: 88 },
+        ],
+      };
+
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
+        ok: true,
+        json: async () => mockResponse,
+      });
+
+      const result = await validateMention('Fear', MediaType.SONG, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      // None of the results match well enough (all score < 75)
+      expect(result.validated).toBe(false);
+      expect(result.confidence).toBe('low');
+    });
+
+    it('should pick best matching title from MusicBrainz results', async () => {
+      const mockResponse = {
+        recordings: [
+          { id: 'r1', title: 'Jolene Jolene Jolene', score: 100 },
+          { id: 'r2', title: 'Jolene', score: 95, 'artist-credit': [{ name: 'Dolly Parton' }] },
+          { id: 'r3', title: 'Jolene (Live)', score: 90 },
+        ],
+      };
+
+      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
+        ok: true,
+        json: async () => mockResponse,
+      });
+
+      const result = await validateMention('Jolene', MediaType.SONG, {
+        tmdbApiKey: 'test_key',
+        musicbrainzUserAgent: 'Test/1.0',
+        twitchClientId: 'test_twitch_id',
+        twitchClientSecret: 'test_twitch_secret',
+      });
+
+      expect(result.validated).toBe(true);
+      expect(result.title).toBe('Jolene'); // Exact match preferred over "Jolene Jolene Jolene"
+      expect(result.artist).toBe('Dolly Parton');
+    });
+
+    it('should request 20 results from MusicBrainz', async () => {
       (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ recordings: [] }),
@@ -252,7 +306,7 @@ describe('validateMention', () => {
       const callUrl = (
         (global.fetch as unknown as MockedFetch).mock.calls[0] as unknown[]
       )[0] as string;
-      expect(callUrl).toContain('~'); // Fuzzy operator
+      expect(callUrl).toContain('limit=20');
     });
   });
 
