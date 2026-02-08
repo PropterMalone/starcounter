@@ -165,32 +165,9 @@ function stripArticle(s: string): string {
   return s.replace(LEADING_ARTICLE_RE, '').trim();
 }
 
-function stripTrailingCategoryWords(s: string, categoryWords: string[]): string {
-  if (categoryWords.length === 0) return s;
-
-  // Also try plural forms
-  const patterns = new Set<string>();
-  for (const w of categoryWords) {
-    patterns.add(w);
-    patterns.add(w + 's');
-    patterns.add(w + 'es');
-    if (w.endsWith('y')) {
-      patterns.add(w.slice(0, -1) + 'ies');
-    }
-  }
-
-  const words = s.split(/\s+/);
-  // Strip matching words from the end
-  while (words.length > 1 && words[words.length - 1] && patterns.has(words[words.length - 1]!)) {
-    words.pop();
-  }
-  return words.join(' ');
-}
-
-function normalize(s: string, categoryWords: string[]): string {
+function normalize(s: string): string {
   let n = s.toLowerCase().trim();
   n = stripArticle(n);
-  n = stripTrailingCategoryWords(n, categoryWords);
   n = n
     .replace(/[^\w\s]/g, '')
     .replace(/\s+/g, ' ')
@@ -338,7 +315,7 @@ export function buildSelfValidatedLookup(
   for (const candidate of candidates) {
     if (candidate.split(/\s+/).length > MAX_WORDS) continue;
 
-    const normKey = normalize(candidate, categoryWords);
+    const normKey = normalize(candidate);
     if (normKey.length < MIN_NORM_KEY_LENGTH) continue;
 
     // Skip if normKey is just a category word
@@ -348,7 +325,11 @@ export function buildSelfValidatedLookup(
     const normWords = normKey.split(/\s+/);
     if (
       normWords.every(
-        (w) => SELF_VALIDATION_STOP_WORDS.has(w) || FUNCTION_WORDS.has(w) || ADJECTIVES.has(w)
+        (w) =>
+          SELF_VALIDATION_STOP_WORDS.has(w) ||
+          FUNCTION_WORDS.has(w) ||
+          ADJECTIVES.has(w) ||
+          categoryWordSet.has(w)
       )
     )
       continue;

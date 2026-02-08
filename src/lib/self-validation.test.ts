@@ -81,21 +81,20 @@ describe('buildSelfValidatedLookup', () => {
     expect(lookup.get('mississippi')?.canonical).toBe('Mississippi');
   });
 
-  it('strips trailing category words', () => {
+  it('preserves category words in normalization (does not strip)', () => {
     const candidates = new Set(['Mississippi River', 'Mississippi']);
     const lookup = buildSelfValidatedLookup(candidates, 'what is your home river?');
 
-    // "Mississippi River" and "Mississippi" should cluster
-    const canonicals = new Set([...lookup.values()].map((v) => v.canonical));
-    expect(canonicals.size).toBe(1);
+    expect(lookup.get('mississippi river')?.canonical).toBe('Mississippi River');
+    expect(lookup.get('mississippi')?.canonical).toBe('Mississippi');
   });
 
-  it('strips plural category suffixes', () => {
+  it('preserves plural category words in normalization', () => {
     const candidates = new Set(['Monopoly', 'Monopoly games']);
     const lookup = buildSelfValidatedLookup(candidates, 'what is your favorite board game?');
 
-    const canonicals = new Set([...lookup.values()].map((v) => v.canonical));
-    expect(canonicals.size).toBe(1);
+    expect(lookup.get('monopoly')?.canonical).toBe('Monopoly');
+    expect(lookup.get('monopoly games')?.canonical).toBe('Monopoly Games');
   });
 
   it('filters candidates with more than 5 words', () => {
@@ -146,11 +145,10 @@ describe('buildSelfValidatedLookup', () => {
   });
 
   it('filters candidates whose normKey is < 3 characters', () => {
-    // "La River" normalizes to "la" (2 chars) after stripping category word "river"
-    const candidates = new Set(['La River', 'Mississippi']);
+    const candidates = new Set(['Go', 'Mississippi']);
     const lookup = buildSelfValidatedLookup(candidates, 'what is your home river?');
 
-    expect(lookup.has('la river')).toBe(false);
+    expect(lookup.has('go')).toBe(false);
     expect(lookup.has('mississippi')).toBe(true);
   });
 
@@ -181,12 +179,21 @@ describe('buildSelfValidatedLookup', () => {
   });
 
   it('filters normKeys composed entirely of function/stop words', () => {
-    // "My Home River" → strip article → strip "river" → "my home" — all function words
+    // "My Home River" → "my home river" — my=function, home=adjective, river=category → all filtered
     const candidates = new Set(['My Home River', 'Nile']);
     const lookup = buildSelfValidatedLookup(candidates, 'what is your home river?');
 
     expect(lookup.has('my home river')).toBe(false);
     expect(lookup.has('nile')).toBe(true);
+  });
+
+  it('filters phrases composed entirely of stop words and category words', () => {
+    const candidates = new Set(['Best River', 'Home River', 'Mississippi River']);
+    const lookup = buildSelfValidatedLookup(candidates, 'what is your home river?');
+
+    expect(lookup.has('best river')).toBe(false);
+    expect(lookup.has('home river')).toBe(false);
+    expect(lookup.has('mississippi river')).toBe(true);
   });
 
   it('keeps legitimate short normKeys >= 3 chars', () => {
