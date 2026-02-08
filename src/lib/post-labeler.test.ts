@@ -239,6 +239,53 @@ describe('labelPosts', () => {
     expect(result.has('uri:5')).toBe(false);
   });
 
+  it('does not inherit for surprise/amusement reactions like "whoa"', () => {
+    const posts = [
+      makePost(rootUri, rootText),
+      makePost(
+        'uri:1',
+        "I did a one-woman version of 'Getting Married Today' from Company",
+        rootUri
+      ),
+      makePost('uri:2', 'whoa', 'uri:1'),
+    ];
+    const textMap = new Map<string, PostTextContent>([
+      [rootUri, makeTextContent(rootText)],
+      [
+        'uri:1',
+        makeTextContent("I did a one-woman version of 'Getting Married Today' from Company"),
+      ],
+      ['uri:2', makeTextContent('whoa')],
+    ]);
+    const dict = makeDictionary([
+      ['Getting Married Today', { aliases: ['getting married today'], frequency: 3 }],
+    ]);
+    const lookup = makeLookup([['Getting Married Today', 'Getting Married Today']]);
+
+    const result = labelPosts(posts, textMap, dict, lookup, rootUri, rootText);
+    // "whoa" is surprise, not agreement — should NOT inherit parent's title
+    expect(result.has('uri:2')).toBe(false);
+  });
+
+  it('does not inherit for empty text posts', () => {
+    const posts = [
+      makePost(rootUri, rootText),
+      makePost('uri:1', 'Die Hard is the best', rootUri),
+      makePost('uri:2', '', 'uri:1'),
+    ];
+    const textMap = new Map<string, PostTextContent>([
+      [rootUri, makeTextContent(rootText)],
+      ['uri:1', makeTextContent('Die Hard is the best')],
+      ['uri:2', makeTextContent('')],
+    ]);
+    const dict = makeDictionary([['Die Hard', { aliases: ['die hard'], frequency: 5 }]]);
+    const lookup = makeLookup([['Die Hard', 'Die Hard']]);
+
+    const result = labelPosts(posts, textMap, dict, lookup, rootUri, rootText);
+    // Empty text is not agreement — should NOT inherit
+    expect(result.has('uri:2')).toBe(false);
+  });
+
   it('does not inherit for non-reaction long posts', () => {
     const posts = [
       makePost(rootUri, rootText),

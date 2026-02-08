@@ -3,6 +3,7 @@ import {
   extractCandidates,
   extractShortTextCandidate,
   isReaction,
+  isAgreement,
   buildValidationLookup,
   discoverDictionary,
 } from './thread-dictionary';
@@ -242,6 +243,61 @@ describe('isReaction', () => {
     // Actually, none of the ^ patterns match "lol yeah" fully.
     // The ≤15 char rule: 8 chars, no title-case words → reaction
     expect(isReaction('lol yeah')).toBe(true);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// isAgreement (strict — for context inheritance only)
+// ---------------------------------------------------------------------------
+
+describe('isAgreement', () => {
+  it('detects explicit agreement phrases', () => {
+    expect(isAgreement('yes')).toBe(true);
+    expect(isAgreement('Exactly')).toBe(true);
+    expect(isAgreement('agreed')).toBe(true);
+    expect(isAgreement('same')).toBe(true);
+    expect(isAgreement('this')).toBe(true);
+    expect(isAgreement('yes absolutely')).toBe(true);
+  });
+
+  it('detects endorsement phrases', () => {
+    expect(isAgreement('so good')).toBe(true);
+    expect(isAgreement('love this')).toBe(true);
+    expect(isAgreement('classic')).toBe(true);
+    expect(isAgreement('banger')).toBe(true);
+    expect(isAgreement('good call')).toBe(true);
+  });
+
+  it('detects agreement emoji', () => {
+    expect(isAgreement('👏👏👏')).toBe(true);
+    expect(isAgreement('👍')).toBe(true);
+    expect(isAgreement('🤝')).toBe(true);
+  });
+
+  it('rejects empty text (not agreement)', () => {
+    expect(isAgreement('')).toBe(false);
+    expect(isAgreement('  ')).toBe(false);
+  });
+
+  it('rejects surprise/amusement (not agreement)', () => {
+    expect(isAgreement('whoa')).toBe(false);
+    expect(isAgreement('lol')).toBe(false);
+    expect(isAgreement('lmao')).toBe(false);
+    expect(isAgreement('omg')).toBe(false);
+    expect(isAgreement('😂😂😂')).toBe(false);
+    expect(isAgreement('🔥🔥🔥')).toBe(false);
+  });
+
+  it('rejects generic short text that isReaction catches', () => {
+    // isReaction has a ≤15 char catch-all for non-title-case text
+    // isAgreement does NOT have this — short text must match a pattern
+    expect(isAgreement('lol yeah')).toBe(false);
+    expect(isAgreement('ha nice')).toBe(false);
+    expect(isAgreement('wow')).toBe(false);
+  });
+
+  it('rejects longer text', () => {
+    expect(isAgreement('The Matrix is one of the best movies ever made in my opinion')).toBe(false);
   });
 });
 

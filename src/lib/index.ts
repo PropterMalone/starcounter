@@ -38,6 +38,7 @@ export {
   extractCandidates,
   extractShortTextCandidate,
   isReaction,
+  isAgreement,
   buildValidationLookup,
   discoverDictionary,
 } from './thread-dictionary';
