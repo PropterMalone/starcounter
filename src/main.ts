@@ -384,14 +384,24 @@ class StarcounterApp {
       // Stage 5: Build dictionary (Phase 1)
       this.progressTracker.emit('counting', {});
 
-      const useRelaxedRules = selectedTypes.length === 0;
+      // List-validated threads relax the short-title threshold because
+      // the user's list already confirms entries. Self-validated threads
+      // require 2+ confident mentions to reduce noise from common words.
+      // API-validated threads use defaults.
+      const isListValidated = selectedTypes.length === 0 && customList.length > 0;
+      const isSelfValidated = selectedTypes.length === 0 && customList.length === 0;
+      const dictionaryOptions = isListValidated
+        ? { minConfidentForShortTitle: 1 }
+        : isSelfValidated
+          ? { minConfidentOverall: 2 }
+          : undefined;
       const dictionary = discoverDictionary(
         allPosts,
         postTexts,
         validationLookup,
         rootAtUri,
         rootTextLower,
-        useRelaxedRules ? { minConfidentForShortTitle: 1 } : undefined
+        dictionaryOptions
       );
 
       console.log(`[Analysis] Dictionary: ${dictionary.entries.size} titles discovered`);

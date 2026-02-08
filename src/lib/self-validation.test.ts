@@ -196,6 +196,64 @@ describe('buildSelfValidatedLookup', () => {
     expect(lookup.has('mississippi river')).toBe(true);
   });
 
+  it('filters common English words as single-word candidates', () => {
+    const candidates = new Set(['Rock', 'Grand', 'Bay', 'Pea', 'Main', 'Sun', 'Mississippi']);
+    const lookup = buildSelfValidatedLookup(candidates, 'what is your home river?');
+
+    expect(lookup.has('rock')).toBe(false);
+    expect(lookup.has('grand')).toBe(false);
+    expect(lookup.has('bay')).toBe(false);
+    expect(lookup.has('pea')).toBe(false);
+    expect(lookup.has('main')).toBe(false);
+    expect(lookup.has('sun')).toBe(false);
+    expect(lookup.has('mississippi')).toBe(true);
+  });
+
+  it('filters direction words as single-word candidates', () => {
+    const candidates = new Set(['North', 'South', 'East', 'West', 'Thames']);
+    const lookup = buildSelfValidatedLookup(candidates, 'what is your home river?');
+
+    expect(lookup.has('north')).toBe(false);
+    expect(lookup.has('south')).toBe(false);
+    expect(lookup.has('east')).toBe(false);
+    expect(lookup.has('west')).toBe(false);
+    expect(lookup.has('thames')).toBe(true);
+  });
+
+  it('filters demonym words as single-word candidates', () => {
+    const candidates = new Set(['American', 'Native', 'English', 'Potomac']);
+    const lookup = buildSelfValidatedLookup(candidates, 'what is your home river?');
+
+    expect(lookup.has('american')).toBe(false);
+    expect(lookup.has('native')).toBe(false);
+    expect(lookup.has('english')).toBe(false);
+    expect(lookup.has('potomac')).toBe(true);
+  });
+
+  it('keeps common words when part of a distinctive multi-word phrase', () => {
+    const candidates = new Set(['Rock Island', 'Grand Junction', 'Salt Lake City']);
+    const lookup = buildSelfValidatedLookup(candidates, 'what is your favorite place?');
+
+    // "rock" is a stop word but "island" is not → not all stop words → kept
+    expect(lookup.has('rock island')).toBe(true);
+    expect(lookup.has('grand junction')).toBe(true);
+    expect(lookup.has('salt lake city')).toBe(true);
+  });
+
+  it('filters multi-word phrases where all words are stop/category words', () => {
+    const candidates = new Set(['Grand River', 'Rock Bay', 'North East', 'Schuylkill River']);
+    const lookup = buildSelfValidatedLookup(candidates, 'what is your home river?');
+
+    // grand=stop, river=category → all filtered
+    expect(lookup.has('grand river')).toBe(false);
+    // rock=stop, bay=stop → all filtered
+    expect(lookup.has('rock bay')).toBe(false);
+    // north=stop, east=stop → all filtered
+    expect(lookup.has('north east')).toBe(false);
+    // schuylkill=not stop, river=category → kept
+    expect(lookup.has('schuylkill river')).toBe(true);
+  });
+
   it('keeps legitimate short normKeys >= 3 chars', () => {
     const candidates = new Set(['Dee', 'Wye', 'Exe']);
     const lookup = buildSelfValidatedLookup(candidates, 'what is your home river?');
