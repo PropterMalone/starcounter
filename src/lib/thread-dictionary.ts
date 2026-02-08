@@ -37,6 +37,7 @@ export type ValidationLookupEntry = {
 
 export type DiscoverDictionaryOptions = {
   readonly minConfidentForShortTitle?: number; // default: 2
+  readonly minConfidentOverall?: number; // default: 1
 };
 
 // ---------------------------------------------------------------------------
@@ -483,8 +484,9 @@ export function discoverDictionary(
   for (const [canonical, info] of titleInfo) {
     const confidentCount = info.confidentPostUris.size;
 
-    // Rule 1: Require at least 1 confident mention
-    if (confidentCount === 0) continue;
+    // Rule 1: Require minimum confident mentions (default 1, higher for self-validated)
+    const minOverall = options?.minConfidentOverall ?? 1;
+    if (confidentCount < minOverall) continue;
 
     // Rule 2: Require medium+ API confidence
     if (info.bestConfidence === 'low') {
