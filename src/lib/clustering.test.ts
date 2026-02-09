@@ -220,6 +220,17 @@ describe('findBestMatch', () => {
     expect(result?.category).toBe('AlphaBeta Chars');
   });
 
+  it('updates bestNgram when a later category scores higher', () => {
+    // Both categories share "Top Gun" prefix with the text, so both get ngram scores >= threshold.
+    // But "Top Gun Maverick" is much closer to "Top Gun Mavrick" than "Top Gun Original",
+    // so the second entry should replace the first as bestNgram.
+    const categories = ['Top Gun Original', 'Top Gun Maverick'];
+    const result = findBestMatch('Top Gun Mavrick', categories, { ngram: 0.3 });
+    expect(result).not.toBeNull();
+    expect(result?.category).toBe('Top Gun Maverick');
+    expect(result?.method).toBe('ngram');
+  });
+
   it('handles empty categories array', () => {
     const result = findBestMatch('some text', []);
     expect(result).toBeNull();

@@ -188,6 +188,23 @@ describe('SentimentWorkerClient', () => {
 
       await expect(promise).rejects.toThrow('Worker terminated');
     });
+
+    it('should reject analyze calls after termination', async () => {
+      client.terminate();
+
+      await expect(client.analyze('test')).rejects.toThrow('Worker terminated');
+    });
+  });
+
+  describe('message handling edge cases', () => {
+    it('should ignore messages with unknown request IDs', () => {
+      // Send message with ID that was never requested
+      expect(() => {
+        mockWorker.onmessage?.({
+          data: { id: 999, result: { score: 0.5 } },
+        } as MessageEvent);
+      }).not.toThrow();
+    });
   });
 
   describe('isAgreement', () => {
@@ -228,5 +245,26 @@ describe('SentimentWorkerClient', () => {
 describe('createSentimentWorkerClient', () => {
   it('should be a function', () => {
     expect(typeof createSentimentWorkerClient).toBe('function');
+  });
+
+  it('should create and return a SentimentWorkerClient instance', () => {
+    // Create a proper constructor function
+    const MockWorker = vi.fn(function (this: Worker) {
+      this.postMessage = vi.fn();
+      this.terminate = vi.fn();
+      this.onmessage = null;
+      this.onerror = null;
+    } as unknown as new (url: string | URL, options?: WorkerOptions) => Worker);
+
+    // Mock the Worker constructor globally
+    globalThis.Worker = MockWorker as unknown as typeof Worker;
+
+    const workerUrl = 'test-worker.js';
+    const client = createSentimentWorkerClient(workerUrl);
+
+    expect(MockWorker).toHaveBeenCalledWith(workerUrl, { type: 'module' });
+    expect(client).toBeInstanceOf(SentimentWorkerClient);
+
+    client.terminate();
   });
 });

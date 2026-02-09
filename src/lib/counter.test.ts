@@ -6,6 +6,105 @@ import type { MediaMention } from './mention-extractor';
 describe('MentionCounter', () => {
   const counter = new MentionCounter();
 
+  describe('constructor', () => {
+    it('should use provided sentiment analyzer', async () => {
+      const mockAnalyzer = {
+        analyze: (_text: string) => ({ score: 1, comparative: 1 }),
+        isAgreement: (_text: string) => _text.includes('custom agreement'),
+      };
+
+      const customCounter = new MentionCounter(mockAnalyzer);
+
+      const mentions = [
+        {
+          title: 'The Matrix',
+          normalizedTitle: 'matrix',
+          mediaType: 'MOVIE' as const,
+          confidence: 'high' as const,
+        },
+      ];
+
+      const posts = [
+        {
+          uri: 'post1',
+          cid: 'cid_post1',
+          author: { did: 'user1', handle: 'user1.bsky.social' },
+          record: { text: 'The Matrix', createdAt: new Date().toISOString() },
+          indexedAt: new Date().toISOString(),
+        },
+        {
+          uri: 'post2',
+          cid: 'cid_post2',
+          author: { did: 'user2', handle: 'user2.bsky.social' },
+          record: {
+            text: 'custom agreement about The Matrix',
+            createdAt: new Date().toISOString(),
+          },
+          indexedAt: new Date().toISOString(),
+        },
+      ];
+
+      const tree = {
+        allPosts: posts,
+        getParent: (uri: string) => (uri === 'post2' ? 'post1' : null),
+        getBranchAuthors: () => [],
+      } as unknown as Parameters<typeof customCounter.countMentions>[2];
+
+      const counts = await customCounter.countMentions(mentions, posts, tree);
+
+      // Should count both because custom analyzer recognizes 'custom agreement'
+      expect(counts.get('matrix')).toBe(2);
+    });
+
+    it('should use setSentimentAnalyzer to replace analyzer', async () => {
+      const testCounter = new MentionCounter();
+
+      const mockAnalyzer = {
+        analyze: (_text: string) => ({ score: 1, comparative: 1 }),
+        isAgreement: (_text: string) => false, // Always disagree
+      };
+
+      testCounter.setSentimentAnalyzer(mockAnalyzer);
+
+      const mentions = [
+        {
+          title: 'The Matrix',
+          normalizedTitle: 'matrix',
+          mediaType: 'MOVIE' as const,
+          confidence: 'high' as const,
+        },
+      ];
+
+      const posts = [
+        {
+          uri: 'post1',
+          cid: 'cid_post1',
+          author: { did: 'user1', handle: 'user1.bsky.social' },
+          record: { text: 'The Matrix', createdAt: new Date().toISOString() },
+          indexedAt: new Date().toISOString(),
+        },
+        {
+          uri: 'post2',
+          cid: 'cid_post2',
+          author: { did: 'user2', handle: 'user2.bsky.social' },
+          record: { text: 'I agree! The Matrix is great.', createdAt: new Date().toISOString() },
+          indexedAt: new Date().toISOString(),
+        },
+      ];
+
+      const tree = {
+        allPosts: posts,
+        getParent: (uri: string) => (uri === 'post2' ? 'post1' : null),
+        getBranchAuthors: () => [],
+      } as unknown as Parameters<typeof testCounter.countMentions>[2];
+
+      const counts = await testCounter.countMentions(mentions, posts, tree);
+
+      // Should only count 1 because custom analyzer treats everything as disagreement
+      expect(counts.get('matrix')).toBe(1);
+    });
+  });
+
   const createPost = (uri: string, author: string, text: string): PostView => ({
     uri,
     cid: `cid_${uri}`,
@@ -426,6 +525,90 @@ describe('MentionCounter', () => {
       // Unrelated titles should remain separate
       expect(counts.get('matrix')).toBe(1);
       expect(counts.get('inception')).toBe(1);
+    });
+
+    it('should use normalized title as fallback when not in canonical map', async () => {
+      // This tests the defensive ?? normalized fallback on lines 72 and 102.
+      // In normal operation, all normalized titles should be in the canonical map.
+      // This test uses a custom counter with a mocked buildCanonicalTitleMap to simulate
+      // an edge case where the map is incomplete.
+
+      const mentions: MediaMention[] = [
+        {
+          title: 'The Matrix',
+          normalizedTitle: 'matrix',
+          mediaType: 'MOVIE',
+          confidence: 'high',
+        },
+      ];
+
+      const posts: PostView[] = [
+        createPost('post1', 'user1', 'The Matrix is great'),
+        createPost('post2', 'user2', 'I agree! The Matrix rocks.'),
+      ];
+
+      const tree: Partial<ThreadTree> = {
+        allPosts: posts,
+        getParent: (uri) => (uri === 'post2' ? 'post1' : null),
+        getBranchAuthors: () => ['user1', 'user2'],
+      };
+
+      // Create a custom counter where we can intercept buildCanonicalTitleMap
+      const testCounter = new MentionCounter();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const ctr = testCounter as any;
+      const originalBuildCanonicalTitleMap = ctr.buildCanonicalTitleMap.bind(testCounter);
+
+      // Mock buildCanonicalTitleMap to return an empty map (simulates missing entry)
+      ctr.buildCanonicalTitleMap = () => new Map<string, string>();
+
+      const counts = await testCounter.countMentions(mentions, posts, tree as ThreadTree);
+
+      // Should still count correctly using normalized title as fallback
+      // Both posts should count because empty map means no canonical merge
+      expect(counts.get('matrix')).toBe(2);
+
+      // Restore original method
+      ctr.buildCanonicalTitleMap = originalBuildCanonicalTitleMap;
+    });
+
+    it('should use normalized title fallback in parent mention check', async () => {
+      // This specifically tests line 102 where parent mention matching uses the ?? fallback
+      const mentions: MediaMention[] = [
+        {
+          title: 'The Matrix',
+          normalizedTitle: 'matrix',
+          mediaType: 'MOVIE',
+          confidence: 'high',
+        },
+      ];
+
+      const posts: PostView[] = [
+        createPost('post1', 'user1', 'The Matrix is great'),
+        createPost('post2', 'user2', 'I disagree about The Matrix'),
+      ];
+
+      const tree: Partial<ThreadTree> = {
+        allPosts: posts,
+        getParent: (uri) => (uri === 'post2' ? 'post1' : null),
+        getBranchAuthors: () => ['user1', 'user2'],
+      };
+
+      // Mock buildCanonicalTitleMap to return an empty map
+      const testCounter = new MentionCounter();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const ctr = testCounter as any;
+      const originalBuildCanonicalTitleMap = ctr.buildCanonicalTitleMap.bind(testCounter);
+      ctr.buildCanonicalTitleMap = () => new Map<string, string>();
+
+      const counts = await testCounter.countMentions(mentions, posts, tree as ThreadTree);
+
+      // post1 counts, post2 should not (disagreement)
+      // The parent mention check on line 102 uses the ?? fallback
+      expect(counts.get('matrix')).toBe(1);
+
+      // Restore
+      ctr.buildCanonicalTitleMap = originalBuildCanonicalTitleMap;
     });
   });
 });

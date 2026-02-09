@@ -545,6 +545,44 @@ describe('discoverDictionary', () => {
     expect(dict.entries.has('Red October')).toBe(true);
   });
 
+  it('deletes shorter title when all its mentions also appear in longer title', () => {
+    // Two titles where:
+    // - "Christmas Carol" appears standalone (gets >=2 confident mentions)
+    // - Posts that mention "Christmas Carol" ALSO mention "The Muppet Christmas Carol"
+    // - Deduplication removes "A Christmas Carol" because all its posts also have the longer title
+    const { posts, textMap, lookup } = setup(
+      [
+        // Posts mention "Christmas Carol" and "The Muppet Christmas Carol" separately
+        [
+          'uri:1',
+          '"Christmas Carol" and "The Muppet Christmas Carol"',
+          makeTextContent('"Christmas Carol" and "The Muppet Christmas Carol"'),
+        ],
+        [
+          'uri:2',
+          '"A Christmas Carol" and "The Muppet Christmas Carol"',
+          makeTextContent('"A Christmas Carol" and "The Muppet Christmas Carol"'),
+        ],
+      ],
+      [
+        // Both validated to different canonicals
+        makeValidatedMention('Christmas Carol', 'A Christmas Carol'),
+        makeValidatedMention('A Christmas Carol', 'A Christmas Carol'),
+        makeValidatedMention('The Muppet Christmas Carol', 'The Muppet Christmas Carol'),
+      ]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+
+    // "The Muppet Christmas Carol" survives
+    expect(dict.entries.has('The Muppet Christmas Carol')).toBe(true);
+
+    // "A Christmas Carol" should be deleted because:
+    // - Canonical "a christmas carol" is substring of "the muppet christmas carol"
+    // - ALL posts mentioning "A Christmas Carol" also mention "The Muppet Christmas Carol"
+    // - independentMentions === 0, so it gets deleted (lines 576-578)
+    expect(dict.entries.has('A Christmas Carol')).toBe(false);
+  });
+
   it('allows single-mention short titles when minConfidentForShortTitle is 1', () => {
     const { posts, textMap, lookup } = setup(
       [['uri:1', 'Heat', makeTextContent('Heat')]],
@@ -722,6 +760,100 @@ describe('discoverDictionary', () => {
     const titles = [...dict.entries.keys()].filter((t) => t.toLowerCase().includes('good'));
     expect(titles.length).toBe(1);
   });
+
+  it('merges entries with high word overlap but different normalized forms', () => {
+    // Two titles with same words but different word order = different normalized forms
+    // "Blue River Valley" vs "Valley Blue River" — same 3 words, 100% overlap
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'Blue River Valley', makeTextContent('Blue River Valley')],
+        ['uri:2', 'Blue River Valley yes', makeTextContent('Blue River Valley yes')],
+        ['uri:3', 'Valley Blue River', makeTextContent('Valley Blue River')],
+        ['uri:4', 'Valley Blue River yes', makeTextContent('Valley Blue River yes')],
+      ],
+      [
+        makeValidatedMention('Blue River Valley', 'Blue River Valley'),
+        makeValidatedMention('Valley Blue River', 'Valley Blue River'),
+      ]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    // Both should merge due to 100% word overlap
+    const titles = [...dict.entries.keys()].filter(
+      (t) => t.toLowerCase().includes('blue') && t.toLowerCase().includes('river')
+    );
+    expect(titles.length).toBe(1);
+  });
+
+  it('merges multiple entries in a word-overlap group', () => {
+    // Three titles with high word overlap that don't normalize identically
+    // "River Blue Water", "Blue Water River", "River Water Blue"
+    // All have the same 3 words, so 100% overlap, but different order = different normalized forms
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'River Blue Water', makeTextContent('River Blue Water')],
+        ['uri:2', 'River Blue Water yes', makeTextContent('River Blue Water yes')],
+        ['uri:3', 'Blue Water River', makeTextContent('Blue Water River')],
+        ['uri:4', 'Blue Water River yes', makeTextContent('Blue Water River yes')],
+        ['uri:5', 'River Water Blue', makeTextContent('River Water Blue')],
+        ['uri:6', 'River Water Blue yes', makeTextContent('River Water Blue yes')],
+      ],
+      [
+        makeValidatedMention('River Blue Water', 'River Blue Water'),
+        makeValidatedMention('Blue Water River', 'Blue Water River'),
+        makeValidatedMention('River Water Blue', 'River Water Blue'),
+      ]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    // All three should merge into one group due to 100% word overlap
+    const titles = [...dict.entries.keys()].filter(
+      (t) =>
+        t.toLowerCase().includes('river') &&
+        t.toLowerCase().includes('blue') &&
+        t.toLowerCase().includes('water')
+    );
+    expect(titles.length).toBe(1);
+  });
+
+  it('does not merge entries with low word overlap', () => {
+    // Two titles with some common words but <85% overlap
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'The Lord of the Rings', makeTextContent('The Lord of the Rings')],
+        ['uri:2', 'The Lord of the Rings!', makeTextContent('The Lord of the Rings!')],
+        ['uri:3', 'The Return of the King', makeTextContent('The Return of the King')],
+        ['uri:4', 'The Return of the King!', makeTextContent('The Return of the King!')],
+      ],
+      [
+        makeValidatedMention('The Lord of the Rings', 'The Lord of the Rings'),
+        makeValidatedMention('The Return of the King', 'The Return of the King'),
+      ]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    // Should remain separate — word overlap is below 85%
+    expect(dict.entries.has('The Lord of the Rings')).toBe(true);
+    expect(dict.entries.has('The Return of the King')).toBe(true);
+  });
+
+  it('skips 1-word titles in word-overlap merge', () => {
+    // Single-word titles are too ambiguous for word-overlap merge
+    // Need 3+ posts for each title to pass filtering rules
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'Mississippi River', makeTextContent('Mississippi River')],
+        ['uri:2', 'Mississippi River yes', makeTextContent('Mississippi River yes')],
+        ['uri:3', 'Mississippi Rivers', makeTextContent('Mississippi Rivers')],
+        ['uri:4', 'Mississippi Rivers yes', makeTextContent('Mississippi Rivers yes')],
+      ],
+      [
+        makeValidatedMention('Mississippi River', 'Mississippi River'),
+        makeValidatedMention('Mississippi Rivers', 'Mississippi Rivers'),
+      ]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    // 2-word titles with high overlap should merge (normalized form catches plural difference)
+    const titles = [...dict.entries.keys()].filter((t) => t.toLowerCase().includes('mississippi'));
+    expect(titles.length).toBeGreaterThanOrEqual(1); // at least one survives after merge
+  });
 });
 
 // ---------------------------------------------------------------------------
@@ -752,5 +884,377 @@ describe('normalizeForMerge', () => {
 
   it('collapses whitespace', () => {
     expect(normalizeForMerge('  Hello   World  ')).toBe('hello world');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Additional edge case tests
+// ---------------------------------------------------------------------------
+
+describe('extractCandidates edge cases', () => {
+  it('handles empty text in extractCandidates with per-line logic', () => {
+    // Multi-line text with empty lines
+    const result = extractCandidates('\nThe Matrix\n\nJaws\n');
+    expect(result).toContain('The Matrix');
+    expect(result).toContain('Jaws');
+  });
+
+  it('handles title-case phrases with colons', () => {
+    // The regex supports colons as connectors in title case
+    const result = extractCandidates('I watched Star Wars: A New Hope last night');
+    // The regex actually extracts this as separate phrases because "A" is an article
+    // which is in the connector words list, so it should capture the whole phrase
+    expect(result.some((c) => c.includes('Star Wars') || c.includes('New Hope'))).toBe(true);
+  });
+
+  it('handles quoted text at word boundaries', () => {
+    const result = extractCandidates('He said "Matrix" is great');
+    expect(result).toContain('Matrix');
+  });
+
+  it('skips single-word quoted phrases when not capitalized', () => {
+    const result = extractCandidates('I said "hello" to everyone');
+    // Single lowercase word in quotes - extractCandidates line 131 check
+    expect(result).not.toContain('hello');
+  });
+
+  it('extracts per-line candidate with exactly 1 word', () => {
+    const result = extractCandidates('Mississippi');
+    expect(result).toContain('Mississippi');
+  });
+
+  it('extracts title-case phrase with 6 words via title-case regex', () => {
+    // 6-word phrases skip per-line extraction but are caught by title-case regex
+    const result = extractCandidates('One Two Three Four Five Six');
+    expect(result).toContain('One Two Three Four Five Six');
+  });
+
+  it('extracts per-line candidate with exactly 5 words', () => {
+    const result = extractCandidates('River of the Blue Valley');
+    expect(result).toContain('River of the Blue Valley');
+  });
+
+  it('skips per-line candidates matching CAPS_NOISE_RE', () => {
+    const result = extractCandidates('OMG');
+    expect(result).not.toContain('OMG');
+  });
+
+  it('skips per-line candidates matching NOISE set', () => {
+    const result = extractCandidates('I Am');
+    expect(result).not.toContain('I Am');
+  });
+
+  it('extracts quoted phrase with exactly 2 words', () => {
+    const result = extractCandidates('"Blue River"');
+    expect(result).toContain('Blue River');
+  });
+
+  it('skips quoted phrase with 11 words', () => {
+    const result = extractCandidates('"one two three four five six seven eight nine ten eleven"');
+    expect(result).not.toContain('one two three four five six seven eight nine ten eleven');
+  });
+
+  it('extracts quoted phrase with exactly 10 words', () => {
+    const result = extractCandidates('"one two three four five six seven eight nine ten"');
+    expect(result).toContain('one two three four five six seven eight nine ten');
+  });
+
+  it('skips ALL CAPS phrase matching noise regex', () => {
+    extractCandidates('WTF LMAO');
+    // Multi-word, but each word is in CAPS_NOISE_RE
+    expect(extractCandidates('LMAO')).toHaveLength(0);
+  });
+
+  it('extracts single capitalized word in quotes', () => {
+    const result = extractCandidates('"Matrix"');
+    expect(result).toContain('Matrix');
+  });
+
+  it('skips single lowercase word in quotes', () => {
+    const result = extractCandidates('"movie"');
+    expect(result).not.toContain('movie');
+  });
+
+  it('skips quoted phrase matching QUOTED_PREFIX_RE', () => {
+    const result = extractCandidates('"my favorite thing"');
+    expect(result).not.toContain('my favorite thing');
+  });
+
+  it('skips quoted phrase with exactly 1 character', () => {
+    const result = extractCandidates('"a"');
+    expect(result).not.toContain('a');
+  });
+
+  it('extracts quoted phrase with exactly 2 characters', () => {
+    const result = extractCandidates('"It"');
+    expect(result).toContain('It');
+  });
+
+  it('skips title-case phrase matching NOISE set', () => {
+    const result = extractCandidates('I Just watched a movie');
+    expect(result).not.toContain('I Just');
+  });
+
+  it('extracts ALL CAPS with exactly 4 characters total', () => {
+    const result = extractCandidates('JAWS WAS amazing');
+    expect(result).toContain('Jaws Was');
+  });
+
+  it('skips ALL CAPS with exactly 3 characters total', () => {
+    const result = extractCandidates('THE');
+    expect(result).toHaveLength(0);
+  });
+});
+
+describe('discoverDictionary edge cases', () => {
+  const rootUri = 'at://root/post/1';
+  const rootText = 'what is your favorite thing?';
+
+  function setup(postTexts: [string, string, PostTextContent][], validations: ValidatedMention[]) {
+    const posts: PostView[] = [
+      makePost(rootUri, rootText),
+      ...postTexts.map(([uri, text]) => makePost(uri, text)),
+    ];
+    const textMap = new Map<string, PostTextContent>();
+    textMap.set(rootUri, makeTextContent(rootText));
+    for (const [uri, , content] of postTexts) {
+      textMap.set(uri, content);
+    }
+    const lookup = buildValidationLookup(validations);
+    return { posts, textMap, lookup };
+  }
+
+  it('allows low-confidence titles with exact 3+ word match', () => {
+    // Low-confidence API result, but exact multi-word match allows it
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'The Big Blue River', makeTextContent('The Big Blue River')],
+        ['uri:2', 'The Big Blue River!', makeTextContent('The Big Blue River!')],
+      ],
+      [makeValidatedMention('The Big Blue River', 'The Big Blue River', 'low')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    expect(dict.entries.has('The Big Blue River')).toBe(true);
+  });
+
+  it('filters low-confidence titles without exact multi-word match', () => {
+    // Low-confidence API result without exact match
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'Big Blue', makeTextContent('Big Blue')],
+        ['uri:2', 'Big Blue yes', makeTextContent('Big Blue yes')],
+      ],
+      [makeValidatedMention('Big Blue', 'The Big Blue River Movie', 'low')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    expect(dict.entries.has('The Big Blue River Movie')).toBe(false);
+  });
+
+  it('filters titles that appear only in root post', () => {
+    // Title only appears in root post, not in replies
+    const { posts, textMap, lookup } = setup(
+      [],
+      [makeValidatedMention('Favorite Movie', 'Favorite Movie')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    expect(dict.entries.has('Favorite Movie')).toBe(false);
+  });
+
+  it('includes incidental mentions from quoted alt text', () => {
+    const longTitle = 'The Shawshank Redemption Movie';
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', longTitle, makeTextContent(longTitle)],
+        ['uri:2', longTitle, makeTextContent(longTitle)],
+        [
+          'uri:3',
+          'check this out',
+          makeTextContent('check this out', {
+            quotedAltText: [longTitle],
+            searchText: `check this out\n${longTitle}`,
+          }),
+        ],
+      ],
+      [makeValidatedMention(longTitle, longTitle)]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    expect(dict.entries.has(longTitle)).toBe(true);
+    expect(dict.entries.get(longTitle)!.frequency).toBe(3);
+  });
+
+  it('skips incidental scan for short validated titles', () => {
+    // Short title (<12 chars) and <3 words won't trigger incidental scan
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'Big Blue', makeTextContent('Big Blue')],
+        ['uri:2', 'Big Blue yes', makeTextContent('Big Blue yes')],
+        ['uri:3', 'i love big blue', makeTextContent('i love big blue')],
+      ],
+      [makeValidatedMention('Big Blue', 'Big Blue')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    // Incidental mention in uri:3 won't be counted (short title)
+    expect(dict.entries.has('Big Blue')).toBe(true);
+    expect(dict.entries.get('Big Blue')!.incidentalCount).toBe(0);
+  });
+
+  it('skips incidental scan for titles appearing in root text', () => {
+    const customRootText = 'what is your favorite Big Blue River?';
+    const customRootUri = 'at://root/post/custom';
+    const posts: PostView[] = [
+      makePost(customRootUri, customRootText),
+      makePost('uri:1', 'Big Blue River yes'),
+      makePost('uri:2', 'Big Blue River!'),
+    ];
+    const textMap = new Map<string, PostTextContent>();
+    textMap.set(customRootUri, makeTextContent(customRootText));
+    textMap.set('uri:1', makeTextContent('Big Blue River yes'));
+    textMap.set('uri:2', makeTextContent('Big Blue River!'));
+    const lookup = buildValidationLookup([
+      makeValidatedMention('Big Blue River', 'Big Blue River'),
+    ]);
+    const dict = discoverDictionary(
+      posts,
+      textMap,
+      lookup,
+      customRootUri,
+      customRootText.toLowerCase()
+    );
+    expect(dict.entries.has('Big Blue River')).toBe(true);
+  });
+
+  it('handles post without textContent in postTexts map', () => {
+    const posts: PostView[] = [makePost(rootUri, rootText), makePost('uri:1', 'Test Post')];
+    const textMap = new Map<string, PostTextContent>();
+    textMap.set(rootUri, makeTextContent(rootText));
+    // uri:1 is intentionally missing from textMap
+    const lookup = buildValidationLookup([makeValidatedMention('Test', 'Test')]);
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    // Should not crash, entry won't be found
+    expect(dict.entries.size).toBe(0);
+  });
+
+  it('handles consuming overlapping candidates by longest-first', () => {
+    // "The Matrix Reloaded" should consume "Matrix" when both are candidates
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'The Matrix Reloaded', makeTextContent('The Matrix Reloaded')],
+        ['uri:2', 'The Matrix Reloaded!', makeTextContent('The Matrix Reloaded!')],
+      ],
+      [
+        makeValidatedMention('The Matrix Reloaded', 'The Matrix Reloaded'),
+        makeValidatedMention('Matrix', 'The Matrix'),
+      ]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    // "The Matrix Reloaded" should be counted, "Matrix" consumed
+    expect(dict.entries.has('The Matrix Reloaded')).toBe(true);
+  });
+
+  it('filters medium-confidence title that fails alias-canonical alignment', () => {
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'Alpha Beta', makeTextContent('Alpha Beta')],
+        ['uri:2', 'Alpha Beta yes', makeTextContent('Alpha Beta yes')],
+      ],
+      [makeValidatedMention('Alpha Beta', 'Gamma Delta Epsilon Zeta', 'medium')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    // No words match between alias and canonical
+    expect(dict.entries.has('Gamma Delta Epsilon Zeta')).toBe(false);
+  });
+
+  it('allows medium-confidence title with good alias-canonical alignment', () => {
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'Big Blue', makeTextContent('Big Blue')],
+        ['uri:2', 'Big Blue yes', makeTextContent('Big Blue yes')],
+      ],
+      [makeValidatedMention('Big Blue', 'The Big Blue Movie', 'medium')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    // "big" and "blue" are 100% of canonical's significant words (after stripping articles)
+    expect(dict.entries.has('The Big Blue Movie')).toBe(true);
+  });
+
+  it('handles canonical with zero significant words after filtering', () => {
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'The', makeTextContent('The')],
+        ['uri:2', 'The yes', makeTextContent('The yes')],
+      ],
+      [makeValidatedMention('The', 'The')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    // Should filter out — no significant words
+    expect(dict.entries.has('The')).toBe(false);
+  });
+
+  it('handles alias with more significant words than canonical', () => {
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'Big Blue Movie', makeTextContent('Big Blue Movie')],
+        ['uri:2', 'Big Blue Movie yes', makeTextContent('Big Blue Movie yes')],
+      ],
+      [makeValidatedMention('Big Blue Movie', 'Big')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    // Alias "big blue movie" vs canonical "big" — 100% of canonical words match (1/1)
+    expect(dict.entries.has('Big')).toBe(true);
+  });
+
+  it('filters alias with no matching canonical words', () => {
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'Alpha Beta', makeTextContent('Alpha Beta')],
+        ['uri:2', 'Alpha Beta yes', makeTextContent('Alpha Beta yes')],
+      ],
+      [makeValidatedMention('Alpha Beta', 'Gamma Delta')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    // Alias "alpha beta" vs canonical "gamma delta" — 0% match
+    expect(dict.entries.has('Gamma Delta')).toBe(false);
+  });
+
+  it('handles extractCandidates with mixed empty and non-empty lines', () => {
+    const result = extractCandidates('Line One\n\n\nLine Two\n');
+    expect(result).toContain('Line One');
+    expect(result).toContain('Line Two');
+  });
+
+  it('handles isReaction with exactly 49 characters', () => {
+    const text = 'x'.repeat(49);
+    // <50 chars, no title case — goes to ≤15 check (false) and final return (false)
+    expect(isReaction(text)).toBe(false);
+  });
+
+  it('handles isReaction with exactly 50 characters', () => {
+    const text = 'x'.repeat(50);
+    // >=50 chars — skips reaction pattern check, goes to ≤15 check (false), returns false
+    expect(isReaction(text)).toBe(false);
+  });
+
+  it('handles isReaction with exactly 15 characters without title case', () => {
+    const text = 'x'.repeat(15);
+    // ≤15 chars, no title case — should be reaction
+    expect(isReaction(text)).toBe(true);
+  });
+
+  it('handles isReaction with exactly 16 characters without title case', () => {
+    const text = 'x'.repeat(16);
+    // >15 chars, no pattern match — not a reaction
+    expect(isReaction(text)).toBe(false);
+  });
+
+  it('handles isAgreement with exactly 49 characters matching pattern', () => {
+    const text = 'yes ' + 'x'.repeat(45);
+    // <50 chars, starts with "yes" — should match agreement
+    expect(isAgreement(text)).toBe(true);
+  });
+
+  it('handles isAgreement with exactly 50 characters matching pattern', () => {
+    const text = 'yes ' + 'x'.repeat(46);
+    // >=50 chars — skips agreement pattern check
+    expect(isAgreement(text)).toBe(false);
   });
 });

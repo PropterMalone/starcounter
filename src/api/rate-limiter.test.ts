@@ -357,5 +357,40 @@ describe('RateLimiter', () => {
       vi.useRealTimers();
       expect(limiter.getStats().remaining).toBeGreaterThan(0);
     });
+
+    it('should hit recursive branch after wait when new requests arrive during wait', async () => {
+      // This test ensures line 65 recursion is triggered:
+      // After timeout, if cleanup doesn't free slots, recurse.
+
+      const limiter = new RateLimiter({ maxRequests: 2, windowMs: 1000 });
+
+      // Fill up slots
+      await limiter.waitForSlot();
+      limiter.recordRequest();
+      await limiter.waitForSlot();
+      limiter.recordRequest();
+
+      // Start waiting for next slot
+      const waitPromise = limiter.waitForSlot();
+
+      // Advance time by half the window (not enough to expire first requests)
+      await vi.advanceTimersByTimeAsync(500);
+
+      // At this point, waitForSlot calculated wait time and is waiting
+      // After the wait completes, cleanup will run but requests won't be expired yet
+      // This should trigger the recursive call at line 65
+
+      // Advance to complete the wait, but requests still in window
+      await vi.advanceTimersByTimeAsync(500);
+
+      // Now advance past the full window so recursion can succeed
+      await vi.advanceTimersByTimeAsync(500);
+
+      await waitPromise;
+
+      // Verify we can now record
+      limiter.recordRequest();
+      expect(limiter.getStats().used).toBeGreaterThan(0);
+    });
   });
 });

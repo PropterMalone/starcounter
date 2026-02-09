@@ -183,4 +183,157 @@ describe('extractPostText', () => {
     expect(result.searchText).toContain('Quoted text');
     expect(result.searchText).toContain('Media alt');
   });
+
+  it('extracts alt text from recordWithMedia embed with multiple images', () => {
+    const post = makePost({
+      embed: {
+        $type: 'app.bsky.embed.recordWithMedia#view',
+        record: {
+          record: {
+            uri: 'at://did:plc:other/app.bsky.feed.post/xyz',
+            value: { text: 'Quote with images' },
+          },
+        },
+        media: {
+          images: [{ alt: 'First image alt' }, { alt: 'Second image alt' }, { alt: '' }],
+        },
+      },
+    });
+    const result = extractPostText(post);
+    expect(result.quotedAltText).toEqual(['First image alt', 'Second image alt']);
+  });
+
+  it('returns null for recordWithMedia without media.images', () => {
+    const post = makePost({
+      embed: {
+        $type: 'app.bsky.embed.recordWithMedia#view',
+        record: {
+          record: {
+            uri: 'at://did:plc:other/app.bsky.feed.post/xyz',
+            value: { text: 'Quote with media but no images' },
+          },
+        },
+        media: {},
+      },
+    });
+    const result = extractPostText(post);
+    expect(result.quotedAltText).toBeNull();
+  });
+
+  it('returns null for recordWithMedia with empty alt text', () => {
+    const post = makePost({
+      embed: {
+        $type: 'app.bsky.embed.recordWithMedia#view',
+        record: {
+          record: {
+            uri: 'at://did:plc:other/app.bsky.feed.post/xyz',
+            value: { text: 'Quote with images without alt' },
+          },
+        },
+        media: {
+          images: [{ alt: '' }, { alt: '' }],
+        },
+      },
+    });
+    const result = extractPostText(post);
+    expect(result.quotedAltText).toBeNull();
+  });
+
+  it('extracts alt text from record#view inner embeds', () => {
+    const post = makePost({
+      embed: {
+        $type: 'app.bsky.embed.record#view',
+        record: {
+          uri: 'at://did:plc:other/app.bsky.feed.post/xyz',
+          value: { text: 'Quote with embedded images' },
+          embeds: [
+            { images: [{ alt: 'Embedded image 1' }] },
+            { images: [{ alt: 'Embedded image 2' }, { alt: '' }] },
+          ],
+        },
+      },
+    });
+    const result = extractPostText(post);
+    expect(result.quotedAltText).toEqual(['Embedded image 1', 'Embedded image 2']);
+  });
+
+  it('returns null for record#view without inner embeds', () => {
+    const post = makePost({
+      embed: {
+        $type: 'app.bsky.embed.record#view',
+        record: {
+          uri: 'at://did:plc:other/app.bsky.feed.post/xyz',
+          value: { text: 'Quote without embeds' },
+        },
+      },
+    });
+    const result = extractPostText(post);
+    expect(result.quotedAltText).toBeNull();
+  });
+
+  it('returns null for record#view with empty inner embeds', () => {
+    const post = makePost({
+      embed: {
+        $type: 'app.bsky.embed.record#view',
+        record: {
+          uri: 'at://did:plc:other/app.bsky.feed.post/xyz',
+          value: { text: 'Quote with empty embeds' },
+          embeds: [],
+        },
+      },
+    });
+    const result = extractPostText(post);
+    expect(result.quotedAltText).toBeNull();
+  });
+
+  it('handles embed without $type field', () => {
+    const post = makePost({
+      embed: {
+        someField: 'value',
+      },
+    });
+    const result = extractPostText(post);
+    expect(result.quotedText).toBeNull();
+    expect(result.quotedUri).toBeNull();
+    expect(result.quotedAltText).toBeNull();
+  });
+
+  it('handles null embed gracefully', () => {
+    const post = makePost({
+      embed: null,
+    });
+    const result = extractPostText(post);
+    expect(result.quotedText).toBeNull();
+    expect(result.quotedUri).toBeNull();
+    expect(result.quotedAltText).toBeNull();
+  });
+
+  it('handles recordWithMedia without record field', () => {
+    const post = makePost({
+      embed: {
+        $type: 'app.bsky.embed.recordWithMedia#view',
+        media: {
+          images: [{ alt: 'Image without record' }],
+        },
+      },
+    });
+    const result = extractPostText(post);
+    expect(result.quotedText).toBeNull();
+    expect(result.quotedUri).toBeNull();
+    expect(result.quotedAltText).toEqual(['Image without record']);
+  });
+
+  it('handles record#view without value field', () => {
+    const post = makePost({
+      embed: {
+        $type: 'app.bsky.embed.record#view',
+        record: {
+          uri: 'at://did:plc:other/app.bsky.feed.post/xyz',
+        },
+      },
+    });
+    const result = extractPostText(post);
+    expect(result.quotedText).toBeNull();
+    expect(result.quotedUri).toBe('at://did:plc:other/app.bsky.feed.post/xyz');
+  });
 });

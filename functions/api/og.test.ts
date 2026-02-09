@@ -1,5 +1,9 @@
 // pattern: Imperative Shell tests
 import { describe, it, expect, beforeEach } from 'vitest';
+import type { ShareableResults } from '../../src/lib/url-encoder';
+import { encodeResults } from '../../src/lib/url-encoder';
+
+// Import after mocks are set up
 import {
   generateOGImage,
   parseOGRequest,
@@ -7,8 +11,6 @@ import {
   OG_IMAGE_HEIGHT,
   OG_CACHE_MAX_AGE,
 } from './og';
-import type { ShareableResults } from '../../src/lib/url-encoder';
-import { encodeResults } from '../../src/lib/url-encoder';
 
 describe('OG Image Generator', () => {
   describe('parseOGRequest', () => {
@@ -293,6 +295,30 @@ describe('OG Image Generator', () => {
       expect(response.status).toBe(400);
     });
 
+    it('should use Date.now() fallback when D1 data lacks timestamp', async () => {
+      const storedData = JSON.stringify({
+        mentionCounts: [{ mention: 'Test', count: 1, posts: [] }],
+        // timestamp omitted - should fall back to Date.now()
+      });
+
+      const mockDb = {
+        prepare: () => ({
+          bind: () => ({
+            first: async () => ({ data: storedData }),
+          }),
+        }),
+      } as unknown as D1Database;
+
+      const request = new Request('https://starcounter.app/api/og?s=abc12345');
+      const response = await onRequest({
+        request,
+        env: { SHARED_RESULTS: mockDb },
+      });
+
+      expect(response.status).toBe(200);
+      expect(response.headers.get('Content-Type')).toBe('image/png');
+    });
+
     it('should fall back to ?r= if ?s= has no env', async () => {
       const results: ShareableResults = {
         m: [{ n: 'Fallback', c: 2 }],
@@ -306,5 +332,62 @@ describe('OG Image Generator', () => {
 
       expect(response.status).toBe(200);
     });
+
+    it('should return 400 when D1 query throws an error and no ?r= fallback', async () => {
+      const mockDb = {
+        prepare: () => ({
+          bind: () => ({
+            first: async () => {
+              throw new Error('D1 connection failed');
+            },
+          }),
+        }),
+      } as unknown as D1Database;
+
+      const request = new Request('https://starcounter.app/api/og?s=abc12345');
+      const response = await onRequest({
+        request,
+        env: { SHARED_RESULTS: mockDb },
+      });
+
+      expect(response.status).toBe(400);
+      expect(await response.text()).toContain('Missing or invalid');
+    });
+
+    it('should return 400 when D1 returns invalid data without mentionCounts', async () => {
+      const mockDb = {
+        prepare: () => ({
+          bind: () => ({
+            first: async () => ({ data: '{"invalid": true}' }),
+          }),
+        }),
+      } as unknown as D1Database;
+
+      const request = new Request('https://starcounter.app/api/og?s=abc12345');
+      const response = await onRequest({
+        request,
+        env: { SHARED_RESULTS: mockDb },
+      });
+
+      expect(response.status).toBe(400);
+    });
+
+    it('should handle request via default export fetch handler', async () => {
+      const results: ShareableResults = {
+        m: [{ n: 'Test Movie', c: 10 }],
+        t: Date.now(),
+      };
+      const encoded = encodeResults(results);
+      const request = new Request(`https://starcounter.app/api/og?r=${encoded}`);
+
+      // Import default export
+      const ogModule = await import('./og');
+      const response = await ogModule.default.fetch(request);
+
+      expect(response.status).toBe(200);
+      expect(response.headers.get('Content-Type')).toBe('image/png');
+    });
+
+    // Error handling tests are in og.error.test.ts to allow proper module-level mocking
   });
 });
