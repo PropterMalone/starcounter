@@ -178,6 +178,29 @@ describe('ShareButton', () => {
       expect(fetch).not.toHaveBeenCalled();
     });
 
+    it('should include originalPost in shared data when present', async () => {
+      const state = makeState({
+        originalPost: {
+          uri: 'at://did:plc:root/app.bsky.feed.post/root123',
+          cid: 'rootcid',
+          author: { did: 'did:plc:root', handle: 'rootuser.bsky.social', displayName: 'Root' },
+          record: { text: 'Share your favorite movie', createdAt: '2026-01-01T00:00:00Z' },
+          indexedAt: '2026-01-01T00:00:00Z',
+        },
+      });
+      shareButton.setStateProvider(() => state);
+
+      button.click();
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
+      const fetchCall = vi.mocked(fetch).mock.calls[0]!;
+      const body = JSON.parse(fetchCall[1]?.body as string);
+
+      expect(body.originalPost).not.toBeNull();
+      expect(body.originalPost.h).toBe('rootuser.bsky.social');
+      expect(body.originalPost.t).toBe('Share your favorite movie');
+    });
+
     it('should disable button during upload', async () => {
       // Use a slow-resolving fetch
       let resolvePost!: (value: unknown) => void;

@@ -232,4 +232,47 @@ describe('ValidationClient', () => {
 
     expect(result[0].artist).toBe('Queen');
   });
+
+  it('should handle empty mentions array', async () => {
+    const mentions: MediaMention[] = [];
+
+    const progressUpdates: ValidationProgress[] = [];
+    const client = new ValidationClient({
+      apiUrl: 'http://test.com/api/validate',
+      onProgress: (progress) => progressUpdates.push(progress),
+    });
+
+    const result = await client.validateMentions(mentions);
+
+    expect(result).toHaveLength(0);
+    expect(progressUpdates).toHaveLength(0);
+  });
+
+  it('should use fallback empty string when last batch item has undefined title', async () => {
+    // Force a mention with undefined title to test the ?? '' fallback
+    const mentionWithoutTitle = {
+      normalizedTitle: 'movie1',
+      mediaType: MediaType.MOVIE,
+      confidence: 'high',
+    } as MediaMention;
+
+    const mentions: MediaMention[] = [mentionWithoutTitle];
+
+    fetchMock.mockResolvedValue({
+      ok: true,
+      json: async () => ({ validated: true, confidence: 'high', title: 'Movie' }),
+    });
+
+    const progressUpdates: ValidationProgress[] = [];
+    const client = new ValidationClient({
+      apiUrl: 'http://test.com/api/validate',
+      onProgress: (progress) => progressUpdates.push(progress),
+    });
+
+    await client.validateMentions(mentions);
+
+    // Should use empty string fallback when title is undefined
+    expect(progressUpdates.length).toBeGreaterThan(0);
+    expect(progressUpdates[0].currentTitle).toBe('');
+  });
 });

@@ -96,6 +96,15 @@ describe('PromptDetector', () => {
       expect(confidence).toBe('high');
     });
 
+    it('should return confidence for music media type', () => {
+      const confidence = detector.getConfidence(
+        'What is your favorite song and album?',
+        MediaType.MUSIC
+      );
+
+      expect(confidence).toBe('high');
+    });
+
     it('should return low confidence for unknown media type', () => {
       const confidence = detector.getConfidence('Some random text', MediaType.UNKNOWN);
 

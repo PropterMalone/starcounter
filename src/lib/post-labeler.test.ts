@@ -357,4 +357,89 @@ describe('labelPosts', () => {
     const result = labelPosts(posts, textMap, dict, lookup, rootUri, rootText);
     expect(result.get('uri:1')).toEqual(new Set(['Die Hard']));
   });
+
+  it('uses quoted alt text for labeling', () => {
+    const posts = [makePost(rootUri, rootText), makePost('uri:1', 'This one!', rootUri)];
+    const textMap = new Map<string, PostTextContent>([
+      [rootUri, makeTextContent(rootText)],
+      [
+        'uri:1',
+        makeTextContent('This one!', {
+          quotedText: 'Check out this poster',
+          quotedUri: 'uri:other',
+          quotedAltText: ['The Matrix movie poster', 'Neo in sunglasses'],
+          searchText:
+            'This one!\nCheck out this poster\nThe Matrix movie poster\nNeo in sunglasses',
+        }),
+      ],
+    ]);
+    const dict = makeDictionary([['The Matrix', { aliases: ['the matrix'], frequency: 5 }]]);
+    const lookup = makeLookup([['The Matrix', 'The Matrix']]);
+
+    const result = labelPosts(posts, textMap, dict, lookup, rootUri, rootText);
+    expect(result.get('uri:1')).toEqual(new Set(['The Matrix']));
+  });
+
+  it('skips posts with no textContent in map', () => {
+    const posts = [makePost(rootUri, rootText), makePost('uri:1', 'Die Hard', rootUri)];
+    const textMap = new Map<string, PostTextContent>([
+      [rootUri, makeTextContent(rootText)],
+      // uri:1 missing from textMap
+    ]);
+    const dict = makeDictionary([['Die Hard', { aliases: ['die hard'], frequency: 5 }]]);
+    const lookup = makeLookup([['Die Hard', 'Die Hard']]);
+
+    const result = labelPosts(posts, textMap, dict, lookup, rootUri, rootText);
+    // uri:1 should not be labeled since it has no textContent
+    expect(result.has('uri:1')).toBe(false);
+  });
+
+  it('handles getInheritedTitles when post not found in postsByUri', () => {
+    const posts = [
+      makePost(rootUri, rootText),
+      makePost('uri:1', 'Die Hard', rootUri),
+      makePost('uri:2', 'yes!', 'uri:missing'), // parent missing
+    ];
+    const textMap = new Map<string, PostTextContent>([
+      [rootUri, makeTextContent(rootText)],
+      ['uri:1', makeTextContent('Die Hard')],
+      ['uri:2', makeTextContent('yes!')],
+    ]);
+    const dict = makeDictionary([['Die Hard', { aliases: ['die hard'], frequency: 5 }]]);
+    const lookup = makeLookup([['Die Hard', 'Die Hard']]);
+
+    const result = labelPosts(posts, textMap, dict, lookup, rootUri, rootText);
+    // uri:2 should not inherit because its parent is missing
+    expect(result.has('uri:2')).toBe(false);
+  });
+
+  it('handles getInheritedTitles when post has no parent', () => {
+    const posts = [
+      makePost(rootUri, rootText),
+      makePost('uri:1', 'Die Hard', rootUri),
+      // Create a post with no parent (not a reply)
+      {
+        uri: 'uri:orphan',
+        cid: 'cid-orphan',
+        author: { did: 'did:plc:test', handle: 'test.bsky.social' },
+        record: {
+          text: 'yes absolutely',
+          createdAt: '2024-01-01T00:00:00Z',
+          // No reply field
+        },
+        indexedAt: '2024-01-01T00:00:00Z',
+      },
+    ];
+    const textMap = new Map<string, PostTextContent>([
+      [rootUri, makeTextContent(rootText)],
+      ['uri:1', makeTextContent('Die Hard')],
+      ['uri:orphan', makeTextContent('yes absolutely')],
+    ]);
+    const dict = makeDictionary([['Die Hard', { aliases: ['die hard'], frequency: 5 }]]);
+    const lookup = makeLookup([['Die Hard', 'Die Hard']]);
+
+    const result = labelPosts(posts, textMap, dict, lookup, rootUri, rootText);
+    // uri:orphan should not inherit because it has no parent
+    expect(result.has('uri:orphan')).toBe(false);
+  });
 });

@@ -110,6 +110,22 @@ describe('ProgressTracker', () => {
       }).not.toThrow();
     });
 
+    it('should handle removing listener that was never added', () => {
+      const listenerA = vi.fn();
+      const listenerB = vi.fn();
+
+      tracker.on('fetching', listenerA);
+
+      // Try to remove listenerB which was never added
+      tracker.off('fetching', listenerB);
+
+      // listenerA should still work
+      tracker.emit('fetching', { fetched: 1, stage: 'thread' as const });
+
+      expect(listenerA).toHaveBeenCalledTimes(1);
+      expect(listenerB).not.toHaveBeenCalled();
+    });
+
     it('should emit event even when no listeners registered', () => {
       // This should not throw
       expect(() => {

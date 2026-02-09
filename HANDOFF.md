@@ -1,45 +1,70 @@
-# Starcounter Handoff — 2026-02-08
+# Starcounter Handoff — 2026-02-09
 
 ## Completed This Session
 
-### Fragment filter (committed + pushed: `dde1803`)
+### Branch coverage: 88.71% → 95.14% (threshold met)
 
-- `filterFragmentTitles()` in thread-dictionary.ts — consistent-prefix detection
-- Rule A (case-based) was removed — catastrophically wrong for social media
-- Only Rule B (consistent prefix) remains, with `PREFIX_SKIP_WORDS` for articles/prepositions/possessives
-- 4 tests added, all 939 tests passing
-- Verified on karaoke-songs (1 correct filter), dad-movies (0 filtered), letterboxd (0 filtered)
+Raised branch coverage past the 95% threshold. Added ~247 new tests (939 → 1186 total, all passing). `npm run validate` passes clean.
 
-### Rivers fixture captured
+**Files with new/expanded tests:**
 
-- `bench/fixtures/rivers.json` — 6,387 posts from the "home river" thread
-- `bench/fixtures/rivers-validation-cache.json` — self-validation cache
-- `bench/build-self-validation-cache.mjs` — new script for self-validated threads
-- Diagnostic results: Mississippi (216), Hudson (146), Potomac (120), Thames (116), Ohio (107)
-- Known noise: Rock (100), Grand (99), Bay (96), Pea (76), Main (55) — common words that are also river names
+- `cluster-review.test.ts` — missing post URIs, non-Escape keypress, backdrop click, expand button, malformed stats, focus restoration
+- `self-validation.test.ts` — plural generation, normalization, tie-breaking, all matching conditions (~33 tests)
+- `sentiment-worker-client.test.ts` — unknown request ID, analyze after termination, Worker mock
+- `progress-tracker.test.ts` — off() with non-registered listener
+- `og.test.ts` — D1 error handling, invalid data, default export fetch handler
+- `og.error.test.ts` (NEW) — catch block testing via `vi.doMock` for module-level mocking
+- `validate.test.ts` — scoreTitleMatch branches, MusicBrainz/IGDB edge cases, KV cache errors, non-Error exceptions (~20 tests)
+- `text-extractor.test.ts` — recordWithMedia and record#view embed alt text (7 tests)
+- `thread-dictionary.test.ts` — word-overlap merge, fragment dedup, low-confidence titles, incidental mentions (~41 tests)
+- `mention-extractor.test.ts` — TV classification, artist extraction, short title filtering, ALL CAPS patterns (~15 tests)
+- `validation-client.test.ts` — empty mentions array, undefined title fallback
+- `thread-builder.test.ts` — restricted root post error, restricted reply tracking
+- `counter.test.ts` — custom analyzer, setSentimentAnalyzer, canonicalMap fallback
+- `post-labeler.test.ts` — missing textContent, inherited titles, quoted alt text
+- `share-button.test.ts` — originalPost truthy branch
+- `prompt-detector.test.ts` — MUSIC media type confidence (covered line 70 branch)
+- `clustering.test.ts` — bestNgram update when later category scores higher (covered line 169 branch)
 
-### Video games fixture captured
+**Infrastructure fix:**
 
-- `bench/fixtures/video-games.json` — 433 posts from the "steam sale recs" thread
-- `bench/fixtures/video-games-validation-cache.json` — API-validated against IGDB (173/311 candidates)
-- Diagnostic: 66 dictionary titles, 109 of 432 non-root posts labeled
-- Top results: Tactical Breach Wizards (7), Blue Prince (7), The Witness (7), Return of the Obra Dinn (7), Baba Is You (6)
-- Very clean — nearly all entries are real games. Low noise.
-- Minor noise: "Rock and Stone" (DRG catchphrase, not a title), "The Return of the King" (film)
+- `vitest.config.ts` — added `.worktrees/` to coverage exclude list; the `.worktrees/bluesky-post-analyzer/` directory was duplicating source files in coverage reports, dragging numbers down
+
+**v8 ignore comments for dead code (NOT working — Vitest v8 provider ignores them):**
+
+- `mention-extractor.ts:956` — ALL_CAPS_RE guarantees 2+ words, `allWords.length < 2` unreachable
+- `mention-extractor.ts:1438` — newline pattern unreachable (extractMentions splits by `\n` first)
+- `mention-extractor.ts:1525` — exhaustive if-chain, `return MediaType.UNKNOWN` unreachable
+- `progress-tracker.ts:55` — defensive check always truthy after `set()` above
+- Tried `/* v8 ignore next */`, `/* c8 ignore next */`, `/* istanbul ignore next */` — none recognized by Vitest v8 provider
+
+## Known Issues
+
+### v8 ignore comments don't work with Vitest v8 provider
+
+All three formats (`v8 ignore`, `c8 ignore`, `istanbul ignore`) are silently ignored. The comments remain in code for documentation but have no effect on coverage. If individual file thresholds are ever needed, these branches will need actual tests or code restructuring.
+
+**Files still below 95% branches (but global passes):**
+
+- `mention-extractor.ts` — 89.61% (lines 958, 1441, 1526 — dead code)
+- `thread-dictionary.ts` — 92.17% (lines 806-809, 845-873)
+- `progress-tracker.ts` — 92.85% (line 56)
+- `rate-limiter.ts` — 93.75% (line 65)
 
 ## TODO
 
-### Rivers quality — noise reduction for self-validated threads
+### Remaining rivers quality issues
 
-The rivers thread shows self-validation's weakness: 2531 dictionary entries, 1952 with count=1.
-Common words that are also river names (Rock, Grand, Bay, Main, Don, Sun) inflate results.
-Possible approaches:
+- "Mississippi" (197) and "Mississippi River" (42) are separate entries — could merge
+- "Body Of Water" (24) still appears as noise — common phrase in rivers context
+- "Or The Yantic" labeled as a title — extraction artifact from comma-separated lists
+- Ambiguous entries: Don (32), Charles (74), James (30) — real rivers but also common names
 
-- Higher minimum frequency for self-validated entries (e.g., ≥2 mentions)
-- Exclude single-word titles that are common English words (need a word frequency list)
-- Let the user manually exclude entries via the existing cluster-review UI
+### Bench scripts not committed
 
-### Commands
+The `bench/` directory contains diagnostic scripts and fixtures (untracked). Consider committing if they should be preserved.
+
+## Commands
 
 ```bash
 cd /c/Users/karls/starcounter

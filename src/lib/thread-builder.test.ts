@@ -437,4 +437,78 @@ describe('ThreadBuilder', () => {
       });
     });
   });
+
+  describe('restricted posts', () => {
+    it('should throw error for restricted root post', () => {
+      const restrictedRoot = {
+        uri: 'at://restricted/post/1',
+        restricted: true,
+      };
+
+      const builder = new ThreadBuilder();
+      expect(() => builder.buildTree(restrictedRoot)).toThrow(
+        'Root post requires authentication to view'
+      );
+    });
+
+    it('should track restricted reply posts in restrictedPosts list', () => {
+      const rootPost: ThreadViewPost = {
+        post: createMockPost('post1', 'Root'),
+        replies: [
+          {
+            post: createMockPost('post2', 'Reply 1', 'post1'),
+          },
+          {
+            uri: 'at://restricted/post/2',
+            restricted: true,
+          },
+          {
+            post: createMockPost('post3', 'Reply 3', 'post1'),
+          },
+        ],
+      };
+
+      const builder = new ThreadBuilder();
+      const tree = builder.buildTree(rootPost);
+
+      expect(tree.restrictedPosts).toHaveLength(1);
+      expect(tree.restrictedPosts[0]).toEqual({
+        uri: 'at://restricted/post/2',
+        restricted: true,
+      });
+      expect(tree.branches).toHaveLength(2); // Only non-restricted replies
+      expect(tree.allPosts).toHaveLength(3); // post1, post2, post3 (not restricted)
+    });
+
+    it('should track multiple restricted posts at different levels', () => {
+      const rootPost: ThreadViewPost = {
+        post: createMockPost('post1', 'Root'),
+        replies: [
+          {
+            post: createMockPost('post2', 'Reply 1', 'post1'),
+            replies: [
+              {
+                uri: 'at://restricted/nested/1',
+                restricted: true,
+              },
+              {
+                post: createMockPost('post3', 'Nested reply', 'post2'),
+              },
+            ],
+          },
+          {
+            uri: 'at://restricted/top/1',
+            restricted: true,
+          },
+        ],
+      };
+
+      const builder = new ThreadBuilder();
+      const tree = builder.buildTree(rootPost);
+
+      expect(tree.restrictedPosts).toHaveLength(2);
+      expect(tree.restrictedPosts.map((r) => r.uri)).toContain('at://restricted/nested/1');
+      expect(tree.restrictedPosts.map((r) => r.uri)).toContain('at://restricted/top/1');
+    });
+  });
 });

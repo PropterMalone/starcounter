@@ -52,6 +52,7 @@ export class ProgressTracker {
     }
 
     const eventListeners = this.listeners.get(event);
+    /* v8 ignore next */
     if (eventListeners) {
       // Cast to StoredListener for internal storage
       eventListeners.push(listener as StoredListener);

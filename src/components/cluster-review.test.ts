@@ -177,6 +177,53 @@ describe('ClusterReviewModal', () => {
 
       expect(modal.style.display).toBe('none');
     });
+
+    it('should restore focus to previously focused element on hide', () => {
+      const clusterModal = new ClusterReviewModal(modal, modalTitle, modalBody, closeButton);
+
+      // Create a button that was previously focused
+      const previousButton = document.createElement('button');
+      previousButton.id = 'previous-button';
+      document.body.appendChild(previousButton);
+
+      // Spy on the focus method
+      const focusSpy = vi.spyOn(previousButton, 'focus');
+
+      // Simulate that this button is currently focused by making it document.activeElement
+      // We need to actually focus it in jsdom
+      previousButton.focus();
+
+      clusterModal.show({ suggestions: [], postsByUri: new Map() });
+
+      // Reset spy call count after show() focuses closeButton
+      focusSpy.mockClear();
+
+      clusterModal.hide();
+
+      // Focus should be restored to the previous button
+      expect(focusSpy).toHaveBeenCalled();
+
+      // Cleanup
+      document.body.removeChild(previousButton);
+    });
+
+    it('should handle hide when no previously focused element exists', () => {
+      const clusterModal = new ClusterReviewModal(modal, modalTitle, modalBody, closeButton);
+
+      // Mock document.activeElement to return null/body
+      Object.defineProperty(document, 'activeElement', {
+        value: null,
+        configurable: true,
+        writable: true,
+      });
+
+      // Show modal with no active element
+      clusterModal.show({ suggestions: [], postsByUri: new Map() });
+
+      // Hide should not throw error when previouslyFocusedElement is null
+      expect(() => clusterModal.hide()).not.toThrow();
+      expect(modal.style.display).toBe('none');
+    });
   });
 
   describe('callbacks', () => {
@@ -454,6 +501,202 @@ describe('ClusterReviewModal', () => {
 
       // Title should update to reflect remaining cluster
       expect(modalTitle.textContent).toContain('1 posts');
+      expect(modalTitle.textContent).toContain('1 cluster');
+    });
+  });
+
+  describe('edge cases', () => {
+    it('should handle missing postUri in postsByUri map', () => {
+      const clusterModal = new ClusterReviewModal(modal, modalTitle, modalBody, closeButton);
+
+      const suggestions: ClusterSuggestion[] = [
+        {
+          suggestedCategory: 'Test Movie',
+          postUris: ['post1', 'missing-post', 'post2'],
+          score: 0.8,
+          method: 'fingerprint',
+        },
+      ];
+
+      const postsByUri = new Map<string, PostView>([
+        ['post1', createMockPost('post1', 'first post')],
+        ['post2', createMockPost('post2', 'second post')],
+        // 'missing-post' is not in the map
+      ]);
+
+      clusterModal.show({ suggestions, postsByUri });
+
+      // Should only render the 2 posts that exist in the map
+      const postPreviews = modalBody.querySelectorAll('.post-preview');
+      expect(postPreviews.length).toBe(2);
+    });
+
+    it('should not hide modal when clicking on modal content', () => {
+      const clusterModal = new ClusterReviewModal(modal, modalTitle, modalBody, closeButton);
+
+      clusterModal.show({ suggestions: [], postsByUri: new Map() });
+
+      // Click on modal content (not backdrop)
+      const modalContent = modal.querySelector('.modal-content') as HTMLElement;
+      const event = new dom.window.MouseEvent('click', { bubbles: true });
+      Object.defineProperty(event, 'target', { value: modalContent });
+      modal.dispatchEvent(event);
+
+      // Modal should still be visible
+      expect(modal.style.display).toBe('flex');
+    });
+
+    it('should not hide modal on non-Escape key press', () => {
+      const clusterModal = new ClusterReviewModal(modal, modalTitle, modalBody, closeButton);
+
+      clusterModal.show({ suggestions: [], postsByUri: new Map() });
+
+      // Press Enter key (not Escape)
+      const event = new dom.window.KeyboardEvent('keydown', { key: 'Enter' });
+      document.dispatchEvent(event);
+
+      // Modal should still be visible
+      expect(modal.style.display).toBe('flex');
+    });
+
+    it('should handle expand button click when posts container is missing', () => {
+      const clusterModal = new ClusterReviewModal(modal, modalTitle, modalBody, closeButton);
+
+      const suggestions: ClusterSuggestion[] = [
+        {
+          suggestedCategory: 'Test',
+          postUris: ['post1'],
+          score: 0.8,
+          method: 'fingerprint',
+        },
+      ];
+
+      const postsByUri = new Map<string, PostView>([['post1', createMockPost('post1', 'test')]]);
+
+      clusterModal.show({ suggestions, postsByUri });
+
+      // Remove the posts container from DOM to simulate broken structure
+      const clusterItem = modalBody.querySelector('.cluster-item') as HTMLElement;
+      const postsContainer = clusterItem.querySelector('.cluster-posts') as HTMLElement;
+      postsContainer.remove();
+
+      // Click expand button - should not throw error
+      const buttons = modalBody.querySelectorAll('.btn-secondary');
+      const expandBtn = Array.from(buttons).find(
+        (btn) => btn.textContent === 'Show posts'
+      ) as HTMLButtonElement;
+
+      expect(() => expandBtn.click()).not.toThrow();
+    });
+
+    it('should handle malformed cluster stats text during update', () => {
+      const clusterModal = new ClusterReviewModal(modal, modalTitle, modalBody, closeButton);
+      clusterModal.setCallbacks({ onAcceptCluster: vi.fn() });
+
+      const suggestions: ClusterSuggestion[] = [
+        {
+          suggestedCategory: 'Movie A',
+          postUris: ['post1', 'post2'],
+          score: 0.9,
+          method: 'fingerprint',
+        },
+        {
+          suggestedCategory: 'Movie B',
+          postUris: ['post3'],
+          score: 0.8,
+          method: 'fingerprint',
+        },
+      ];
+
+      const postsByUri = new Map<string, PostView>([
+        ['post1', createMockPost('post1', 'a')],
+        ['post2', createMockPost('post2', 'b')],
+        ['post3', createMockPost('post3', 'c')],
+      ]);
+
+      clusterModal.show({ suggestions, postsByUri });
+
+      // Manually corrupt the stats text of the second cluster to NOT match the pattern
+      const clusterItems = modalBody.querySelectorAll('.cluster-item');
+      const statsEl = clusterItems[1].querySelector('.cluster-stats') as HTMLElement;
+      statsEl.textContent = 'invalid format - no posts number';
+
+      // Accept first cluster - should trigger updateAfterChange with malformed stats
+      const acceptBtn = modalBody.querySelector('.btn-primary') as HTMLButtonElement;
+      acceptBtn.click();
+
+      // Should still update title, treating malformed stats as 0 posts (only the malformed cluster remains)
+      expect(modalTitle.textContent).toContain('0 posts');
+      expect(modalTitle.textContent).toContain('1 cluster');
+    });
+
+    it('should handle null match result in stats regex', () => {
+      const clusterModal = new ClusterReviewModal(modal, modalTitle, modalBody, closeButton);
+      clusterModal.setCallbacks({ onAcceptCluster: vi.fn() });
+
+      const suggestions: ClusterSuggestion[] = [
+        {
+          suggestedCategory: 'Test',
+          postUris: ['post1'],
+          score: 0.8,
+          method: 'fingerprint',
+        },
+      ];
+
+      const postsByUri = new Map<string, PostView>([['post1', createMockPost('post1', 'test')]]);
+
+      clusterModal.show({ suggestions, postsByUri });
+
+      // Corrupt the stats element to have no matching pattern
+      const statsEl = modalBody.querySelector('.cluster-stats') as HTMLElement;
+      statsEl.textContent = '';
+
+      // Trigger an accept which calls updateAfterChange
+      const acceptBtn = modalBody.querySelector('.btn-primary') as HTMLButtonElement;
+      acceptBtn.click();
+
+      // Should handle gracefully (empty cluster list now, so should show completion message)
+      expect(modalTitle.textContent).toContain('0 clusters remaining');
+    });
+
+    it('should handle cluster with missing stats element', () => {
+      const clusterModal = new ClusterReviewModal(modal, modalTitle, modalBody, closeButton);
+      clusterModal.setCallbacks({ onAcceptCluster: vi.fn() });
+
+      // Create a cluster that will be accepted
+      const suggestions: ClusterSuggestion[] = [
+        {
+          suggestedCategory: 'Accept Me',
+          postUris: ['post1'],
+          score: 0.9,
+          method: 'fingerprint',
+        },
+        {
+          suggestedCategory: 'Keep Me',
+          postUris: ['post2'],
+          score: 0.8,
+          method: 'fingerprint',
+        },
+      ];
+
+      const postsByUri = new Map<string, PostView>([
+        ['post1', createMockPost('post1', 'first')],
+        ['post2', createMockPost('post2', 'second')],
+      ]);
+
+      clusterModal.show({ suggestions, postsByUri });
+
+      // Remove stats element from remaining cluster to trigger the optional chaining fallback
+      const clusters = modalBody.querySelectorAll('.cluster-item');
+      const statsEl = clusters[1].querySelector('.cluster-stats') as HTMLElement;
+      statsEl.remove();
+
+      // Accept first cluster to trigger updateAfterChange
+      const acceptBtn = modalBody.querySelector('.btn-primary') as HTMLButtonElement;
+      acceptBtn.click();
+
+      // Should handle the missing stats gracefully
+      expect(modalTitle.textContent).toContain('0 posts');
       expect(modalTitle.textContent).toContain('1 cluster');
     });
   });
