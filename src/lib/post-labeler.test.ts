@@ -34,6 +34,7 @@ function makeTextContent(text: string, overrides: Partial<PostTextContent> = {})
     quotedText: null,
     quotedUri: null,
     quotedAltText: null,
+    embedLinks: [],
     searchText: text,
     ...overrides,
   };
@@ -441,5 +442,25 @@ describe('labelPosts', () => {
     const result = labelPosts(posts, textMap, dict, lookup, rootUri, rootText);
     // uri:orphan should not inherit because it has no parent
     expect(result.has('uri:orphan')).toBe(false);
+  });
+
+  it('assigns embed title directly when embedTitles option is provided', () => {
+    const posts = [makePost(rootUri, rootText), makePost('uri:1', 'this is a banger', rootUri)];
+    const textMap = new Map([
+      [rootUri, makeTextContent(rootText)],
+      ['uri:1', makeTextContent('this is a banger')],
+    ]);
+    const dict = makeDictionary([
+      ['Celebration - Kool & The Gang', { aliases: ['celebration'], frequency: 3 }],
+    ]);
+    const lookup = makeLookup([]);
+
+    const embedTitles = new Map([
+      ['uri:1', { canonical: 'Celebration - Kool & The Gang', song: 'Celebration' }],
+    ]);
+
+    const result = labelPosts(posts, textMap, dict, lookup, rootUri, rootText, { embedTitles });
+    expect(result.has('uri:1')).toBe(true);
+    expect(result.get('uri:1')!.has('Celebration - Kool & The Gang')).toBe(true);
   });
 });

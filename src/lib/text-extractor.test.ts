@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { extractPostText } from './text-extractor';
+import { extractPostText, extractEmbedLinks } from './text-extractor';
 import type { PostView } from '../types';
 
 function makePost(overrides: Partial<PostView> = {}): PostView {
@@ -306,6 +306,7 @@ describe('extractPostText', () => {
     expect(result.quotedText).toBeNull();
     expect(result.quotedUri).toBeNull();
     expect(result.quotedAltText).toBeNull();
+    expect(result.embedLinks).toEqual([]);
   });
 
   it('handles recordWithMedia without record field', () => {
@@ -335,5 +336,197 @@ describe('extractPostText', () => {
     const result = extractPostText(post);
     expect(result.quotedText).toBeNull();
     expect(result.quotedUri).toBe('at://did:plc:other/app.bsky.feed.post/xyz');
+  });
+
+  it('includes embedLinks in PostTextContent', () => {
+    const post = makePost({
+      embed: {
+        $type: 'app.bsky.embed.external#view',
+        external: {
+          uri: 'https://www.youtube.com/watch?v=abc123',
+          title: 'Never Gonna Give You Up',
+          description: 'Rick Astley',
+        },
+      },
+    });
+    const result = extractPostText(post);
+    expect(result.embedLinks).toHaveLength(1);
+    expect(result.embedLinks[0]!.platform).toBe('youtube');
+    expect(result.embedLinks[0]!.title).toBe('Never Gonna Give You Up');
+  });
+});
+
+describe('extractEmbedLinks', () => {
+  it('extracts YouTube link from external embed', () => {
+    const post = makePost({
+      embed: {
+        $type: 'app.bsky.embed.external#view',
+        external: {
+          uri: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+          title: 'Rick Astley - Never Gonna Give You Up (Official Video)',
+          description: 'The official video',
+        },
+      },
+    });
+    const links = extractEmbedLinks(post);
+    expect(links).toHaveLength(1);
+    expect(links[0]).toEqual({
+      url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      title: 'Rick Astley - Never Gonna Give You Up (Official Video)',
+      platform: 'youtube',
+    });
+  });
+
+  it('extracts Spotify link', () => {
+    const post = makePost({
+      embed: {
+        external: {
+          uri: 'https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT',
+          title: 'Celebration - Kool & The Gang',
+        },
+      },
+    });
+    const links = extractEmbedLinks(post);
+    expect(links).toHaveLength(1);
+    expect(links[0]!.platform).toBe('spotify');
+  });
+
+  it('detects Apple Music', () => {
+    const post = makePost({
+      embed: {
+        external: {
+          uri: 'https://music.apple.com/us/album/thriller/269572838',
+          title: 'Thriller by Michael Jackson',
+        },
+      },
+    });
+    const links = extractEmbedLinks(post);
+    expect(links[0]!.platform).toBe('apple');
+  });
+
+  it('detects SoundCloud', () => {
+    const post = makePost({
+      embed: {
+        external: {
+          uri: 'https://soundcloud.com/artist/track',
+          title: 'Some Track',
+        },
+      },
+    });
+    const links = extractEmbedLinks(post);
+    expect(links[0]!.platform).toBe('soundcloud');
+  });
+
+  it('detects Bandcamp', () => {
+    const post = makePost({
+      embed: {
+        external: {
+          uri: 'https://artist.bandcamp.com/track/some-song',
+          title: 'Some Song',
+        },
+      },
+    });
+    const links = extractEmbedLinks(post);
+    expect(links[0]!.platform).toBe('bandcamp');
+  });
+
+  it('detects youtu.be short URLs', () => {
+    const post = makePost({
+      embed: {
+        external: {
+          uri: 'https://youtu.be/dQw4w9WgXcQ',
+          title: 'Rick Roll',
+        },
+      },
+    });
+    const links = extractEmbedLinks(post);
+    expect(links[0]!.platform).toBe('youtube');
+  });
+
+  it('returns unknown for non-music URLs', () => {
+    const post = makePost({
+      embed: {
+        external: {
+          uri: 'https://example.com/page',
+          title: 'Some Page',
+        },
+      },
+    });
+    const links = extractEmbedLinks(post);
+    expect(links[0]!.platform).toBe('unknown');
+  });
+
+  it('extracts from recordWithMedia embed', () => {
+    const post = makePost({
+      embed: {
+        $type: 'app.bsky.embed.recordWithMedia#view',
+        record: {
+          record: {
+            uri: 'at://did:plc:other/app.bsky.feed.post/xyz',
+            value: { text: 'Check this out' },
+          },
+        },
+        media: {
+          external: {
+            uri: 'https://www.youtube.com/watch?v=test',
+            title: 'Test Video',
+          },
+        },
+      },
+    });
+    const links = extractEmbedLinks(post);
+    expect(links).toHaveLength(1);
+    expect(links[0]!.platform).toBe('youtube');
+    expect(links[0]!.title).toBe('Test Video');
+  });
+
+  it('returns empty array when no embed', () => {
+    const post = makePost({ embed: undefined });
+    expect(extractEmbedLinks(post)).toEqual([]);
+  });
+
+  it('returns empty array when embed has no external data', () => {
+    const post = makePost({
+      embed: {
+        $type: 'app.bsky.embed.images#view',
+        images: [{ alt: 'photo' }],
+      },
+    });
+    expect(extractEmbedLinks(post)).toEqual([]);
+  });
+
+  it('skips links with empty title', () => {
+    const post = makePost({
+      embed: {
+        external: {
+          uri: 'https://www.youtube.com/watch?v=abc',
+          title: '',
+        },
+      },
+    });
+    expect(extractEmbedLinks(post)).toEqual([]);
+  });
+
+  it('skips links with whitespace-only title', () => {
+    const post = makePost({
+      embed: {
+        external: {
+          uri: 'https://www.youtube.com/watch?v=abc',
+          title: '   ',
+        },
+      },
+    });
+    expect(extractEmbedLinks(post)).toEqual([]);
+  });
+
+  it('skips links with missing uri', () => {
+    const post = makePost({
+      embed: {
+        external: {
+          title: 'Some Title',
+        },
+      },
+    });
+    expect(extractEmbedLinks(post)).toEqual([]);
   });
 });

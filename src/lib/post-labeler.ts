@@ -7,10 +7,15 @@
 
 import type { PostView } from '../types';
 import type { PostTextContent } from './text-extractor';
-import type { ThreadDictionary, ValidationLookupEntry } from './thread-dictionary';
+import type { ThreadDictionary, ValidationLookupEntry, EmbedTitleEntry } from './thread-dictionary';
 import { extractCandidates, extractShortTextCandidate, isAgreement } from './thread-dictionary';
 
 type ConsumedRange = { readonly start: number; readonly end: number };
+
+export type LabelPostsOptions = {
+  /** Pre-resolved embed titles: postUri → parsed embed title */
+  readonly embedTitles?: ReadonlyMap<string, EmbedTitleEntry>;
+};
 
 /**
  * Label each post with the titles it mentions.
@@ -21,6 +26,7 @@ type ConsumedRange = { readonly start: number; readonly end: number };
  * @param lookup Validation lookup (lowercase candidate → canonical)
  * @param rootUri Root post URI
  * @param rootText Lowercase root post text
+ * @param options Optional config (embed titles for direct assignment)
  * @returns Map from post URI → Set of canonical titles mentioned
  */
 export function labelPosts(
@@ -29,7 +35,8 @@ export function labelPosts(
   dictionary: ThreadDictionary,
   lookup: ReadonlyMap<string, ValidationLookupEntry>,
   rootUri: string,
-  rootText: string
+  rootText: string,
+  options?: LabelPostsOptions
 ): Map<string, Set<string>> {
   // Use patched lookup (with merge redirects) if available, otherwise original
   const effectiveLookup = dictionary.patchedLookup ?? lookup;
@@ -66,6 +73,13 @@ export function labelPosts(
     }
 
     const validTitles = new Set<string>();
+
+    // Embed title direct assignment: if this post has a resolved embed link,
+    // assign its parsed title immediately (highest confidence, no regex needed)
+    const embedEntry = options?.embedTitles?.get(post.uri);
+    if (embedEntry && dictionary.entries.has(embedEntry.canonical)) {
+      validTitles.add(embedEntry.canonical);
+    }
 
     // Strategy A: Forward lookup with longest-match-wins
     const candidates = extractCandidates(searchText);

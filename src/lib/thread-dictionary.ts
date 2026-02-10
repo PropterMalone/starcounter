@@ -35,9 +35,18 @@ export type ValidationLookupEntry = {
   readonly confidence: 'high' | 'medium' | 'low';
 };
 
+export type EmbedTitleEntry = {
+  /** The canonical title (e.g., "Celebration - Kool & The Gang") */
+  readonly canonical: string;
+  /** The song name alone for pattern matching (e.g., "Celebration") */
+  readonly song: string;
+};
+
 export type DiscoverDictionaryOptions = {
   readonly minConfidentForShortTitle?: number; // default: 2
   readonly minConfidentOverall?: number; // default: 1
+  /** Pre-resolved embed titles: postUri → parsed embed title */
+  readonly embedTitles?: ReadonlyMap<string, EmbedTitleEntry>;
 };
 
 // ---------------------------------------------------------------------------
@@ -262,8 +271,13 @@ const REACTION_PATTERNS: RegExp[] = [
   /^(so good|great|amazing|incredible|love (it|this)|hell yeah|oh hell yeah)/i,
   /^(came here to say this|this is (it|the one|mine)|good (call|choice|pick|answer))/i,
   /^(underrated|overrated|classic|banger|legendary|goat|peak)/i,
+  // Music-specific reaction patterns
+  /^(bop|tune|anthem|jam|slaps|bangs|certified|vibes?|mood)/i,
+  /^oh (hell|fuck) yes/i,
+  /^(yesss+|yasss+)/i,
+  /^this is the (answer|one|way)/i,
   /^[^\w]*$/,
-  /^(lol|lmao|lmbo|omg|omfg|ha+|😂|🤣|👏|👍|🔥|💯|❤️|🎯)+$/i,
+  /^(lol|lmao|lmbo|omg|omfg|ha+|😂|🤣|👏|👍|🔥|💯|❤️|🎯|🎶|🎵)+$/i,
   /^me too/i,
   /^right\??!*$/i,
   /^well,?\s*yes/i,
@@ -291,10 +305,15 @@ const AGREEMENT_PATTERNS: RegExp[] = [
   /^(so good|great|amazing|incredible|love (it|this)|hell yeah|oh hell yeah)/i,
   /^(came here to say this|this is (it|the one|mine)|good (call|choice|pick|answer))/i,
   /^(underrated|overrated|classic|banger|legendary|goat|peak)/i,
+  // Music-specific endorsement patterns
+  /^(bop|tune|anthem|jam|slaps|bangs|certified|vibes?|mood)/i,
+  /^oh (hell|fuck) yes/i,
+  /^(yesss+|yasss+)/i,
+  /^this is the (answer|one|way)/i,
   /^me too/i,
   /^right\??!*$/i,
   /^well,?\s*yes/i,
-  /^(👏|👍|💯|🎯|🤝|✅|🙌)+$/,
+  /^(👏|👍|💯|🎯|🤝|✅|🙌|🎶|🎵)+$/,
 ];
 
 /** Strict agreement detection: post endorses parent's content, suitable for inheritance. */
@@ -474,6 +493,59 @@ export function discoverDictionary(
       if (pattern.length < 12 && pattern.split(/\s+/).length < 3) continue;
       if (lowerText.includes(pattern)) {
         recordIncidental(entry.canonical, candidate, post.uri, entry.confidence);
+      }
+    }
+  }
+
+  // --- Embed title seeding: pre-resolved titles from URL embeds ---
+  // Strategy A: Posts with embed links get their parsed song as a confident mention.
+  // Strategy B: Song names become dictionary patterns for reverse text matching.
+  const embedTitles = options?.embedTitles;
+  if (embedTitles && embedTitles.size > 0) {
+    for (const [postUri, entry] of embedTitles) {
+      if (postUri === rootUri) continue;
+      // Strategy A: direct assignment — high confidence, no regex needed
+      recordConfident(entry.canonical, entry.song, postUri, 'high');
+      // Also add canonical as an alias for reverse matching
+      recordConfident(entry.canonical, entry.canonical, postUri, 'high');
+    }
+
+    // Strategy B: scan all non-root posts for mentions of embed-derived song names.
+    // This catches posts that mention a song by name without including a link.
+    const embedMatchers: Array<{ canonical: string; pattern: string }> = [];
+    for (const [, entry] of embedTitles) {
+      const pattern = entry.song.toLowerCase();
+      if (pattern.length >= 4 && !lowerRootText.includes(pattern)) {
+        embedMatchers.push({ canonical: entry.canonical, pattern });
+      }
+    }
+    // Dedup matchers by pattern
+    const seenPatterns = new Set<string>();
+    const dedupedMatchers = embedMatchers.filter((m) => {
+      if (seenPatterns.has(m.pattern)) return false;
+      seenPatterns.add(m.pattern);
+      return true;
+    });
+    // Sort longest first
+    dedupedMatchers.sort((a, b) => b.pattern.length - a.pattern.length);
+
+    for (const post of posts) {
+      if (post.uri === rootUri) continue;
+      if (embedTitles.has(post.uri)) continue; // Already assigned via Strategy A
+      const textContent = postTexts.get(post.uri);
+      if (!textContent) continue;
+      const text = textContent.ownText.toLowerCase();
+
+      for (const { canonical, pattern } of dedupedMatchers) {
+        const idx = text.indexOf(pattern);
+        if (idx === -1) continue;
+        // Word boundary check for short patterns
+        if (pattern.length < 8) {
+          const before = idx > 0 ? text[idx - 1] : ' ';
+          const after = idx + pattern.length < text.length ? text[idx + pattern.length] : ' ';
+          if (/[a-z0-9]/.test(before!) || /[a-z0-9]/.test(after!)) continue;
+        }
+        recordIncidental(canonical, pattern, post.uri, 'high');
       }
     }
   }

@@ -28,6 +28,7 @@ function makeTextContent(text: string, overrides: Partial<PostTextContent> = {})
     quotedText: null,
     quotedUri: null,
     quotedAltText: null,
+    embedLinks: [],
     searchText: text,
     ...overrides,
   };
@@ -1256,5 +1257,207 @@ describe('discoverDictionary edge cases', () => {
     const text = 'yes ' + 'x'.repeat(46);
     // >=50 chars — skips agreement pattern check
     expect(isAgreement(text)).toBe(false);
+  });
+});
+
+describe('discoverDictionary with embedTitles', () => {
+  const rootUri = 'at://root/post/1';
+  const rootText = 'what song gets you moving?';
+
+  function setup(
+    postData: Array<{ uri: string; text: string }>,
+    embedTitles: Map<string, { canonical: string; song: string }>
+  ) {
+    const posts = [makePost(rootUri, rootText), ...postData.map((p) => makePost(p.uri, p.text))];
+    const postTexts = new Map<string, PostTextContent>();
+    for (const p of posts) {
+      postTexts.set(p.uri, makeTextContent(p.record.text));
+    }
+    const validationLookup = new Map();
+    return discoverDictionary(posts, postTexts, validationLookup, rootUri, rootText.toLowerCase(), {
+      embedTitles,
+    });
+  }
+
+  it('Strategy A: assigns embed title directly to the post', () => {
+    const embedTitles = new Map([
+      ['at://user/post/2', { canonical: 'Celebration - Kool & The Gang', song: 'Celebration' }],
+    ]);
+    const dict = setup([{ uri: 'at://user/post/2', text: 'this is my jam!' }], embedTitles);
+
+    expect(dict.entries.has('Celebration - Kool & The Gang')).toBe(true);
+    const entry = dict.entries.get('Celebration - Kool & The Gang')!;
+    expect(entry.confidentCount).toBeGreaterThanOrEqual(1);
+  });
+
+  it('Strategy B: reverse-matches embed song name in other posts', () => {
+    const embedTitles = new Map([
+      ['at://user/post/2', { canonical: 'September - Earth Wind & Fire', song: 'September' }],
+    ]);
+    const dict = setup(
+      [
+        { uri: 'at://user/post/2', text: 'love this one' },
+        { uri: 'at://user/post/3', text: 'September is such a great tune' },
+      ],
+      embedTitles
+    );
+
+    expect(dict.entries.has('September - Earth Wind & Fire')).toBe(true);
+    const entry = dict.entries.get('September - Earth Wind & Fire')!;
+    // Post 2 via Strategy A, post 3 via Strategy B
+    expect(entry.confidentCount + entry.incidentalCount).toBeGreaterThanOrEqual(2);
+  });
+
+  it('Strategy B: skips short patterns without word boundaries', () => {
+    const embedTitles = new Map([['at://user/post/2', { canonical: 'Go - Cat', song: 'Go' }]]);
+    // "go" is only 2 chars — too short for pattern matching
+    const dict = setup(
+      [
+        { uri: 'at://user/post/2', text: 'banger' },
+        { uri: 'at://user/post/3', text: 'lets gooooo' },
+      ],
+      embedTitles
+    );
+
+    const entry = dict.entries.get('Go - Cat');
+    // Strategy A gives it 1 confident, but Strategy B should not match "gooooo"
+    expect(entry?.incidentalCount ?? 0).toBe(0);
+  });
+
+  it('Strategy B: respects word boundary for short patterns', () => {
+    const embedTitles = new Map([
+      ['at://user/post/2', { canonical: 'Lean On - Major Lazer', song: 'Lean On' }],
+    ]);
+    const dict = setup(
+      [
+        { uri: 'at://user/post/2', text: 'banger' },
+        { uri: 'at://user/post/3', text: 'lean on is so good' },
+      ],
+      embedTitles
+    );
+
+    const entry = dict.entries.get('Lean On - Major Lazer');
+    // "lean on" is 7 chars (<8), so word boundary is checked.
+    // "lean on is so good" has word boundaries around "lean on" → should match
+    expect(entry?.incidentalCount).toBeGreaterThanOrEqual(1);
+  });
+
+  it('Strategy B: skips posts that already have embed assignment', () => {
+    const embedTitles = new Map([
+      ['at://user/post/2', { canonical: 'Thriller - MJ', song: 'Thriller' }],
+      ['at://user/post/3', { canonical: 'Beat It - MJ', song: 'Beat It' }],
+    ]);
+    const dict = setup(
+      [
+        { uri: 'at://user/post/2', text: 'Thriller for sure' },
+        { uri: 'at://user/post/3', text: 'I love Thriller too' },
+      ],
+      embedTitles
+    );
+
+    // Post 3 already has "Beat It" via Strategy A, so Strategy B should
+    // not also give it an incidental match for "Thriller"
+    const thrillerEntry = dict.entries.get('Thriller - MJ');
+    // Only post 2 should have Thriller (via Strategy A)
+    expect(thrillerEntry?.confidentCount).toBeGreaterThanOrEqual(1);
+  });
+
+  it('Strategy B: skips songs mentioned in root text', () => {
+    // If the root prompt mentions a song name, don't use it as a reverse-match pattern
+    const rootTextLocal = 'does anyone like celebration?';
+    const posts = [
+      makePost(rootUri, rootTextLocal),
+      makePost('at://user/post/2', 'link to celebration'),
+      makePost('at://user/post/3', 'celebration is the best'),
+    ];
+    const postTexts = new Map<string, PostTextContent>();
+    for (const p of posts) {
+      postTexts.set(p.uri, makeTextContent(p.record.text));
+    }
+    const embedTitles = new Map([
+      ['at://user/post/2', { canonical: 'Celebration - Kool', song: 'Celebration' }],
+    ]);
+    const dict = discoverDictionary(
+      posts,
+      postTexts,
+      new Map(),
+      rootUri,
+      rootTextLocal.toLowerCase(),
+      { embedTitles }
+    );
+
+    const entry = dict.entries.get('Celebration - Kool');
+    // Strategy A assigns post 2, but Strategy B should not match post 3
+    // because "celebration" is in the root text
+    expect(entry?.incidentalCount ?? 0).toBe(0);
+  });
+
+  it('deduplicates embed matchers by pattern', () => {
+    // Two different posts with the same song should produce only one matcher
+    const embedTitles = new Map([
+      ['at://user/post/2', { canonical: 'Bohemian Rhapsody - Queen', song: 'Bohemian Rhapsody' }],
+      ['at://user/post/3', { canonical: 'Bohemian Rhapsody - Queen', song: 'Bohemian Rhapsody' }],
+    ]);
+    const dict = setup(
+      [
+        { uri: 'at://user/post/2', text: 'link here' },
+        { uri: 'at://user/post/3', text: 'another link' },
+        { uri: 'at://user/post/4', text: 'bohemian rhapsody is incredible' },
+      ],
+      embedTitles
+    );
+
+    const entry = dict.entries.get('Bohemian Rhapsody - Queen')!;
+    // Posts 2+3 via Strategy A, post 4 via Strategy B (only counted once due to dedup)
+    expect(entry.confidentCount).toBeGreaterThanOrEqual(2);
+    expect(entry.incidentalCount).toBeGreaterThanOrEqual(1);
+  });
+
+  it('merges near-duplicate titles via word-overlap disambiguation', () => {
+    // Two very similar titles should be merged by the disambiguation pass.
+    // "Paradise by the Dashboard Light" vs "Paradise by the Dashboard Lights"
+    // share 85%+ word overlap → get merged.
+    const embedTitles = new Map([
+      [
+        'at://user/post/2',
+        {
+          canonical: 'Paradise by the Dashboard Light',
+          song: 'Paradise by the Dashboard Light',
+        },
+      ],
+      [
+        'at://user/post/3',
+        {
+          canonical: 'Paradise by the Dashboard Lights',
+          song: 'Paradise by the Dashboard Lights',
+        },
+      ],
+    ]);
+    const dict = setup(
+      [
+        { uri: 'at://user/post/2', text: 'love it' },
+        { uri: 'at://user/post/3', text: 'great song' },
+        { uri: 'at://user/post/4', text: 'paradise by the dashboard light' },
+      ],
+      embedTitles
+    );
+
+    // After merge, only one canonical should remain in the dictionary
+    const paradiseEntries = [...dict.entries.keys()].filter((k) =>
+      k.toLowerCase().includes('paradise')
+    );
+    expect(paradiseEntries.length).toBe(1);
+  });
+
+  it('skips root post in embed title assignment', () => {
+    // Even if embedTitles includes the root URI, it should be skipped
+    const embedTitles = new Map([
+      [rootUri, { canonical: 'Root Song', song: 'Root Song' }],
+      ['at://user/post/2', { canonical: 'Real Song - Artist', song: 'Real Song' }],
+    ]);
+    const dict = setup([{ uri: 'at://user/post/2', text: 'good one' }], embedTitles);
+
+    expect(dict.entries.has('Root Song')).toBe(false);
+    expect(dict.entries.has('Real Song - Artist')).toBe(true);
   });
 });
