@@ -3,11 +3,18 @@
 
 import type { AtUri, PostView } from '../types';
 
+export type EmbedLink = {
+  readonly url: string;
+  readonly title: string;
+  readonly platform: 'youtube' | 'spotify' | 'apple' | 'soundcloud' | 'bandcamp' | 'unknown';
+};
+
 export type PostTextContent = {
   readonly ownText: string; // record.text + own image alt text
   readonly quotedText: string | null;
   readonly quotedUri: string | null;
   readonly quotedAltText: readonly string[] | null;
+  readonly embedLinks: readonly EmbedLink[];
   readonly searchText: string; // combined text for candidate extraction
 };
 
@@ -141,12 +148,68 @@ function extractQuotedPostAltText(post: PostView): readonly string[] | null {
   return null;
 }
 
+/** Detect music/video platform from URL hostname. */
+function detectPlatform(url: string): EmbedLink['platform'] {
+  try {
+    const hostname = new URL(url).hostname.toLowerCase();
+    if (hostname.includes('youtube.com') || hostname.includes('youtu.be')) return 'youtube';
+    if (hostname.includes('spotify.com')) return 'spotify';
+    if (hostname.includes('music.apple.com') || hostname.includes('itunes.apple.com'))
+      return 'apple';
+    if (hostname.includes('soundcloud.com')) return 'soundcloud';
+    if (hostname.includes('bandcamp.com')) return 'bandcamp';
+  } catch {
+    // Invalid URL — fall through
+  }
+  return 'unknown';
+}
+
+type ExternalLike = { readonly uri?: string; readonly title?: string };
+
+/** Extract link data from an embed's external field. */
+function extractExternalLink(external: ExternalLike): EmbedLink | null {
+  if (!external.uri || !external.title) return null;
+  const title = external.title.trim();
+  if (title.length === 0) return null;
+  return {
+    url: external.uri,
+    title,
+    platform: detectPlatform(external.uri),
+  };
+}
+
+/** Extract all external embed links from a post's view embed. */
+export function extractEmbedLinks(post: PostView): EmbedLink[] {
+  const embed = post.embed;
+  if (!embed || typeof embed !== 'object') return [];
+  const e = embed as Record<string, unknown>;
+  const links: EmbedLink[] = [];
+
+  // Direct external embed: app.bsky.embed.external#view
+  if (e['external'] && typeof e['external'] === 'object') {
+    const link = extractExternalLink(e['external'] as ExternalLike);
+    if (link) links.push(link);
+  }
+
+  // Media external in recordWithMedia: app.bsky.embed.recordWithMedia#view
+  if (e['media'] && typeof e['media'] === 'object') {
+    const media = e['media'] as Record<string, unknown>;
+    if (media['external'] && typeof media['external'] === 'object') {
+      const link = extractExternalLink(media['external'] as ExternalLike);
+      if (link) links.push(link);
+    }
+  }
+
+  return links;
+}
+
 /** Extract all text content from a post for analysis. */
 export function extractPostText(post: PostView): PostTextContent {
   const ownText = extractOwnText(post);
   const quotedText = extractQuotedPostText(post);
   const quotedUri = extractQuotedPostUri(post);
   const quotedAltText = extractQuotedPostAltText(post);
+  const embedLinks = extractEmbedLinks(post);
 
   // Build combined search text
   const parts = [ownText];
@@ -154,5 +217,5 @@ export function extractPostText(post: PostView): PostTextContent {
   if (quotedAltText) parts.push(quotedAltText.join('\n'));
   const searchText = parts.join('\n');
 
-  return { ownText, quotedText, quotedUri, quotedAltText, searchText };
+  return { ownText, quotedText, quotedUri, quotedAltText, embedLinks, searchText };
 }

@@ -24,8 +24,11 @@ import { fromStoredPost } from './lib/share-types';
 import type { SharedData } from './lib/share-types';
 import type { MentionCount, PostView } from './types';
 import type { MediaMention } from './lib/mention-extractor';
-import type { PostTextContent } from './lib/text-extractor';
+import type { PostTextContent, EmbedLink } from './lib/text-extractor';
 import { extractCandidates, extractShortTextCandidate } from './lib/thread-dictionary';
+import type { EmbedTitleEntry } from './lib/thread-dictionary';
+import { parseEmbedTitle } from './lib/embed-title-parser';
+import { resolveEmbedTitles } from './lib/oembed-client';
 
 /**
  * Get a DOM element by ID with runtime validation.
@@ -217,7 +220,6 @@ class StarcounterApp {
     reviewSuggestionsButton?.addEventListener('click', () => {
       this.showClusterReviewModal();
     });
-  }
 
     // Add tag modal
     this.setupAddTagModal();
@@ -277,6 +279,8 @@ class StarcounterApp {
       // Shared state for incremental extraction during fetch
       const postTexts = new Map<string, PostTextContent>();
       const uniqueCandidates = new Set<string>();
+      // Collect embed links per post URI during fetch (for oEmbed resolution)
+      const postEmbedLinks = new Map<string, EmbedLink[]>();
       let rootAtUri = '';
       let rootTextLower = '';
 
@@ -286,6 +290,11 @@ class StarcounterApp {
           if (postTexts.has(post.uri)) continue;
           const textContent = extractPostText(post);
           postTexts.set(post.uri, textContent);
+
+          // Collect embed links for later oEmbed resolution
+          if (textContent.embedLinks.length > 0) {
+            postEmbedLinks.set(post.uri, [...textContent.embedLinks]);
+          }
 
           // First post processed becomes root
           if (rootAtUri === '') {
@@ -323,6 +332,72 @@ class StarcounterApp {
       }
 
       console.log(`[Analysis] Found ${uniqueCandidates.size} unique candidates`);
+
+      // --- Embed title resolution ---
+      // Collect YouTube URLs that need oEmbed resolution, plus directly parse
+      // embed titles that already have usable titles in the Bluesky API response.
+      const embedTitles = new Map<string, EmbedTitleEntry>();
+      const youtubeUrlsToResolve = new Map<string, string>(); // url → postUri (first seen)
+
+      for (const [postUri, links] of postEmbedLinks) {
+        if (postUri === rootAtUri) continue;
+        for (const link of links) {
+          // Try parsing the embed title directly (works when Bluesky already fetched it)
+          const parsed = parseEmbedTitle(link);
+          if (parsed) {
+            embedTitles.set(postUri, { canonical: parsed.canonical, song: parsed.song });
+          } else if (link.platform === 'youtube' && !youtubeUrlsToResolve.has(link.url)) {
+            // Queue for server-side oEmbed resolution (generic/missing title)
+            youtubeUrlsToResolve.set(link.url, postUri);
+          }
+        }
+      }
+
+      console.log(
+        `[Analysis] Embed links: ${postEmbedLinks.size} posts, ${embedTitles.size} parsed directly, ${youtubeUrlsToResolve.size} YouTube URLs need oEmbed`
+      );
+
+      // Resolve YouTube titles via oEmbed endpoint (if any)
+      if (youtubeUrlsToResolve.size > 0) {
+        const resolved = await resolveEmbedTitles([...youtubeUrlsToResolve.keys()], {
+          onProgress: (p) => {
+            console.log(`[Analysis] oEmbed: ${p.resolved}/${p.total} resolved`);
+          },
+        });
+
+        // Build a reverse map: url → all postUris that had that URL
+        const urlToPostUris = new Map<string, string[]>();
+        for (const [postUri, links] of postEmbedLinks) {
+          if (postUri === rootAtUri) continue;
+          for (const link of links) {
+            if (link.platform === 'youtube' && resolved.has(link.url)) {
+              const uris = urlToPostUris.get(link.url) ?? [];
+              uris.push(postUri);
+              urlToPostUris.set(link.url, uris);
+            }
+          }
+        }
+
+        for (const [url, result] of resolved) {
+          // Parse the resolved title
+          const parsed = parseEmbedTitle({
+            url,
+            title: result.title,
+            platform: 'youtube',
+          });
+          if (!parsed) continue;
+
+          const entry: EmbedTitleEntry = { canonical: parsed.canonical, song: parsed.song };
+          const postUris = urlToPostUris.get(url) ?? [];
+          for (const postUri of postUris) {
+            if (!embedTitles.has(postUri)) {
+              embedTitles.set(postUri, entry);
+            }
+          }
+        }
+
+        console.log(`[Analysis] After oEmbed: ${embedTitles.size} total posts with embed titles`);
+      }
 
       // Stage 4: Validate unique candidates — three tiers
       const candidateArray = [...uniqueCandidates];
@@ -398,11 +473,15 @@ class StarcounterApp {
       // API-validated threads use defaults.
       const isListValidated = selectedTypes.length === 0 && customList.length > 0;
       const isSelfValidated = selectedTypes.length === 0 && customList.length === 0;
-      const dictionaryOptions = isListValidated
+      const baseDictionaryOptions = isListValidated
         ? { minConfidentForShortTitle: 1 }
         : isSelfValidated
           ? { minConfidentOverall: 2 }
-          : undefined;
+          : {};
+      const dictionaryOptions = {
+        ...baseDictionaryOptions,
+        ...(embedTitles.size > 0 ? { embedTitles } : {}),
+      };
       const dictionary = discoverDictionary(
         allPosts,
         postTexts,
@@ -428,7 +507,8 @@ class StarcounterApp {
         dictionary,
         validationLookup,
         rootAtUri,
-        rootTextLower
+        rootTextLower,
+        embedTitles.size > 0 ? { embedTitles } : undefined
       );
 
       // Stage 7: Build MentionCount[] from postToTitles

@@ -817,7 +817,8 @@ describe('MentionExtractor', () => {
       const text = '"Song Name" by Artist feat. Featured Artist';
       const mentions = extractor.extractMentions(text, MediaType.MUSIC);
 
-      expect(mentions[0]?.artist).toContain('feat');
+      const songMention = mentions.find((m) => m.title === 'Song Name');
+      expect(songMention?.artist).toContain('feat');
     });
 
     it('should handle ALL CAPS with colon separator', () => {
@@ -1095,6 +1096,31 @@ describe('MentionExtractor - Property-Based Tests', () => {
       }),
       { numRuns: 100 }
     );
+  });
+
+  it('should classify as VIDEO_GAME from context keywords only', () => {
+    // Tests L1529: gameCount === max branch in classifyFromContext
+    const text = 'I just played "Halo Infinite" on my xbox';
+    const mentions = extractor.extractMentions(text); // no defaultMediaType → uses context
+
+    const halo = mentions.find((m) => m.title === 'Halo Infinite');
+    expect(halo).toBeDefined();
+    expect(halo?.mediaType).toBe('VIDEO_GAME');
+  });
+
+  it('should trim common-word prefix when remaining has 2+ caps', () => {
+    // Tests L1495/1499: firstWord is common, remainingCaps >= 2
+    // "Her" is in COMMON_WORDS but not an article. After removing it,
+    // "Beautiful Dark Twisted Fantasy" has 4 capitalized words.
+    const text = 'Her Beautiful Dark Twisted Fantasy';
+    const mentions = extractor.extractMentions(text, MediaType.MUSIC);
+
+    expect(
+      mentions.some(
+        (m) =>
+          m.title.includes('Beautiful') && m.title.includes('Fantasy') && !m.title.startsWith('Her')
+      )
+    ).toBe(true);
   });
 
   it('should never extract empty titles', () => {

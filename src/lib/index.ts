@@ -32,8 +32,12 @@ export {
   suggestClusters,
 } from './clustering';
 export type { MatchResult, ClusterSuggestion } from './clustering';
-export { extractPostText } from './text-extractor';
-export type { PostTextContent } from './text-extractor';
+export { extractPostText, extractEmbedLinks } from './text-extractor';
+export type { PostTextContent, EmbedLink } from './text-extractor';
+export { cleanEmbedTitle, isGarbageTitle, parseEmbedTitle } from './embed-title-parser';
+export type { ParsedEmbedTitle } from './embed-title-parser';
+export { resolveEmbedTitles } from './oembed-client';
+export type { OEmbedResult, OEmbedProgress } from './oembed-client';
 export {
   extractCandidates,
   extractShortTextCandidate,
@@ -48,8 +52,10 @@ export type {
   ThreadDictionary,
   ValidationLookupEntry,
   DiscoverDictionaryOptions,
+  EmbedTitleEntry,
 } from './thread-dictionary';
 export { labelPosts } from './post-labeler';
+export type { LabelPostsOptions } from './post-labeler';
 export {
   extractCategoryWords,
   buildSelfValidatedLookup,
