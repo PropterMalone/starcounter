@@ -7,6 +7,7 @@ export type DrillDownCallbacks = {
   onExclude?: (category: string) => void;
   onAssign?: (postUri: string, category: string) => void;
   getCategories?: () => string[];
+  onAddTag?: () => void;
 };
 
 /**
@@ -108,6 +109,23 @@ export class DrillDownModal {
 
       excludeContainer.appendChild(excludeBtn);
       this.modalBody.appendChild(excludeContainer);
+    }
+
+    // Add "Add Tag" button for uncategorized category
+    if (isUncategorized && this.callbacks.onAddTag) {
+      const addTagContainer = document.createElement('div');
+      addTagContainer.className = 'modal-actions';
+
+      const addTagBtn = document.createElement('button');
+      addTagBtn.className = 'btn btn-primary btn-small';
+      addTagBtn.textContent = '+ Add Tag';
+      addTagBtn.addEventListener('click', () => {
+        this.hide();
+        this.callbacks.onAddTag?.();
+      });
+
+      addTagContainer.appendChild(addTagBtn);
+      this.modalBody.appendChild(addTagContainer);
     }
 
     if (posts.length === 0) {

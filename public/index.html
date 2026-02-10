@@ -156,7 +156,16 @@
               aria-label="Bar chart showing media mention counts"
             ></canvas>
           </div>
-          <p class="chart-hint">Click on a bar to see contributing posts</p>
+          <p class="chart-hint">
+            Click on a bar to see contributing posts
+            <button
+              id="add-tag-button"
+              class="btn btn-secondary btn-small"
+              style="margin-left: 1rem"
+            >
+              + Add Tag
+            </button>
+          </p>
           <!-- Excluded categories (shown when user excludes categories) -->
           <div id="excluded-categories" class="excluded-categories" style="display: none">
             <span class="excluded-label">Excluded:</span>
@@ -207,6 +216,40 @@
           </div>
           <div class="modal-body" id="modal-body">
             <!-- Posts will be inserted here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Tag Modal -->
+      <div
+        id="add-tag-modal"
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="add-tag-modal-title"
+        style="display: none"
+      >
+        <div class="modal-content modal-narrow">
+          <div class="modal-header">
+            <h2 id="add-tag-modal-title">Add Tag</h2>
+            <button class="modal-close" id="add-tag-modal-close" aria-label="Close dialog">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body" id="add-tag-modal-body">
+            <p>Enter a title to search for in all posts (case-insensitive):</p>
+            <input
+              type="text"
+              id="add-tag-input"
+              class="form-input"
+              placeholder="e.g., Blue Prince"
+              autofocus
+            />
+            <div class="modal-actions" style="margin-top: 1rem">
+              <button id="add-tag-submit" class="btn btn-primary">Add</button>
+              <button id="add-tag-cancel" class="btn btn-secondary">Cancel</button>
+            </div>
+            <p id="add-tag-result" class="add-tag-result" style="display: none"></p>
           </div>
         </div>
       </div>

@@ -639,6 +639,42 @@ header h1 {
   border-color: var(--primary-color);
 }
 
+/* Add Tag Modal */
+.modal-narrow {
+  max-width: 400px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.add-tag-result {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.add-tag-result.success {
+  background: #e6f4ea;
+  color: var(--success-color);
+}
+
+.add-tag-result.error {
+  background: #fce8e6;
+  color: var(--error-color);
+}
+
 /* Cluster Review Modal */
 .modal-wide {
   max-width: 900px;

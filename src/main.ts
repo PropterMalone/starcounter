@@ -70,6 +70,8 @@ class StarcounterApp {
   // User refinement state
   private excludedCategories: Set<string> = new Set();
   private manualAssignments: Map<string, string> = new Map(); // postUri → category
+  private manualTags: Map<string, PostView[]> = new Map(); // tag → matching posts
+  private lastAllPosts: PostView[] = []; // All posts for manual tag searching
 
   constructor() {
     // Initialize backend services
@@ -193,6 +195,7 @@ class StarcounterApp {
       onExclude: (category) => this.excludeCategory(category),
       onAssign: (postUri, category) => this.assignPostToCategory(postUri, category),
       getCategories: () => this.getAvailableCategories(),
+      onAddTag: () => this.showAddTagModal(),
     });
 
     // Cluster review modal callbacks
@@ -214,6 +217,10 @@ class StarcounterApp {
     reviewSuggestionsButton?.addEventListener('click', () => {
       this.showClusterReviewModal();
     });
+  }
+
+    // Add tag modal
+    this.setupAddTagModal();
   }
 
   private attachProgressListeners(): void {
@@ -256,6 +263,7 @@ class StarcounterApp {
       // Reset user refinement state
       this.excludedCategories.clear();
       this.manualAssignments.clear();
+      this.manualTags.clear();
       this.clusterReviewModal.reset();
 
       // Extract AT-URI from bsky.app URL
@@ -454,6 +462,9 @@ class StarcounterApp {
       // Stage 8: Display results
       this.progressTracker.emit('complete', { mentionCounts: finalMentionCounts });
 
+      // Store allPosts for manual tag searching
+      this.lastAllPosts = allPosts;
+
       this.showResults(finalMentionCounts, allPosts.length, uncategorizedPosts);
     } catch (error) {
       if (error instanceof Error) {
@@ -602,6 +613,22 @@ class StarcounterApp {
       }
     }
 
+    // Add manual tags
+    for (const [tag, posts] of this.manualTags) {
+      const existing = countsByMention.get(tag);
+      if (existing) {
+        // Merge posts, avoiding duplicates
+        for (const post of posts) {
+          if (!existing.posts.some((p) => p.uri === post.uri)) {
+            existing.posts.push(post);
+            existing.count++;
+          }
+        }
+      } else {
+        countsByMention.set(tag, { count: posts.length, posts: [...posts] });
+      }
+    }
+
     // Filter out excluded categories and rebuild array
     const result: MentionCount[] = [];
     for (const [mention, data] of countsByMention) {
@@ -679,6 +706,44 @@ class StarcounterApp {
   }
 
   /**
+   * Add a manual tag by searching all posts for case-insensitive matches
+   * Returns the number of matching posts found
+   */
+  private addManualTag(title: string): { count: number; alreadyExists: boolean } {
+    const trimmedTitle = title.trim();
+    if (!trimmedTitle) {
+      return { count: 0, alreadyExists: false };
+    }
+
+    // Check if tag already exists (in manual tags or existing mention counts)
+    const existingManual = this.manualTags.has(trimmedTitle);
+    const existingMention = this.lastMentionCounts.some(
+      (mc) => mc.mention.toLowerCase() === trimmedTitle.toLowerCase()
+    );
+    if (existingManual || existingMention) {
+      return { count: 0, alreadyExists: true };
+    }
+
+    // Search all posts for case-insensitive match
+    const pattern = new RegExp(`\\b${this.escapeRegex(trimmedTitle)}\\b`, 'i');
+    const matchingPosts = this.lastAllPosts.filter((post) => pattern.test(post.record.text));
+
+    if (matchingPosts.length > 0) {
+      this.manualTags.set(trimmedTitle, matchingPosts);
+      this.refreshResultsDisplay();
+    }
+
+    return { count: matchingPosts.length, alreadyExists: false };
+  }
+
+  /**
+   * Escape special regex characters in a string
+   */
+  private escapeRegex(str: string): string {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  /**
    * Show cluster review modal with suggestions for uncategorized posts
    */
   private showClusterReviewModal(): void {
@@ -753,6 +818,97 @@ class StarcounterApp {
       });
 
       list.appendChild(item);
+    }
+  }
+
+  /**
+   * Setup the Add Tag modal UI
+   */
+  private setupAddTagModal(): void {
+    const modal = document.getElementById('add-tag-modal');
+    const closeBtn = document.getElementById('add-tag-modal-close');
+    const submitBtn = document.getElementById('add-tag-submit');
+    const cancelBtn = document.getElementById('add-tag-cancel');
+    const input = document.getElementById('add-tag-input') as HTMLInputElement | null;
+    const resultEl = document.getElementById('add-tag-result');
+    const addTagButton = document.getElementById('add-tag-button');
+
+    if (!modal || !closeBtn || !submitBtn || !cancelBtn || !input || !resultEl || !addTagButton) {
+      return;
+    }
+
+    const showModal = () => {
+      modal.style.display = 'flex';
+      input.value = '';
+      resultEl.style.display = 'none';
+      input.focus();
+    };
+
+    const hideModal = () => {
+      modal.style.display = 'none';
+    };
+
+    const handleSubmit = () => {
+      const title = input.value.trim();
+      if (!title) return;
+
+      const { count, alreadyExists } = this.addManualTag(title);
+
+      if (alreadyExists) {
+        resultEl.textContent = `"${title}" already exists in results`;
+        resultEl.className = 'add-tag-result error';
+        resultEl.style.display = 'block';
+      } else if (count === 0) {
+        resultEl.textContent = `No posts found containing "${title}"`;
+        resultEl.className = 'add-tag-result error';
+        resultEl.style.display = 'block';
+      } else {
+        resultEl.textContent = `Added "${title}" with ${count} post${count === 1 ? '' : 's'}`;
+        resultEl.className = 'add-tag-result success';
+        resultEl.style.display = 'block';
+        // Clear input for another entry
+        input.value = '';
+        input.focus();
+      }
+    };
+
+    // Wire up events
+    addTagButton.addEventListener('click', showModal);
+    closeBtn.addEventListener('click', hideModal);
+    cancelBtn.addEventListener('click', hideModal);
+    submitBtn.addEventListener('click', handleSubmit);
+
+    // Enter key submits
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleSubmit();
+      } else if (e.key === 'Escape') {
+        hideModal();
+      }
+    });
+
+    // Click outside closes
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        hideModal();
+      }
+    });
+  }
+
+  /**
+   * Show the add tag modal (can be called from other places)
+   */
+  private showAddTagModal(): void {
+    const modal = document.getElementById('add-tag-modal');
+    const input = document.getElementById('add-tag-input') as HTMLInputElement | null;
+    const resultEl = document.getElementById('add-tag-result');
+
+    if (modal && input && resultEl) {
+      modal.style.display = 'flex';
+      input.value = '';
+      resultEl.style.display = 'none';
+      input.focus();
     }
   }
 
