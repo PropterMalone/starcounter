@@ -1471,6 +1471,12 @@ export class MentionExtractor {
     const words = title.split(/\s+/);
     const firstWord = words[0]?.toLowerCase();
 
+    // If first word is NOT a common word, keep the title as-is
+    // "Disco Elysium" at sentence start should be kept because "disco" isn't common
+    if (firstWord && !COMMON_WORDS.has(firstWord)) {
+      return title;
+    }
+
     // Special case: "The/A/An + ProperNoun" is a valid movie title pattern
     // Keep titles like "The Martian", "The Matrix", "A Quiet Place" even at sentence start
     if (words.length === 2 && (firstWord === 'the' || firstWord === 'a' || firstWord === 'an')) {

@@ -259,7 +259,9 @@ describe('MentionExtractor', () => {
         const text = '"Song Name" by Artist feat. Featured Artist';
         const mentions = extractor.extractMentions(text, MediaType.MUSIC);
 
-        expect(mentions[0].artist).toBe('Artist feat. Featured Artist');
+        // Find the quoted song mention (should have the artist attached)
+        const songMention = mentions.find((m) => m.title === 'Song Name');
+        expect(songMention?.artist).toBe('Artist feat. Featured Artist');
       });
 
       it('should return undefined artist when pattern does not match', () => {
