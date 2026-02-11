@@ -2,16 +2,10 @@
 // Cloudflare Pages Function: batch-resolve YouTube video titles via oEmbed API.
 //
 // YouTube's public oEmbed endpoint returns video metadata without requiring
-// API keys. We batch requests server-side to avoid CORS issues and cache
-// results in KV for 24 hours (titles rarely change).
-
-type CloudflareEnv = {
-  readonly VALIDATION_CACHE?: KVNamespace;
-};
+// API keys. We batch requests server-side to avoid CORS issues.
 
 type PagesContext = {
   request: Request;
-  env: CloudflareEnv;
 };
 
 type OEmbedResult = {
@@ -29,8 +23,6 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'Content-Type',
 };
 
-const CACHE_TTL = 60 * 60 * 24; // 24 hours
-const CACHE_PREFIX = 'oembed:v1:';
 const MAX_URLS = 50; // prevent abuse
 
 /**
@@ -51,34 +43,12 @@ async function resolveYouTubeTitle(url: string): Promise<string | null> {
   }
 }
 
-/**
- * Safely read from KV cache.
- */
-async function cacheGet(cache: KVNamespace, url: string): Promise<string | null> {
-  try {
-    return await cache.get(`${CACHE_PREFIX}${url}`);
-  } catch {
-    return null;
-  }
-}
-
-/**
- * Safely write to KV cache.
- */
-async function cachePut(cache: KVNamespace, url: string, title: string): Promise<void> {
-  try {
-    await cache.put(`${CACHE_PREFIX}${url}`, title, { expirationTtl: CACHE_TTL });
-  } catch {
-    // KV write failed (quota) — continue without caching
-  }
-}
-
 export async function onRequestOptions(): Promise<Response> {
   return new Response(null, { headers: corsHeaders });
 }
 
 export async function onRequestPost(context: PagesContext): Promise<Response> {
-  const { request, env } = context;
+  const { request } = context;
 
   try {
     const body = (await request.json()) as { urls?: string[] };
@@ -95,43 +65,17 @@ export async function onRequestPost(context: PagesContext): Promise<Response> {
     const batch = urls.slice(0, MAX_URLS);
     const results: Record<string, OEmbedResult> = {};
 
-    // Check cache first for all URLs
-    const uncached: string[] = [];
-    if (env.VALIDATION_CACHE) {
-      const cacheChecks = await Promise.all(
-        batch.map(async (url) => {
-          const cached = await cacheGet(env.VALIDATION_CACHE!, url);
-          if (cached) {
-            results[url] = { title: cached, platform: 'youtube' };
-            return true;
-          }
-          return false;
-        })
-      );
-      for (let i = 0; i < batch.length; i++) {
-        if (!cacheChecks[i]) uncached.push(batch[i]!);
-      }
-    } else {
-      uncached.push(...batch);
-    }
+    // Resolve all URLs in parallel
+    const resolved = await Promise.all(
+      batch.map(async (url) => {
+        const title = await resolveYouTubeTitle(url);
+        return { url, title };
+      })
+    );
 
-    // Resolve uncached URLs in parallel (limited concurrency via Promise.all)
-    if (uncached.length > 0) {
-      const resolved = await Promise.all(
-        uncached.map(async (url) => {
-          const title = await resolveYouTubeTitle(url);
-          return { url, title };
-        })
-      );
-
-      for (const { url, title } of resolved) {
-        if (title) {
-          results[url] = { title, platform: 'youtube' };
-          if (env.VALIDATION_CACHE) {
-            // Fire and forget — don't block response on cache writes
-            cachePut(env.VALIDATION_CACHE, url, title);
-          }
-        }
+    for (const { url, title } of resolved) {
+      if (title) {
+        results[url] = { title, platform: 'youtube' };
       }
     }
 
@@ -153,9 +97,9 @@ export async function onRequestPost(context: PagesContext): Promise<Response> {
 }
 
 export default {
-  async fetch(request: Request, env: CloudflareEnv): Promise<Response> {
+  async fetch(request: Request): Promise<Response> {
     if (request.method === 'OPTIONS') return onRequestOptions();
-    if (request.method === 'POST') return onRequestPost({ request, env });
+    if (request.method === 'POST') return onRequestPost({ request });
     return new Response('Method not allowed', { status: 405, headers: corsHeaders });
   },
 };

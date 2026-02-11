@@ -38,7 +38,6 @@ type CloudflareEnv = {
   readonly MUSICBRAINZ_USER_AGENT: string;
   readonly TWITCH_CLIENT_ID: string;
   readonly TWITCH_CLIENT_SECRET: string;
-  readonly VALIDATION_CACHE?: KVNamespace;
 };
 
 export type ValidationOptions = {
@@ -46,7 +45,6 @@ export type ValidationOptions = {
   readonly musicbrainzUserAgent: string;
   readonly twitchClientId: string;
   readonly twitchClientSecret: string;
-  readonly cache?: KVNamespace; // Cloudflare KV for caching
 };
 
 export type ValidationResult = {
@@ -65,42 +63,6 @@ export type ValidationResult = {
   readonly error?: string;
 };
 
-const CACHE_TTL = 60 * 60 * 24; // 24 hours - shorter to pick up scoring improvements faster
-const CACHE_VERSION = 'v6'; // Increment to invalidate stale entries after scoring changes
-
-/**
- * Safely read from KV cache, returning null on any error
- */
-async function safeKVGet(cache: KVNamespace, key: string): Promise<ValidationResult | null> {
-  try {
-    return await cache.get(key, 'json');
-  } catch {
-    // KV read failed (quota, network, etc.) - continue without cache
-    return null;
-  }
-}
-
-/**
- * Safely write to KV cache, silently ignoring errors (e.g., quota exceeded)
- */
-async function safeKVPut(
-  cache: KVNamespace,
-  key: string,
-  value: string,
-  ttl: number
-): Promise<void> {
-  try {
-    await cache.put(key, value, { expirationTtl: ttl });
-  } catch (error) {
-    // KV write failed (likely quota exceeded on free tier: 1000 puts/day)
-    // Log but continue - caching is an optimization, not a requirement
-    console.warn(
-      `KV cache write failed for key "${key}":`,
-      error instanceof Error ? error.message : error
-    );
-  }
-}
-
 /**
  * Validate a mention against external APIs
  */
@@ -109,16 +71,6 @@ export async function validateMention(
   mediaType: MediaType,
   options: ValidationOptions
 ): Promise<ValidationResult> {
-  const cacheKey = `${CACHE_VERSION}:${mediaType}:${title.toLowerCase()}`;
-
-  // Check cache (with graceful fallback on error)
-  if (options.cache) {
-    const cached = await safeKVGet(options.cache, cacheKey);
-    if (cached) {
-      return cached;
-    }
-  }
-
   let result: ValidationResult;
 
   try {
@@ -153,11 +105,6 @@ export async function validateMention(
       confidence: 'low',
       error: error instanceof Error ? error.message : 'Unknown error',
     };
-  }
-
-  // Cache result (with graceful fallback on quota exceeded)
-  if (options.cache) {
-    await safeKVPut(options.cache, cacheKey, JSON.stringify(result), CACHE_TTL);
   }
 
   return result;
@@ -747,7 +694,6 @@ export async function onRequestPost(context: PagesContext): Promise<Response> {
       musicbrainzUserAgent: env.MUSICBRAINZ_USER_AGENT,
       twitchClientId: env.TWITCH_CLIENT_ID,
       twitchClientSecret: env.TWITCH_CLIENT_SECRET,
-      cache: env.VALIDATION_CACHE,
     });
 
     return new Response(JSON.stringify(result), {

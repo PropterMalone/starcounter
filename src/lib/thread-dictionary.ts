@@ -53,8 +53,11 @@ export type DiscoverDictionaryOptions = {
 // Used to filter Strategy B reverse-matching for embed titles — these words are
 // too frequent in normal conversation to be useful as text-match patterns.
 // Strategy A (direct link assignment) still works for these.
-const EMBED_STOP_WORDS = new Set([
-  // Articles, prepositions, conjunctions
+// Single-word song titles that are common English words. These produce massive
+// false positives when used as text-match patterns (e.g., "Just" by Radiohead
+// matches every post containing the word "just"). Used to filter both the main
+// lookup scan and embed Strategy B reverse matching.
+const COMMON_WORD_SONG_TITLES = new Set([
   'just',
   'stay',
   'love',
@@ -172,6 +175,11 @@ const EMBED_STOP_WORDS = new Set([
   'outside',
   'together',
 ]);
+
+/** Check if a candidate is a single common English word that's also a song title. */
+export function isCommonWordSongTitle(candidateLower: string): boolean {
+  return !candidateLower.includes(' ') && COMMON_WORD_SONG_TITLES.has(candidateLower);
+}
 
 // ---------------------------------------------------------------------------
 // Candidate extraction (broad, high-recall)
@@ -597,10 +605,15 @@ export function discoverDictionary(
     const consumedSpans: string[] = [];
 
     for (const candidate of candidates) {
-      const entry = lookup.get(candidate.toLowerCase());
+      const candidateLower = candidate.toLowerCase();
+      const entry = lookup.get(candidateLower);
       if (!entry) continue;
 
-      const candidateLower = candidate.toLowerCase();
+      // Single common English words that are also song titles (e.g., "Just",
+      // "Stay", "Free") match far too many posts via text extraction. Skip them
+      // here — they still get credit via embed Strategy A (direct link assignment).
+      if (!candidateLower.includes(' ') && COMMON_WORD_SONG_TITLES.has(candidateLower)) continue;
+
       const consumed = consumedSpans.some((span) => span.includes(candidateLower));
       if (consumed) continue;
 
@@ -643,7 +656,7 @@ export function discoverDictionary(
         // Single-word patterns that are common English words produce massive
         // false positives (e.g., "Just" by Radiohead matches every post with "just").
         // Skip them for Strategy B — they still get Strategy A direct assignment.
-        if (!pattern.includes(' ') && EMBED_STOP_WORDS.has(pattern)) continue;
+        if (!pattern.includes(' ') && COMMON_WORD_SONG_TITLES.has(pattern)) continue;
         embedMatchers.push({ canonical: entry.canonical, pattern });
       }
     }
