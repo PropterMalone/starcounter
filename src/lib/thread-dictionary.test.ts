@@ -1342,6 +1342,46 @@ describe('discoverDictionary with embedTitles', () => {
     expect(entry?.incidentalCount).toBeGreaterThanOrEqual(1);
   });
 
+  it('Strategy B: skips common single-word song names to avoid false positives', () => {
+    // "Just" by Radiohead is a real song, but "just" is so common that
+    // reverse-matching it would tag nearly every post in the thread.
+    const embedTitles = new Map([
+      ['at://user/post/2', { canonical: 'Just - Radiohead', song: 'Just' }],
+    ]);
+    const dict = setup(
+      [
+        { uri: 'at://user/post/2', text: 'link to just by radiohead' },
+        { uri: 'at://user/post/3', text: 'I just love this thread' },
+        { uri: 'at://user/post/4', text: 'just wanted to say hi' },
+      ],
+      embedTitles
+    );
+
+    const entry = dict.entries.get('Just - Radiohead');
+    // Strategy A assigns post 2, but Strategy B should NOT match posts 3 & 4
+    // because "just" is a common English word
+    expect(entry?.confidentCount).toBeGreaterThanOrEqual(1);
+    expect(entry?.incidentalCount ?? 0).toBe(0);
+  });
+
+  it('Strategy B: still matches multi-word patterns even if first word is common', () => {
+    // "Love Song" contains "love" (a stop word) but the full pattern is multi-word
+    const embedTitles = new Map([
+      ['at://user/post/2', { canonical: 'Love Song - Sara Bareilles', song: 'Love Song' }],
+    ]);
+    const dict = setup(
+      [
+        { uri: 'at://user/post/2', text: 'link here' },
+        { uri: 'at://user/post/3', text: 'love song is such a banger' },
+      ],
+      embedTitles
+    );
+
+    const entry = dict.entries.get('Love Song - Sara Bareilles');
+    // Multi-word pattern "love song" should still match via Strategy B
+    expect(entry?.incidentalCount).toBeGreaterThanOrEqual(1);
+  });
+
   it('Strategy B: skips posts that already have embed assignment', () => {
     const embedTitles = new Map([
       ['at://user/post/2', { canonical: 'Thriller - MJ', song: 'Thriller' }],
