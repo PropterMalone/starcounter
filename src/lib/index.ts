@@ -63,3 +63,7 @@ export {
 } from './self-validation';
 export { toStoredPost, fromStoredPost } from './share-types';
 export type { StoredPost, SharedData } from './share-types';
+export { fetchThreadPosts } from './thread-fetcher';
+export type { FetchProgress, ThreadFetchOptions, ThreadFetchResult } from './thread-fetcher';
+export { analyzeThread } from './analyze';
+export type { AnalysisConfig, AnalysisResult } from './analyze';
