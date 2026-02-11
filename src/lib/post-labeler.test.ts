@@ -463,4 +463,33 @@ describe('labelPosts', () => {
     expect(result.has('uri:1')).toBe(true);
     expect(result.get('uri:1')!.has('Celebration - Kool & The Gang')).toBe(true);
   });
+
+  it('skips common single-word song titles in forward lookup', () => {
+    const posts = [makePost(rootUri, rootText), makePost('uri:1', 'Just a great song', rootUri)];
+    const textMap = new Map([
+      [rootUri, makeTextContent(rootText)],
+      ['uri:1', makeTextContent('Just a great song')],
+    ]);
+    const dict = makeDictionary([['Just', { aliases: ['just'], frequency: 3 }]]);
+    const lookup = makeLookup([['Just', 'Just']]);
+
+    const result = labelPosts(posts, textMap, dict, lookup, rootUri, rootText);
+    expect(result.has('uri:1')).toBe(false);
+  });
+
+  it('skips common single-word song titles in reverse alias matching', () => {
+    const posts = [
+      makePost(rootUri, rootText),
+      makePost('uri:1', 'i just wanted to say this is great', rootUri),
+    ];
+    const textMap = new Map([
+      [rootUri, makeTextContent(rootText)],
+      ['uri:1', makeTextContent('i just wanted to say this is great')],
+    ]);
+    const dict = makeDictionary([['Just - Radiohead', { aliases: ['just'], frequency: 3 }]]);
+    const lookup = makeLookup([]);
+
+    const result = labelPosts(posts, textMap, dict, lookup, rootUri, rootText);
+    expect(result.has('uri:1')).toBe(false);
+  });
 });

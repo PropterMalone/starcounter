@@ -9,13 +9,6 @@ compatibility_flags = ["nodejs_compat"]
 # TWITCH_CLIENT_ID - Twitch app client ID for IGDB authentication
 # TWITCH_CLIENT_SECRET - Twitch app client secret for IGDB authentication
 
-# KV namespace for caching validation results
-# Note: Free tier has 1000 puts/day limit - code gracefully falls back if exceeded
-[[kv_namespaces]]
-binding = "VALIDATION_CACHE"
-id = "c666774805084ce4a6288a73dad8da80"
-preview_id = "4b787f602d81488b94801913a68ab13c"
-
 # D1 database for shared results (preserves drill-down data in share links)
 [[d1_databases]]
 binding = "SHARED_RESULTS"

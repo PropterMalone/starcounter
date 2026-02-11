@@ -6,12 +6,6 @@ import { MediaType } from '../../src/lib/mention-extractor';
 // Type for mocked fetch
 type MockedFetch = ReturnType<typeof vi.fn>;
 
-// Type for KV namespace
-interface KVNamespace {
-  get(key: string, options?: { type: string }): Promise<unknown>;
-  put(key: string, value: string, options?: { expirationTtl: number }): Promise<void>;
-}
-
 // Mock fetch globally
 global.fetch = vi.fn() as unknown as typeof fetch;
 
@@ -686,68 +680,6 @@ describe('validateMention', () => {
     });
   });
 
-  describe('cache behavior', () => {
-    it('should use cache for subsequent calls', async () => {
-      const mockKV = {
-        get: vi.fn(),
-        put: vi.fn(),
-      };
-
-      const mockResponse = {
-        results: [
-          {
-            id: 603,
-            title: 'The Matrix',
-            release_date: '1999-03-31',
-            vote_average: 8.2,
-            vote_count: 21500,
-            popularity: 45.6,
-          },
-        ],
-      };
-
-      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
-
-      await validateMention('The Matrix', MediaType.MOVIE, {
-        tmdbApiKey: 'test_key',
-        musicbrainzUserAgent: 'Test/1.0',
-        twitchClientId: 'test_twitch_id',
-        twitchClientSecret: 'test_twitch_secret',
-        cache: mockKV as unknown as KVNamespace,
-      });
-
-      expect(mockKV.put).toHaveBeenCalled();
-    });
-
-    it('should return cached result on hit', async () => {
-      const cachedResult = {
-        title: 'The Matrix',
-        validated: true,
-        confidence: 'high' as const,
-        source: 'tmdb' as const,
-      };
-
-      const mockKV = {
-        get: vi.fn().mockResolvedValueOnce(cachedResult),
-        put: vi.fn(),
-      };
-
-      const result = await validateMention('The Matrix', MediaType.MOVIE, {
-        tmdbApiKey: 'test_key',
-        musicbrainzUserAgent: 'Test/1.0',
-        twitchClientId: 'test_twitch_id',
-        twitchClientSecret: 'test_twitch_secret',
-        cache: mockKV as unknown as KVNamespace,
-      });
-
-      expect(result).toEqual(cachedResult);
-      expect(((global.fetch as unknown as MockedFetch).mock.calls as unknown[][]).length).toBe(0);
-    });
-  });
-
   describe('edge cases', () => {
     it('should handle TMDB with missing vote_count', async () => {
       (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
@@ -1079,69 +1011,6 @@ describe('validateMention', () => {
     });
   });
 
-  describe('branch coverage for cache miss', () => {
-    it('should call API when cache returns null', async () => {
-      const mockKV = {
-        get: vi.fn().mockResolvedValueOnce(null),
-        put: vi.fn(),
-      };
-
-      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({
-          results: [
-            {
-              id: 603,
-              title: 'The Matrix',
-              release_date: '1999-03-31',
-              vote_average: 8.2,
-              vote_count: 21500,
-              popularity: 45.6,
-            },
-          ],
-        }),
-      });
-
-      const result = await validateMention('The Matrix', MediaType.MOVIE, {
-        tmdbApiKey: 'test_key',
-        musicbrainzUserAgent: 'Test/1.0',
-        twitchClientId: 'test_twitch_id',
-        twitchClientSecret: 'test_twitch_secret',
-        cache: mockKV as unknown as KVNamespace,
-      });
-
-      expect(result.validated).toBe(true);
-      expect(((global.fetch as unknown as MockedFetch).mock.calls as unknown[][]).length).toBe(1);
-    });
-
-    it('should validate when cache is undefined', async () => {
-      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({
-          results: [
-            {
-              id: 603,
-              title: 'The Matrix',
-              release_date: '1999-03-31',
-              vote_average: 8.2,
-              vote_count: 21500,
-              popularity: 45.6,
-            },
-          ],
-        }),
-      });
-
-      const result = await validateMention('The Matrix', MediaType.MOVIE, {
-        tmdbApiKey: 'test_key',
-        musicbrainzUserAgent: 'Test/1.0',
-        twitchClientId: 'test_twitch_id',
-        twitchClientSecret: 'test_twitch_secret',
-      });
-
-      expect(result.validated).toBe(true);
-    });
-  });
-
   describe('scoreTitleMatch edge cases', () => {
     it('should reject when search contains result but result is too short', async () => {
       // Searching "Oceans Eleven" should NOT match "Oceans" (length ratio 0.46 < 0.6)
@@ -1268,77 +1137,6 @@ describe('validateMention', () => {
 
       expect(result.validated).toBe(false);
       expect(result.confidence).toBe('low');
-    });
-  });
-
-  describe('cache error handling', () => {
-    it('should handle KV read errors gracefully', async () => {
-      const mockKV = {
-        get: vi.fn().mockRejectedValueOnce(new Error('KV read quota exceeded')),
-        put: vi.fn(),
-      };
-
-      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({
-          results: [
-            {
-              id: 603,
-              title: 'The Matrix',
-              release_date: '1999-03-31',
-              vote_average: 8.2,
-              vote_count: 21500,
-              popularity: 45.6,
-            },
-          ],
-        }),
-      });
-
-      const result = await validateMention('The Matrix', MediaType.MOVIE, {
-        tmdbApiKey: 'test_key',
-        musicbrainzUserAgent: 'Test/1.0',
-        twitchClientId: 'test_twitch_id',
-        twitchClientSecret: 'test_twitch_secret',
-        cache: mockKV as unknown as KVNamespace,
-      });
-
-      // Should continue without cache and call API
-      expect(result.validated).toBe(true);
-      expect(((global.fetch as unknown as MockedFetch).mock.calls as unknown[][]).length).toBe(1);
-    });
-
-    it('should handle KV write errors gracefully', async () => {
-      const mockKV = {
-        get: vi.fn().mockResolvedValueOnce(null),
-        put: vi.fn().mockRejectedValueOnce(new Error('KV write quota exceeded')),
-      };
-
-      (global.fetch as unknown as MockedFetch).mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({
-          results: [
-            {
-              id: 603,
-              title: 'The Matrix',
-              release_date: '1999-03-31',
-              vote_average: 8.2,
-              vote_count: 21500,
-              popularity: 45.6,
-            },
-          ],
-        }),
-      });
-
-      const result = await validateMention('The Matrix', MediaType.MOVIE, {
-        tmdbApiKey: 'test_key',
-        musicbrainzUserAgent: 'Test/1.0',
-        twitchClientId: 'test_twitch_id',
-        twitchClientSecret: 'test_twitch_secret',
-        cache: mockKV as unknown as KVNamespace,
-      });
-
-      // Should succeed despite cache write failure
-      expect(result.validated).toBe(true);
     });
   });
 

@@ -8,7 +8,12 @@
 import type { PostView } from '../types';
 import type { PostTextContent } from './text-extractor';
 import type { ThreadDictionary, ValidationLookupEntry, EmbedTitleEntry } from './thread-dictionary';
-import { extractCandidates, extractShortTextCandidate, isAgreement } from './thread-dictionary';
+import {
+  extractCandidates,
+  extractShortTextCandidate,
+  isAgreement,
+  isCommonWordSongTitle,
+} from './thread-dictionary';
 
 type ConsumedRange = { readonly start: number; readonly end: number };
 
@@ -92,6 +97,7 @@ export function labelPosts(
     for (const candidate of candidates) {
       const candidateLower = candidate.toLowerCase();
       if (consumedCandidates.some((longer) => longer.includes(candidateLower))) continue;
+      if (isCommonWordSongTitle(candidateLower)) continue;
 
       const entry = effectiveLookup.get(candidateLower);
       if (entry && dictionary.entries.has(entry.canonical)) {
@@ -107,6 +113,7 @@ export function labelPosts(
     for (const { canonical, patterns } of matchers) {
       if (validTitles.has(canonical)) continue;
       for (const pattern of patterns) {
+        if (isCommonWordSongTitle(pattern)) continue;
         if (lowerRootText.includes(pattern)) continue;
         const idx = lowerText.indexOf(pattern);
         if (idx === -1) continue;

@@ -1217,6 +1217,35 @@ describe('discoverDictionary edge cases', () => {
     expect(dict.entries.has('Gamma Delta')).toBe(false);
   });
 
+  it('skips common single-word song titles in main lookup scan', () => {
+    // "Just" is validated by MusicBrainz, but it's a common English word.
+    // The main lookup scan should skip it to avoid false positives.
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'Just', makeTextContent('Just')],
+        ['uri:2', 'Just because I said so', makeTextContent('Just because I said so')],
+        ['uri:3', 'Just a great tune', makeTextContent('Just a great tune')],
+      ],
+      [makeValidatedMention('Just', 'Just')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    // "Just" should be filtered — common single-word song title
+    expect(dict.entries.has('Just')).toBe(false);
+  });
+
+  it('allows multi-word validated titles through main lookup scan', () => {
+    // "Just Dance" is multi-word — should NOT be filtered
+    const { posts, textMap, lookup } = setup(
+      [
+        ['uri:1', 'Just Dance', makeTextContent('Just Dance')],
+        ['uri:2', 'Just Dance is my jam', makeTextContent('Just Dance is my jam')],
+      ],
+      [makeValidatedMention('Just Dance', 'Just Dance')]
+    );
+    const dict = discoverDictionary(posts, textMap, lookup, rootUri, rootText);
+    expect(dict.entries.has('Just Dance')).toBe(true);
+  });
+
   it('handles extractCandidates with mixed empty and non-empty lines', () => {
     const result = extractCandidates('Line One\n\n\nLine Two\n');
     expect(result).toContain('Line One');
