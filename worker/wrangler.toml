@@ -1,0 +1,12 @@
+name = "starcounter-bot"
+main = "dist/worker.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[triggers]
+crons = ["*/5 * * * *"]
+
+[[d1_databases]]
+binding = "SHARED_RESULTS"
+database_name = "starcounter-shares"
+database_id = "ee38b6e0-65d7-4955-93b5-f384325079a7"

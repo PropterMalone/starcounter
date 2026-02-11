@@ -1,14 +1,6 @@
 import { BlueskyClient } from './api';
-import {
-  ThreadBuilder,
-  decodeResults,
-  extractPostText,
-  buildValidationLookup,
-  discoverDictionary,
-  labelPosts,
-} from './lib';
+import { decodeResults, analyzeThread } from './lib';
 import { ProgressTracker } from './lib/progress-tracker';
-import { ValidationClient } from './lib/validation-client';
 import {
   InputForm,
   ProgressBar,
@@ -19,16 +11,9 @@ import {
   AdvancedToggle,
 } from './components';
 import { suggestClusters } from './lib/clustering';
-import { buildSelfValidatedLookup, buildListValidatedLookup } from './lib/self-validation';
 import { fromStoredPost } from './lib/share-types';
 import type { SharedData } from './lib/share-types';
 import type { MentionCount, PostView } from './types';
-import type { MediaMention } from './lib/mention-extractor';
-import type { PostTextContent, EmbedLink } from './lib/text-extractor';
-import { extractCandidates, extractShortTextCandidate } from './lib/thread-dictionary';
-import type { EmbedTitleEntry } from './lib/thread-dictionary';
-import { parseEmbedTitle } from './lib/embed-title-parser';
-import { resolveEmbedTitles } from './lib/oembed-client';
 
 /**
  * Get a DOM element by ID with runtime validation.
@@ -51,7 +36,6 @@ function requireElement<T extends HTMLElement>(id: string): T {
 
 class StarcounterApp {
   private blueskyClient: BlueskyClient;
-  private threadBuilder: ThreadBuilder;
   private progressTracker: ProgressTracker;
 
   private inputForm: InputForm;
@@ -79,7 +63,6 @@ class StarcounterApp {
   constructor() {
     // Initialize backend services
     this.blueskyClient = new BlueskyClient();
-    this.threadBuilder = new ThreadBuilder();
     this.progressTracker = new ProgressTracker();
 
     // Initialize UI components with null-safe element access
@@ -271,281 +254,46 @@ class StarcounterApp {
       // Extract AT-URI from bsky.app URL
       const atUri = this.convertBskyUrlToAtUri(url);
 
-      // Stage 1+2+3: Fetch thread and extract text/candidates incrementally
-      this.progressTracker.emit('fetching', { fetched: 0, stage: 'thread' });
-
       const selectedTypes = this.getSelectedMediaTypes();
-
-      // Shared state for incremental extraction during fetch
-      const postTexts = new Map<string, PostTextContent>();
-      const uniqueCandidates = new Set<string>();
-      // Collect embed links per post URI during fetch (for oEmbed resolution)
-      const postEmbedLinks = new Map<string, EmbedLink[]>();
-      let rootAtUri = '';
-      let rootTextLower = '';
-
-      // Callback processes posts as they arrive, overlapping extraction with fetching
-      const processPostsBatch = (posts: readonly PostView[]) => {
-        for (const post of posts) {
-          if (postTexts.has(post.uri)) continue;
-          const textContent = extractPostText(post);
-          postTexts.set(post.uri, textContent);
-
-          // Collect embed links for later oEmbed resolution
-          if (textContent.embedLinks.length > 0) {
-            postEmbedLinks.set(post.uri, [...textContent.embedLinks]);
-          }
-
-          // First post processed becomes root
-          if (rootAtUri === '') {
-            rootAtUri = post.uri;
-            rootTextLower = post.record.text.toLowerCase();
-            continue; // Skip root for candidate extraction
-          }
-
-          // Extract candidates incrementally
-          let searchText = textContent.ownText;
-          if (textContent.quotedText && textContent.quotedUri !== rootAtUri) {
-            searchText += '\n' + textContent.quotedText;
-          }
-          if (textContent.quotedAltText) {
-            searchText += '\n' + textContent.quotedAltText.join('\n');
-          }
-
-          for (const c of extractCandidates(searchText)) {
-            uniqueCandidates.add(c);
-          }
-          const shortCandidate = extractShortTextCandidate(post.record.text);
-          if (shortCandidate) uniqueCandidates.add(shortCandidate);
-        }
-      };
-
-      const allPosts = await this.fetchAllPostsRecursively(atUri, processPostsBatch);
-
-      this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'recursive' });
-
-      console.log(`[Analysis] Processing ${allPosts.length} total posts`);
-
-      const rootPost = allPosts[0];
-      if (!rootPost) {
-        throw new Error('no posts found in thread');
-      }
-
-      console.log(`[Analysis] Found ${uniqueCandidates.size} unique candidates`);
-
-      // --- Embed title resolution ---
-      // Collect YouTube URLs that need oEmbed resolution, plus directly parse
-      // embed titles that already have usable titles in the Bluesky API response.
-      const embedTitles = new Map<string, EmbedTitleEntry>();
-      const youtubeUrlsToResolve = new Map<string, string>(); // url → postUri (first seen)
-
-      for (const [postUri, links] of postEmbedLinks) {
-        if (postUri === rootAtUri) continue;
-        for (const link of links) {
-          // Try parsing the embed title directly (works when Bluesky already fetched it)
-          const parsed = parseEmbedTitle(link);
-          if (parsed) {
-            embedTitles.set(postUri, { canonical: parsed.canonical, song: parsed.song });
-          } else if (link.platform === 'youtube' && !youtubeUrlsToResolve.has(link.url)) {
-            // Queue for server-side oEmbed resolution (generic/missing title)
-            youtubeUrlsToResolve.set(link.url, postUri);
-          }
-        }
-      }
-
-      console.log(
-        `[Analysis] Embed links: ${postEmbedLinks.size} posts, ${embedTitles.size} parsed directly, ${youtubeUrlsToResolve.size} YouTube URLs need oEmbed`
-      );
-
-      // Resolve YouTube titles via oEmbed endpoint (if any)
-      if (youtubeUrlsToResolve.size > 0) {
-        const resolved = await resolveEmbedTitles([...youtubeUrlsToResolve.keys()], {
-          onProgress: (p) => {
-            console.log(`[Analysis] oEmbed: ${p.resolved}/${p.total} resolved`);
-          },
-        });
-
-        // Build a reverse map: url → all postUris that had that URL
-        const urlToPostUris = new Map<string, string[]>();
-        for (const [postUri, links] of postEmbedLinks) {
-          if (postUri === rootAtUri) continue;
-          for (const link of links) {
-            if (link.platform === 'youtube' && resolved.has(link.url)) {
-              const uris = urlToPostUris.get(link.url) ?? [];
-              uris.push(postUri);
-              urlToPostUris.set(link.url, uris);
-            }
-          }
-        }
-
-        for (const [url, result] of resolved) {
-          // Parse the resolved title
-          const parsed = parseEmbedTitle({
-            url,
-            title: result.title,
-            platform: 'youtube',
-          });
-          if (!parsed) continue;
-
-          const entry: EmbedTitleEntry = { canonical: parsed.canonical, song: parsed.song };
-          const postUris = urlToPostUris.get(url) ?? [];
-          for (const postUri of postUris) {
-            if (!embedTitles.has(postUri)) {
-              embedTitles.set(postUri, entry);
-            }
-          }
-        }
-
-        console.log(`[Analysis] After oEmbed: ${embedTitles.size} total posts with embed titles`);
-      }
-
-      // Stage 4: Validate unique candidates — three tiers
-      const candidateArray = [...uniqueCandidates];
       const customList = this.getCustomValidationList();
 
-      let validationLookup: Map<string, import('./lib/thread-dictionary').ValidationLookupEntry>;
+      // Run headless analysis pipeline
+      this.progressTracker.emit('fetching', { fetched: 0, stage: 'thread' });
 
-      if (selectedTypes.length > 0) {
-        // Tier 1: API validation (external APIs checked)
-        this.progressTracker.emit('validating', { validated: 0, total: candidateArray.length });
-
-        const candidateMentions: MediaMention[] = candidateArray.map((title) => {
-          const mediaType =
-            selectedTypes.length === 1 && selectedTypes[0]
-              ? (selectedTypes[0] as MediaMention['mediaType'])
-              : ('UNKNOWN' as MediaMention['mediaType']);
-          return {
-            title,
-            normalizedTitle: title.toLowerCase(),
-            mediaType,
-            confidence: 'medium' as const,
-          };
-        });
-
-        const validationClient = new ValidationClient({
-          apiUrl: '/api/validate',
-          onProgress: (progress) => {
-            this.progressTracker.emit('validating', {
-              validated: progress.completed,
-              total: progress.total,
-            });
-          },
-        });
-
-        const validatedMentions = await validationClient.validateMentions(candidateMentions);
-        validationLookup = buildValidationLookup(validatedMentions);
-
-        console.log(
-          `[Analysis] API-validated ${validationLookup.size} candidates out of ${candidateArray.length}`
-        );
-      } else if (customList.length > 0) {
-        // Tier 2: List validation (user pasted a list)
-        this.progressTracker.emit('validating', {
-          validated: candidateArray.length,
-          total: candidateArray.length,
-        });
-
-        validationLookup = buildListValidatedLookup(uniqueCandidates, customList);
-
-        console.log(
-          `[Analysis] List-validated ${validationLookup.size} candidates against ${customList.length} list items`
-        );
-      } else {
-        // Tier 3: Self-validation (structural heuristics)
-        this.progressTracker.emit('validating', {
-          validated: candidateArray.length,
-          total: candidateArray.length,
-        });
-
-        validationLookup = buildSelfValidatedLookup(uniqueCandidates, rootTextLower);
-
-        console.log(
-          `[Analysis] Self-validated ${validationLookup.size} candidates out of ${candidateArray.length}`
-        );
-      }
-
-      // Stage 5: Build dictionary (Phase 1)
-      this.progressTracker.emit('counting', {});
-
-      // List-validated threads relax the short-title threshold because
-      // the user's list already confirms entries. Self-validated threads
-      // require 2+ confident mentions to reduce noise from common words.
-      // API-validated threads use defaults.
-      const isListValidated = selectedTypes.length === 0 && customList.length > 0;
-      const isSelfValidated = selectedTypes.length === 0 && customList.length === 0;
-      const baseDictionaryOptions = isListValidated
-        ? { minConfidentForShortTitle: 1 }
-        : isSelfValidated
-          ? { minConfidentOverall: 2 }
-          : {};
-      const dictionaryOptions = {
-        ...baseDictionaryOptions,
-        ...(embedTitles.size > 0 ? { embedTitles } : {}),
-      };
-      const dictionary = discoverDictionary(
-        allPosts,
-        postTexts,
-        validationLookup,
-        rootAtUri,
-        rootTextLower,
-        dictionaryOptions
-      );
-
-      console.log(`[Analysis] Dictionary: ${dictionary.entries.size} titles discovered`);
-      for (const [title, info] of [...dictionary.entries]
-        .sort((a, b) => b[1].frequency - a[1].frequency)
-        .slice(0, 15)) {
-        console.log(
-          `  ${title.padEnd(45)} ${String(info.confidentCount).padStart(3)} confident, ${String(info.incidentalCount).padStart(3)} incidental`
-        );
-      }
-
-      // Stage 6: Label posts (Phase 2)
-      const postToTitles = labelPosts(
-        allPosts,
-        postTexts,
-        dictionary,
-        validationLookup,
-        rootAtUri,
-        rootTextLower,
-        embedTitles.size > 0 ? { embedTitles } : undefined
-      );
-
-      // Stage 7: Build MentionCount[] from postToTitles
-      const titleCounts = new Map<string, PostView[]>();
-      for (const [postUri, titles] of postToTitles) {
-        const post = allPosts.find((p) => p.uri === postUri);
-        if (!post) continue;
-        for (const title of titles) {
-          const existing = titleCounts.get(title);
-          if (existing) {
-            existing.push(post);
-          } else {
-            titleCounts.set(title, [post]);
+      const result = await analyzeThread(atUri, this.blueskyClient, {
+        validationApiUrl: selectedTypes.length > 0 ? '/api/validate' : undefined,
+        oembedApiUrl: '/api/oembed',
+        mediaTypes: selectedTypes,
+        customList,
+        onProgress: (stage, detail) => {
+          if (stage === 'validating') {
+            this.progressTracker.emit('validating', { validated: 0, total: 0 });
+          } else if (stage === 'counting') {
+            this.progressTracker.emit('counting', {});
           }
-        }
-      }
+          console.log(`[Analysis] ${stage}: ${detail}`);
+        },
+        onFetchProgress: (progress) => {
+          this.progressTracker.emit('fetching', {
+            fetched: progress.fetched,
+            stage: progress.stage,
+          });
+        },
+      });
 
-      const finalMentionCounts: MentionCount[] = [...titleCounts.entries()]
-        .map(([title, posts]) => ({
-          mention: title,
-          count: posts.length,
-          posts,
-        }))
-        .sort((a, b) => b.count - a.count);
+      this.originalPost = result.rootPost;
 
-      // Find uncategorized posts
-      const uncategorizedPosts = allPosts.filter(
-        (post) => post.uri !== rootAtUri && !postToTitles.has(post.uri)
-      );
+      // Display results
+      this.progressTracker.emit('complete', { mentionCounts: result.mentionCounts });
 
-      // Stage 8: Display results
-      this.progressTracker.emit('complete', { mentionCounts: finalMentionCounts });
+      // Store allPosts for manual tag searching (all posts from the thread)
+      this.lastAllPosts = result.mentionCounts.flatMap((mc) => mc.posts);
+      // Also include uncategorized posts
+      this.lastAllPosts.push(...result.uncategorizedPosts);
+      // Add root post
+      this.lastAllPosts.unshift(result.rootPost);
 
-      // Store allPosts for manual tag searching
-      this.lastAllPosts = allPosts;
-
-      this.showResults(finalMentionCounts, allPosts.length, uncategorizedPosts);
+      this.showResults(result.mentionCounts, result.postCount, result.uncategorizedPosts);
     } catch (error) {
       if (error instanceof Error) {
         this.progressTracker.emit('error', { error });
@@ -1140,387 +888,6 @@ class StarcounterApp {
         section.style.display = 'none';
       }
     }
-  }
-
-  /**
-   * Recursively fetch all posts: thread replies, quotes, and their nested content
-   * @param uri - Starting post URI (can be handle-based or DID-based)
-   * @param visited - Set of already-visited URIs to avoid loops
-   * @param depth - Current recursion depth (max 5 to prevent runaway)
-   */
-  private async fetchAllPostsRecursively(
-    uri: string,
-    onPostsBatch?: (posts: readonly PostView[]) => void,
-    visited: Set<string> = new Set(),
-    depth: number = 0
-  ): Promise<PostView[]> {
-    const MAX_DEPTH = 5;
-    if (depth > MAX_DEPTH || visited.has(uri)) {
-      console.log(
-        `[fetchAllPosts] Skipping uri=${uri} (depth=${depth}, visited=${visited.has(uri)})`
-      );
-      return [];
-    }
-    visited.add(uri);
-
-    console.log(`[fetchAllPosts] Fetching uri=${uri} at depth=${depth}`);
-
-    const allPosts: PostView[] = [];
-    let didBasedUri = uri; // Will be updated to DID-based URI from thread response
-
-    // Fetch the thread (includes nested replies) with high depth to capture full conversation
-    const threadResult = await this.blueskyClient.getPostThread(uri, {
-      depth: 1000,
-      parentHeight: 1000,
-    });
-    if (threadResult.ok) {
-      const tree = this.threadBuilder.buildTree(threadResult.value.thread);
-      console.log(
-        `[fetchAllPosts] Thread returned ${tree.allPosts.length} posts, ${tree.truncatedPosts.length} truncated, ${tree.restrictedPosts.length} restricted`
-      );
-      if (tree.restrictedPosts.length > 0) {
-        console.log(
-          `[fetchAllPosts] ${tree.restrictedPosts.length} posts require authentication to view`
-        );
-      }
-      allPosts.push(...tree.allPosts);
-      onPostsBatch?.(tree.allPosts);
-      this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'thread' });
-
-      // Get the DID-based URI from the root post (getQuotes requires DID-based URIs)
-      if (tree.post?.uri) {
-        didBasedUri = tree.post.uri;
-        console.log(`[fetchAllPosts] Resolved to DID-based URI: ${didBasedUri}`);
-
-        // Store the original (root) post for display at depth 0
-        if (depth === 0) {
-          this.originalPost = tree.post;
-        }
-      }
-
-      // Mark all thread posts as visited (using their DID-based URIs)
-      for (const post of tree.allPosts) {
-        visited.add(post.uri);
-      }
-
-      // Fetch subtrees for truncated posts (posts where API didn't return all replies)
-      if (tree.truncatedPosts.length > 0) {
-        this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'truncated' });
-        console.log(`[fetchAllPosts] Fetching ${tree.truncatedPosts.length} truncated subtrees`);
-        for (const truncated of tree.truncatedPosts) {
-          const missingCount = truncated.expectedReplies - truncated.actualReplies;
-          console.log(
-            `[fetchAllPosts] Truncated post ${truncated.uri}: expected=${truncated.expectedReplies}, got=${truncated.actualReplies}, missing=${missingCount}`
-          );
-        }
-
-        // Fetch truncated subtrees in parallel batches
-        const TRUNCATED_BATCH_SIZE = 10;
-        for (let i = 0; i < tree.truncatedPosts.length; i += TRUNCATED_BATCH_SIZE) {
-          const batch = tree.truncatedPosts.slice(i, i + TRUNCATED_BATCH_SIZE);
-          const results = await Promise.allSettled(
-            batch.map((truncated) => this.fetchTruncatedSubtree(truncated.uri, visited))
-          );
-          for (const result of results) {
-            if (result.status === 'fulfilled' && result.value.length > 0) {
-              console.log(
-                `[fetchAllPosts] Fetched ${result.value.length} additional posts from truncated subtree`
-              );
-              allPosts.push(...result.value);
-              onPostsBatch?.(result.value);
-            }
-          }
-          this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'truncated' });
-        }
-      }
-    } else {
-      console.log(`[fetchAllPosts] Thread fetch failed:`, threadResult.error);
-    }
-
-    // Fetch ALL quote posts using pagination (required DID-based URI)
-    console.log(`[fetchAllPosts] Fetching quotes for DID-based uri=${didBasedUri}`);
-    this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'quotes' });
-    let cursor: string | undefined;
-    let totalQuotesFetched = 0;
-    let newQuotesAdded = 0;
-
-    do {
-      const quotesResult = await this.blueskyClient.getQuotes(didBasedUri, { cursor, limit: 100 });
-      if (!quotesResult.ok) {
-        console.log(`[fetchAllPosts] Quotes fetch failed:`, quotesResult.error);
-        break;
-      }
-
-      const quotes = quotesResult.value.posts;
-      cursor = quotesResult.value.cursor;
-      totalQuotesFetched += quotes.length;
-
-      console.log(
-        `[fetchAllPosts] Quotes page returned ${quotes.length} posts (total fetched: ${totalQuotesFetched}, cursor: ${cursor ? 'yes' : 'no'})`
-      );
-
-      // Collect unvisited quotes from this page
-      const unvisitedQuotes = quotes.filter((quote) => !visited.has(quote.uri));
-
-      // Add quote posts immediately
-      for (const quote of unvisitedQuotes) {
-        newQuotesAdded++;
-        allPosts.push(quote);
-        visited.add(quote.uri);
-      }
-      if (unvisitedQuotes.length > 0) {
-        onPostsBatch?.(unvisitedQuotes);
-      }
-
-      // Update progress
-      this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'quotes' });
-
-      // Fetch quote threads in parallel batches
-      const QUOTE_BATCH_SIZE = 10;
-      for (let i = 0; i < unvisitedQuotes.length; i += QUOTE_BATCH_SIZE) {
-        const batch = unvisitedQuotes.slice(i, i + QUOTE_BATCH_SIZE);
-
-        console.log(
-          `[fetchAllPosts] Fetching ${batch.length} quote threads in parallel (batch ${Math.floor(i / QUOTE_BATCH_SIZE) + 1})`
-        );
-
-        const threadResults = await Promise.allSettled(
-          batch.map((quote) =>
-            this.blueskyClient.getPostThread(quote.uri, { depth: 1000, parentHeight: 0 })
-          )
-        );
-
-        // Process results
-        for (let j = 0; j < threadResults.length; j++) {
-          const result = threadResults[j];
-          if (result && result.status === 'fulfilled' && result.value.ok) {
-            const quoteTree = this.threadBuilder.buildTree(result.value.value.thread);
-            const newPosts: PostView[] = [];
-
-            // Add only posts not already visited
-            for (const post of quoteTree.allPosts) {
-              if (!visited.has(post.uri)) {
-                allPosts.push(post);
-                visited.add(post.uri);
-                newPosts.push(post);
-              }
-            }
-
-            if (newPosts.length > 0) {
-              console.log(`[fetchAllPosts] Quote thread added ${newPosts.length} reply posts`);
-              onPostsBatch?.(newPosts);
-            }
-          }
-        }
-
-        // Update progress after each batch
-        this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'quotes' });
-      }
-    } while (cursor);
-
-    console.log(
-      `[fetchAllPosts] Total quotes fetched: ${totalQuotesFetched}, new quotes added: ${newQuotesAdded}`
-    );
-
-    // === Recursive QT crawl: fetch QTs of replies, QTs of QTs, etc. ===
-    // Posts with quoteCount > 0 may have their own QTs that the initial fetch missed.
-    this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'recursive' });
-    const MIN_REPOSTS_FOR_QT_FETCH = 3;
-    const MAX_QT_DEPTH = 10; // configurable cap — see note below
-    let recursiveQtCount = 0;
-    let depthCapHits = 0;
-    const fetchedQtSources = new Set([didBasedUri]);
-
-    type QueueItem = { uri: string; depth: number; quoteCount: number };
-    const qtQueue: QueueItem[] = allPosts
-      .filter(
-        (p) => (p.quoteCount ?? 0) >= MIN_REPOSTS_FOR_QT_FETCH && !fetchedQtSources.has(p.uri)
-      )
-      .map((p) => ({ uri: p.uri, depth: 1, quoteCount: p.quoteCount ?? 0 }));
-
-    console.log(
-      `[fetchAllPosts] Recursive QT crawl: ${qtQueue.length} posts with ${MIN_REPOSTS_FOR_QT_FETCH}+ quotes to check`
-    );
-
-    const QT_CRAWL_BATCH_SIZE = 5;
-    while (qtQueue.length > 0) {
-      // Drain up to QT_CRAWL_BATCH_SIZE eligible items from the queue
-      const batch: QueueItem[] = [];
-      while (batch.length < QT_CRAWL_BATCH_SIZE && qtQueue.length > 0) {
-        const item = qtQueue.shift()!;
-        if (fetchedQtSources.has(item.uri)) continue;
-        if (item.depth > MAX_QT_DEPTH) {
-          depthCapHits++;
-          console.log(
-            `[fetchAllPosts] Depth cap hit (depth=${item.depth}, quoteCount=${item.quoteCount}, uri=${item.uri})`
-          );
-          continue;
-        }
-        fetchedQtSources.add(item.uri);
-        batch.push(item);
-      }
-      if (batch.length === 0) continue;
-
-      console.log(
-        `[fetchAllPosts] QT crawl: fetching quotes for ${batch.length} posts in parallel`
-      );
-
-      // Fetch QTs for all batch items in parallel (each may paginate)
-      const batchQtResults = await Promise.allSettled(
-        batch.map(async (item) => {
-          const newQts: PostView[] = [];
-          let qtCursor: string | undefined;
-          do {
-            const quotesResult = await this.blueskyClient.getQuotes(item.uri, {
-              cursor: qtCursor,
-              limit: 100,
-            });
-            if (!quotesResult.ok) break;
-            qtCursor = quotesResult.value.cursor;
-            for (const quote of quotesResult.value.posts) {
-              if (!visited.has(quote.uri)) {
-                visited.add(quote.uri);
-                newQts.push(quote);
-              }
-            }
-          } while (qtCursor);
-          return { item, newQts };
-        })
-      );
-
-      // Collect all new QTs and add to allPosts
-      const allNewQts: { item: QueueItem; qts: PostView[] }[] = [];
-      for (const result of batchQtResults) {
-        if (result.status === 'fulfilled') {
-          const { item, newQts } = result.value;
-          if (newQts.length > 0) {
-            console.log(`[fetchAllPosts]   [depth=${item.depth}] Found ${newQts.length} new QTs`);
-          }
-          allPosts.push(...newQts);
-          onPostsBatch?.(newQts);
-          recursiveQtCount += newQts.length;
-          allNewQts.push({ item, qts: newQts });
-        }
-      }
-
-      // Fetch reply threads for all new QTs in parallel batches
-      const REPLY_BATCH_SIZE = 10;
-      const allQtPosts = allNewQts.flatMap(({ item, qts }) =>
-        qts.map((qt) => ({ qt, depth: item.depth }))
-      );
-
-      for (let i = 0; i < allQtPosts.length; i += REPLY_BATCH_SIZE) {
-        const replyBatch = allQtPosts.slice(i, i + REPLY_BATCH_SIZE);
-        const replyResults = await Promise.allSettled(
-          replyBatch
-            .filter(({ qt }) => (qt.replyCount ?? 0) > 0)
-            .map(({ qt }) =>
-              this.blueskyClient.getPostThread(qt.uri, { depth: 1000, parentHeight: 0 })
-            )
-        );
-
-        for (const result of replyResults) {
-          if (result.status === 'fulfilled' && result.value.ok) {
-            const tree = this.threadBuilder.buildTree(result.value.value.thread);
-            const newPosts: PostView[] = [];
-            for (const post of tree.allPosts) {
-              if (!visited.has(post.uri)) {
-                allPosts.push(post);
-                visited.add(post.uri);
-                newPosts.push(post);
-                recursiveQtCount++;
-
-                if (
-                  (post.quoteCount ?? 0) >= MIN_REPOSTS_FOR_QT_FETCH &&
-                  !fetchedQtSources.has(post.uri)
-                ) {
-                  qtQueue.push({
-                    uri: post.uri,
-                    depth: replyBatch[0]!.depth + 1,
-                    quoteCount: post.quoteCount ?? 0,
-                  });
-                }
-              }
-            }
-            if (newPosts.length > 0) {
-              onPostsBatch?.(newPosts);
-            }
-          }
-        }
-      }
-
-      // Queue the QTs themselves for further QT fetching
-      for (const { item, qts } of allNewQts) {
-        for (const qt of qts) {
-          if ((qt.quoteCount ?? 0) >= MIN_REPOSTS_FOR_QT_FETCH && !fetchedQtSources.has(qt.uri)) {
-            qtQueue.push({
-              uri: qt.uri,
-              depth: item.depth + 1,
-              quoteCount: qt.quoteCount ?? 0,
-            });
-          }
-        }
-      }
-
-      this.progressTracker.emit('fetching', { fetched: allPosts.length, stage: 'recursive' });
-    }
-
-    console.log(`[fetchAllPosts] Recursive QT crawl added ${recursiveQtCount} posts`);
-    if (depthCapHits > 0) {
-      console.log(
-        `[fetchAllPosts] ⚠ Depth cap (${MAX_QT_DEPTH}) was hit ${depthCapHits} time(s) — some content may have been missed`
-      );
-    }
-
-    return allPosts;
-  }
-
-  /**
-   * Fetch a subtree for a truncated post (where API didn't return all replies)
-   * Only returns posts not already in visited set
-   */
-  private async fetchTruncatedSubtree(uri: string, visited: Set<string>): Promise<PostView[]> {
-    // Fetch the thread rooted at this post
-    const threadResult = await this.blueskyClient.getPostThread(uri, {
-      depth: 1000,
-      parentHeight: 0,
-    });
-    if (!threadResult.ok) {
-      console.log(`[fetchTruncatedSubtree] Failed to fetch ${uri}:`, threadResult.error);
-      return [];
-    }
-
-    const tree = this.threadBuilder.buildTree(threadResult.value.thread);
-
-    // Filter to only new posts
-    const newPosts: PostView[] = [];
-    for (const post of tree.allPosts) {
-      if (!visited.has(post.uri)) {
-        newPosts.push(post);
-        visited.add(post.uri);
-      }
-    }
-
-    console.log(
-      `[fetchTruncatedSubtree] Found ${newPosts.length} new posts out of ${tree.allPosts.length} total`
-    );
-
-    // Check for further truncation in this subtree
-    if (tree.truncatedPosts.length > 0) {
-      console.log(
-        `[fetchTruncatedSubtree] Subtree has ${tree.truncatedPosts.length} more truncated posts`
-      );
-      for (const truncated of tree.truncatedPosts) {
-        // Only fetch if we haven't already fetched this post's full subtree
-        if (!visited.has(`${truncated.uri}:fetched`)) {
-          visited.add(`${truncated.uri}:fetched`);
-          const morePosts = await this.fetchTruncatedSubtree(truncated.uri, visited);
-          newPosts.push(...morePosts);
-        }
-      }
-    }
-
-    return newPosts;
   }
 
   /**
