@@ -136,6 +136,43 @@ function buildReplyText(
   return { text, shareUrl };
 }
 
+/** Build a link card embed (with optional thumbnail). */
+function buildLinkCardEmbed(
+  shareUrl: string,
+  description: string,
+  thumbBlob?: BlobRef | null
+): Record<string, unknown> {
+  return {
+    $type: 'app.bsky.embed.external',
+    external: {
+      uri: shareUrl,
+      title: 'Starcounter Results',
+      description,
+      ...(thumbBlob && { thumb: thumbBlob }),
+    },
+  };
+}
+
+/** Build a standalone timeline post with a results link card (no quote, no reply). */
+export function buildTimelinePost(
+  shareId: string,
+  result?: AnalysisResult,
+  thumbBlob?: BlobRef | null
+): Record<string, unknown> {
+  const { text, shareUrl } = buildReplyText(shareId, result);
+
+  const description = result
+    ? `${result.mentionCounts.length} categories from ${result.postCount} posts`
+    : 'Thread analysis results';
+
+  return {
+    $type: 'app.bsky.feed.post',
+    text,
+    embed: buildLinkCardEmbed(shareUrl, description, thumbBlob),
+    createdAt: new Date().toISOString(),
+  };
+}
+
 /** Build the full reply record for com.atproto.repo.createRecord. */
 function buildReply(
   shareId: string,
@@ -162,15 +199,7 @@ function buildReply(
   };
 
   if (thumbBlob) {
-    record.embed = {
-      $type: 'app.bsky.embed.external',
-      external: {
-        uri: shareUrl,
-        title: 'Starcounter Results',
-        description: altText,
-        thumb: thumbBlob,
-      },
-    };
+    record.embed = buildLinkCardEmbed(shareUrl, altText, thumbBlob);
   }
 
   return record;
@@ -328,6 +357,13 @@ export async function runBot(
     await saveRepliedMention(env.SHARED_RESULTS, target.mentionUri, target.rootUri, Date.now());
     processed++;
     console.log(`replied to ${target.rootUri} → share ${result.shareId}`);
+
+    // Post to bot's own timeline for fresh analyses (non-fatal)
+    if (result.status === 'analyzed') {
+      const timelineRecord = buildTimelinePost(result.shareId, result.result, thumbBlob);
+      const timelineResult = await postReply(accessJwt, botDid, timelineRecord);
+      log.push(`timeline post: ${timelineResult.ok ? 'ok' : 'failed — ' + timelineResult.error}`);
+    }
   }
 
   // Update cursor and mark notifications as seen
