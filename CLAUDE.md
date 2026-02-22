@@ -41,6 +41,10 @@ Starcounter is a web application that analyzes Bluesky threads and tallies media
 - **lz-string 1.5** - String compression for URL sharing
 - **sentiment 5.0** - Sentiment analysis for posts
 
+## Session Continuity
+
+- **HANDOFF.md** — Start here when picking up work. Contains completed work, known issues, and open TODOs from the previous session.
+
 ## Architecture
 
 ### Directory Structure
@@ -55,6 +59,10 @@ Starcounter is a web application that analyzes Bluesky threads and tallies media
 │   ├── ui/                     # User interface and interactions (Phase 6)
 │   ├── sharing/                # URL sharing and compression (Phase 7)
 │   └── sentiment/              # Advanced sentiment analysis (Phase 8)
+├── bench/                      # Diagnostic scripts and fixtures (untracked)
+├── dist/                       # Distribution output
+├── functions/
+│   └── api/                    # Cloudflare Pages Functions (backend)
 ├── public/
 │   ├── index.html              # Main HTML page
 │   ├── styles.css              # Global styles
@@ -62,9 +70,12 @@ Starcounter is a web application that analyzes Bluesky threads and tallies media
 │   └── bundle.js.map           # Sourcemap (gitignored)
 ├── scripts/
 │   └── bundle.js               # esbuild bundling script
+├── worker/                     # Bluesky bot worker
 ├── coverage/                   # Test coverage reports (gitignored)
 └── docs/
-    └── implementation-plans/   # Phase implementation guides
+    ├── design-plans/           # High-level design documents
+    ├── implementation-plans/   # Phase implementation guides
+    └── research/               # Research notes
 ```
 
 ### Build Pipeline
