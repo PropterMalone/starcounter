@@ -1,0 +1,3675 @@
+{
+  "meta": {
+    "labeledAt": "2026-02-09T20:52:09.639Z",
+    "labeledBy": "claude-opus-4-6",
+    "fixtureFile": "debut-albums.json",
+    "postCount": 356,
+    "labeledCount": 356,
+    "onTopicCount": 349,
+    "offTopicCount": 7,
+    "uniqueTitles": 179,
+    "confidence": {
+      "high": 219,
+      "medium": 13,
+      "low": 124
+    }
+  },
+  "labels": {
+    "at://did:plc:55vbzw5cc5wu4ugj27c24inq/app.bsky.feed.post/3me7kexeljs2c": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "high",
+      "note": "Root prompt post"
+    },
+    "at://did:plc:zzflcgmttpbozbjcq5mtlno7/app.bsky.feed.post/3mebkqulxoc2u": {
+      "topics": [
+        "Please Please Me - The Beatles",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Five Leaves Left - Nick Drake",
+        "Are You Experienced - Jimi Hendrix",
+        "Bert Jansch - Bert Jansch"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:zwbjc4nikoibjal6gejzof46/app.bsky.feed.post/3me7os4ol322n": {
+      "topics": [
+        "The First Lady of Immediate - P.P. Arnold",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Who Do You Love - The Sapphires",
+        "Give It Away - Chi-Lites",
+        "Leader of the Pack - Shangri-Las"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:zvbyb5vfkyoxigko5nbolvlb/app.bsky.feed.post/3me7m5lzax22j": {
+      "topics": [
+        "Something Else - Ornette Coleman",
+        "John Coltrane - John Coltrane",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Genius of Modern Music - Thelonious Monk",
+        "Page One - Joe Henderson"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:zkfshlubtpx56hfhmbss4vcy/app.bsky.feed.post/3meayshji222m": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Crosby, Stills & Nash - CSN",
+        "Jackson C Frank - Jackson C Frank",
+        "Five Leaves Left - Nick Drake",
+        "Little Girl Blue - Nina Simone"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:zhibs3lamdrq3gggr4f267mn/app.bsky.feed.post/3me7zarslm22j": {
+      "topics": [
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "Crosby, Stills & Nash - CSN",
+        "Small Faces - Small Faces",
+        "Mr Tambourine Man - The Byrds",
+        "Francoise Hardy - Francoise Hardy"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:zfamnzbc6i4276abqdpswpzz/app.bsky.feed.post/3measuj5ebk2u": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "In the Court of the Crimson King - King Crimson",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "Mr Tambourine Man - The Byrds",
+        "The Incredible String Band - The Incredible String Band"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:zbutertksaodmjq5cqzkhh4q/app.bsky.feed.post/3meb44k25cc2m": {
+      "topics": [
+        "Dillard & Clark - Dillard & Clark",
+        "Page One - Joe Henderson",
+        "True Blue - Tina Brooks",
+        "Mr Tambourine Man - The Byrds",
+        "Five Leaves Left - Nick Drake"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:wkatdmiulx36lxuhj5v6mnnc/app.bsky.feed.post/3mecetwfhs22y": {
+      "topics": [
+        "True Blue - Tina Brooks",
+        "Page One - Joe Henderson"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ucek74fgjfz7p4uqvttumhxq/app.bsky.feed.post/3mecqxwlngk2p": {
+      "topics": [
+        "Dillard & Clark - Dillard & Clark"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:z7wxp55ov7zs52y34gkuveff/app.bsky.feed.post/3me7o4zc6fc2o": {
+      "topics": [
+        "The Gilded Palace of Sin - Flying Burrito Brothers",
+        "Music from Big Pink - The Band",
+        "Five Leaves Left - Nick Drake",
+        "The Doors - The Doors",
+        "Procol Harum - Procol Harum"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:z7w764vk3dxa4uexsmf446q5/app.bsky.feed.post/3mecclidrbc2o": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "Greetings from the Pioneers - The Pioneers",
+        "Greatest of the Delta Blues Singers - Skip James",
+        "You Got My Mind Messed Up - James Carr",
+        "The Seeds - The Seeds"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:z2xkyk5vwwybhfvfhcdksu2h/app.bsky.feed.post/3meaqriub7c2m": {
+      "topics": [
+        "Here's Little Richard - Little Richard",
+        "Elvis Presley - Elvis Presley",
+        "Little Girl Blue - Nina Simone",
+        "The Chirping Crickets - The Crickets",
+        "John Lee Hooker - John Lee Hooker"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:yyqpwkurc7ikls5fimc2hqr5/app.bsky.feed.post/3me7mz3vspk2i": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "The Doors - The Doors",
+        "Mr Tambourine Man - The Byrds",
+        "Five Leaves Left - Nick Drake"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:yqpex3yh4tu7jokf7whgv675/app.bsky.feed.post/3me7t6yjt4c2v": {
+      "topics": [
+        "Bert Jansch - Bert Jansch",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "The Stooges - The Stooges",
+        "Joan Baez - Joan Baez",
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:yewvo3lsjcgjrimcz4ohixrp/app.bsky.feed.post/3me7w3uoeqk2w": {
+      "topics": [
+        "Scott - Scott Walker",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Little Girl Blue - Nina Simone",
+        "John Coltrane - John Coltrane"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:yccjurkrx4mrzx6zj2gpdv73/app.bsky.feed.post/3me7lbf2das2d": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "Buffalo Springfield - Buffalo Springfield",
+        "Fairport Convention - Fairport Convention",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "The Piper at the Gates of Dawn - Pink Floyd"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:y7eunm3vicfxpd3jdhujiroi/app.bsky.feed.post/3me7vgvkqzc2u": {
+      "topics": [
+        "The Gilded Palace of Sin - Flying Burrito Brothers",
+        "Five Leaves Left - Nick Drake",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Johnny Cash With His Hot and Blue Guitar - Johnny Cash",
+        "Mr Tambourine Man - The Byrds"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:xu2ylacfhcj3m2tqrhzmomgc/app.bsky.feed.post/3mebljxzbw22i": {
+      "topics": [
+        "Page One - Joe Henderson",
+        "Open Sesame - Freddie Hubbard",
+        "Song to a Seagull - Joni Mitchell",
+        "Guitar Player - Davy Graham",
+        "Pain in My Heart - Otis Redding",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Something Else - Ornette Coleman",
+        "In the Court of the Crimson King - King Crimson",
+        "First Take - Roberta Flack",
+        "Jacques Brel - Jacques Brel",
+        "Miriam Makeba - Miriam Makeba",
+        "Getz/Gilberto - Stan Getz & Joao Gilberto",
+        "Gal Costa - Gal Costa",
+        "True Blue - Tina Brooks",
+        "Five Leaves Left - Nick Drake",
+        "Takin' Off - Herbie Hancock",
+        "The Doors - The Doors",
+        "Gris Gris - Dr. John"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:xj5qg3zene7imesvudqy5wlc/app.bsky.feed.post/3mebwngoyss2b": {
+      "topics": [
+        "The Stooges - The Stooges",
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators",
+        "Safe as Milk - Captain Beefheart",
+        "Silver Apples - Silver Apples",
+        "Love - Love",
+        "Five Leaves Left - Nick Drake",
+        "A Girl Called Dusty - Dusty Springfield",
+        "Please Please Me - The Beatles",
+        "Monster Movie - Can",
+        "Here Are the Sonics - The Sonics",
+        "Mr Tambourine Man - The Byrds",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Scott - Scott Walker",
+        "The Gilded Palace of Sin - Flying Burrito Brothers"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:xf6didqazr4r6zbdyh5w7pn7/app.bsky.feed.post/3meagxmivbs2a": {
+      "topics": [
+        "Are You Experienced - Jimi Hendrix",
+        "Led Zeppelin - Led Zeppelin",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Stooges - The Stooges",
+        "Monster Movie - Can",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators",
+        "Kick Out the Jams - MC5",
+        "Black Monk Time - The Monks",
+        "Moby Grape - Moby Grape"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:xeikaoylaptxtltecgdypgxr/app.bsky.feed.post/3me7pzf7sf22n": {
+      "topics": [
+        "Safe as Milk - Captain Beefheart",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Scott - Scott Walker",
+        "A Girl Called Dusty - Dusty Springfield"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:xeikaoylaptxtltecgdypgxr/app.bsky.feed.post/3me7qrzgakc2n": {
+      "topics": [
+        "Silver Apples - Silver Apples"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:xcmuoou6nqosayn7rsp2s2fp/app.bsky.feed.post/3medvbguyic2b": {
+      "topics": [
+        "First Take - Roberta Flack",
+        "Here's Little Richard - Little Richard",
+        "Little Girl Blue - Nina Simone",
+        "Scott - Scott Walker",
+        "Music from Big Pink - The Band",
+        "Five Leaves Left - Nick Drake",
+        "In the Court of the Crimson King - King Crimson",
+        "The Stooges - The Stooges"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:x76i4xrtxvttsiq4er2gi2n4/app.bsky.feed.post/3meb3f2lcbk2p": {
+      "topics": [
+        "Safe as Milk - Captain Beefheart",
+        "Gris Gris - Dr. John",
+        "In the Court of the Crimson King - King Crimson",
+        "Jackson C Frank - Jackson C Frank",
+        "Led Zeppelin - Led Zeppelin"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:wwigrfi6zzoenbjhxkkdrdgk/app.bsky.feed.post/3medsik7eak2j": {
+      "topics": [
+        "Please Please Me - The Beatles",
+        "Elvis Presley - Elvis Presley",
+        "Mr Tambourine Man - The Byrds",
+        "Pain in My Heart - Otis Redding"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:wtoc7frwuba7pqcgi5y4qzr4/app.bsky.feed.post/3me7mavnfyc2m": {
+      "topics": [
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Led Zeppelin - Led Zeppelin",
+        "Are You Experienced - Jimi Hendrix",
+        "The Doors - The Doors",
+        "In the Court of the Crimson King - King Crimson",
+        "The Stooges - The Stooges",
+        "Kick Out the Jams - MC5",
+        "Santana - Santana"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:wkatdmiulx36lxuhj5v6mnnc/app.bsky.feed.post/3me7opyqmo22q": {
+      "topics": [
+        "Tim Hardin 1 - Tim Hardin",
+        "UFO - Jim Sullivan",
+        "Song of Innocence - David Axelrod",
+        "Please Please Me - The Beatles",
+        "True Blue - Tina Brooks"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:wjnzr7ir5xhc6wrxtef7nyhx/app.bsky.feed.post/3me7mi4bqv22a": {
+      "topics": [
+        "Safe as Milk - Captain Beefheart",
+        "Genius of Modern Music - Thelonious Monk",
+        "Scott - Scott Walker",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "John Coltrane - John Coltrane",
+        "A Monastic Trio - Alice Coltrane"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:wiicix3ukrzoy3zb4tbzojjg/app.bsky.feed.post/3mea5k77hzs2t": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Francoise Hardy - Francoise Hardy",
+        "Five Leaves Left - Nick Drake",
+        "The Doors - The Doors",
+        "Are You Experienced - Jimi Hendrix"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:wiicix3ukrzoy3zb4tbzojjg/app.bsky.feed.post/3mea5peleu22j": {
+      "topics": [
+        "The Stooges - The Stooges"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:w6h5gkvrn27jixxjull6gikg/app.bsky.feed.post/3me7m27uvis26": {
+      "topics": [
+        "Black Women - Sonny Sharrock",
+        "The United States of America - The United States of America",
+        "John Coltrane - John Coltrane",
+        "A Monastic Trio - Alice Coltrane",
+        "Just Colour - The Lollipop Shoppe",
+        "Odetta Sings Ballads and Blues - Odetta"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:5wwwjefmtkv3endttehhhonc/app.bsky.feed.post/3me7mugqrfs2y": {
+      "topics": [
+        "Black Women - Sonny Sharrock"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:vuynojr4iqdezncjzjkgzxf4/app.bsky.feed.post/3mea3j5f5vk2r": {
+      "topics": [
+        "Visualize - Thomas & Richard Frost",
+        "The Pentangle - The Pentangle",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Os Mutantes - Os Mutantes",
+        "A Gift from Euphoria - Euphoria"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:vobyidt7c7nezttas5iddzl6/app.bsky.feed.post/3mea3bqh2x22j": {
+      "topics": [
+        "Mr Tambourine Man - The Byrds",
+        "The Gilded Palace of Sin - Flying Burrito Brothers",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Gene Clark with the Gosdin Brothers - Gene Clark",
+        "Begin Here - The Zombies"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:voaasdcbfmu3kxudc57vwkzj/app.bsky.feed.post/3me7pgmujnc2w": {
+      "topics": [
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators",
+        "Scott - Scott Walker",
+        "Silver Apples - Silver Apples",
+        "A Girl Called Dusty - Dusty Springfield",
+        "The Velvet Underground & Nico - The Velvet Underground"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:vbzhzyr4wy3smjz5jxuadklc/app.bsky.feed.post/3meaz7rfwfc2a": {
+      "topics": [
+        "In the Court of the Crimson King - King Crimson",
+        "Blind Faith - Blind Faith",
+        "Dear Mr Fantasy - Traffic",
+        "Led Zeppelin - Led Zeppelin"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:ucek74fgjfz7p4uqvttumhxq/app.bsky.feed.post/3mecqmi2x322p": {
+      "topics": [
+        "Buffalo Springfield - Buffalo Springfield",
+        "Please Please Me - The Beatles",
+        "Mr Tambourine Man - The Byrds",
+        "Crosby, Stills & Nash - CSN",
+        "The Gilded Palace of Sin - Flying Burrito Brothers",
+        "Music from Big Pink - The Band",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Neil Young - Neil Young",
+        "Presenting the Fabulous Ronettes - The Ronettes"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:u5cczbhsjckfac6vu62gps6b/app.bsky.feed.post/3mebnghhjgc2g": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Mr Tambourine Man - The Byrds",
+        "The Doors - The Doors",
+        "Led Zeppelin - Led Zeppelin",
+        "Empty Sky - Elton John"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:ttkkkpqoqx45sobqelwa3kav/app.bsky.feed.post/3me7kjxwphc24": {
+      "topics": [
+        "Monster Movie - Can",
+        "Led Zeppelin - Led Zeppelin",
+        "The Stooges - The Stooges",
+        "Scott - Scott Walker",
+        "Safe as Milk - Captain Beefheart"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:tquvqcspi4jce47h3qvm6xao/app.bsky.feed.post/3me7vcfocak2d": {
+      "topics": [
+        "First Take - Roberta Flack",
+        "John Coltrane - John Coltrane",
+        "A Monastic Trio - Alice Coltrane",
+        "Five Leaves Left - Nick Drake",
+        "Miriam Makeba - Miriam Makeba"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3meap5kqs6k2k": {
+      "topics": [
+        "Miriam Makeba - Miriam Makeba"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:snzfta77olq4owwuq6iectix/app.bsky.feed.post/3me7lpdhr222t": {
+      "topics": [
+        "Blues from the Gutter - Champion Jack Dupree",
+        "Hoodoo Man Blues - Junior Wells",
+        "Little Girl Blue - Nina Simone",
+        "Genius of Modern Music - Thelonious Monk",
+        "Page One - Joe Henderson"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:snzfta77olq4owwuq6iectix/app.bsky.feed.post/3me7lscok4c2t": {
+      "topics": [
+        "Here's Little Richard - Little Richard",
+        "Soft Machine - Soft Machine",
+        "Joy of a Toy - Kevin Ayers",
+        "Bud Powell - Bud Powell",
+        "Grant Green - Grant Green",
+        "Cecil Taylor - Cecil Taylor",
+        "Fairport Convention - Fairport Convention"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:slthkck7i67mmtktuasxul4y/app.bsky.feed.post/3mebdsd4yuc2r": {
+      "topics": [
+        "Silver Apples - Silver Apples",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Five Leaves Left - Nick Drake",
+        "Safe as Milk - Captain Beefheart",
+        "Os Mutantes - Os Mutantes"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:sk7jtenyqtoscslmcd6bepa7/app.bsky.feed.post/3mecmvqflp22s": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "Kick Out the Jams - MC5",
+        "Wailing Wailers - The Wailers",
+        "The Stooges - The Stooges",
+        "Safe as Milk - Captain Beefheart"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:sfy7nodrumofhbogpmpvxmwd/app.bsky.feed.post/3me7paoj6s22q": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "Crosby, Stills & Nash - CSN",
+        "Getz/Gilberto - Stan Getz & Joao Gilberto",
+        "Astrud Gilberto - Astrud Gilberto"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:sfy7nodrumofhbogpmpvxmwd/app.bsky.feed.post/3me7paopd3c2q": {
+      "topics": [
+        "Please Please Me - The Beatles",
+        "The Doors - The Doors",
+        "Scott - Scott Walker",
+        "Little Girl Blue - Nina Simone",
+        "Nancy & Lee - Nancy Sinatra & Lee Hazlewood",
+        "Stanley Turrentine - Stanley Turrentine",
+        "Cannonball Adderley - Cannonball Adderley"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:67yzfucwirghnqkx7tsph52e/app.bsky.feed.post/3me7qrilm7s2c": {
+      "topics": [
+        "Getz/Gilberto - Stan Getz & Joao Gilberto",
+        "Astrud Gilberto - Astrud Gilberto"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:rhse7nvp7acmam5rer5x6rmg/app.bsky.feed.post/3medpr2b4os2n": {
+      "topics": [
+        "Louvin Brothers - Louvin Brothers",
+        "Little Girl Blue - Nina Simone",
+        "Freak Out! - Mothers of Invention",
+        "Are You Experienced - Jimi Hendrix",
+        "Something Else - Ornette Coleman"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:rgaowxzv7bcbexhevvyxv2rf/app.bsky.feed.post/3me7twl5es22g": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Five Leaves Left - Nick Drake",
+        "In the Court of the Crimson King - King Crimson",
+        "The Piper at the Gates of Dawn - Pink Floyd"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:rcvwlwutr55iqx5xx4ftjabs/app.bsky.feed.post/3me7kwyla3c2x": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Doors - The Doors",
+        "The Stooges - The Stooges",
+        "Kick Out the Jams - MC5",
+        "Here Are the Sonics - The Sonics"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:qnye3wiyjehld7fyg3ksduib/app.bsky.feed.post/3me7z6mnbgk2q": {
+      "topics": [
+        "Safe as Milk - Captain Beefheart",
+        "Here's Little Richard - Little Richard",
+        "Ray Charles - Ray Charles",
+        "Bo Diddley - Bo Diddley",
+        "At Last! - Etta James"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:qlrvku533vkoga3kajzlnlpq/app.bsky.feed.post/3meb5rlgids2z": {
+      "topics": [
+        "The Stooges - The Stooges",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "In the Court of the Crimson King - King Crimson",
+        "The Doors - The Doors",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Led Zeppelin - Led Zeppelin",
+        "Safe as Milk - Captain Beefheart",
+        "Mr Tambourine Man - The Byrds"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:qgkclqxjfokkbbisiqj5fo4d/app.bsky.feed.post/3me7pavadkk2l": {
+      "topics": [
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Stooges - The Stooges",
+        "Safe as Milk - Captain Beefheart",
+        "Oar - Skip Spence"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:q73vkchtibsw4beuwmgsnpgf/app.bsky.feed.post/3me7oe772cs26": {
+      "topics": [
+        "Are You Experienced - Jimi Hendrix",
+        "The Doors - The Doors",
+        "Scott - Scott Walker",
+        "The Stooges - The Stooges",
+        "The Piper at the Gates of Dawn - Pink Floyd"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:pmgklrgjpr6xdgpfrowtukxt/app.bsky.feed.post/3me7xjmk7oc2g": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Stooges - The Stooges",
+        "Bo Diddley - Bo Diddley",
+        "My Generation - The Who",
+        "Johnny Burnette - Johnny Burnette"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3meaowalxoc2k": {
+      "topics": [
+        "Bo Diddley - Bo Diddley"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:otzf5u27xdgm6ykgole4wofg/app.bsky.feed.post/3me7vni4pbk2z": {
+      "topics": [
+        "Monster Movie - Can",
+        "Music from Big Pink - The Band",
+        "Here's Little Richard - Little Richard",
+        "Bo Diddley - Bo Diddley",
+        "Are You Experienced - Jimi Hendrix",
+        "Elvis Presley - Elvis Presley",
+        "The Velvet Underground & Nico - The Velvet Underground"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:ohiqlllej6nolsjizpdz4lgq/app.bsky.feed.post/3medsqztzbs2g": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "Scott - Scott Walker",
+        "Mr Tambourine Man - The Byrds",
+        "The Doors - The Doors",
+        "Bob Dylan - Bob Dylan"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:oczzggiqrczs4yu4hh6azk57/app.bsky.feed.post/3medvt523kk2z": {
+      "topics": [
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators",
+        "Safe as Milk - Captain Beefheart",
+        "Jackson C Frank - Jackson C Frank",
+        "The Stooges - The Stooges",
+        "The Velvet Underground & Nico - The Velvet Underground"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:ocvld3s3yukxn24deji2bnuu/app.bsky.feed.post/3me7ks3ilk22o": {
+      "topics": [
+        "Crosby, Stills & Nash - CSN",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "The Gilded Palace of Sin - Flying Burrito Brothers",
+        "The Doors - The Doors",
+        "Please Please Me - The Beatles",
+        "Five Leaves Left - Nick Drake",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Neil Young - Neil Young",
+        "Moby Grape - Moby Grape"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:ocvld3s3yukxn24deji2bnuu/app.bsky.feed.post/3me7q4illcs2o": {
+      "topics": [
+        "My Generation - The Who",
+        "Mr Tambourine Man - The Byrds",
+        "Scott - Scott Walker",
+        "Buffalo Springfield - Buffalo Springfield",
+        "Bob Dylan - Bob Dylan",
+        "The Searchers - The Searchers",
+        "Poco - Poco",
+        "Roy Harper - Roy Harper",
+        "Lee Hazlewood - Lee Hazlewood",
+        "Phil Ochs - Phil Ochs",
+        "Paul Simon - Paul Simon",
+        "Van Dyke Parks - Van Dyke Parks"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:nvefsyywep27xvhtlxnn5rcl/app.bsky.feed.post/3me7pn4wp622w": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "The Meters - The Meters",
+        "Led Zeppelin - Led Zeppelin",
+        "Takin' Off - Herbie Hancock",
+        "Little Girl Blue - Nina Simone",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Genius of Modern Music - Thelonious Monk",
+        "Music from Big Pink - The Band",
+        "My Generation - The Who",
+        "The Doors - The Doors"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:nta7rsi4pdbi4u6limycddp7/app.bsky.feed.post/3meabv4s7dc2z": {
+      "topics": [
+        "Buddy Holly - Buddy Holly",
+        "Elvis Presley - Elvis Presley",
+        "Ricky - Ricky Nelson",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Nancy & Lee - Nancy Sinatra & Lee Hazlewood"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:nta7rsi4pdbi4u6limycddp7/app.bsky.feed.post/3meacbjlcx22z": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "Monster Movie - Can",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "Mr Tambourine Man - The Byrds",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators",
+        "Nancy & Lee - Nancy Sinatra & Lee Hazlewood",
+        "Tim Hardin 1 - Tim Hardin",
+        "Gorilla - Bonzo Dog Doo-Dah Band",
+        "The Seeds - The Seeds"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:nta7rsi4pdbi4u6limycddp7/app.bsky.feed.post/3meac7ol5322z": {
+      "topics": [
+        "Takin' Off - Herbie Hancock",
+        "A Girl Called Dusty - Dusty Springfield",
+        "Please Please Me - The Beatles",
+        "Page One - Joe Henderson",
+        "The Sound of Fury - Billy Fury"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:nta7rsi4pdbi4u6limycddp7/app.bsky.feed.post/3meac76eu4c2z": {
+      "topics": [
+        "Elvis Presley - Elvis Presley",
+        "Here's Little Richard - Little Richard",
+        "Buddy Holly - Buddy Holly",
+        "The Chirping Crickets - The Crickets",
+        "Ricky - Ricky Nelson"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:npit7pftw4a5rlxkt2xtii5p/app.bsky.feed.post/3me7yvtnoxk27": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "Pain in My Heart - Otis Redding",
+        "Led Zeppelin - Led Zeppelin",
+        "The Doors - The Doors",
+        "Music from Big Pink - The Band",
+        "Please Please Me - The Beatles",
+        "The Stooges - The Stooges",
+        "Scott - Scott Walker",
+        "Small Faces - Small Faces"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:nguqrn7qn2d5fsr3tlq774qz/app.bsky.feed.post/3meagse23gc2g": {
+      "topics": [
+        "The Doors - The Doors"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:nguqrn7qn2d5fsr3tlq774qz/app.bsky.feed.post/3me7mpksos22f": {
+      "topics": [
+        "Little Girl Blue - Nina Simone",
+        "Music from Big Pink - The Band",
+        "The Doors - The Doors",
+        "Mixed Bag - Richie Havens"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:nba4fdo3eassgzpiph3izwwi/app.bsky.feed.post/3me7l5sbb622k": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Crosby, Stills & Nash - CSN",
+        "Song of Innocence - David Axelrod",
+        "Five Leaves Left - Nick Drake",
+        "Mr Tambourine Man - The Byrds",
+        "Music from Big Pink - The Band",
+        "The Doors - The Doors",
+        "The Stooges - The Stooges"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:wkatdmiulx36lxuhj5v6mnnc/app.bsky.feed.post/3mea237isss2q": {
+      "topics": [
+        "Song of Innocence - David Axelrod"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:n7s3htieohk67fbvbn7juqz6/app.bsky.feed.post/3mecr4v73ik23": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "The Doors - The Doors",
+        "Are You Experienced - Jimi Hendrix",
+        "The Piper at the Gates of Dawn - Pink Floyd"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:mvf34l7aplmliqah4vqythbg/app.bsky.feed.post/3meb4vnr35s2e": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Mr Tambourine Man - The Byrds",
+        "Crosby, Stills & Nash - CSN",
+        "The Gilded Palace of Sin - Flying Burrito Brothers",
+        "Led Zeppelin - Led Zeppelin"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:mmxst4y52pbrpatkghgj2pgx/app.bsky.feed.post/3meafp72j3s2z": {
+      "topics": [
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "Led Zeppelin - Led Zeppelin",
+        "Five Leaves Left - Nick Drake",
+        "Music from Big Pink - The Band",
+        "In the Court of the Crimson King - King Crimson",
+        "The Doors - The Doors",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Presenting the Fabulous Ronettes - The Ronettes"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:lsvmszazfhhucd5wc3z4tqxl/app.bsky.feed.post/3mebxd2xnlc2z": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "The Doors - The Doors",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Tim Buckley - Tim Buckley",
+        "Lightfoot - Gordon Lightfoot"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:lm7tyxogxk4xzs3cg4oxdb2y/app.bsky.feed.post/3me7kwkayyk2u": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Taste - Taste",
+        "Crosby, Stills & Nash - CSN",
+        "In the Court of the Crimson King - King Crimson",
+        "The Doors - The Doors"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:lm7tyxogxk4xzs3cg4oxdb2y/app.bsky.feed.post/3me7umqzlqc2u": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "Music from Big Pink - The Band",
+        "My Generation - The Who",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "Are You Experienced - Jimi Hendrix",
+        "Led Zeppelin - Led Zeppelin",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "The Gilded Palace of Sin - Flying Burrito Brothers",
+        "Bert Jansch - Bert Jansch",
+        "Buddy Holly - Buddy Holly",
+        "Ars Nova - Ars Nova",
+        "Black Pearl - Black Pearl"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:l7jfugomyoohspwzfodvqxa5/app.bsky.feed.post/3me7p52gkms2h": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Monster Movie - Can"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:kzvhpspyw5gm3djwyrnhuzs7/app.bsky.feed.post/3me7mmndrsk2o": {
+      "topics": [
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators",
+        "Mighty Baby - Mighty Baby",
+        "Moby Grape - Moby Grape",
+        "Five Leaves Left - Nick Drake",
+        "Tim Buckley - Tim Buckley"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:kvtv2vvnuvsiuj6vms7rwfs6/app.bsky.feed.post/3me7wnvzrn22k": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Please Please Me - The Beatles",
+        "Neil Young - Neil Young",
+        "Five Leaves Left - Nick Drake",
+        "The Piper at the Gates of Dawn - Pink Floyd"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:krniqeen2ewkbysvp4qd4m76/app.bsky.feed.post/3me7muouunk2w": {
+      "topics": [
+        "Mr Tambourine Man - The Byrds",
+        "Love - Love",
+        "Buffalo Springfield - Buffalo Springfield",
+        "Neil Young - Neil Young",
+        "Walk Away Renee - The Left Banke",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "A Girl Called Dusty - Dusty Springfield",
+        "Led Zeppelin - Led Zeppelin"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:koapggkzm7kzmqdisolcom4a/app.bsky.feed.post/3me7wbpqxzs2n": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Are You Experienced - Jimi Hendrix",
+        "Scott - Scott Walker",
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:knwfnmpfsw2wm7rqznlhbbr5/app.bsky.feed.post/3me7lj2uh322w": {
+      "topics": [
+        "The Doors - The Doors",
+        "Are You Experienced - Jimi Hendrix",
+        "Kaleidoscope - Tangerine Dream",
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators",
+        "Oar - Skip Spence"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:jyxzcrg7peioanvnbntkj556/app.bsky.feed.post/3me7kudhpqc2c": {
+      "topics": [
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "The Doors - The Doors",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Are You Experienced - Jimi Hendrix",
+        "Please Please Me - The Beatles"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:judyo43gwpsyuintwbst4adu/app.bsky.feed.post/3mec6qf3hj22w": {
+      "topics": [
+        "The Fugs First Album - The Fugs",
+        "Freak Out! - Mothers of Invention",
+        "The Parable of Arable Land - Red Krayola",
+        "The Doors - The Doors",
+        "The Velvet Underground & Nico - The Velvet Underground"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:jjrddlvsbck2mbw3gmmlbs4z/app.bsky.feed.post/3mecglsspq22f": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Presenting the Fabulous Ronettes - The Ronettes",
+        "Please Please Me - The Beatles",
+        "Are You Experienced - Jimi Hendrix",
+        "A Girl Called Dusty - Dusty Springfield",
+        "The Stooges - The Stooges",
+        "Mr Tambourine Man - The Byrds"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:jf6hsfrvgupo2ckwoesjrw5g/app.bsky.feed.post/3me7ye6z4ms2a": {
+      "topics": [
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Psychedelic Underground - Amon Duul",
+        "Dick Dale - Dick Dale",
+        "Monster Movie - Can",
+        "Led Zeppelin - Led Zeppelin",
+        "Please Please Me - The Beatles",
+        "Are You Experienced - Jimi Hendrix",
+        "The Doors - The Doors"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:ivzxeizsie5rpaeqag63rjtf/app.bsky.feed.post/3me7n6choes2w": {
+      "topics": [
+        "The Doors - The Doors",
+        "Elvis Presley - Elvis Presley",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Safe as Milk - Captain Beefheart",
+        "Getz/Gilberto - Stan Getz & Joao Gilberto",
+        "Five Leaves Left - Nick Drake",
+        "Please Please Me - The Beatles",
+        "Gris Gris - Dr. John"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:ii4etbk6lwobq3rsoyruuop4/app.bsky.feed.post/3me7neu3vhk2n": {
+      "topics": [
+        "The Doors - The Doors",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Led Zeppelin - Led Zeppelin",
+        "Safe as Milk - Captain Beefheart",
+        "The Stooges - The Stooges"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:ied77cpfkhhebbqexpgnxr35/app.bsky.feed.post/3mebitykazs25": {
+      "topics": [
+        "After School Session - Chuck Berry",
+        "Arthur Alexander - Arthur Alexander",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "Led Zeppelin - Led Zeppelin",
+        "Please Please Me - The Beatles"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:i4aojwa5s5prwoe7zjy5akxj/app.bsky.feed.post/3meaayj4wpc2d": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Music from Big Pink - The Band",
+        "Five Leaves Left - Nick Drake",
+        "Buddy Holly - Buddy Holly",
+        "Mr Tambourine Man - The Byrds",
+        "UFO - Jim Sullivan"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:i2mulyjrxjtjwb3aksq2qjol/app.bsky.feed.post/3me7nfajk3225": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Please Please Me - The Beatles",
+        "Songs of Leonard Cohen - Leonard Cohen"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:i2gnbqz7vopak5bmqptlv6hg/app.bsky.feed.post/3me7o46ou7c2e": {
+      "topics": [
+        "Safe as Milk - Captain Beefheart",
+        "Five Leaves Left - Nick Drake",
+        "Scott - Scott Walker",
+        "Song to a Seagull - Joni Mitchell",
+        "Nancy & Lee - Nancy Sinatra & Lee Hazlewood"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:hxybhlk3krf5xcctpd6vpcem/app.bsky.feed.post/3me7ouqny5c2b": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Are You Experienced - Jimi Hendrix",
+        "Five Leaves Left - Nick Drake",
+        "Led Zeppelin - Led Zeppelin",
+        "Kick Out the Jams - MC5",
+        "The Stooges - The Stooges"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3me7qwunjoc2j": {
+      "topics": [
+        "Five Leaves Left - Nick Drake"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:hjdwjv4jl66qzqukwi3ynsno/app.bsky.feed.post/3me7minxx2c2o": {
+      "topics": [
+        "Genius of Modern Music - Thelonious Monk",
+        "Elvis Presley - Elvis Presley",
+        "Mr Tambourine Man - The Byrds",
+        "Buffalo Springfield - Buffalo Springfield",
+        "Five Leaves Left - Nick Drake",
+        "Songs of Leonard Cohen - Leonard Cohen"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:hjdwjv4jl66qzqukwi3ynsno/app.bsky.feed.post/3me7pf6wdqk2e": {
+      "topics": [
+        "Monster Movie - Can",
+        "Songs of Leonard Cohen - Leonard Cohen"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:hb3hy5ychqmlz2zm2amtimm3/app.bsky.feed.post/3me7ngvfqhk2k": {
+      "topics": [
+        "In the Court of the Crimson King - King Crimson",
+        "Song of Innocence - David Axelrod",
+        "Santana - Santana",
+        "The Meters - The Meters",
+        "The Piper at the Gates of Dawn - Pink Floyd"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:dcgseebp7wq5zxi2usjtolkh/app.bsky.feed.post/3me7ps5fvdk2b": {
+      "topics": [
+        "The Meters - The Meters"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:h7ympimdyi5ttw3366qervun/app.bsky.feed.post/3mec4e4l7gk2j": {
+      "topics": [
+        "The Doors - The Doors",
+        "My Generation - The Who",
+        "Mr Tambourine Man - The Byrds",
+        "Please Please Me - The Beatles",
+        "The Kinks - The Kinks"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:gv2p2c7nbavri2qsp5zhnm7i/app.bsky.feed.post/3me7kvo3v2k2q": {
+      "topics": [
+        "The Stooges - The Stooges",
+        "Kick Out the Jams - MC5",
+        "Vincebus Eruptum - Blue Cheer",
+        "The Doors - The Doors",
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:l7r2dkptmy6fhkkpd3lyurlp/app.bsky.feed.post/3me7vhiijrs23": {
+      "topics": [
+        "Vincebus Eruptum - Blue Cheer"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:5g3i56pmufyfkquat2zkgtf7/app.bsky.feed.post/3meb6kl4wus2t": {
+      "topics": [
+        "Vincebus Eruptum - Blue Cheer"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:grze7php6ukanty5j5xfayah/app.bsky.feed.post/3me7trvfvnc2q": {
+      "topics": [
+        "Led Zeppelin - Led Zeppelin",
+        "Presenting the Fabulous Ronettes - The Ronettes",
+        "John Coltrane - John Coltrane",
+        "A Monastic Trio - Alice Coltrane",
+        "My Generation - The Who",
+        "The Doors - The Doors",
+        "Are You Experienced - Jimi Hendrix",
+        "The Stooges - The Stooges"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:gjprxxxcnlvjaegcshgyg2mh/app.bsky.feed.post/3medgicrtkc24": {
+      "topics": [
+        "The Stooges - The Stooges",
+        "Kick Out the Jams - MC5",
+        "Here Are the Sonics - The Sonics",
+        "My Generation - The Who",
+        "A Drop of the Hard Stuff - The Dubliners"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:gingjllgruadvq5z7fcct7bq/app.bsky.feed.post/3mecawortvc2f": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Led Zeppelin - Led Zeppelin",
+        "Five Leaves Left - Nick Drake",
+        "The Stooges - The Stooges",
+        "The Doors - The Doors"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:g5tarbpiqwptek65ijhpfnsq/app.bsky.feed.post/3me7ovpibo22v": {
+      "topics": [
+        "Music from Big Pink - The Band",
+        "Crosby, Stills & Nash - CSN",
+        "The Allman Brothers Band - Allman Brothers",
+        "Mr Tambourine Man - The Byrds",
+        "Led Zeppelin - Led Zeppelin",
+        "In the Court of the Crimson King - King Crimson",
+        "Please Please Me - The Beatles",
+        "Are You Experienced - Jimi Hendrix",
+        "The Gilded Palace of Sin - Flying Burrito Brothers",
+        "Chicago Transit Authority - Chicago Transit Authority"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:fzlgrxxbtsz4cktvcgp6vhsp/app.bsky.feed.post/3mecoo7gzr22s": {
+      "topics": [
+        "Kick Out the Jams - MC5",
+        "Five Leaves Left - Nick Drake",
+        "The Stooges - The Stooges",
+        "Led Zeppelin - Led Zeppelin",
+        "Are You Experienced - Jimi Hendrix"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:fw3lkle6whuj63wepw62v5wp/app.bsky.feed.post/3me7nf3dils2j": {
+      "topics": [
+        "The Doors - The Doors",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Stooges - The Stooges",
+        "Led Zeppelin - Led Zeppelin",
+        "Are You Experienced - Jimi Hendrix"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:fnwzpli5ipsrj5njoitm4n65/app.bsky.feed.post/3me7lqxw52c2n": {
+      "topics": [
+        "Monster Movie - Can",
+        "Aerosol Grey Machine - Van der Graaf Generator",
+        "Adge Cutler and the Wurzels - The Wurzels",
+        "Silver Apples - Silver Apples"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:hjdwjv4jl66qzqukwi3ynsno/app.bsky.feed.post/3me7ohf7bfc2e": {
+      "topics": [
+        "Aerosol Grey Machine - Van der Graaf Generator"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:flpvqzeapz2r2ub2tjnj3wke/app.bsky.feed.post/3me7wnrhkwc2h": {
+      "topics": [
+        "Genius of Modern Music - Thelonious Monk",
+        "Black Monk Time - The Monks",
+        "Silver Apples - Silver Apples",
+        "Safe as Milk - Captain Beefheart",
+        "The Parable of Arable Land - Red Krayola",
+        "The United States of America - The United States of America"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:flkxk7klid5coiixhbepew5p/app.bsky.feed.post/3mec2bvwjc22h": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "Chelsea Girl - Nico",
+        "In the Court of the Crimson King - King Crimson",
+        "Safe as Milk - Captain Beefheart",
+        "Led Zeppelin - Led Zeppelin"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:felwoqg4vdpnt4d3jwenc532/app.bsky.feed.post/3me7py3eot224": {
+      "topics": [
+        "At Last! - Etta James",
+        "The Doors - The Doors",
+        "A Girl Called Dusty - Dusty Springfield",
+        "Please Please Me - The Beatles",
+        "Are You Experienced - Jimi Hendrix"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:fcskucr5cl532n6w3bvpyt3i/app.bsky.feed.post/3meds5fpw5s2b": {
+      "topics": [
+        "The Doors - The Doors",
+        "Are You Experienced - Jimi Hendrix",
+        "Townes Van Zandt - Townes Van Zandt",
+        "Jacques Brel - Jacques Brel",
+        "The Velvet Underground & Nico - The Velvet Underground"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:ewya3xvywhacsfnmcu7wtuo2/app.bsky.feed.post/3me7mugp6ms2b": {
+      "topics": [
+        "Ska Boo-Da-Ba - The Skatalites",
+        "Mr Rock Steady - Ken Boothe",
+        "Take It Easy - Hopeton Lewis",
+        "The Gaylads - The Gaylads"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:eilbtiavt3qr2jotifyjvtin/app.bsky.feed.post/3mecf73mbwc22": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Silver Apples - Silver Apples",
+        "Monster Movie - Can",
+        "The Stooges - The Stooges",
+        "The Parable of Arable Land - Red Krayola"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:eay3ctkzwem4tgflvcxxr3ow/app.bsky.feed.post/3me7l2siyjk24": {
+      "topics": [
+        "Fresh Cream - Cream",
+        "Crosby, Stills & Nash - CSN",
+        "My Generation - The Who",
+        "Procol Harum - Procol Harum",
+        "Elvis Presley - Elvis Presley",
+        "Please Please Me - The Beatles",
+        "Surfin' Safari - The Beach Boys",
+        "Prince Buster - Prince Buster"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:e34zfmhwdjnhheup5nglpdca/app.bsky.feed.post/3me7zannevs2m": {
+      "topics": [
+        "In the Court of the Crimson King - King Crimson",
+        "Silver Apples - Silver Apples",
+        "The Stooges - The Stooges",
+        "Here Are the Sonics - The Sonics",
+        "Five Leaves Left - Nick Drake"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:qnye3wiyjehld7fyg3ksduib/app.bsky.feed.post/3me7zbkfzts2q": {
+      "topics": [
+        "Silver Apples - Silver Apples"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:qnye3wiyjehld7fyg3ksduib/app.bsky.feed.post/3me7zk7ojrc2q": {
+      "topics": [
+        "Greetings from the Pioneers - The Pioneers"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:dzjrafvdfk7taw4scirla5jf/app.bsky.feed.post/3me7v2t5z5c2w": {
+      "topics": [
+        "Leader of the Pack - Shangri-Las",
+        "Sing 'A Lovers Concerto' - The Toys",
+        "Wipe Out - Surfaris",
+        "Walk Away Renee - The Left Banke"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:dzdlz4pzsluoraqmbievokzc/app.bsky.feed.post/3medl37cmhk2o": {
+      "topics": [
+        "Mr Tambourine Man - The Byrds",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Love - Love",
+        "Five Leaves Left - Nick Drake",
+        "Please Please Me - The Beatles",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Are You Experienced - Jimi Hendrix",
+        "Scott - Scott Walker",
+        "Bo Diddley - Bo Diddley",
+        "Neil Young - Neil Young",
+        "Nancy & Lee - Nancy Sinatra & Lee Hazlewood",
+        "Moby Grape - Moby Grape",
+        "Dillard & Clark - Dillard & Clark"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:dgmvgp4emg2k2amlcksb766f/app.bsky.feed.post/3me7now4ijs2c": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Please Please Me - The Beatles",
+        "The Stooges - The Stooges"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:dfd53cpupqtwcjgch4svauvv/app.bsky.feed.post/3medoqhgffs2o": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Led Zeppelin - Led Zeppelin",
+        "Are You Experienced - Jimi Hendrix",
+        "The Stooges - The Stooges",
+        "The Doors - The Doors"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3meeagim3ws2y": {
+      "topics": [
+        "The Doors - The Doors",
+        "Are You Experienced - Jimi Hendrix"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ddyy74faumltclz5jssdhjbk/app.bsky.feed.post/3me7v7ihd622b": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Here's Little Richard - Little Richard",
+        "Five Leaves Left - Nick Drake",
+        "Are You Experienced - Jimi Hendrix",
+        "The Gilded Palace of Sin - Flying Burrito Brothers"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:dcgseebp7wq5zxi2usjtolkh/app.bsky.feed.post/3me7lcsqkbc2h": {
+      "topics": [
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Safe as Milk - Captain Beefheart",
+        "The Stooges - The Stooges",
+        "Are You Experienced - Jimi Hendrix",
+        "John Coltrane - John Coltrane",
+        "A Monastic Trio - Alice Coltrane"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:zvbyb5vfkyoxigko5nbolvlb/app.bsky.feed.post/3me7m6z6lwc2j": {
+      "topics": [
+        "John Coltrane - John Coltrane",
+        "A Monastic Trio - Alice Coltrane"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:dcgseebp7wq5zxi2usjtolkh/app.bsky.feed.post/3me7ldbigu22h": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "Something Else - Ornette Coleman",
+        "Led Zeppelin - Led Zeppelin",
+        "The Gilded Palace of Sin - Flying Burrito Brothers",
+        "Here's Little Richard - Little Richard",
+        "Page One - Joe Henderson",
+        "Buffalo Springfield - Buffalo Springfield",
+        "Neil Young - Neil Young",
+        "Buddy Holly - Buddy Holly",
+        "Phil Ochs - Phil Ochs"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:cywqarf6nxbwrbraetjg4i6a/app.bsky.feed.post/3me7usdj4c22m": {
+      "topics": [
+        "In the Court of the Crimson King - King Crimson",
+        "Crosby, Stills & Nash - CSN",
+        "Truth - Jeff Beck",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Led Zeppelin - Led Zeppelin"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:cywqarf6nxbwrbraetjg4i6a/app.bsky.feed.post/3me7ux3fhk22m": {
+      "topics": [
+        "Music from Big Pink - The Band",
+        "Mr Tambourine Man - The Byrds",
+        "Buffalo Springfield - Buffalo Springfield",
+        "Neil Young - Neil Young",
+        "Freak Out! - Mothers of Invention",
+        "Procol Harum - Procol Harum",
+        "This Was - Jethro Tull"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ciynijlitlant3dcavnahu3e/app.bsky.feed.post/3medt4g6ar22a": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Mamadou Seck & Boubacar Diabate - Various",
+        "You Got My Mind Messed Up - James Carr"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:cdopxj3dsxznkdqpp4ws6h5q/app.bsky.feed.post/3me7o4u7hec2a": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Stooges - The Stooges",
+        "The Doors - The Doors",
+        "The Gilded Palace of Sin - Flying Burrito Brothers",
+        "Silver Apples - Silver Apples"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:cdhkx4inzevprk7qijoevckm/app.bsky.feed.post/3me7sp7jsyk2o": {
+      "topics": [
+        "Crosby, Stills & Nash - CSN",
+        "Are You Experienced - Jimi Hendrix",
+        "Music from Big Pink - The Band",
+        "The Allman Brothers Band - Allman Brothers",
+        "Buffalo Springfield - Buffalo Springfield"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:cdhkx4inzevprk7qijoevckm/app.bsky.feed.post/3me7sr5jhkk2o": {
+      "topics": [
+        "Music from Big Pink - The Band"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:c5apm7epgarvhl23atwxcwxc/app.bsky.feed.post/3me7n45onr227": {
+      "topics": [
+        "Genius of Modern Music - Thelonious Monk",
+        "Black Monk Time - The Monks",
+        "Gorilla - Bonzo Dog Doo-Dah Band",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Safe as Milk - Captain Beefheart",
+        "Scott - Scott Walker",
+        "Os Mutantes - Os Mutantes",
+        "The Pentangle - The Pentangle"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:bx2q36sm3z4k7ennp7gk7qcq/app.bsky.feed.post/3me7ninpris2g": {
+      "topics": [
+        "Please Please Me - The Beatles",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Scott - Scott Walker",
+        "Are You Experienced - Jimi Hendrix",
+        "Mr Tambourine Man - The Byrds"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:btwppdzwga2zrv2ztouiq3th/app.bsky.feed.post/3me7retpwec27": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Five Leaves Left - Nick Drake",
+        "The Stooges - The Stooges",
+        "Love - Love",
+        "Songs of Leonard Cohen - Leonard Cohen"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:bt6hnevbzqedx6d6zz6hjyij/app.bsky.feed.post/3me7lf34z7s2e": {
+      "topics": [
+        "In the Court of the Crimson King - King Crimson",
+        "Pain in My Heart - Otis Redding",
+        "Crosby, Stills & Nash - CSN",
+        "The Allman Brothers Band - Allman Brothers",
+        "At Last! - Etta James"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:g5tarbpiqwptek65ijhpfnsq/app.bsky.feed.post/3me7pcbkx2s2v": {
+      "topics": [
+        "The Allman Brothers Band - Allman Brothers"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:brxbgbjaxvti3qqc5csch2ga/app.bsky.feed.post/3me7rnsy2sc24": {
+      "topics": [
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators",
+        "Here Are the Sonics - The Sonics",
+        "Blind Joe Death - John Fahey",
+        "Genius of Modern Music - Thelonious Monk",
+        "Black Monk Time - The Monks"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:rcvwlwutr55iqx5xx4ftjabs/app.bsky.feed.post/3me7t6pjvak2x": {
+      "topics": [
+        "Here Are the Sonics - The Sonics"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:bj6jmxkvqyns6p5nurdrlfsm/app.bsky.feed.post/3meb36gcsvk2w": {
+      "topics": [
+        "Monster Movie - Can",
+        "The Doors - The Doors",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Are You Experienced - Jimi Hendrix",
+        "The Stooges - The Stooges",
+        "Black Monk Time - The Monks",
+        "The Seeds - The Seeds"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:bd244izpmewy3h5amaxellfi/app.bsky.feed.post/3mebt66aflk2y": {
+      "topics": [
+        "Led Zeppelin - Led Zeppelin",
+        "The Stooges - The Stooges",
+        "Are You Experienced - Jimi Hendrix",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Kick Out the Jams - MC5",
+        "Five Leaves Left - Nick Drake",
+        "My Generation - The Who",
+        "Please Please Me - The Beatles",
+        "Here Are the Sonics - The Sonics",
+        "The Doors - The Doors",
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:b7aqig34evjntxmdsd62ijbk/app.bsky.feed.post/3me7ondy4uc2y": {
+      "topics": [
+        "Led Zeppelin - Led Zeppelin",
+        "Are You Experienced - Jimi Hendrix",
+        "In the Court of the Crimson King - King Crimson",
+        "Fresh Cream - Cream"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:b3ge3ldajiefhctb6psux5km/app.bsky.feed.post/3me7qej3rgc2h": {
+      "topics": [
+        "Led Zeppelin - Led Zeppelin",
+        "The Chirping Crickets - The Crickets",
+        "Presenting the Fabulous Ronettes - The Ronettes",
+        "Here's Little Richard - Little Richard",
+        "My Generation - The Who",
+        "Buddy Holly - Buddy Holly"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:afqp5n46gmssaq6q542hpmcw/app.bsky.feed.post/3medtoji2ps2j": {
+      "topics": [
+        "In the Court of the Crimson King - King Crimson",
+        "The Doors - The Doors",
+        "Led Zeppelin - Led Zeppelin",
+        "Jefferson Airplane Takes Off - Jefferson Airplane",
+        "Are You Experienced - Jimi Hendrix"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:7zzswd5g2zbynzbowl3edpww/app.bsky.feed.post/3me7w5fwxw22b": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:7dup6356ukejj7r7t3pnqp6o/app.bsky.feed.post/3me7ljksyxk2f": {
+      "topics": [
+        "Open Sesame - Freddie Hubbard",
+        "Takin' Off - Herbie Hancock",
+        "Page One - Joe Henderson",
+        "True Blue - Tina Brooks"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:snzfta77olq4owwuq6iectix/app.bsky.feed.post/3me7lufi7f22t": {
+      "topics": [
+        "Page One - Joe Henderson"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:grze7php6ukanty5j5xfayah/app.bsky.feed.post/3me7u37she22q": {
+      "topics": [
+        "Takin' Off - Herbie Hancock"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:75smqb6cjvznw5wqmk7ciy4y/app.bsky.feed.post/3mecgey7vqk2j": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Stooges - The Stooges",
+        "Genius of Modern Music - Thelonious Monk",
+        "Black Monk Time - The Monks",
+        "Silver Apples - Silver Apples",
+        "Are You Experienced - Jimi Hendrix"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:74x5ns6o5rbuylmnpzxsnixc/app.bsky.feed.post/3mea7cbvkq22h": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Stooges - The Stooges",
+        "The Doors - The Doors",
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "Mr Tambourine Man - The Byrds",
+        "Kick Out the Jams - MC5"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:73evy264gijtv3ks3nytpmav/app.bsky.feed.post/3mebtzoey6s2a": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "Little Girl Blue - Nina Simone",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "John Coltrane - John Coltrane",
+        "A Monastic Trio - Alice Coltrane",
+        "Oar - Skip Spence"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:6inofy5wwdow5xxxcwimm25f/app.bsky.feed.post/3medowlkfgs2o": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Mr Tambourine Man - The Byrds",
+        "Music from Big Pink - The Band",
+        "The Doors - The Doors",
+        "A Girl Called Dusty - Dusty Springfield"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:6b52g2gztdcbactwfkq6trbz/app.bsky.feed.post/3mecnjrpkt227": {
+      "topics": [
+        "The Grateful Dead - Grateful Dead",
+        "Clifford Brown & Max Roach - Clifford Brown",
+        "Open Sesame - Freddie Hubbard",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Takin' Off - Herbie Hancock",
+        "The Doors - The Doors",
+        "Santana - Santana"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:67yzfucwirghnqkx7tsph52e/app.bsky.feed.post/3me7n7fkd6k2z": {
+      "topics": [
+        "Francoise Hardy - Francoise Hardy",
+        "Ask Me No Questions - Bridget St John",
+        "Marianne Faithfull - Marianne Faithfull",
+        "Foolish Seasons - Dana Gillespie",
+        "Run the Length - Kathe Green",
+        "Five Leaves Left - Nick Drake"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:2isomiwbebcq3yq2apduvuaj/app.bsky.feed.post/3me7rbyybek2w": {
+      "topics": [
+        "Ottilie Patterson - Ottilie Patterson"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:2isomiwbebcq3yq2apduvuaj/app.bsky.feed.post/3me7pkvvjxc2w": {
+      "topics": [
+        "The Piper at the Gates of Dawn - Pink Floyd"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:5vnojuggxdrytpapo4pyyfyr/app.bsky.feed.post/3me7nt3ixe22t": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators",
+        "Crosby, Stills & Nash - CSN",
+        "Joy of a Toy - Kevin Ayers",
+        "Tim Buckley - Tim Buckley"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:5mowq5mllgqgegsgm5wd6ai2/app.bsky.feed.post/3me7tkpwq722t": {
+      "topics": [
+        "The Doors - The Doors",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Are You Experienced - Jimi Hendrix",
+        "Led Zeppelin - Led Zeppelin",
+        "The Stooges - The Stooges"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:5g3i56pmufyfkquat2zkgtf7/app.bsky.feed.post/3meb6fsrwus2t": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "The Stooges - The Stooges",
+        "Please Please Me - The Beatles",
+        "The Doors - The Doors"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:55vbzw5cc5wu4ugj27c24inq/app.bsky.feed.post/3me7kexfcxs2c": {
+      "topics": [
+        "Mr Tambourine Man - The Byrds",
+        "Music from Big Pink - The Band",
+        "Crosby, Stills & Nash - CSN",
+        "Little Girl Blue - Nina Simone",
+        "Page One - Joe Henderson",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Doors - The Doors",
+        "The Stooges - The Stooges",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Jackson C Frank - Jackson C Frank",
+        "Oar - Skip Spence",
+        "Francoise Hardy - Francoise Hardy",
+        "Tim Hardin 1 - Tim Hardin",
+        "At Last! - Etta James"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:zmwbz24eff6dk5366vscjzkb/app.bsky.feed.post/3mebspilwhc2h": {
+      "topics": [
+        "A Girl Called Dusty - Dusty Springfield",
+        "The Doors - The Doors",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Stooges - The Stooges",
+        "Scott - Scott Walker"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:y4f3lir2hi2wkecxjzeargxv/app.bsky.feed.post/3me7lsvfwrk24": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Are You Experienced - Jimi Hendrix",
+        "Led Zeppelin - Led Zeppelin",
+        "Wednesday Morning, 3 AM - Simon & Garfunkel"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:qfq35k3kuh6yxmye6sde2ods/app.bsky.feed.post/3meca4shoms2b": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "Are You Experienced - Jimi Hendrix",
+        "Neil Young - Neil Young",
+        "Wednesday Morning, 3 AM - Simon & Garfunkel"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:q7xz6e7i6zzttvblnx536hyn/app.bsky.feed.post/3me7kz4cfos2q": {
+      "topics": [
+        "A Girl Called Dusty - Dusty Springfield",
+        "The Doors - The Doors",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Mr Tambourine Man - The Byrds",
+        "Crosby, Stills & Nash - CSN",
+        "Bert Jansch - Bert Jansch",
+        "Bob Dylan - Bob Dylan"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:kxsz2mokxjyigf6zyym5enox/app.bsky.feed.post/3mechx7cea22n": {
+      "topics": [
+        "Monster Movie - Can",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "The Doors - The Doors",
+        "Are You Experienced - Jimi Hendrix",
+        "Safe as Milk - Captain Beefheart",
+        "Love - Love",
+        "Electric Music for the Mind and Body - Country Joe & the Fish"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:glyqmy76kr6ewrqrqhdz5lht/app.bsky.feed.post/3me7l23uprc26": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "In the Court of the Crimson King - King Crimson",
+        "Scott - Scott Walker",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "The Doors - The Doors",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Are You Experienced - Jimi Hendrix",
+        "Led Zeppelin - Led Zeppelin",
+        "The Stooges - The Stooges",
+        "Song to a Seagull - Joni Mitchell",
+        "Presenting the Fabulous Ronettes - The Ronettes"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:a7n4o6fulbx67npgp7ew3lco/app.bsky.feed.post/3me7zcx2qls2z": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "A Girl Called Dusty - Dusty Springfield",
+        "Scott - Scott Walker",
+        "Little Girl Blue - Nina Simone",
+        "The Gilded Palace of Sin - Flying Burrito Brothers"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:5wwwjefmtkv3endttehhhonc/app.bsky.feed.post/3me7lz4r5k22y": {
+      "topics": [
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "The Gilded Palace of Sin - Flying Burrito Brothers",
+        "Blind Joe Death - John Fahey",
+        "Nancy & Lee - Nancy Sinatra & Lee Hazlewood",
+        "Beat of the Earth - Beat of the Earth",
+        "Korla Pandit - Korla Pandit"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:n6jlsoh5au43jjnxfguhpsvl/app.bsky.feed.post/3mebdcwjagk2m": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Stooges - The Stooges",
+        "The Gilded Palace of Sin - Flying Burrito Brothers",
+        "Kick Out the Jams - MC5",
+        "Silver Apples - Silver Apples",
+        "Presenting the Fabulous Ronettes - The Ronettes",
+        "Nancy & Lee - Nancy Sinatra & Lee Hazlewood"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:objplke6pwybsgmormniaarm/app.bsky.feed.post/3me7ox7uphs2o": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "My Generation - The Who",
+        "The Doors - The Doors",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Stooges - The Stooges",
+        "Mr Tambourine Man - The Byrds",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Presenting the Fabulous Ronettes - The Ronettes"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:krniqeen2ewkbysvp4qd4m76/app.bsky.feed.post/3me7qdkr5u22w": {
+      "topics": [
+        "Mr Tambourine Man - The Byrds"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:l7r2dkptmy6fhkkpd3lyurlp/app.bsky.feed.post/3me7vb5edwc23": {
+      "topics": [
+        "In the Court of the Crimson King - King Crimson",
+        "Tons of Sobs - Free",
+        "Are You Experienced - Jimi Hendrix",
+        "Led Zeppelin - Led Zeppelin",
+        "Frost Music - The Frost"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:4zhdufysbulekd4wfiyex2xp/app.bsky.feed.post/3me7lnuxf4c23": {
+      "topics": [
+        "Are You Experienced - Jimi Hendrix",
+        "Led Zeppelin - Led Zeppelin",
+        "The Chirping Crickets - The Crickets",
+        "The Doors - The Doors",
+        "Steppenwolf - Steppenwolf",
+        "My Generation - The Who",
+        "Please Please Me - The Beatles",
+        "The Allman Brothers Band - Allman Brothers",
+        "Santana - Santana",
+        "Joan Baez - Joan Baez"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3me7lmjciw22j": {
+      "topics": [
+        "The Gilded Palace of Sin - Flying Burrito Brothers",
+        "Bo Diddley - Bo Diddley",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Little Girl Blue - Nina Simone",
+        "Five Leaves Left - Nick Drake",
+        "Music from Big Pink - The Band",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Ray Charles - Ray Charles"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:ocvld3s3yukxn24deji2bnuu/app.bsky.feed.post/3me7lrak34s2o": {
+      "topics": [
+        "The Doors - The Doors"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3mebm6vwpxk2d": {
+      "topics": [
+        "Please Please Me - The Beatles",
+        "The Doors - The Doors",
+        "Are You Experienced - Jimi Hendrix",
+        "Here's Little Richard - Little Richard"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ocvld3s3yukxn24deji2bnuu/app.bsky.feed.post/3mebmnd7ufs2i": {
+      "topics": [
+        "Please Please Me - The Beatles"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:2isomiwbebcq3yq2apduvuaj/app.bsky.feed.post/3me7orexmws2m": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Doors - The Doors",
+        "Are You Experienced - Jimi Hendrix",
+        "The Stooges - The Stooges"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:4te263lczjljeckowosroid5/app.bsky.feed.post/3me7te36vmc2r": {
+      "topics": [
+        "Here's Little Richard - Little Richard",
+        "Are You Experienced - Jimi Hendrix",
+        "Five Leaves Left - Nick Drake",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "The Stooges - The Stooges"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3me7ujzskb22o": {
+      "topics": [
+        "Here's Little Richard - Little Richard",
+        "Bo Diddley - Bo Diddley"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:4ponwpaw733blkh3no6gbfoa/app.bsky.feed.post/3me7lcauwbk2t": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "In the Court of the Crimson King - King Crimson",
+        "First Take - Roberta Flack",
+        "Something Else - Ornette Coleman",
+        "The Stooges - The Stooges",
+        "Monster Movie - Can",
+        "The Doors - The Doors",
+        "John Coltrane - John Coltrane",
+        "Genius of Modern Music - Thelonious Monk"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:4fiov67a3hohebygjuryuyyb/app.bsky.feed.post/3mebasnmbtk2d": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Doors - The Doors",
+        "Music from Big Pink - The Band",
+        "Safe as Milk - Captain Beefheart",
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:46vjmabsjh56h3trrryvymjc/app.bsky.feed.post/3me7t3raim22h": {
+      "topics": [
+        "Are You Experienced - Jimi Hendrix",
+        "Fresh Cream - Cream",
+        "Climbing! - Mountain",
+        "On Time - Grand Funk Railroad",
+        "Five Live Yardbirds - The Yardbirds"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:43szxtra7ogywpkxrqdkrhi4/app.bsky.feed.post/3me7ooxokbc2v": {
+      "topics": [
+        "Music from Big Pink - The Band",
+        "Crosby, Stills & Nash - CSN",
+        "Five Leaves Left - Nick Drake",
+        "The Doors - The Doors",
+        "Mr Tambourine Man - The Byrds",
+        "Please Please Me - The Beatles",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Buffalo Springfield - Buffalo Springfield"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:42rdvg523su2rvlg5zdehdok/app.bsky.feed.post/3me7mll6hi222": {
+      "topics": [
+        "Paul Butterfield Blues Band - Paul Butterfield",
+        "Getz/Gilberto - Stan Getz & Joao Gilberto",
+        "The Doors - The Doors",
+        "Astrud Gilberto - Astrud Gilberto"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:3pjraktmxjrybmuhzqcliakj/app.bsky.feed.post/3medu53nf7k2t": {
+      "topics": [
+        "Are You Experienced - Jimi Hendrix",
+        "Music from Big Pink - The Band",
+        "Led Zeppelin - Led Zeppelin",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "Five Leaves Left - Nick Drake"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:3pgxabdljjkaza2w43l6gy4e/app.bsky.feed.post/3me7pi23wzk23": {
+      "topics": [
+        "In the Court of the Crimson King - King Crimson",
+        "Led Zeppelin - Led Zeppelin",
+        "The Stooges - The Stooges",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Doors - The Doors"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:3bj4dovidxewudjr7ene3sem/app.bsky.feed.post/3meb6ianehk2t": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Crosby, Stills & Nash - CSN",
+        "Are You Experienced - Jimi Hendrix",
+        "Five Leaves Left - Nick Drake",
+        "Led Zeppelin - Led Zeppelin"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:2zub3jc3rmkfimvv2itvltyq/app.bsky.feed.post/3me7l47bjds2v": {
+      "topics": [
+        "UFO - Jim Sullivan",
+        "Five Leaves Left - Nick Drake",
+        "Mr Tambourine Man - The Byrds",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Kaleidoscope - Tangerine Dream"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:wkatdmiulx36lxuhj5v6mnnc/app.bsky.feed.post/3me7ra36uys2q": {
+      "topics": [
+        "UFO - Jim Sullivan"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:2wclmxzz2wmfutt7ouji5tfb/app.bsky.feed.post/3me7tcys2322p": {
+      "topics": [
+        "David Bowie - David Bowie",
+        "Led Zeppelin - Led Zeppelin",
+        "The Doors - The Doors",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "In the Court of the Crimson King - King Crimson"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:2w5ezdzgabjyjzhsvyxdd4j7/app.bsky.feed.post/3meeqempmmc2u": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "My Generation - The Who",
+        "The Stooges - The Stooges",
+        "Are You Experienced - Jimi Hendrix",
+        "Walker Brothers - Walker Brothers"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:2tontavllcstidsxov3yoocv/app.bsky.feed.post/3me7tsj4ie22v": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Jackson C Frank - Jackson C Frank",
+        "Presenting the Fabulous Ronettes - The Ronettes",
+        "Gris Gris - Dr. John",
+        "Five Leaves Left - Nick Drake"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:xeikaoylaptxtltecgdypgxr/app.bsky.feed.post/3me7tzgenrs2n": {
+      "topics": [
+        "Jackson C Frank - Jackson C Frank"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:qnye3wiyjehld7fyg3ksduib/app.bsky.feed.post/3me7zeizgsc2q": {
+      "topics": [
+        "Gris Gris - Dr. John"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:2isomiwbebcq3yq2apduvuaj/app.bsky.feed.post/3me7mi5bx5s2m": {
+      "topics": [
+        "Gal Costa - Gal Costa",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "Foolish Seasons - Dana Gillespie",
+        "Oar - Skip Spence",
+        "Ottilie Patterson - Ottilie Patterson"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:hxybhlk3krf5xcctpd6vpcem/app.bsky.feed.post/3me7p2dtsks2b": {
+      "topics": [
+        "Foolish Seasons - Dana Gillespie"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:2isomiwbebcq3yq2apduvuaj/app.bsky.feed.post/3me7r3x3bsc2w": {
+      "topics": [
+        "Ottilie Patterson - Ottilie Patterson"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:2hae6czkrgijfcx5sr3kvacv/app.bsky.feed.post/3mea37e5bas2b": {
+      "topics": [
+        "Crosby, Stills & Nash - CSN",
+        "The Doors - The Doors",
+        "Shades of Deep Purple - Deep Purple",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Are You Experienced - Jimi Hendrix"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:2fns4ggk7yf3zg3onqkk6ffr/app.bsky.feed.post/3me7rqvyjgc2h": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Music from Big Pink - The Band",
+        "Led Zeppelin - Led Zeppelin",
+        "The Stooges - The Stooges",
+        "Here Are the Sonics - The Sonics"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:2dtga4doovacxqgznm547l2p/app.bsky.feed.post/3me7lty37ts2u": {
+      "topics": [
+        "Elvis Presley - Elvis Presley",
+        "Please Please Me - The Beatles",
+        "Crosby, Stills & Nash - CSN",
+        "The Gilded Palace of Sin - Flying Burrito Brothers",
+        "The Velvet Underground & Nico - The Velvet Underground"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3mebnoqw5kc27": {
+      "topics": [
+        "Please Please Me - The Beatles",
+        "Surfin' Safari - The Beach Boys"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ch5tq3gtt2rms3qvjuswoaxc/app.bsky.feed.post/3mecsecltek2q": {
+      "topics": [
+        "The Soul of a Bell - William Bell",
+        "Lightfoot - Gordon Lightfoot",
+        "My Generation - The Who",
+        "Music from Big Pink - The Band",
+        "The Gilded Palace of Sin - Flying Burrito Brothers"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:gxvcw6p7mdqjxo6pkcbdrbd3/app.bsky.feed.post/3me7qu7cj3s23": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Safe as Milk - Captain Beefheart",
+        "The Stooges - The Stooges",
+        "Wednesday Morning, 3 AM - Simon & Garfunkel",
+        "A Drop of the Hard Stuff - The Dubliners"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:f7umpm5hd3r22ocz7yleissr/app.bsky.feed.post/3me7pcybi3k2l": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "Led Zeppelin - Led Zeppelin",
+        "Pain in My Heart - Otis Redding",
+        "An Old Raincoat Won't Ever Let You Down - Rod Stewart",
+        "Truth - Jeff Beck"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:ojpwve2fbepktqw3fv6whmgc/app.bsky.feed.post/3me7p2xzlm22y": {
+      "topics": [
+        "Please Please Me - The Beatles",
+        "The Doors - The Doors",
+        "Chicago Transit Authority - Chicago Transit Authority",
+        "Led Zeppelin - Led Zeppelin",
+        "Surfin' Safari - The Beach Boys"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:s5mgr6eiqzrq3w64dgzai3le/app.bsky.feed.post/3me7qywegnc2c": {
+      "topics": [
+        "Five Leaves Left - Nick Drake"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Vote post with album list"
+    },
+    "at://did:plc:dcgseebp7wq5zxi2usjtolkh/app.bsky.feed.post/3me7oxjjt322b": {
+      "topics": [
+        "Something Else - Ornette Coleman",
+        "John Coltrane - John Coltrane",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Genius of Modern Music - Thelonious Monk",
+        "Page One - Joe Henderson"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3me7mhhwovk2c": {
+      "topics": [
+        "Something Else - Ornette Coleman",
+        "John Coltrane - John Coltrane",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Genius of Modern Music - Thelonious Monk",
+        "Page One - Joe Henderson"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:zbutertksaodmjq5cqzkhh4q/app.bsky.feed.post/3medits7vpc22": {
+      "topics": [
+        "Dillard & Clark - Dillard & Clark"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:wjnzr7ir5xhc6wrxtef7nyhx/app.bsky.feed.post/3mechc3vivk2g": {
+      "topics": [
+        "The Stooges - The Stooges",
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators",
+        "Safe as Milk - Captain Beefheart",
+        "Silver Apples - Silver Apples",
+        "Love - Love",
+        "Five Leaves Left - Nick Drake",
+        "A Girl Called Dusty - Dusty Springfield",
+        "Please Please Me - The Beatles",
+        "Monster Movie - Can",
+        "Here Are the Sonics - The Sonics",
+        "Mr Tambourine Man - The Byrds",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Scott - Scott Walker",
+        "The Gilded Palace of Sin - Flying Burrito Brothers"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction/agreement inheriting from parent"
+    },
+    "at://did:plc:voaasdcbfmu3kxudc57vwkzj/app.bsky.feed.post/3me7qlpgshs2w": {
+      "topics": [
+        "Safe as Milk - Captain Beefheart",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Scott - Scott Walker",
+        "A Girl Called Dusty - Dusty Springfield"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction/agreement inheriting from parent"
+    },
+    "at://did:plc:voaasdcbfmu3kxudc57vwkzj/app.bsky.feed.post/3me7rakx4qk2w": {
+      "topics": [
+        "Silver Apples - Silver Apples"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:qnye3wiyjehld7fyg3ksduib/app.bsky.feed.post/3me7zfhtw6k2q": {
+      "topics": [
+        "Safe as Milk - Captain Beefheart",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Scott - Scott Walker",
+        "A Girl Called Dusty - Dusty Springfield"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction/agreement inheriting from parent"
+    },
+    "at://did:plc:ewya3xvywhacsfnmcu7wtuo2/app.bsky.feed.post/3me7ugmpw2s2b": {
+      "topics": [
+        "Safe as Milk - Captain Beefheart",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Scott - Scott Walker",
+        "A Girl Called Dusty - Dusty Springfield"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:wjnzr7ir5xhc6wrxtef7nyhx/app.bsky.feed.post/3meb575avi22x": {
+      "topics": [
+        "Safe as Milk - Captain Beefheart",
+        "Gris Gris - Dr. John",
+        "In the Court of the Crimson King - King Crimson",
+        "Jackson C Frank - Jackson C Frank",
+        "Led Zeppelin - Led Zeppelin"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:7dup6356ukejj7r7t3pnqp6o/app.bsky.feed.post/3me7pko34bs27": {
+      "topics": [
+        "Tim Hardin 1 - Tim Hardin",
+        "UFO - Jim Sullivan",
+        "Song of Innocence - David Axelrod",
+        "Please Please Me - The Beatles",
+        "True Blue - Tina Brooks"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:67yzfucwirghnqkx7tsph52e/app.bsky.feed.post/3meb5ywwgqc2m": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Francoise Hardy - Francoise Hardy",
+        "Five Leaves Left - Nick Drake",
+        "The Doors - The Doors",
+        "Are You Experienced - Jimi Hendrix"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:w6h5gkvrn27jixxjull6gikg/app.bsky.feed.post/3me7nsapc2226": {
+      "topics": [
+        "Black Women - Sonny Sharrock"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:wjnzr7ir5xhc6wrxtef7nyhx/app.bsky.feed.post/3me7muox5vc2a": {
+      "topics": [
+        "Monster Movie - Can"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Found titles on inheritance pass"
+    },
+    "at://did:plc:ttkkkpqoqx45sobqelwa3kav/app.bsky.feed.post/3me7vycouzc26": {
+      "topics": [
+        "Monster Movie - Can"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Found titles on inheritance pass"
+    },
+    "at://did:plc:ttkkkpqoqx45sobqelwa3kav/app.bsky.feed.post/3me7vw6wjd226": {
+      "topics": [
+        "Monster Movie - Can"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Found titles on inheritance pass"
+    },
+    "at://did:plc:wjnzr7ir5xhc6wrxtef7nyhx/app.bsky.feed.post/3me7vzza3p222": {
+      "topics": [
+        "Monster Movie - Can"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction/agreement inheriting from parent"
+    },
+    "at://did:plc:snzfta77olq4owwuq6iectix/app.bsky.feed.post/3me7lven5q22t": {
+      "topics": [
+        "Monster Movie - Can"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Found titles on inheritance pass"
+    },
+    "at://did:plc:gjprxxxcnlvjaegcshgyg2mh/app.bsky.feed.post/3medgjsesvk24": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Doors - The Doors",
+        "The Stooges - The Stooges",
+        "Kick Out the Jams - MC5",
+        "Here Are the Sonics - The Sonics"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction/agreement inheriting from parent"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3mea75f7glc25": {
+      "topics": [
+        "Safe as Milk - Captain Beefheart",
+        "Here's Little Richard - Little Richard",
+        "Ray Charles - Ray Charles",
+        "Bo Diddley - Bo Diddley",
+        "At Last! - Etta James"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:krniqeen2ewkbysvp4qd4m76/app.bsky.feed.post/3medtaxnjj22w": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "Scott - Scott Walker",
+        "Mr Tambourine Man - The Byrds",
+        "The Doors - The Doors",
+        "Bob Dylan - Bob Dylan"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:xeikaoylaptxtltecgdypgxr/app.bsky.feed.post/3medwqgccjs2i": {
+      "topics": [
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators",
+        "Safe as Milk - Captain Beefheart",
+        "Jackson C Frank - Jackson C Frank",
+        "The Stooges - The Stooges",
+        "The Velvet Underground & Nico - The Velvet Underground"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3me7luygrk22j": {
+      "topics": [
+        "Crosby, Stills & Nash - CSN",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "The Gilded Palace of Sin - Flying Burrito Brothers",
+        "The Doors - The Doors",
+        "Please Please Me - The Beatles",
+        "Five Leaves Left - Nick Drake",
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Neil Young - Neil Young",
+        "Moby Grape - Moby Grape"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:cdhkx4inzevprk7qijoevckm/app.bsky.feed.post/3me7torgxgk2o": {
+      "topics": [
+        "Little Girl Blue - Nina Simone",
+        "Music from Big Pink - The Band",
+        "The Doors - The Doors",
+        "Mixed Bag - Richie Havens"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3me7t4kuyhk2j": {
+      "topics": [
+        "Little Girl Blue - Nina Simone",
+        "Music from Big Pink - The Band",
+        "The Doors - The Doors",
+        "Mixed Bag - Richie Havens"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:nba4fdo3eassgzpiph3izwwi/app.bsky.feed.post/3meehp5pd5c25": {
+      "topics": [
+        "Song of Innocence - David Axelrod"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3med5pvspdc2b": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "The Doors - The Doors",
+        "Are You Experienced - Jimi Hendrix",
+        "The Piper at the Gates of Dawn - Pink Floyd"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3me7n7koacc2c": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Taste - Taste",
+        "Crosby, Stills & Nash - CSN",
+        "In the Court of the Crimson King - King Crimson",
+        "The Doors - The Doors"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:qnye3wiyjehld7fyg3ksduib/app.bsky.feed.post/3me7zgdajws2q": {
+      "topics": [
+        "Monster Movie - Can"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Found titles on inheritance pass"
+    },
+    "at://did:plc:5g3i56pmufyfkquat2zkgtf7/app.bsky.feed.post/3meb6hq25gs2t": {
+      "topics": [
+        "The Piper at the Gates of Dawn - Pink Floyd",
+        "The Doors - The Doors",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Are You Experienced - Jimi Hendrix",
+        "Please Please Me - The Beatles"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:hxybhlk3krf5xcctpd6vpcem/app.bsky.feed.post/3me7r4wrmrs2b": {
+      "topics": [
+        "Five Leaves Left - Nick Drake"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:n7s3htieohk67fbvbn7juqz6/app.bsky.feed.post/3me7p3j2nyc2p": {
+      "topics": [
+        "The Stooges - The Stooges",
+        "Kick Out the Jams - MC5",
+        "Vincebus Eruptum - Blue Cheer",
+        "The Doors - The Doors",
+        "The Psychedelic Sounds of the 13th Floor Elevators - 13th Floor Elevators"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction/agreement inheriting from parent"
+    },
+    "at://did:plc:qnye3wiyjehld7fyg3ksduib/app.bsky.feed.post/3me7zdlc3gs2q": {
+      "topics": [
+        "Genius of Modern Music - Thelonious Monk",
+        "Black Monk Time - The Monks",
+        "Silver Apples - Silver Apples",
+        "Safe as Milk - Captain Beefheart",
+        "The Parable of Arable Land - Red Krayola",
+        "The United States of America - The United States of America"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:flpvqzeapz2r2ub2tjnj3wke/app.bsky.feed.post/3mea3yah74s22": {
+      "topics": [
+        "Genius of Modern Music - Thelonious Monk",
+        "Black Monk Time - The Monks",
+        "Silver Apples - Silver Apples",
+        "Safe as Milk - Captain Beefheart",
+        "The Parable of Arable Land - Red Krayola",
+        "The United States of America - The United States of America"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction/agreement inheriting from parent"
+    },
+    "at://did:plc:fmmclg4jdgstaykyftdpxmqb/app.bsky.feed.post/3meeo3seagk2s": {
+      "topics": [
+        "Genius of Modern Music - Thelonious Monk",
+        "Black Monk Time - The Monks",
+        "Silver Apples - Silver Apples",
+        "Safe as Milk - Captain Beefheart",
+        "The Parable of Arable Land - Red Krayola",
+        "The United States of America - The United States of America"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:2zub3jc3rmkfimvv2itvltyq/app.bsky.feed.post/3meeofb36u226": {
+      "topics": [
+        "Genius of Modern Music - Thelonious Monk",
+        "Black Monk Time - The Monks",
+        "Silver Apples - Silver Apples",
+        "Safe as Milk - Captain Beefheart",
+        "The Parable of Arable Land - Red Krayola",
+        "The United States of America - The United States of America"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction/agreement inheriting from parent"
+    },
+    "at://did:plc:grze7php6ukanty5j5xfayah/app.bsky.feed.post/3me7ubgzmac2q": {
+      "topics": [
+        "Ska Boo-Da-Ba - The Skatalites",
+        "Mr Rock Steady - Ken Boothe",
+        "Take It Easy - Hopeton Lewis",
+        "The Gaylads - The Gaylads"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3mebsngbu7c2z": {
+      "topics": [
+        "Ska Boo-Da-Ba - The Skatalites",
+        "Mr Rock Steady - Ken Boothe",
+        "Take It Easy - Hopeton Lewis",
+        "The Gaylads - The Gaylads"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:dzjrafvdfk7taw4scirla5jf/app.bsky.feed.post/3me7v77mkdk2w": {
+      "topics": [
+        "Leader of the Pack - Shangri-Las",
+        "Sing 'A Lovers Concerto' - The Toys",
+        "Wipe Out - Surfaris",
+        "Walk Away Renee - The Left Banke"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3mee5flydpk2y": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Led Zeppelin - Led Zeppelin",
+        "Are You Experienced - Jimi Hendrix",
+        "The Stooges - The Stooges",
+        "The Doors - The Doors"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:dcgseebp7wq5zxi2usjtolkh/app.bsky.feed.post/3me7ovqmhuk2b": {
+      "topics": [
+        "John Coltrane - John Coltrane",
+        "A Monastic Trio - Alice Coltrane"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction/agreement inheriting from parent"
+    },
+    "at://did:plc:irbmstxrteegjwby73eywm5q/app.bsky.feed.post/3mebj3plujk2p": {
+      "topics": [
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "Five Leaves Left - Nick Drake",
+        "The Stooges - The Stooges",
+        "Love - Love",
+        "Songs of Leonard Cohen - Leonard Cohen"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:6b52g2gztdcbactwfkq6trbz/app.bsky.feed.post/3mednzxyde22t": {
+      "topics": [
+        "Open Sesame - Freddie Hubbard",
+        "Takin' Off - Herbie Hancock",
+        "Page One - Joe Henderson",
+        "True Blue - Tina Brooks"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:2isomiwbebcq3yq2apduvuaj/app.bsky.feed.post/3me7olhnse22m": {
+      "topics": [
+        "Francoise Hardy - Francoise Hardy",
+        "Ask Me No Questions - Bridget St John",
+        "Marianne Faithfull - Marianne Faithfull",
+        "Foolish Seasons - Dana Gillespie",
+        "Run the Length - Kathe Green",
+        "Five Leaves Left - Nick Drake"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:67yzfucwirghnqkx7tsph52e/app.bsky.feed.post/3me7pfyc4ck26": {
+      "topics": [
+        "Monster Movie - Can"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Found titles on inheritance pass"
+    },
+    "at://did:plc:67yzfucwirghnqkx7tsph52e/app.bsky.feed.post/3me7rmphauk2a": {
+      "topics": [
+        "Ottilie Patterson - Ottilie Patterson"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:wjnzr7ir5xhc6wrxtef7nyhx/app.bsky.feed.post/3mechgy6zq22g": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "A Girl Called Dusty - Dusty Springfield",
+        "Scott - Scott Walker",
+        "Little Girl Blue - Nina Simone",
+        "The Gilded Palace of Sin - Flying Burrito Brothers"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:a7n4o6fulbx67npgp7ew3lco/app.bsky.feed.post/3mecigbtdkk24": {
+      "topics": [
+        "Five Leaves Left - Nick Drake",
+        "A Girl Called Dusty - Dusty Springfield",
+        "Scott - Scott Walker",
+        "Little Girl Blue - Nina Simone",
+        "The Gilded Palace of Sin - Flying Burrito Brothers"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction/agreement inheriting from parent"
+    },
+    "at://did:plc:objplke6pwybsgmormniaarm/app.bsky.feed.post/3me7xv25eps2o": {
+      "topics": [
+        "Mr Tambourine Man - The Byrds"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3me7ls3hhlc2j": {
+      "topics": [
+        "Mr Tambourine Man - The Byrds",
+        "Music from Big Pink - The Band",
+        "Crosby, Stills & Nash - CSN",
+        "Little Girl Blue - Nina Simone",
+        "Page One - Joe Henderson",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Doors - The Doors",
+        "The Stooges - The Stooges",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Jackson C Frank - Jackson C Frank",
+        "Oar - Skip Spence",
+        "Francoise Hardy - Francoise Hardy",
+        "Tim Hardin 1 - Tim Hardin",
+        "At Last! - Etta James"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:55vbzw5cc5wu4ugj27c24inq/app.bsky.feed.post/3me7mxwqg622c": {
+      "topics": [
+        "Mr Tambourine Man - The Byrds",
+        "Music from Big Pink - The Band",
+        "Crosby, Stills & Nash - CSN",
+        "Little Girl Blue - Nina Simone",
+        "Page One - Joe Henderson",
+        "The Velvet Underground & Nico - The Velvet Underground",
+        "The Doors - The Doors",
+        "The Stooges - The Stooges",
+        "Songs of Leonard Cohen - Leonard Cohen",
+        "Jackson C Frank - Jackson C Frank",
+        "Oar - Skip Spence",
+        "Francoise Hardy - Francoise Hardy",
+        "Tim Hardin 1 - Tim Hardin",
+        "At Last! - Etta James"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction/agreement inheriting from parent"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3me7lzl5lw22j": {
+      "topics": [
+        "The Doors - The Doors"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:hxybhlk3krf5xcctpd6vpcem/app.bsky.feed.post/3mec4hjys7k2j": {
+      "topics": [
+        "Ottilie Patterson - Ottilie Patterson"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:hxybhlk3krf5xcctpd6vpcem/app.bsky.feed.post/3mec4jiw2222j": {
+      "topics": [
+        "Ottilie Patterson - Ottilie Patterson"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction/agreement inheriting from parent"
+    },
+    "at://did:plc:hxybhlk3krf5xcctpd6vpcem/app.bsky.feed.post/3mec3xvbbbs2j": {
+      "topics": [
+        "Ottilie Patterson - Ottilie Patterson"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:ocvld3s3yukxn24deji2bnuu/app.bsky.feed.post/3mebu2dafmc2v": {
+      "topics": [
+        "Please Please Me - The Beatles",
+        "Surfin' Safari - The Beach Boys"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent album(s) without naming them"
+    },
+    "at://did:plc:xj5qg3zene7imesvudqy5wlc/app.bsky.feed.post/3mecvu4r4f22b": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:xeikaoylaptxtltecgdypgxr/app.bsky.feed.post/3me7rr2f2ik2n": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:voaasdcbfmu3kxudc57vwkzj/app.bsky.feed.post/3me7rvbsej22w": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:xeikaoylaptxtltecgdypgxr/app.bsky.feed.post/3meb6ofk2js2n": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:qnye3wiyjehld7fyg3ksduib/app.bsky.feed.post/3meb6qxx2d22s": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:x76i4xrtxvttsiq4er2gi2n4/app.bsky.feed.post/3meb5av5rmk2t": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:wjnzr7ir5xhc6wrxtef7nyhx/app.bsky.feed.post/3meb5m4wbz22x": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:wsm7qv6egvwcff74t27gq2oc/app.bsky.feed.post/3me7kkwbb322t": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:xeikaoylaptxtltecgdypgxr/app.bsky.feed.post/3me7uqkdw4c2n": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:wkatdmiulx36lxuhj5v6mnnc/app.bsky.feed.post/3me7yntcouk2q": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:xeikaoylaptxtltecgdypgxr/app.bsky.feed.post/3me7ywwp7n22n": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:wkatdmiulx36lxuhj5v6mnnc/app.bsky.feed.post/3me7prkfse22q": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:hphu2xrxerhthe4xvcigkfri/app.bsky.feed.post/3meb6ruv7222s": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:wjnzr7ir5xhc6wrxtef7nyhx/app.bsky.feed.post/3mebjhmqqdc2r": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:hphu2xrxerhthe4xvcigkfri/app.bsky.feed.post/3mebqjbey2s2s": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "No album match found"
+    },
+    "at://did:plc:73evy264gijtv3ks3nytpmav/app.bsky.feed.post/3mebzvmtixs24": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:5wwwjefmtkv3endttehhhonc/app.bsky.feed.post/3me7p6nhkic2y": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:w6h5gkvrn27jixxjull6gikg/app.bsky.feed.post/3me7ptetmdk26": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:5wwwjefmtkv3endttehhhonc/app.bsky.feed.post/3me7qda6fz22y": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:qnye3wiyjehld7fyg3ksduib/app.bsky.feed.post/3mea7am26c22s": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3meaonpyaik2k": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:qnye3wiyjehld7fyg3ksduib/app.bsky.feed.post/3meaxr4te2c2y": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:qnye3wiyjehld7fyg3ksduib/app.bsky.feed.post/3me7zcyrofs2q": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:npit7pftw4a5rlxkt2xtii5p/app.bsky.feed.post/3mebod73ols2u": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:nguqrn7qn2d5fsr3tlq774qz/app.bsky.feed.post/3me7tanfso22t": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:wkatdmiulx36lxuhj5v6mnnc/app.bsky.feed.post/3meepp5roqc2l": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:gv2p2c7nbavri2qsp5zhnm7i/app.bsky.feed.post/3med6ik4mt22l": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:55vbzw5cc5wu4ugj27c24inq/app.bsky.feed.post/3mebxfj3joc24": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:lsvmszazfhhucd5wc3z4tqxl/app.bsky.feed.post/3mecbhlxb4k2q": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:55vbzw5cc5wu4ugj27c24inq/app.bsky.feed.post/3medozo6pfc22": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:lsvmszazfhhucd5wc3z4tqxl/app.bsky.feed.post/3meemc2cag227": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:55vbzw5cc5wu4ugj27c24inq/app.bsky.feed.post/3meemolbtqk2p": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:tdgp66sszc77osm2xu4ly7ez/app.bsky.feed.post/3mebj5wvqzs2b": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:ocvld3s3yukxn24deji2bnuu/app.bsky.feed.post/3me7njybwek2o": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:lm7tyxogxk4xzs3cg4oxdb2y/app.bsky.feed.post/3me7vfr6uus2u": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:kzvhpspyw5gm3djwyrnhuzs7/app.bsky.feed.post/3me7ntbtcws2h": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:74x5ns6o5rbuylmnpzxsnixc/app.bsky.feed.post/3meaafsstvk2h": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:irbmstxrteegjwby73eywm5q/app.bsky.feed.post/3mebixjgewc2p": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:il77rdlmmiqltcneledqonpm/app.bsky.feed.post/3mebl6eefnk22": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3me7rbdzmgk2j": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:hxybhlk3krf5xcctpd6vpcem/app.bsky.feed.post/3me7rrv32mk2b": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3me7s2igclc2j": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:hxybhlk3krf5xcctpd6vpcem/app.bsky.feed.post/3me7sdgkbs22b": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3me7su73gus2j": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "No album match found"
+    },
+    "at://did:plc:hxybhlk3krf5xcctpd6vpcem/app.bsky.feed.post/3me7tm2zgec2x": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:hphu2xrxerhthe4xvcigkfri/app.bsky.feed.post/3me7sxrkkm22d": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:55vbzw5cc5wu4ugj27c24inq/app.bsky.feed.post/3me7wbknkk22c": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:hphu2xrxerhthe4xvcigkfri/app.bsky.feed.post/3me7wkm6urk2d": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:gv2p2c7nbavri2qsp5zhnm7i/app.bsky.feed.post/3me7pbnzy2226": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:n7s3htieohk67fbvbn7juqz6/app.bsky.feed.post/3me7qs5yp322f": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:hxybhlk3krf5xcctpd6vpcem/app.bsky.feed.post/3mebghsqva225": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:gv2p2c7nbavri2qsp5zhnm7i/app.bsky.feed.post/3mebgur32x227": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:hxybhlk3krf5xcctpd6vpcem/app.bsky.feed.post/3mebjwhqeys23": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:gv2p2c7nbavri2qsp5zhnm7i/app.bsky.feed.post/3me7qx6egvc2c": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:flpvqzeapz2r2ub2tjnj3wke/app.bsky.feed.post/3meeox5pjr22o": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:fmmclg4jdgstaykyftdpxmqb/app.bsky.feed.post/3meep5k6zec2s": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "No text, no alt text, no quoted text with titles"
+    },
+    "at://did:plc:flkxk7klid5coiixhbepew5p/app.bsky.feed.post/3mebrlnihrs2k": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:ewya3xvywhacsfnmcu7wtuo2/app.bsky.feed.post/3me7v6wba7k2b": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "No album match found"
+    },
+    "at://did:plc:ewya3xvywhacsfnmcu7wtuo2/app.bsky.feed.post/3mebv46ym7k2b": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:e34zfmhwdjnhheup5nglpdca/app.bsky.feed.post/3mebaabo63c2o": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:65e5ef44th4xzqajcohlduz7/app.bsky.feed.post/3me7zdzyebc2u": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:65e5ef44th4xzqajcohlduz7/app.bsky.feed.post/3me7zx5dirk2e": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:qnye3wiyjehld7fyg3ksduib/app.bsky.feed.post/3me7zyz73m22s": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:dfd53cpupqtwcjgch4svauvv/app.bsky.feed.post/3mee6rgrdxc2o": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3me7ygaqj7s22": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:btwppdzwga2zrv2ztouiq3th/app.bsky.feed.post/3mebwi7rzok2o": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:xcmuoou6nqosayn7rsp2s2fp/app.bsky.feed.post/3me7pjzbmf22j": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:67yzfucwirghnqkx7tsph52e/app.bsky.feed.post/3me7ptwfrls26": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:2isomiwbebcq3yq2apduvuaj/app.bsky.feed.post/3me7rrhttnk2w": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:67yzfucwirghnqkx7tsph52e/app.bsky.feed.post/3me7skltxhc2n": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "No album match found"
+    },
+    "at://did:plc:2isomiwbebcq3yq2apduvuaj/app.bsky.feed.post/3me7tfwdacc2w": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "No album match found"
+    },
+    "at://did:plc:67yzfucwirghnqkx7tsph52e/app.bsky.feed.post/3me7tmvr2ak2n": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:2isomiwbebcq3yq2apduvuaj/app.bsky.feed.post/3me7tu5t7ws2w": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:55vbzw5cc5wu4ugj27c24inq/app.bsky.feed.post/3me7kexfewc2c": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:krniqeen2ewkbysvp4qd4m76/app.bsky.feed.post/3meas2vnp2c2m": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:objplke6pwybsgmormniaarm/app.bsky.feed.post/3mebdvsve7s2y": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:l7r2dkptmy6fhkkpd3lyurlp/app.bsky.feed.post/3meb4afx56k2d": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:ocvld3s3yukxn24deji2bnuu/app.bsky.feed.post/3me7mbucuac2o": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3me7me5rb4s2c": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    },
+    "at://did:plc:2isomiwbebcq3yq2apduvuaj/app.bsky.feed.post/3me7mjpdm3k2m": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:ocvld3s3yukxn24deji2bnuu/app.bsky.feed.post/3me7moqmgl22o": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:2isomiwbebcq3yq2apduvuaj/app.bsky.feed.post/3me7nuoyyns2m": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:ocvld3s3yukxn24deji2bnuu/app.bsky.feed.post/3me7ogjghyc2o": {
+      "topics": [
+        "Monster Movie - Can"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Found on final pass with aggressive matching"
+    },
+    "at://did:plc:ocvld3s3yukxn24deji2bnuu/app.bsky.feed.post/3me7ouihjpc2o": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:4te263lczjljeckowosroid5/app.bsky.feed.post/3me7utqtfhs2c": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3me7v7qa62k2o": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:2isomiwbebcq3yq2apduvuaj/app.bsky.feed.post/3mec4sbvohk2s": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Short social reply within thread context"
+    },
+    "at://did:plc:4wfxri6rmmophpx3exq44yx7/app.bsky.feed.post/3mebxtu4aqc2p": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic discussion but no specific album identified"
+    }
+  }
+}

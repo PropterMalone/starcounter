@@ -1,0 +1,2530 @@
+{
+  "meta": {
+    "fixture": "video-games",
+    "mediaType": "VIDEO_GAME",
+    "apiUrl": "https://f206ccf0.starcounter.pages.dev/api/validate",
+    "generatedAt": "2026-02-08T16:05:04.643Z",
+    "totalCandidates": 311,
+    "totalValidated": 173
+  },
+  "validations": {
+    "Hey Will Stancil": {
+      "title": "Hey Will Stancil",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Talos Principle": {
+      "title": "The Talos Principle",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 7386,
+        "releaseDate": "2014-12-11",
+        "voteAverage": 8.7
+      }
+    },
+    "Thinking Man's Game": {
+      "title": "Thinking Man's Game",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Dyson Sphere Program": {
+      "title": "Dyson Sphere Program",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 139078,
+        "releaseDate": "2021-01-21",
+        "voteAverage": 8.3
+      }
+    },
+    "Also Timberborn and Factorio": {
+      "title": "Also Timberborn and Factorio",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Captain Of Industry": {
+      "title": "Captain of Industry",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 150100,
+        "releaseDate": "2022-05-31"
+      }
+    },
+    "Slay the Spire": {
+      "title": "Slay the Spire",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 40477,
+        "releaseDate": "2019-01-23",
+        "voteAverage": 8.9
+      }
+    },
+    "Oxygen Not Included": {
+      "title": "Oxygen Not Included",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 19542,
+        "releaseDate": "2019-07-30",
+        "voteAverage": 7.8
+      }
+    },
+    "Hades and Hades": {
+      "title": "Hades 2",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 134619,
+        "releaseDate": "2001-12-31"
+      }
+    },
+    "Hades and Hades 2 are quite fun": {
+      "title": "Hades and Hades 2 are quite fun",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Factorio": {
+      "title": "Factorio",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 7046,
+        "releaseDate": "2020-08-14",
+        "voteAverage": 8.5
+      }
+    },
+    "Beyond All Reason": {
+      "title": "Beyond All Reason",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 133655
+      }
+    },
+    "Deep rock Galactic": {
+      "title": "Deep Rock Galactic",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 27134,
+        "releaseDate": "2020-05-13",
+        "voteAverage": 8.1
+      }
+    },
+    "Disco Elysium": {
+      "title": "Disco Elysium",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 335434,
+        "releaseDate": "2025-08-05"
+      }
+    },
+    "Cryptmaster: Mavis": {
+      "title": "Cryptmaster: Mavis",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Trader: Not": {
+      "title": "Trader: Not",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Clair Obscur": {
+      "title": "Clair Obscur: Expedition 33",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 305152,
+        "releaseDate": "2025-04-24",
+        "voteAverage": 8.9
+      }
+    },
+    "Try Satisfactory": {
+      "title": "Try Satisfactory",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Rock and stone": {
+      "title": "Rock and Stone",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 368718,
+        "releaseDate": "2025-09-08"
+      }
+    },
+    "Caves of Qud": {
+      "title": "Caves of Qud",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 24054,
+        "releaseDate": "2024-12-05",
+        "voteAverage": 8.8
+      }
+    },
+    "Dying Earth": {
+      "title": "Earth Must Die",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 370698,
+        "releaseDate": "2026-01-27",
+        "voteAverage": 7
+      }
+    },
+    "The Thaumaturge": {
+      "title": "The Thaumaturge",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 239942,
+        "releaseDate": "2024-03-04",
+        "voteAverage": 7.8
+      }
+    },
+    "World War": {
+      "title": "World War I",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 35439,
+        "releaseDate": "2004-06-17",
+        "voteAverage": 6
+      }
+    },
+    "Russian Empire": {
+      "title": "Battle of Empires: 1914-1918 - Russian Empire",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 168304
+      }
+    },
+    "CROSSCODE": {
+      "title": "CrossCode",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 35282,
+        "releaseDate": "2018-09-20",
+        "voteAverage": 8.5
+      }
+    },
+    "steam ale": {
+      "title": "steam ale",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Anchor Steam": {
+      "title": "Anchor Steam",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Riven": {
+      "title": "Riven",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 223112,
+        "releaseDate": "2024-06-25",
+        "voteAverage": 8.4
+      }
+    },
+    "What kinda shit do you like": {
+      "title": "What kinda shit do you like",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Tactical Breach Wizards\nPentiment\nScarlet Hollow & Slay the Princess\nInscryption\nBalatro\nDispatch\nCitizen Sleeper\nDarkest Dungeon": {
+      "title": "Tactical Breach Wizards\nPentiment\nScarlet Hollow & Slay the Princess\nInscryption\nBalatro\nDispatch\nCitizen Sleeper\nDarkest Dungeon",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Tactical Breach Wizards": {
+      "title": "Tactical Breach Wizards",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 86286,
+        "releaseDate": "2024-08-22",
+        "voteAverage": 8.2
+      }
+    },
+    "Second Tactical Breach Wizards": {
+      "title": "Second Tactical Breach Wizards",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Desert Strike": {
+      "title": "MiniTank: Desert Strike",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 336973
+      }
+    },
+    "Jungle Strike": {
+      "title": "Jungle Strike",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 4368,
+        "releaseDate": "1993-03-23",
+        "voteAverage": 6.8
+      }
+    },
+    "Urban Strike": {
+      "title": "Urban Strike: The Sequel to Jungle Strike",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 4492,
+        "releaseDate": "1994-12-31",
+        "voteAverage": 6.9
+      }
+    },
+    "Chants of Senaar or The Forgotten City": {
+      "title": "Chants of Senaar or The Forgotten City",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Dungeons of Hindenburg for Zelda": {
+      "title": "Dungeons of Hindenburg for Zelda",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Celeste\nTunic\nBalatro\nHollow Knight": {
+      "title": "Celeste\nTunic\nBalatro\nHollow Knight",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Vintage Story \nTerraria\nBinding of Isaac: Repentance": {
+      "title": "Vintage Story \nTerraria\nBinding of Isaac: Repentance",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Youve already played Disco Elysium right": {
+      "title": "Youve already played Disco Elysium right",
+      "validated": false,
+      "confidence": "low"
+    },
+    "no": {
+      "title": "no",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Well this is the one Complete masterpiece": {
+      "title": "Well this is the one Complete masterpiece",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Cmon Will": {
+      "title": "Cmon Will",
+      "validated": false,
+      "confidence": "low"
+    },
+    "I KNOW I KNOW": {
+      "title": "I Know a Tale",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 31280,
+        "releaseDate": "2016-09-20",
+        "voteAverage": 6
+      }
+    },
+    "I definitely own it already lol": {
+      "title": "I definitely own it already lol",
+      "validated": false,
+      "confidence": "low"
+    },
+    "I would say darkly and ironically tragic": {
+      "title": "I would say darkly and ironically tragic",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Doomed Commercial Area": {
+      "title": "Doomed Commercial Area",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Beautiful funny smart and replayable": {
+      "title": "Beautiful funny smart and replayable",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Planescape Torment": {
+      "title": "Planescape Torment: Enhanced Edition - Digital Deluxe",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 53462,
+        "releaseDate": "2018-12-14"
+      }
+    },
+    "Once the Final Cut": {
+      "title": "Alfred Hitchcock Presents: The Final Cut",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 27392,
+        "releaseDate": "2002-04-01"
+      }
+    },
+    "Baldurs Gate": {
+      "title": "Baldur's Gate and Baldur's Gate II: Enhanced Editions",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 124786,
+        "releaseDate": "2019-10-15",
+        "voteAverage": 8.5
+      }
+    },
+    "Cosigning Disco": {
+      "title": "Cosigning Disco",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Wait whats the third": {
+      "title": "Wait whats the third",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Red Dead Redemption": {
+      "title": "Red Dead Redemption",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 434,
+        "releaseDate": "2010-05-18",
+        "voteAverage": 9.1
+      }
+    },
+    "I would vote Red Dead Redemption 2": {
+      "title": "I would vote Red Dead Redemption 2",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Mass Effect": {
+      "title": "Mass Effect",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 131436
+      }
+    },
+    "So is Cyberpunk": {
+      "title": "Cyberpunk Men for Cyberpunk Sex",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 288882,
+        "releaseDate": "2023-12-09"
+      }
+    },
+    "Phantom Liberty": {
+      "title": "Cyberpunk 2077: Phantom Liberty",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 215769,
+        "releaseDate": "2023-09-26",
+        "voteAverage": 9.2
+      }
+    },
+    "Suggesting Suzerain": {
+      "title": "Suggesting Suzerain",
+      "validated": false,
+      "confidence": "low"
+    },
+    "KCD2 I hope": {
+      "title": "KCD2 I hope",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Still havent played it but need to": {
+      "title": "Still havent played it but need to",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Disci Elysium": {
+      "title": "Disci Elysium",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The former not the latter Whoops": {
+      "title": "The former not the latter Whoops",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Alters": {
+      "title": "The Alters",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 204634,
+        "releaseDate": "2025-06-13",
+        "voteAverage": 8.4
+      }
+    },
+    "Will Stancil": {
+      "title": "Will Stancil",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Just bought": {
+      "title": "I Bought Super Car!",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 101381,
+        "voteAverage": 4.2
+      }
+    },
+    "Plague Tale": {
+      "title": "A Plague Tale Bundle",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 230801,
+        "releaseDate": "2022-12-05"
+      }
+    },
+    "Tunic": {
+      "title": "Tunic",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 23733,
+        "releaseDate": "2022-03-16",
+        "voteAverage": 8.7
+      }
+    },
+    "Horror Fishing Game\nEn Garde": {
+      "title": "Horror Fishing Game\nEn Garde",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Swashbuckler Action Game": {
+      "title": "Swashbuckler Action Game",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Dishonored Franchise": {
+      "title": "Dishonored Franchise",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Stealthy Immersive Sim": {
+      "title": "Stealthy Immersive Sim",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Pentiment": {
+      "title": "Pentiment",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 204623,
+        "releaseDate": "2022-11-15",
+        "voteAverage": 8.6
+      }
+    },
+    "Tunic if you haven't played it": {
+      "title": "Tunic if you haven't played it",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Starve Together": {
+      "title": "Don't Starve Together",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 17832,
+        "releaseDate": "2016-04-21",
+        "voteAverage": 7.6
+      }
+    },
+    "Dont Starve Together is my goto": {
+      "title": "Dont Starve Together is my goto",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Borderland 4": {
+      "title": "Borderland 4",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Dispatch": {
+      "title": "Dispatch",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 127531
+      }
+    },
+    "second this": {
+      "title": "The Legend of Zelda: Second Wind",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 149979,
+        "releaseDate": "2020-04-23",
+        "voteAverage": 8.6
+      }
+    },
+    "Third": {
+      "title": "Third",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 233784,
+        "releaseDate": "2023-02-02"
+      }
+    },
+    "Was searching the replies for this 1": {
+      "title": "Was searching the replies for this 1",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Jedi Survivor": {
+      "title": "Star Wars Jedi: Survivor",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 201156,
+        "releaseDate": "2023-04-28",
+        "voteAverage": 8.4
+      }
+    },
+    "Ghost Town": {
+      "title": "Ghost Town",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 303288,
+        "releaseDate": "2021-10-04"
+      }
+    },
+    "Political Sim": {
+      "title": "Political Sim",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Suzerain Political Sim": {
+      "title": "Suzerain Political Sim",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Long Dark": {
+      "title": "The Long Dark",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 8347,
+        "releaseDate": "2017-08-01",
+        "voteAverage": 7.9
+      }
+    },
+    "Blue Prince": {
+      "title": "Blue Prince",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 149657,
+        "releaseDate": "2025-04-10",
+        "voteAverage": 8.8
+      }
+    },
+    "The Witness": {
+      "title": "The Witness",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 5601,
+        "releaseDate": "2016-01-26",
+        "voteAverage": 8.5
+      }
+    },
+    "The art gallery is driving me nuts": {
+      "title": "The art gallery is driving me nuts",
+      "validated": false,
+      "confidence": "low"
+    },
+    "thick": {
+      "title": "Thick Air",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 31392,
+        "releaseDate": "2016-09-15",
+        "voteAverage": 5
+      }
+    },
+    "Frostpunk & Frostpunk": {
+      "title": "Frostpunk 2",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 164290,
+        "releaseDate": "2024-09-20",
+        "voteAverage": 8.1
+      }
+    },
+    "Banishers: Ghosts of New Eden": {
+      "title": "Banishers: Ghosts of New Eden",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 228539,
+        "releaseDate": "2024-02-13",
+        "voteAverage": 7.9
+      }
+    },
+    "New England": {
+      "title": "TheHunter: Call of the Wild - New England Mountains",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 227336,
+        "releaseDate": "2022-12-06"
+      }
+    },
+    "Total War Pharaoh Dynasties": {
+      "title": "Total War: Pharaoh Dynasties",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 333730,
+        "releaseDate": "2024-07-25"
+      }
+    },
+    "Troy and Thrones": {
+      "title": "Troy and Thrones",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Ace Combat": {
+      "title": "Ace Combat: Assault Horizon Legacy +",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 44028,
+        "releaseDate": "2015-01-29",
+        "voteAverage": 8
+      }
+    },
+    "Ace Combat 7": {
+      "title": "Ace Combat 7: Skies Unknown",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 14758,
+        "releaseDate": "2019-01-18",
+        "voteAverage": 8.2
+      }
+    },
+    "Control Freedom planet 2 and Nine souls": {
+      "title": "Control Freedom planet 2 and Nine souls",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Celeste if you like platformers": {
+      "title": "Celeste if you like platformers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Papers Please": {
+      "title": "No More Papers Please",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 185237,
+        "releaseDate": "2020-12-11"
+      }
+    },
+    "Glory to Arstotzka": {
+      "title": "Glory to Arstotzka",
+      "validated": false,
+      "confidence": "low"
+    },
+    "was depressing before almost too depressing now": {
+      "title": "was depressing before almost too depressing now",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Seance of Blake Manor": {
+      "title": "The Seance of Blake Manor",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Ball x pit": {
+      "title": "Ball x Pit",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 346035,
+        "releaseDate": "2025-10-15",
+        "voteAverage": 7.8
+      }
+    },
+    "This and megabonk are both great": {
+      "title": "This and megabonk are both great",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Lone Dark": {
+      "title": "Lone Wolf: Flight from the Dark",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 14074,
+        "releaseDate": "1984-12-31"
+      }
+    },
+    "Blasphemous Mechabellum The Lone Dark": {
+      "title": "Blasphemous Mechabellum The Lone Dark",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Mechabellum is endlessly deep and quite cheap": {
+      "title": "Mechabellum is endlessly deep and quite cheap",
+      "validated": false,
+      "confidence": "low"
+    },
+    "baba is you": {
+      "title": "Baba Is You",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 76638,
+        "releaseDate": "2019-03-13",
+        "voteAverage": 8
+      }
+    },
+    "it's so good": {
+      "title": "Good Goods Incorporated",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 129437,
+        "releaseDate": "2019-08-31"
+      }
+    },
+    "Subnautica: Below Zero": {
+      "title": "Subnautica: Below Zero",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 107315,
+        "releaseDate": "2021-05-13",
+        "voteAverage": 8
+      }
+    },
+    "Promise Mascot Agency": {
+      "title": "Promise Mascot Agency",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 299593,
+        "releaseDate": "2025-04-10",
+        "voteAverage": 8.6
+      }
+    },
+    "Games of the Year": {
+      "title": "420Blaze It 2: Game of the Year",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 298607,
+        "releaseDate": "2024-11-14"
+      }
+    },
+    "Vampire Survivors": {
+      "title": "Vampire Survivors",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 186725,
+        "releaseDate": "2022-02-01",
+        "voteAverage": 8.6
+      }
+    },
+    "Kerbal Space Program": {
+      "title": "Kerbal Space Program",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 3102,
+        "releaseDate": "2015-04-27",
+        "voteAverage": 8.7
+      }
+    },
+    "Galaxy Princess Zorana": {
+      "title": "Galaxy Princess Zorana",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 327953,
+        "releaseDate": "2025-11-21"
+      }
+    },
+    "Hundred line": {
+      "title": "The Hundred Line: Last Defense Academy",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 306153,
+        "releaseDate": "2025-04-24",
+        "voteAverage": 8.1
+      }
+    },
+    "Chants of Sennaar\nInscryption\nThe Roottrees": {
+      "title": "Chants of Sennaar\nInscryption\nThe Roottrees",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Dead\n\nAnd": {
+      "title": "PixelJunk VR: Dead Hungry",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 27322,
+        "releaseDate": "2016-12-05",
+        "voteAverage": 7
+      }
+    },
+    "Against the Storm": {
+      "title": "The Demon Crystal 3: Dark Storm",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 115538,
+        "releaseDate": "1987-12-31"
+      }
+    },
+    "No Ghosts at the Grand\nThe Incident at Galley House\nDimhaven": {
+      "title": "No Ghosts at the Grand\nThe Incident at Galley House\nDimhaven",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Galley House": {
+      "title": "The Incident at Galley House",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 350434,
+        "releaseDate": "2026-12-31"
+      }
+    },
+    "Type Help": {
+      "title": "Type Help",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 332172,
+        "releaseDate": "2025-01-25"
+      }
+    },
+    "The Bazaar": {
+      "title": "The Bazaar",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 144274,
+        "releaseDate": "2025-08-13"
+      }
+    },
+    "Chants of Sennaar": {
+      "title": "Chants of Sennaar",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 198499,
+        "releaseDate": "2023-09-05",
+        "voteAverage": 8.3
+      }
+    },
+    "Chants of Sennaar puzzleadventure game": {
+      "title": "Chants of Sennaar puzzleadventure game",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Rimworld": {
+      "title": "RimWorld",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 9789,
+        "releaseDate": "2018-10-17",
+        "voteAverage": 8
+      }
+    },
+    "Baba is You": {
+      "title": "Baba Is You",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 76638,
+        "releaseDate": "2019-03-13",
+        "voteAverage": 8
+      }
+    },
+    "Baba Is You": {
+      "title": "Baba Is You",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 76638,
+        "releaseDate": "2019-03-13",
+        "voteAverage": 8
+      }
+    },
+    "Stephen's Sausage Roll": {
+      "title": "Stephen's Sausage Roll",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 19942,
+        "releaseDate": "2016-04-18",
+        "voteAverage": 8.5
+      }
+    },
+    "Yugo Puzzle": {
+      "title": "Yugo Puzzle",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 135444,
+        "releaseDate": "2021-10-14"
+      }
+    },
+    "Jelly No Puzzle": {
+      "title": "Jelly no Puzzle",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 141197,
+        "releaseDate": "2013-03-03"
+      }
+    },
+    "Braid and Fez": {
+      "title": "Braid and Fez",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Adam Millard": {
+      "title": "Adam Millard",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Kingdom Come": {
+      "title": "Uprising: Kingdom Come",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 310232,
+        "releaseDate": "2024-07-24"
+      }
+    },
+    "Like a Skyrim": {
+      "title": "Like a Skyrim",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Suzerain: Deep": {
+      "title": "Suzerain: Deep",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Banner Saga Trilogy: Intra": {
+      "title": "Banner Saga Trilogy: Intra",
+      "validated": false,
+      "confidence": "low"
+    },
+    "SULFUR": {
+      "title": "Sulfur",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 233970,
+        "releaseDate": "2024-10-28"
+      }
+    },
+    "War Crimes Simulator": {
+      "title": "War Crimes Simulator",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Will play Disco Elysium It's good": {
+      "title": "Will play Disco Elysium It's good",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Talos Principle": {
+      "title": "The Talos Principle",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 7386,
+        "releaseDate": "2014-12-11",
+        "voteAverage": 8.7
+      }
+    },
+    "get the AD&D gold box collection": {
+      "title": "get the AD&D gold box collection",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Life and Suffering of Sir Brante": {
+      "title": "The Life and Suffering of Sir Brante",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 138871,
+        "releaseDate": "2021-03-04",
+        "voteAverage": 8.3
+      }
+    },
+    "Also The Life and Suffering of Sir Brante": {
+      "title": "Also The Life and Suffering of Sir Brante",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Clair Obscur: Expedition": {
+      "title": "Clair Obscur: Expedition 33",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 305152,
+        "releaseDate": "2025-04-24",
+        "voteAverage": 8.9
+      }
+    },
+    "It ate my life over the holidays lol": {
+      "title": "It ate my life over the holidays lol",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Wartales Wildermyth": {
+      "title": "Wartales Wildermyth",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Yakuza: Like a Dragon": {
+      "title": "Yakuza: Like a Dragon",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 36550,
+        "releaseDate": "2020-01-16",
+        "voteAverage": 8.5
+      }
+    },
+    "Shadows of Doubt": {
+      "title": "Shadows of Doubt",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 119273,
+        "releaseDate": "2024-09-26",
+        "voteAverage": 7.3
+      }
+    },
+    "Return of the Obra Dinn": {
+      "title": "Return of the Obra Dinn",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 9643,
+        "releaseDate": "2018-10-18",
+        "voteAverage": 9.2
+      }
+    },
+    "Elder Scrolls": {
+      "title": "The Elder Scrolls VI",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 81249
+      }
+    },
+    "If so Tainted Grail: Fall of Avalon": {
+      "title": "Tainted Grail: The Fall of Avalon",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 127697,
+        "releaseDate": "2025-05-23",
+        "voteAverage": 8
+      }
+    },
+    "play every day or else": {
+      "title": "play every day or else",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Magic: the Gathering": {
+      "title": "Magic: The Gathering",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 136558,
+        "releaseDate": "2001-12-31"
+      }
+    },
+    "Armored Core": {
+      "title": "Armored Core",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 331208,
+        "releaseDate": "2025-03-18"
+      }
+    },
+    "Hmmm\n\nNo Case Should Remain Unsolved": {
+      "title": "Hmmm\n\nNo Case Should Remain Unsolved",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Rogue Trader": {
+      "title": "Warhammer 40,000: Rogue Trader",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 203259,
+        "releaseDate": "2023-12-07",
+        "voteAverage": 7.7
+      }
+    },
+    "Look Outside": {
+      "title": "Look Outside",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 328140,
+        "releaseDate": "2025-03-21",
+        "voteAverage": 8
+      }
+    },
+    "Final Fantasy Tactics: The Ivalice Chronicles": {
+      "title": "Final Fantasy Tactics: The Ivalice Chronicles",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 347121,
+        "releaseDate": "2025-09-30",
+        "voteAverage": 7.9
+      }
+    },
+    "Monster Train": {
+      "title": "Monster Train",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 129483,
+        "releaseDate": "2020-05-21",
+        "voteAverage": 8.3
+      }
+    },
+    "Monster Train 2": {
+      "title": "Monster Train 2",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 332273,
+        "releaseDate": "2025-05-21",
+        "voteAverage": 8.4
+      }
+    },
+    "cocoon relatively quick beautiful puzzle game": {
+      "title": "cocoon relatively quick beautiful puzzle game",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Ditto for Borderlands": {
+      "title": "Ditto for Borderlands",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Elden Ring Nightreign": {
+      "title": "Elden Ring: Nightreign",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 325591,
+        "releaseDate": "2025-05-30",
+        "voteAverage": 8.1
+      }
+    },
+    "Unity of Command": {
+      "title": "Unity of Command",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 22645,
+        "releaseDate": "2011-11-15",
+        "voteAverage": 8.3
+      }
+    },
+    "I'm godawful at it": {
+      "title": "I'm godawful at it",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Really Its super fun like a puzzle": {
+      "title": "Really Its super fun like a puzzle",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Master of Command": {
+      "title": "Master of Command",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 298178,
+        "releaseDate": "2025-10-27"
+      }
+    },
+    "pokemon": {
+      "title": "Pokemon Flux",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 250199
+      }
+    },
+    "puzzles": {
+      "title": "Pixel Puzzles Ultimate Jigsaw: Jigsaw Puzzle Pack - Pixel Puzzles Ultimate: Colorful",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 256917,
+        "releaseDate": "2023-07-16"
+      }
+    },
+    "The Forgotten City": {
+      "title": "The Forgotten City",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 103320,
+        "releaseDate": "2021-07-28",
+        "voteAverage": 8.6
+      }
+    },
+    "oh yes this is a must-buy I think": {
+      "title": "oh yes this is a must-buy I think",
+      "validated": false,
+      "confidence": "low"
+    },
+    "You'd really like tunic then it's very puzzle": {
+      "title": "You'd really like tunic then it's very puzzle",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Seance at Blake Manor": {
+      "title": "The Seance at Blake Manor",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Legend of Zelda": {
+      "title": "The Legend of Zelda",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 1022,
+        "releaseDate": "1986-02-21",
+        "voteAverage": 8
+      }
+    },
+    "Outer Wilds": {
+      "title": "Outer Wilds",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 11737,
+        "releaseDate": "2019-05-28",
+        "voteAverage": 8.7
+      }
+    },
+    "you played any of the zachtronics puzzle games": {
+      "title": "you played any of the zachtronics puzzle games",
+      "validated": false,
+      "confidence": "low"
+    },
+    "opus magnum what else is good": {
+      "title": "opus magnum what else is good",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Lorelei and the Laser Eyes": {
+      "title": "Lorelei and the Laser Eyes",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 206806,
+        "releaseDate": "2024-05-16",
+        "voteAverage": 8.9
+      }
+    },
+    "Lorelei and the Laser Eyes Chants of Sennaar": {
+      "title": "Lorelei and the Laser Eyes Chants of Sennaar",
+      "validated": false,
+      "confidence": "low"
+    },
+    "You might like Sable then": {
+      "title": "You might like Sable then",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Roottrees Are Dead.": {
+      "title": "The Roottrees Are Dead",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 288983,
+        "releaseDate": "2025-01-15",
+        "voteAverage": 8.4
+      }
+    },
+    "Obra Dinn and Golden Idol": {
+      "title": "Obra Dinn and Golden Idol",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Roottrees Are Dead": {
+      "title": "The Roottrees Are Dead",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 288983,
+        "releaseDate": "2025-01-15",
+        "voteAverage": 8.4
+      }
+    },
+    "Obra Dinn": {
+      "title": "Return of the Obra Dinn",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 9643,
+        "releaseDate": "2018-10-18",
+        "voteAverage": 9.2
+      }
+    },
+    "the myst and riven remasters obduction": {
+      "title": "the myst and riven remasters obduction",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Roottrees are Dead": {
+      "title": "The Roottrees Are Dead",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 288983,
+        "releaseDate": "2025-01-15",
+        "voteAverage": 8.4
+      }
+    },
+    "Hypnospace Outlaw": {
+      "title": "Hypnospace Outlaw",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 99071,
+        "releaseDate": "2019-03-12",
+        "voteAverage": 8.6
+      }
+    },
+    "The Roottrees": {
+      "title": "The Roottrees Are Dead",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 288983,
+        "releaseDate": "2025-01-15",
+        "voteAverage": 8.4
+      }
+    },
+    "Talos Principle and Talos Principle": {
+      "title": "The Talos Principle",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 7386,
+        "releaseDate": "2014-12-11",
+        "voteAverage": 8.7
+      }
+    },
+    "balatro": {
+      "title": "Balatro",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 251833,
+        "releaseDate": "2024-02-20",
+        "voteAverage": 8.8
+      }
+    },
+    "Buy Gorogoa and Monument Valley": {
+      "title": "Buy Gorogoa and Monument Valley",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Manifold Garden": {
+      "title": "Manifold Garden",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 13621,
+        "releaseDate": "2019-10-18",
+        "voteAverage": 8.3
+      }
+    },
+    "Below Zero": {
+      "title": "Schbibinman Zero: Shockman Zero",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 38226,
+        "releaseDate": "1997-03-20"
+      }
+    },
+    "Sea Moth": {
+      "title": "Sea Moth",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Sea Truck": {
+      "title": "Euro Truck Simulator 2: Beyond the Baltic Sea",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 125011,
+        "releaseDate": "2018-11-29",
+        "voteAverage": 7
+      }
+    },
+    "Sea Moth or Cyclops": {
+      "title": "Sea Moth or Cyclops",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Took the Seamoth": {
+      "title": "Took the Seamoth",
+      "validated": false,
+      "confidence": "low"
+    },
+    "okay I'm hearing this a lot": {
+      "title": "okay I'm hearing this a lot",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Rivals": {
+      "title": "Rivals",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 139007,
+        "releaseDate": "2020-09-21"
+      }
+    },
+    "A Case of Fraud": {
+      "title": "A Case of Fraud",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 325352,
+        "releaseDate": "2025-11-10"
+      }
+    },
+    "Strange Horticulture": {
+      "title": "Strange Horticulture",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 186597,
+        "releaseDate": "2022-01-21",
+        "voteAverage": 8.8
+      }
+    },
+    "Strange Antiquities": {
+      "title": "Strange Antiquities",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 303010,
+        "releaseDate": "2025-09-17",
+        "voteAverage": 7.4
+      }
+    },
+    "Case of Fraud": {
+      "title": "A Case of Fraud",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 325352,
+        "releaseDate": "2025-11-10"
+      }
+    },
+    "For Seance at Blake Manor": {
+      "title": "For Seance at Blake Manor",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Nancy Drew": {
+      "title": "Nancy Drew",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 80378
+      }
+    },
+    "Animal Well": {
+      "title": "Animal Well",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 191435,
+        "releaseDate": "2024-05-09",
+        "voteAverage": 8.5
+      }
+    },
+    "Arx Fatalis": {
+      "title": "Arx Fatalis",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 602,
+        "releaseDate": "2002-06-28",
+        "voteAverage": 7.8
+      }
+    },
+    "Also Arx Fatalis plus mods": {
+      "title": "Also Arx Fatalis plus mods",
+      "validated": false,
+      "confidence": "low"
+    },
+    "here is the taxonomy for you azhdarchidcomagainst-metr": {
+      "title": "here is the taxonomy for you azhdarchidcomagainst-metr",
+      "validated": false,
+      "confidence": "low"
+    },
+    "oh this person knows ball": {
+      "title": "oh this person knows ball",
+      "validated": false,
+      "confidence": "low"
+    },
+    "puzzle island": {
+      "title": "Puzzle Island VR",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 30096,
+        "releaseDate": "2017-01-17"
+      }
+    },
+    "Metroidbrainias": {
+      "title": "Metroidbrainias",
+      "validated": false,
+      "confidence": "low"
+    },
+    "No Fromsoft": {
+      "title": "No Fromsoft",
+      "validated": false,
+      "confidence": "low"
+    },
+    "No Fromsoft interest": {
+      "title": "No Fromsoft interest",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Puzzle Island": {
+      "title": "Puzzle Island VR",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 30096,
+        "releaseDate": "2017-01-17"
+      }
+    },
+    "Quern: Undying Thoughts": {
+      "title": "Quern: Undying Thoughts",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 26223,
+        "releaseDate": "2016-11-28",
+        "voteAverage": 8.1
+      }
+    },
+    "I mean in that case - the Witness": {
+      "title": "I mean in that case - the Witness",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Heaven’s Vault": {
+      "title": "Heaven's Vault",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 27509,
+        "releaseDate": "2019-04-16",
+        "voteAverage": 7.6
+      }
+    },
+    "Islands of Insight": {
+      "title": "Islands of Insight",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 212652,
+        "releaseDate": "2024-02-13",
+        "voteAverage": 9
+      }
+    },
+    "Baba Is Me": {
+      "title": "Baba Is You: Baba Make Level",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 334743,
+        "releaseDate": "2021-11-17"
+      }
+    },
+    "Chants of Senaar": {
+      "title": "Chants of Senaar",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Blake Manor": {
+      "title": "The Séance of Blake Manor",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 335833,
+        "releaseDate": "2025-10-27",
+        "voteAverage": 8.7
+      }
+    },
+    "The Swapper": {
+      "title": "The Swapper",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 5892,
+        "releaseDate": "2013-05-30",
+        "voteAverage": 8.4
+      }
+    },
+    "Hexcells Ultimate": {
+      "title": "Hexcells Ultimate",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Edward Grieg": {
+      "title": "Edward Grieg",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Workers and Resources Soviet Republic": {
+      "title": "Workers & Resources: Soviet Republic",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 103065,
+        "releaseDate": "2024-06-20",
+        "voteAverage": 7
+      }
+    },
+    "Sierra or Lucas": {
+      "title": "Sierra or Lucas",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Kathy Rains and the Excavation of Hob's Barrow": {
+      "title": "Kathy Rains and the Excavation of Hob's Barrow",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Scarlet Hollow: An": {
+      "title": "Scarlet Hollow",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 139194,
+        "releaseDate": "2021-06-11",
+        "voteAverage": 8.6
+      }
+    },
+    "Slay the Princess": {
+      "title": "Slay the Princess",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 210395,
+        "releaseDate": "2023-10-23",
+        "voteAverage": 7.6
+      }
+    },
+    "Both Ori": {
+      "title": "Ori and the Blind Forest: Definitive Edition",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 19456,
+        "releaseDate": "2016-03-11",
+        "voteAverage": 8.6
+      }
+    },
+    "Half Life Alyx": {
+      "title": "Half Life Alyx",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Horizon Zero Dawn": {
+      "title": "Horizon Zero Dawn",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 11156,
+        "releaseDate": "2017-02-28",
+        "voteAverage": 8.8
+      }
+    },
+    "Horizon Into the Forbidden West": {
+      "title": "Horizon Forbidden West",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 112874,
+        "releaseDate": "2022-02-18",
+        "voteAverage": 8.9
+      }
+    },
+    "Split Fiction": {
+      "title": "Split Fiction",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 325594,
+        "releaseDate": "2025-03-06",
+        "voteAverage": 9.1
+      }
+    },
+    "Any of the Owlcat": {
+      "title": "Any of the Owlcat",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Wrath of the Righteous": {
+      "title": "Pathfinder: Wrath of the Righteous",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 127254,
+        "releaseDate": "2021-09-02",
+        "voteAverage": 8.7
+      }
+    },
+    "which is your fave Been eyeing them": {
+      "title": "which is your fave Been eyeing them",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Demi-God": {
+      "title": "Demi-Gods and Semi-Devils 2 Mobile",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 174998
+      }
+    },
+    "Oh God": {
+      "title": "Oh God",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Archives of Nethys": {
+      "title": "Archives of Nethys",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Hold Person": {
+      "title": "Hold Person",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Kingmaker vs Wrath": {
+      "title": "Kingmaker vs Wrath",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Amateur": {
+      "title": "Amateurs",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 177459,
+        "releaseDate": "2019-03-14"
+      }
+    },
+    "Thirding Suzerain": {
+      "title": "Thirding Suzerain",
+      "validated": false,
+      "confidence": "low"
+    },
+    "You Must Decide The Future Of Sordland": {
+      "title": "You Must Decide The Future Of Sordland",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Abiotic Factor": {
+      "title": "Abiotic Factor",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 219126,
+        "releaseDate": "2025-07-22",
+        "voteAverage": 8.2
+      }
+    },
+    "Road Redemption": {
+      "title": "Road Redemption",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 11602,
+        "releaseDate": "2017-10-04",
+        "voteAverage": 7.2
+      }
+    },
+    "Journey to Rooted Hold": {
+      "title": "DROD: Journey to Rooted Hold",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 9085,
+        "releaseDate": "2005-04-01"
+      }
+    },
+    "Transport Fever": {
+      "title": "Transport Fever",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 18727,
+        "releaseDate": "2016-11-08",
+        "voteAverage": 8.8
+      }
+    },
+    "Workers & Resources": {
+      "title": "Workers & Resources: Soviet Republic",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 103065,
+        "releaseDate": "2024-06-20",
+        "voteAverage": 7
+      }
+    },
+    "Jonathan Blow": {
+      "title": "Jonathan Blow",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Braid and The Witness": {
+      "title": "Braid and The Witness",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Metaphor Re:Fantazio": {
+      "title": "Metaphor Re:Fantazio",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Poli Sci": {
+      "title": "Poli Sci",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Roger the Libertarian": {
+      "title": "Roger the Libertarian",
+      "validated": false,
+      "confidence": "low"
+    },
+    "this looks goofy af and I love it": {
+      "title": "this looks goofy af and I love it",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Or Breachway": {
+      "title": "Breachway",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 215481,
+        "releaseDate": "2024-09-26"
+      }
+    },
+    "Hooded Horse": {
+      "title": "Hooded Horse 4X Strategy Bundle",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 231755
+      }
+    },
+    "Midnight Suns": {
+      "title": "Marvel's Midnight Suns",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 165347,
+        "releaseDate": "2022-12-02",
+        "voteAverage": 8
+      }
+    },
+    "Cobalt Core": {
+      "title": "Cobalt Core",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 232416,
+        "releaseDate": "2023-11-08",
+        "voteAverage": 8.4
+      }
+    },
+    "Plants vs. Zombies": {
+      "title": "Plants vs. Zombies",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 1277,
+        "releaseDate": "2009-05-05",
+        "voteAverage": 8.2
+      }
+    },
+    "Last Spell": {
+      "title": "The Last Spell",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 121501,
+        "releaseDate": "2023-03-09",
+        "voteAverage": 7.8
+      }
+    },
+    "Honestly Phantom Liberty and Blood & Wine": {
+      "title": "Honestly Phantom Liberty and Blood & Wine",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Baldur's Gate": {
+      "title": "Baldur's Gate",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 5,
+        "releaseDate": "1998-12-21",
+        "voteAverage": 8.6
+      }
+    },
+    "Disco Elysium from the Steam": {
+      "title": "Disco Elysium from the Steam",
+      "validated": false,
+      "confidence": "low"
+    },
+    "there are horrible monsters that Geralt fights": {
+      "title": "there are horrible monsters that Geralt fights",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Eastern European": {
+      "title": "Generation Zero: Eastern European Weapons Pack",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 234909,
+        "releaseDate": "2022-12-12"
+      }
+    },
+    "storesteampoweredcomapp1574580": {
+      "title": "storesteampoweredcomapp1574580",
+      "validated": false,
+      "confidence": "low"
+    },
+    "have played all three lol": {
+      "title": "have played all three lol",
+      "validated": false,
+      "confidence": "low"
+    },
+    "fuckin hell": {
+      "title": "fuckin hell",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Needs to be able to do games bskyappprofilewhst": {
+      "title": "Needs to be able to do games bskyappprofilewhst",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Almost forgot ty": {
+      "title": "Almost forgot ty",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Dungeons and Dragons": {
+      "title": "Dungeons & Dragons",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 172452,
+        "releaseDate": "2021-07-08"
+      }
+    },
+    "so doing": {
+      "title": "so doing",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Into the Breach": {
+      "title": "Into the Breach",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 27117,
+        "releaseDate": "2018-02-27",
+        "voteAverage": 8.6
+      }
+    },
+    "Contraband Police": {
+      "title": "Contraband Police",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 76263,
+        "releaseDate": "2023-03-08",
+        "voteAverage": 7.1
+      }
+    },
+    "I'll check it out": {
+      "title": "I'll check it out",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Dark Heresy": {
+      "title": "Warhammer 40,000: Dark Heresy",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 344655
+      }
+    },
+    "The Mythic": {
+      "title": "Mythic",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 189264,
+        "releaseDate": "2022-09-29"
+      }
+    },
+    "Divine Epic": {
+      "title": "Divine Epic",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Replay": {
+      "title": "Replay",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 288037,
+        "releaseDate": "2024-02-02"
+      }
+    },
+    "Mythic Paths": {
+      "title": "Mythic Paths",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Honestly worth it at the price": {
+      "title": "Honestly worth it at the price",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Pillars of Eternity": {
+      "title": "Pillars of Eternity",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 1593,
+        "releaseDate": "2015-03-26",
+        "voteAverage": 8.1
+      }
+    },
+    "They recently added a turn based combat patch": {
+      "title": "They recently added a turn based combat patch",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Steam Sale": {
+      "title": "Steam Sale",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Think I'm": {
+      "title": "I Think I'm in Love with a Demon Prince",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 268985,
+        "releaseDate": "2024-01-12"
+      }
+    },
+    "Telltale Games": {
+      "title": "Game of Thrones: A Telltale Games Series",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 7610,
+        "releaseDate": "2014-12-02",
+        "voteAverage": 7.3
+      }
+    },
+    "Piotr Musial": {
+      "title": "Piotr Musial",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Clair Obscura": {
+      "title": "Clair Obscura",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Heres the dev statement on it: wwwredditcomrexpedition": {
+      "title": "Heres the dev statement on it: wwwredditcomrexpedition",
+      "validated": false,
+      "confidence": "low"
+    },
+    "eliminate,": {
+      "title": "Eliminate",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 80700
+      }
+    },
+    "Powerwash Simulator": {
+      "title": "PowerWash Simulator",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 138590,
+        "releaseDate": "2022-07-14",
+        "voteAverage": 7.7
+      }
+    },
+    "Sonic Racing Crossworlds": {
+      "title": "Sonic Racing CrossWorlds: Season Pass",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 370461,
+        "releaseDate": "2025-09-25"
+      }
+    },
+    "Sonic Racing Crossworlds for me": {
+      "title": "Sonic Racing: CrossWorlds",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 325608,
+        "releaseDate": "2025-09-25",
+        "voteAverage": 8.1
+      }
+    },
+    "The Return of the King": {
+      "title": "The Return of the King",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 287767,
+        "releaseDate": "2023-01-26"
+      }
+    },
+    "It Takes Two": {
+      "title": "It Takes Two",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 135243,
+        "releaseDate": "2021-03-25",
+        "voteAverage": 8.9
+      }
+    },
+    "Half-Life": {
+      "title": "Half-Life",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 231,
+        "releaseDate": "1998-11-19",
+        "voteAverage": 8.4
+      }
+    },
+    "Resistance: Fall of Man": {
+      "title": "Resistance: Fall of Man",
+      "validated": true,
+      "confidence": "medium",
+      "source": "igdb",
+      "metadata": {
+        "id": 1278,
+        "releaseDate": "2006-11-11",
+        "voteAverage": 7.9
+      }
+    },
+    "Excellent 40K Rogue Trader": {
+      "title": "Excellent 40K Rogue Trader",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Thanks": {
+      "title": "Thanks Mom",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 292463,
+        "releaseDate": "2024-03-26"
+      }
+    },
+    "Warhammer Total War": {
+      "title": "Total War Battles: Warhammer",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 142610
+      }
+    },
+    "youtubecO2ZKmQLmC4": {
+      "title": "youtubecO2ZKmQLmC4",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Adult Gamer": {
+      "title": "Adult Gamer",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Thats the Adult Gamer motto": {
+      "title": "Thats the Adult Gamer motto",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Original Sin": {
+      "title": "Divinity: Original Sin",
+      "validated": true,
+      "confidence": "high",
+      "source": "igdb",
+      "metadata": {
+        "id": 5082,
+        "releaseDate": "2014-06-30",
+        "voteAverage": 8.6
+      }
+    },
+    "Ok cool thanks": {
+      "title": "Ok cool thanks",
+      "validated": false,
+      "confidence": "low"
+    },
+    "dice": {
+      "title": "Random Dice",
+      "validated": true,
+      "confidence": "low",
+      "source": "igdb",
+      "metadata": {
+        "id": 137650,
+        "releaseDate": "2019-08-29"
+      }
+    }
+  }
+}

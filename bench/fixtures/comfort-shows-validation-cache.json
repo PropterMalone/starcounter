@@ -1,0 +1,920 @@
+{
+  "meta": {
+    "fixture": "comfort-shows",
+    "mediaType": "TV_SHOW",
+    "apiUrl": "https://f206ccf0.starcounter.pages.dev/api/validate",
+    "generatedAt": "2026-02-09T20:27:14.639Z",
+    "totalCandidates": 120,
+    "totalValidated": 44
+  },
+  "validations": {
+    "Sailor Moon": {
+      "title": "Sailor Moon",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 3570,
+        "releaseDate": "1992-03-07",
+        "voteAverage": 8.369,
+        "popularity": 48.4787
+      }
+    },
+    "The regular show": {
+      "title": "Regular Show",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 31132,
+        "releaseDate": "2010-09-06",
+        "voteAverage": 8.628,
+        "popularity": 83.0439
+      }
+    },
+    "love rigby": {
+      "title": "love rigby",
+      "validated": false,
+      "confidence": "low"
+    },
+    "louisseeee": {
+      "title": "louisseeee",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Breaking Bad": {
+      "title": "Breaking Bad",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1396,
+        "releaseDate": "2008-01-20",
+        "voteAverage": 8.937,
+        "popularity": 138.1083
+      }
+    },
+    "Breaking Bad for sure": {
+      "title": "Breaking Bad for sure",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The West Wing": {
+      "title": "The West Wing",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 688,
+        "releaseDate": "1999-09-22",
+        "voteAverage": 8.245,
+        "popularity": 94.5629
+      }
+    },
+    "anything with dule hill and im on board": {
+      "title": "anything with dule hill and im on board",
+      "validated": false,
+      "confidence": "low"
+    },
+    "young Dule Hill": {
+      "title": "young Dule Hill",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Dule Hill": {
+      "title": "The Express Way with Dulé Hill",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 245335,
+        "releaseDate": "2024-04-23",
+        "voteAverage": 0,
+        "popularity": 1.0075
+      }
+    },
+    "Young Elisabeth Moss": {
+      "title": "Young Elisabeth Moss",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Pre-Mad Men": {
+      "title": "Pre-Mad Men",
+      "validated": false,
+      "confidence": "low"
+    },
+    "the man never ages": {
+      "title": "the man never ages",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Community\nFriends\nSons of Anarchy\nDexter\nOnly Fools and Horses\nBrooklyn Nine Nine\n\nOff": {
+      "title": "Community\nFriends\nSons of Anarchy\nDexter\nOnly Fools and Horses\nBrooklyn Nine Nine\n\nOff",
+      "validated": false,
+      "confidence": "low"
+    },
+    "wow some great choices im coming over": {
+      "title": "wow some great choices im coming over",
+      "validated": false,
+      "confidence": "low"
+    },
+    "game of thrones": {
+      "title": "Game of Thrones",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1399,
+        "releaseDate": "2011-04-17",
+        "voteAverage": 8.46,
+        "popularity": 192.8597
+      }
+    },
+    "hell yeah even the shit last two seasons": {
+      "title": "hell yeah even the shit last two seasons",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Teen Titans": {
+      "title": "Teen Titans",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 604,
+        "releaseDate": "2003-07-19",
+        "voteAverage": 8.371,
+        "popularity": 24.5552
+      }
+    },
+    "Teen Titans Go": {
+      "title": "Teen Titans Go!",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 45140,
+        "releaseDate": "2013-04-23",
+        "voteAverage": 6.5,
+        "popularity": 66.756
+      }
+    },
+    "Definitely I didn't like Teen Titans Go": {
+      "title": "Definitely I didn't like Teen Titans Go",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Dallas": {
+      "title": "Dallas",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 40,
+        "releaseDate": "1978-04-02",
+        "voteAverage": 6.828,
+        "popularity": 52.8253
+      }
+    },
+    "But Supernatural": {
+      "title": "Supernatural",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 261164,
+        "releaseDate": "2017-06-14",
+        "voteAverage": 2,
+        "popularity": 0.4614
+      }
+    },
+    "yess": {
+      "title": "yess",
+      "validated": false,
+      "confidence": "low"
+    },
+    "It's Always Sunny in Philedelphia & Family Guy": {
+      "title": "It's Always Sunny in Philedelphia & Family Guy",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Avatar: The Last Airbender": {
+      "title": "Avatar: The Last Airbender",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 246,
+        "releaseDate": "2005-02-21",
+        "voteAverage": 8.753,
+        "popularity": 23.7437
+      }
+    },
+    "based": {
+      "title": "Based on a True Story",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 197373,
+        "releaseDate": "2023-06-08",
+        "voteAverage": 7.1,
+        "popularity": 13.5333
+      }
+    },
+    "Schitt's creek Friends sometimes": {
+      "title": "Schitt's creek Friends sometimes",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Archer is my go to": {
+      "title": "Archer is my go to",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Think I've": {
+      "title": "Think I've",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Think I've watched this 3 times": {
+      "title": "Think I've watched this 3 times",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Yeah it's the best GTA adaptation": {
+      "title": "Yeah it's the best GTA adaptation",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Friends for me": {
+      "title": "Foster's Home for Imaginary Friends",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1720,
+        "releaseDate": "2004-08-13",
+        "voteAverage": 7.8,
+        "popularity": 10.7244
+      }
+    },
+    "always a go to": {
+      "title": "always a go to",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Just very easy watching": {
+      "title": "Just very easy watching",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Met Your Mother and Bob's Burgers": {
+      "title": "Met Your Mother and Bob's Burgers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Bob's Burgers": {
+      "title": "Bob's Burgers",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 32726,
+        "releaseDate": "2011-01-09",
+        "voteAverage": 7.83,
+        "popularity": 80.5324
+      }
+    },
+    "The Simpsons or Psych": {
+      "title": "The Simpsons or Psych",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Arrested Development or Batman Animated Series": {
+      "title": "Arrested Development or Batman Animated Series",
+      "validated": false,
+      "confidence": "low"
+    },
+    "the simpsons": {
+      "title": "The Simpsons",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 456,
+        "releaseDate": "1989-12-17",
+        "voteAverage": 8.012,
+        "popularity": 228.7805
+      }
+    },
+    "psych": {
+      "title": "Psych",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1447,
+        "releaseDate": "2006-07-07",
+        "voteAverage": 7.906,
+        "popularity": 78.8546
+      }
+    },
+    "arrested devolpment": {
+      "title": "arrested devolpment",
+      "validated": false,
+      "confidence": "low"
+    },
+    "batman the animated series": {
+      "title": "Batman: The Animated Series",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 2098,
+        "releaseDate": "1992-09-05",
+        "voteAverage": 8.558,
+        "popularity": 61.9912
+      }
+    },
+    "Arrested Development": {
+      "title": "Arrested Development",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 4589,
+        "releaseDate": "2003-11-02",
+        "voteAverage": 7.934,
+        "popularity": 49.6677
+      }
+    },
+    "Parks & Recreation": {
+      "title": "Parks and Recreation",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 8592,
+        "releaseDate": "2009-04-09",
+        "voteAverage": 8.039,
+        "popularity": 55.8216
+      }
+    },
+    "Simpsons Seinfeld Arrested Development and Parks & Recreation": {
+      "title": "Simpsons Seinfeld Arrested Development and Parks & Recreation",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Avatar": {
+      "title": "8 Avatar",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 120583,
+        "releaseDate": "2008-12-22",
+        "voteAverage": 7,
+        "popularity": 0.652
+      }
+    },
+    "Doctor Who": {
+      "title": "Doctor Who",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 57243,
+        "releaseDate": "2005-03-26",
+        "voteAverage": 7.587,
+        "popularity": 116.8571
+      }
+    },
+    "Doctor Era": {
+      "title": "Doctor Era",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Doctor Who Especially 11th Doctor Era": {
+      "title": "Doctor Who Especially 11th Doctor Era",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Want some recommendations on which episodes to watch": {
+      "title": "Want some recommendations on which episodes to watch",
+      "validated": false,
+      "confidence": "low"
+    },
+    "DUH": {
+      "title": "Duhový luk",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 132361,
+        "releaseDate": "1973-04-26",
+        "voteAverage": 8,
+        "popularity": 1.1297
+      }
+    },
+    "Basil Disco's": {
+      "title": "Basil Disco's",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Empty Child": {
+      "title": "Empty Child",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Doctor Dances for Nine": {
+      "title": "Doctor Dances for Nine",
+      "validated": false,
+      "confidence": "low"
+    },
+    "School Reunion": {
+      "title": "High School Reunion",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 135417,
+        "releaseDate": "2015-01-19",
+        "voteAverage": 0,
+        "popularity": 2.0306
+      }
+    },
+    "Family of Blood & Series": {
+      "title": "Family of Blood & Series",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Vincent & the Doctor": {
+      "title": "Vincent & the Doctor",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Aaronovitch's Mc": {
+      "title": "Aaronovitch's Mc",
+      "validated": false,
+      "confidence": "low"
+    },
+    "saving these for later": {
+      "title": "saving these for later",
+      "validated": false,
+      "confidence": "low"
+    },
+    "I agree with these": {
+      "title": "I agree with these",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Twelve & Bill": {
+      "title": "Twelve & Bill",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Boom": {
+      "title": "Boom!",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 62820,
+        "releaseDate": "2015-06-25",
+        "voteAverage": 3.8,
+        "popularity": 0.4326
+      }
+    },
+    "The Story & The Engine": {
+      "title": "The Story & The Engine",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Our Favs": {
+      "title": "Our Favs",
+      "validated": false,
+      "confidence": "low"
+    },
+    "OUR FAVS": {
+      "title": "Our Favs",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Gumby": {
+      "title": "Gumby",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 16728,
+        "releaseDate": "1956-05-01",
+        "voteAverage": 6.1,
+        "popularity": 16.5361
+      }
+    },
+    "one of my favs as well :": {
+      "title": "one of my favs as well :",
+      "validated": false,
+      "confidence": "low"
+    },
+    "supernatural and sons of anarchy": {
+      "title": "supernatural and sons of anarchy",
+      "validated": false,
+      "confidence": "low"
+    },
+    "my fiance loves this show": {
+      "title": "my fiance loves this show",
+      "validated": false,
+      "confidence": "low"
+    },
+    "It's Always Sunny": {
+      "title": "It's Always Sunny in Philadelphia",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 2710,
+        "releaseDate": "2005-08-04",
+        "voteAverage": 8.286,
+        "popularity": 65.5942
+      }
+    },
+    "Scrubs or Fawlty Towers": {
+      "title": "Scrubs or Fawlty Towers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "scrubs was a good one almost forgot": {
+      "title": "scrubs was a good one almost forgot",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Supernatural and Buffy": {
+      "title": "Supernatural and Buffy",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Schitts Creek Supernatural and Buffy": {
+      "title": "Schitts Creek Supernatural and Buffy",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Love Buffy And Angel": {
+      "title": "Love Buffy And Angel",
+      "validated": false,
+      "confidence": "low"
+    },
+    "I LOVE BUFFY AND ANGEL": {
+      "title": "I LOVE BUFFY AND ANGEL",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Buffy": {
+      "title": "Buffy the Vampire Slayer",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 95,
+        "releaseDate": "1997-03-10",
+        "voteAverage": 8.108,
+        "popularity": 68.8325
+      }
+    },
+    "The Office": {
+      "title": "The Office",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 2316,
+        "releaseDate": "2005-03-24",
+        "voteAverage": 8.593,
+        "popularity": 144.9637
+      }
+    },
+    "These are just some of them": {
+      "title": "These are just some of them",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Either Top Gear": {
+      "title": "Either Top Gear",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Good Eats": {
+      "title": "Good Eats",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 4381,
+        "releaseDate": "1999-07-07",
+        "voteAverage": 8.768,
+        "popularity": 7.7154
+      }
+    },
+    "Taskmaster": {
+      "title": "Taskmaster",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 63404,
+        "releaseDate": "2015-07-28",
+        "voteAverage": 8.26,
+        "popularity": 27.0994
+      }
+    },
+    "Star Trek": {
+      "title": "Star Trek",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 253,
+        "releaseDate": "1966-09-08",
+        "voteAverage": 8.013,
+        "popularity": 75.4788
+      }
+    },
+    "Star Trek TNG": {
+      "title": "Star Trek TNG",
+      "validated": false,
+      "confidence": "low"
+    },
+    "It's Always Sunny in Philadelphia": {
+      "title": "It's Always Sunny in Philadelphia",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 2710,
+        "releaseDate": "2005-08-04",
+        "voteAverage": 8.286,
+        "popularity": 65.5942
+      }
+    },
+    "Archer and Brooklyn Nine-Nine": {
+      "title": "Archer and Brooklyn Nine-Nine",
+      "validated": false,
+      "confidence": "low"
+    },
+    "mans knows ball": {
+      "title": "mans knows ball",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Ghost Stories": {
+      "title": "Ghost Stories",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 35466,
+        "releaseDate": "2000-10-22",
+        "voteAverage": 8.052,
+        "popularity": 14.5145
+      }
+    },
+    "Robotech: The Macross Saga": {
+      "title": "Robotech: The Macross Saga",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Mystery Science Theater": {
+      "title": "Mystery Science Theater 3000",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1952,
+        "releaseDate": "1989-11-25",
+        "voteAverage": 7.686,
+        "popularity": 20.7376
+      }
+    },
+    "The Addams Family": {
+      "title": "The Addams Family",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 14009,
+        "releaseDate": "1964-09-18",
+        "voteAverage": 7.992,
+        "popularity": 23.8619
+      }
+    },
+    "The Twilight Zone": {
+      "title": "The Twilight Zone",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 16399,
+        "releaseDate": "2002-09-18",
+        "voteAverage": 7.181,
+        "popularity": 23.6002
+      }
+    },
+    "Either Futurama or Phineas and Ferb": {
+      "title": "Either Futurama or Phineas and Ferb",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Cartoons Kiff": {
+      "title": "Cartoons Kiff",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Ghost And Molly Mcgee": {
+      "title": "The Ghost and Molly McGee",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 92649,
+        "releaseDate": "2021-10-01",
+        "voteAverage": 8,
+        "popularity": 14.0616
+      }
+    },
+    "Chowder And Many More \n\nSeries Batman": {
+      "title": "Chowder And Many More \n\nSeries Batman",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Scrubs And Many More": {
+      "title": "Scrubs And Many More",
+      "validated": false,
+      "confidence": "low"
+    },
+    "You Are": {
+      "title": "You Are a Gift",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 68426,
+        "releaseDate": "2016-06-13",
+        "voteAverage": 5,
+        "popularity": 5.7255
+      }
+    },
+    "Legend Giann": {
+      "title": "Legend Giann",
+      "validated": false,
+      "confidence": "low"
+    },
+    "YOU ARE A LEGEND GIANN": {
+      "title": "YOU ARE A LEGEND GIANN",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Image of Kitchen Stadium from Iron Chef": {
+      "title": "Image of Kitchen Stadium from Iron Chef",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Iron Chef Japanese Masaharu Morimoto": {
+      "title": "Iron Chef Japanese Masaharu Morimoto",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Iron Chef French Hiroyuki Sakai": {
+      "title": "Iron Chef French Hiroyuki Sakai",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Chairman Kaga Takeshi Kaga": {
+      "title": "Chairman Kaga Takeshi Kaga",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Iron Chef Chinese Chen Kenichi": {
+      "title": "Iron Chef Chinese Chen Kenichi",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Iron Chef Italian Masahiko Kobe": {
+      "title": "Iron Chef Italian Masahiko Kobe",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Bob Ross The Joy of Painting": {
+      "title": "The Joy of Painting",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 10382,
+        "releaseDate": "1983-01-11",
+        "voteAverage": 8.5,
+        "popularity": 4.1683
+      }
+    },
+    "Offical Artwork of Aria The Animation": {
+      "title": "Offical Artwork of Aria The Animation",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Iron Chef Italian Masahiko Kobe\nLogo": {
+      "title": "Iron Chef Italian Masahiko Kobe\nLogo",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Arashi \nBob Ross The Joy of Painting\nOffical Artwork of Aria The Animation": {
+      "title": "Arashi \nBob Ross The Joy of Painting\nOffical Artwork of Aria The Animation",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Logo of VS Arashi": {
+      "title": "Logo of VS Arashi",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Night Manager": {
+      "title": "The Night Manager",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 61859,
+        "releaseDate": "2016-02-21",
+        "voteAverage": 7.738,
+        "popularity": 49.2982
+      }
+    },
+    "Big Bang Theory": {
+      "title": "The Big Bang Theory",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1418,
+        "releaseDate": "2007-09-24",
+        "voteAverage": 7.914,
+        "popularity": 52.4976
+      }
+    },
+    "One Day at a Time": {
+      "title": "One Day at a Time",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 2191,
+        "releaseDate": "1975-12-16",
+        "voteAverage": 6.738,
+        "popularity": 22.2727
+      }
+    },
+    "Brooklyn Nine-Nine": {
+      "title": "Brooklyn Nine-Nine",
+      "validated": true,
+      "confidence": "high",
+      "source": "tmdb",
+      "metadata": {
+        "id": 48891,
+        "releaseDate": "2013-09-17",
+        "voteAverage": 8.218,
+        "popularity": 78.0787
+      }
+    },
+    "The Walking Dead\nArrow \nCreepshow\nLuicfer": {
+      "title": "The Walking Dead\nArrow \nCreepshow\nLuicfer",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Walking Dead Arrow Creepshow Luicfer": {
+      "title": "The Walking Dead Arrow Creepshow Luicfer",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Bad Batch\nThe Office\nAndor": {
+      "title": "The Bad Batch\nThe Office\nAndor",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Dexter franchise The Bad Batch The Office Andor": {
+      "title": "Dexter franchise The Bad Batch The Office Andor",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Joy of Painting": {
+      "title": "The Joy of Painting",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 10382,
+        "releaseDate": "1983-01-11",
+        "voteAverage": 8.5,
+        "popularity": 4.1683
+      }
+    }
+  }
+}

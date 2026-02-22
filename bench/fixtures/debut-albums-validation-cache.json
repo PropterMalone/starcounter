@@ -1,0 +1,5201 @@
+{
+  "meta": {
+    "fixture": "debut-albums",
+    "mediaType": "MOVIE",
+    "apiUrl": "https://f206ccf0.starcounter.pages.dev/api/validate",
+    "generatedAt": "2026-02-09T20:31:22.837Z",
+    "totalCandidates": 653,
+    "totalValidated": 279
+  },
+  "validations": {
+    "Please Please Me": {
+      "title": "Please, Please Me!",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 57302,
+        "releaseDate": "2009-06-24",
+        "voteAverage": 5.8,
+        "popularity": 2.4957
+      }
+    },
+    "The Velvet Underground & Nico": {
+      "title": "The Velvet Underground And Nico",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 341621,
+        "releaseDate": "2013-10-21",
+        "voteAverage": 0,
+        "popularity": 0.0168
+      }
+    },
+    "Nick Drake": {
+      "title": "Nick Drake: Under Review",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 312488,
+        "releaseDate": "2007-01-01",
+        "voteAverage": 6,
+        "popularity": 0.0214
+      }
+    },
+    "Are You Experienced": {
+      "title": "Are You Experienced",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1530829,
+        "releaseDate": "2010-03-09",
+        "voteAverage": 0,
+        "popularity": 1.6085
+      }
+    },
+    "Jimi Hendrix": {
+      "title": "Jimi Hendrix",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 364442,
+        "releaseDate": "1973-06-14",
+        "voteAverage": 7.7,
+        "popularity": 0.876
+      }
+    },
+    "Bert Jansch": {
+      "title": "Bert Jansch: A Man and His Songs",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1489176,
+        "releaseDate": "1985-01-01",
+        "voteAverage": 0,
+        "popularity": 0.0478
+      }
+    },
+    "The First Lady of Immaculate": {
+      "title": "The First Lady of Immaculate",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Velvet Underground": {
+      "title": "The Velvet Underground",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 543836,
+        "releaseDate": "2021-10-15",
+        "voteAverage": 6.787,
+        "popularity": 1.2222
+      }
+    },
+    "The Sapphires": {
+      "title": "The Sapphires",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 110146,
+        "releaseDate": "2012-08-08",
+        "voteAverage": 6.8,
+        "popularity": 1.376
+      }
+    },
+    "Who Do You Love": {
+      "title": "Who Do You Love",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 34988,
+        "releaseDate": "2008-09-11",
+        "voteAverage": 1,
+        "popularity": 0.5146
+      }
+    },
+    "Chi-Lites": {
+      "title": "The Chi-Lites: Live",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 676329,
+        "releaseDate": "2005-06-28",
+        "voteAverage": 0,
+        "popularity": 0.0214
+      }
+    },
+    "Give It Away": {
+      "title": "Give it Away",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 285862,
+        "releaseDate": "2006-08-15",
+        "voteAverage": 4.5,
+        "popularity": 0.051
+      }
+    },
+    "Shangri-Las": {
+      "title": "Shangri-La",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 46130,
+        "releaseDate": "2002-08-03",
+        "voteAverage": 7.313,
+        "popularity": 0.4673
+      }
+    },
+    "Leader of the Pack": {
+      "title": "Leader of the Pack",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 539767,
+        "releaseDate": "2012-01-31",
+        "voteAverage": 2,
+        "popularity": 0.7278
+      }
+    },
+    "Ornette Coleman: Something Else": {
+      "title": "Ornette Coleman: Something Else",
+      "validated": false,
+      "confidence": "low"
+    },
+    "John Coltrane": {
+      "title": "John Coltrane: Blue Train",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 344392,
+        "releaseDate": "2015-05-05",
+        "voteAverage": 0,
+        "popularity": 0.051
+      }
+    },
+    "Velvet Underground & Nico": {
+      "title": "The Velvet Underground And Nico",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 341621,
+        "releaseDate": "2013-10-21",
+        "voteAverage": 0,
+        "popularity": 0.0168
+      }
+    },
+    "Thelonious Monk: Genius of Modern Music": {
+      "title": "Thelonious Monk: Genius of Modern Music",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Joe Henderson: One Page": {
+      "title": "Joe Henderson: One Page",
+      "validated": false,
+      "confidence": "low"
+    },
+    "very jazzy nice": {
+      "title": "very jazzy nice",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Listening to Henderson": {
+      "title": "Listening to Henderson",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Listening to Henderson now It's great": {
+      "title": "Listening to Henderson now It's great",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Hi Richard \n\nMy": {
+      "title": "Hi Richard \n\nMy",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Crosby Stills Nash": {
+      "title": "crosby stills nash rock and roll hall of fame concert",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 520322,
+        "releaseDate": "2010-09-28",
+        "voteAverage": 7,
+        "popularity": 0.1606
+      }
+    },
+    "Five Leaves Left": {
+      "title": "Five Leaves Left",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Nina Simone": {
+      "title": "Nina Simone: The Legend",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 149949,
+        "releaseDate": "1992-06-13",
+        "voteAverage": 7.2,
+        "popularity": 0.6066
+      }
+    },
+    "Little Girl Blue": {
+      "title": "Little Girl Blue",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 464117,
+        "releaseDate": "2003-08-21",
+        "voteAverage": 7.25,
+        "popularity": 2.6633
+      }
+    },
+    "Pink Floyd": {
+      "title": "Pink Floyd: The Wall",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 12104,
+        "releaseDate": "1982-07-14",
+        "voteAverage": 7.941,
+        "popularity": 3.5248
+      }
+    },
+    "The Piper at The Gates of Dawn": {
+      "title": "Rock Milestones: Pink Floyd's The Piper at the Gates of Dawn",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 160949,
+        "releaseDate": "2006-07-31",
+        "voteAverage": 0,
+        "popularity": 0.0357
+      }
+    },
+    "Stills & Nash": {
+      "title": "Crosby Stills and Nash  CSN",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1279799,
+        "releaseDate": "2012-01-01",
+        "voteAverage": 10,
+        "popularity": 0.087
+      }
+    },
+    "Small Faces": {
+      "title": "Small Faces",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 42758,
+        "releaseDate": "1996-04-05",
+        "voteAverage": 6.3,
+        "popularity": 0.9138
+      }
+    },
+    "The Byrds": {
+      "title": "The Byrds Under review",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 995156,
+        "voteAverage": 0,
+        "popularity": 0.0286
+      }
+    },
+    "Tambourine Man": {
+      "title": "Tambourine Man",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Thanks Rich": {
+      "title": "Thanks Rich",
+      "validated": false,
+      "confidence": "low"
+    },
+    "King Crimson": {
+      "title": "King Crimson: Deja VROOOM",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 59576,
+        "releaseDate": "1999-01-01",
+        "voteAverage": 7,
+        "popularity": 1.3216
+      }
+    },
+    "In The Court Of The Crimson King": {
+      "title": "In the Court of the Crimson King: King Crimson at 50",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 827484,
+        "releaseDate": "2022-10-19",
+        "voteAverage": 7.235,
+        "popularity": 0.4514
+      }
+    },
+    "The Piper At The Gates Of Dawn": {
+      "title": "Rock Milestones: Pink Floyd's The Piper at the Gates of Dawn",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 160949,
+        "releaseDate": "2006-07-31",
+        "voteAverage": 0,
+        "popularity": 0.0357
+      }
+    },
+    "Mr Tambourine Man": {
+      "title": "Mr Tambourine Man",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Incredible String Band": {
+      "title": "Retying the Knot: The Incredible String Band",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 568809,
+        "releaseDate": "1997-10-25",
+        "voteAverage": 6.7,
+        "popularity": 0.4485
+      }
+    },
+    "The Fantastic Expedition of Dillard & Clark": {
+      "title": "The Fantastic Expedition of Dillard & Clark",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Joe Henderson": {
+      "title": "Joe Henderson",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Page One": {
+      "title": "Page One",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1533579,
+        "releaseDate": "2025-08-21",
+        "voteAverage": 0,
+        "popularity": 0.1185
+      }
+    },
+    "Tina Brooks": {
+      "title": "Tina Brooks",
+      "validated": false,
+      "confidence": "low"
+    },
+    "True Blue": {
+      "title": "True Blue",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 72317,
+        "releaseDate": "2001-11-29",
+        "voteAverage": 4.865,
+        "popularity": 1.8318
+      }
+    },
+    "Dillard & Clark": {
+      "title": "Dillard & Clark",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Dillard & Clark I feel ashamed": {
+      "title": "Dillard & Clark I feel ashamed",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Flying Burrito Brothers": {
+      "title": "The Flying Burrito Brothers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Gilded Palace of Sin": {
+      "title": "The Gilded Palace of Sin",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Band": {
+      "title": "The Band",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 733113,
+        "releaseDate": "2017-01-01",
+        "voteAverage": 0,
+        "popularity": 0.0805
+      }
+    },
+    "Music from Big Pink": {
+      "title": "Music from Big Pink",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Doors": {
+      "title": "The Doors",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 10537,
+        "releaseDate": "1991-03-01",
+        "voteAverage": 7.108,
+        "popularity": 3.8452
+      }
+    },
+    "Procol Harum": {
+      "title": "Procol Harum: EP",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 319535,
+        "voteAverage": 0,
+        "popularity": 0.0538
+      }
+    },
+    "The Pioneers": {
+      "title": "The Pioneers",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 445167,
+        "releaseDate": "1941-05-10",
+        "voteAverage": 0,
+        "popularity": 0.3556
+      }
+    },
+    "Skip James": {
+      "title": "Skip James",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Greatest of the Delta Blues Singers": {
+      "title": "Greatest of the Delta Blues Singers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "James Carr": {
+      "title": "James Carr",
+      "validated": false,
+      "confidence": "low"
+    },
+    "You Got My Mind Messed Up": {
+      "title": "You Got My Mind Messed Up",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Seeds": {
+      "title": "The Seeds",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1297558,
+        "releaseDate": "2024-04-30",
+        "voteAverage": 3.7,
+        "popularity": 0.4637
+      }
+    },
+    "Chirping": {
+      "title": "The Chirping",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1084691,
+        "voteAverage": 0,
+        "popularity": 0
+      }
+    },
+    "Little Richard": {
+      "title": "Little Richard",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 164741,
+        "releaseDate": "2000-02-20",
+        "voteAverage": 6.4,
+        "popularity": 0.5016
+      }
+    },
+    "Here's Little Richard": {
+      "title": "Here's Little Richard",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Elvis Presley": {
+      "title": "Elvis Presley: Shook Up",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1468639,
+        "releaseDate": "2025-01-01",
+        "voteAverage": 0,
+        "popularity": 0.6148
+      }
+    },
+    "The Crickets": {
+      "title": "The Crickets Dance",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 873669,
+        "releaseDate": "2020-10-01",
+        "voteAverage": 5.7,
+        "popularity": 0.1156
+      }
+    },
+    "John Lee Hooker": {
+      "title": "John Lee Hooker - That's My Story",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 148925,
+        "releaseDate": "2001-06-16",
+        "voteAverage": 4.5,
+        "popularity": 0.1695
+      }
+    },
+    "The Country Blues Of": {
+      "title": "Masters of the Country Blues - Mance Lipscomb and Lightnin' Hopkins",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 361601,
+        "releaseDate": "2000-06-13",
+        "voteAverage": 0,
+        "popularity": 0.1167
+      }
+    },
+    "The Velvet Underground- The Velvet Underground and Nico": {
+      "title": "John Cale & Guest - perform The Velvet Underground & Nico",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 761845,
+        "releaseDate": "2017-08-18",
+        "voteAverage": 8,
+        "popularity": 0.0593
+      }
+    },
+    "Pink Floyd- The Piper At The Gates Of Dawn": {
+      "title": "Rock Milestones: Pink Floyd's The Piper at the Gates of Dawn",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 160949,
+        "releaseDate": "2006-07-31",
+        "voteAverage": 0,
+        "popularity": 0.0357
+      }
+    },
+    "The Doors- The Doors": {
+      "title": "Behind The Doors Of The Salon",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 618621,
+        "releaseDate": "1913-08-31",
+        "voteAverage": 0,
+        "popularity": 0.1512
+      }
+    },
+    "The Byrds- Mr": {
+      "title": "The Byrds- Mr",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Nick Drake- Five Leaves Left": {
+      "title": "Nick Drake- Five Leaves Left",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Stooges": {
+      "title": "The Making of the Stooges",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 245252,
+        "releaseDate": "1984-01-01",
+        "voteAverage": 0,
+        "popularity": 2.1646
+      }
+    },
+    "Joan Baez": {
+      "title": "Joan Baez: I Am a Noise",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1075815,
+        "releaseDate": "2023-10-06",
+        "voteAverage": 6.531,
+        "popularity": 0.6243
+      }
+    },
+    "Floor Elevators": {
+      "title": "Floor Elevators",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Psychedelic Sounds": {
+      "title": "The Psychedelic Sounds",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Scott Walker": {
+      "title": "Scott Walker: 30 Century Man",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 30867,
+        "releaseDate": "2007-04-27",
+        "voteAverage": 7.061,
+        "popularity": 0.3851
+      }
+    },
+    "Songs of Leonard Cohen": {
+      "title": "Songs from the Life of Leonard Cohen",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 409908,
+        "releaseDate": "1988-07-15",
+        "voteAverage": 7,
+        "popularity": 0.2486
+      }
+    },
+    "Five Leaves Left Nick Drake": {
+      "title": "Five Leaves Left Nick Drake",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Buffalo Springfield": {
+      "title": "Buffalo Springfield Revisited",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 275166,
+        "releaseDate": "2003-01-01",
+        "voteAverage": 0,
+        "popularity": 0.1053
+      }
+    },
+    "Fairport Convention": {
+      "title": "Fairport Convention: Folk Heroes",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 789234,
+        "releaseDate": "2017-11-25",
+        "voteAverage": 0,
+        "popularity": 0.0571
+      }
+    },
+    "Dawn Pink Floyd": {
+      "title": "Rock Milestones: Pink Floyd's The Piper at the Gates of Dawn",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 160949,
+        "releaseDate": "2006-07-31",
+        "voteAverage": 0,
+        "popularity": 0.0357
+      }
+    },
+    "Flying Burrito Brothers": {
+      "title": "Flying Burrito Brothers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Johnny Cash": {
+      "title": "Johnny Cash's America",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 279260,
+        "releaseDate": "2008-10-04",
+        "voteAverage": 8.5,
+        "popularity": 0.6231
+      }
+    },
+    "Johnny Cash With His Hot and Blue Guitar": {
+      "title": "Johnny Cash With His Hot and Blue Guitar",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Freddie Hubbard": {
+      "title": "Freddie Hubbard - All Blues",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 205112,
+        "releaseDate": "1991-10-20",
+        "voteAverage": 7,
+        "popularity": 0
+      }
+    },
+    "Open Sesame": {
+      "title": "Open Sesame",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1103306,
+        "releaseDate": "1989-01-01",
+        "voteAverage": 0,
+        "popularity": 0.0596
+      }
+    },
+    "Joni Mitchell": {
+      "title": "Joni Mitchell: Blue",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1566374,
+        "releaseDate": "2025-08-22",
+        "voteAverage": 0,
+        "popularity": 0.1267
+      }
+    },
+    "Song to a Seagull": {
+      "title": "Song to a Seagull",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Davy Graham": {
+      "title": "Davy Graham",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Guitar Player": {
+      "title": "Guitar Player",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Otis Redding": {
+      "title": "Otis Redding: Soul Ambassador",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 215074,
+        "releaseDate": "2013-05-31",
+        "voteAverage": 0,
+        "popularity": 0.0723
+      }
+    },
+    "Pain in my Heart\n\nFlack": {
+      "title": "Pain in my Heart\n\nFlack",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Dr John": {
+      "title": "Dr John: New Orleans Swamp",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 656839,
+        "releaseDate": "1974-10-30",
+        "voteAverage": 0,
+        "popularity": 0.0621
+      }
+    },
+    "Evening Richard": {
+      "title": "Richard Rodgers: Some Enchanted Evening",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 100769,
+        "releaseDate": "2002-01-01",
+        "voteAverage": 0,
+        "popularity": 0.4656
+      }
+    },
+    "Captain Beefheart  Safe As Milk": {
+      "title": "Captain Beefheart  Safe As Milk",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Silver Apples": {
+      "title": "Silver Apples of the Moon",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 368050,
+        "voteAverage": 0,
+        "popularity": 0.0429
+      }
+    },
+    "Apols The Sonics": {
+      "title": "Apols The Sonics",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Byrds Leonard": {
+      "title": "Byrds Leonard",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Flying Burrito Bros Can Who Scott": {
+      "title": "Flying Burrito Bros Can Who Scott",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Dusty Beatles": {
+      "title": "Dusty Beatles",
+      "validated": false,
+      "confidence": "low"
+    },
+    "That's an excellent list": {
+      "title": "That's an excellent list",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Led Zeppelin": {
+      "title": "Led Zeppelin",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 32835,
+        "releaseDate": "2003-05-26",
+        "voteAverage": 7.7,
+        "popularity": 0.254
+      }
+    },
+    "Velvet Underground and Nico": {
+      "title": "The Velvet Underground And Nico",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 341621,
+        "releaseDate": "2013-10-21",
+        "voteAverage": 0,
+        "popularity": 0.0168
+      }
+    },
+    "Monster Movie\n\nNext": {
+      "title": "Monster Movie\n\nNext",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Moby Grape": {
+      "title": "Moby Grape",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Monks": {
+      "title": "The Island of the Monks",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 684341,
+        "releaseDate": "2017-12-08",
+        "voteAverage": 8,
+        "popularity": 0.0511
+      }
+    },
+    "Hi Richard\n\nMy": {
+      "title": "Hi Richard\n\nMy",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Captain Beefheart": {
+      "title": "Captain Beefheart: Under Review",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 169959,
+        "releaseDate": "2006-04-25",
+        "voteAverage": 6,
+        "popularity": 0.0379
+      }
+    },
+    "Safe as Milk": {
+      "title": "Safe as Milk",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Velvet Underground": {
+      "title": "The Velvet Underground",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 543836,
+        "releaseDate": "2021-10-15",
+        "voteAverage": 6.787,
+        "popularity": 1.2222
+      }
+    },
+    "On The Beach": {
+      "title": "On the Beach",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 717205,
+        "releaseDate": "1985-08-21",
+        "voteAverage": 6,
+        "popularity": 3.1912
+      }
+    },
+    "Dusty Springfield": {
+      "title": "Dusty Springfield at the BBC",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 475540,
+        "releaseDate": "2013-03-01",
+        "voteAverage": 6,
+        "popularity": 0.2869
+      }
+    },
+    "3 matches": {
+      "title": "3 matches",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Not cheap": {
+      "title": "105 Yen Hamburger Is Not Cheap",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 842123,
+        "releaseDate": "2000-10-02",
+        "voteAverage": 0,
+        "popularity": 0.0505
+      }
+    },
+    "No That's why I haven't bought it yet": {
+      "title": "No That's why I haven't bought it yet",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Brilliant list": {
+      "title": "Brilliant list",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Safe As Houses": {
+      "title": "Safe as Houses",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 998327,
+        "releaseDate": "2022-07-09",
+        "voteAverage": 0,
+        "popularity": 0.0286
+      }
+    },
+    "Safe As Houses my no1": {
+      "title": "Safe As Houses my no1",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Roberta Flack": {
+      "title": "Roberta Flack In Concert",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 826091,
+        "releaseDate": "2002-06-15",
+        "voteAverage": 0,
+        "popularity": 0.1075
+      }
+    },
+    "First Take": {
+      "title": "天気 / THE FIRST TAKE",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1149467,
+        "releaseDate": "2019-12-04",
+        "voteAverage": 0,
+        "popularity": 0.0143
+      }
+    },
+    "Music From Big Pink\n\nShoulda": {
+      "title": "Music From Big Pink\n\nShoulda",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Safe As Milk": {
+      "title": "Safe as Milk",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Gris Gris": {
+      "title": "Gris e Gris",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1580046,
+        "voteAverage": 0,
+        "popularity": 0.141
+      }
+    },
+    "Great shout for": {
+      "title": "Great shout for",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Had to be": {
+      "title": "It Had To Be You",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 60802,
+        "releaseDate": "2005-03-04",
+        "voteAverage": 6.1,
+        "popularity": 0.3691
+      }
+    },
+    "Completely agree: my too": {
+      "title": "Completely agree: my too",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Hi Richard": {
+      "title": "Loose Ends @ Big Forever with Richard Album & His Original Singles",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1516857,
+        "voteAverage": 0,
+        "popularity": 0.3723
+      }
+    },
+    "The Beatles": {
+      "title": "The Beatles",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1461185,
+        "releaseDate": "2025-04-07",
+        "voteAverage": 8,
+        "popularity": 0.5488
+      }
+    },
+    "Sam & Dave": {
+      "title": "Sam & Dave",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Hold On": {
+      "title": "Hold On",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 393742,
+        "releaseDate": "2016-04-16",
+        "voteAverage": 5.6,
+        "popularity": 2.4397
+      }
+    },
+    "Mr Tambourine Ma\n\nBubbling": {
+      "title": "Mr Tambourine Ma\n\nBubbling",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Monkees": {
+      "title": "Making The Monkees",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 182470,
+        "releaseDate": "2007-06-03",
+        "voteAverage": 6.5,
+        "popularity": 0.2556
+      }
+    },
+    "Pink Floyd-The Piper At The Gates Of Dawn": {
+      "title": "Rock Milestones: Pink Floyd's The Piper at the Gates of Dawn",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 160949,
+        "releaseDate": "2006-07-31",
+        "voteAverage": 0,
+        "popularity": 0.0357
+      }
+    },
+    "The Jimi Hendrix Experience-Are You Experienced": {
+      "title": "The Jimi Hendrix Experience-Are You Experienced",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Bubblers:The": {
+      "title": "Bubblers:The",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Cheers Richard": {
+      "title": "Cheers Richard",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Good Evening": {
+      "title": "Good Evening",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 417676,
+        "releaseDate": "2016-01-01",
+        "voteAverage": 0,
+        "popularity": 0.1713
+      }
+    },
+    "Tom Hardin": {
+      "title": "Tom Hardin",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Tim Hardin": {
+      "title": "Tim Hardin",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Jim Sullivan": {
+      "title": "Jim Sullivan",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Songs of Innocence": {
+      "title": "Songs of Innocence",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 353250,
+        "releaseDate": "1976-08-06",
+        "voteAverage": 0,
+        "popularity": 0.0338
+      }
+    },
+    "David Axelrod": {
+      "title": "David Axelrod Live: Royal Festival Hall",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1214264,
+        "voteAverage": 0,
+        "popularity": 0.0429
+      }
+    },
+    "It wasn't hard was it": {
+      "title": "It wasn't hard was it",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Congrats to the Captain": {
+      "title": "Congrats to the Captain",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Thelonious Monk": {
+      "title": "Thelonious Monk: Paris 1969",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 687762,
+        "releaseDate": "2013-01-01",
+        "voteAverage": 10,
+        "popularity": 0.2673
+      }
+    },
+    "Monastic Trio": {
+      "title": "Monastic Trio",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Alice Coltrane": {
+      "title": "ASHRAM: The Spiritual Community of Alice Coltrane Turiyasangitananda",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 575090,
+        "releaseDate": "2019-01-12",
+        "voteAverage": 0,
+        "popularity": 0.3424
+      }
+    },
+    "Safe as Milk\nCaptain Beefheart and his Magic Band": {
+      "title": "Safe as Milk\nCaptain Beefheart and his Magic Band",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Drat i forgot all about Scott": {
+      "title": "Drat i forgot all about Scott",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Hi Rich\nTop": {
+      "title": "Hi Rich\nTop",
+      "validated": false,
+      "confidence": "low"
+    },
+    "France Gall": {
+      "title": "France Gall - Bercy 93",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 373241,
+        "releaseDate": "1994-02-18",
+        "voteAverage": 8.5,
+        "popularity": 0.0774
+      }
+    },
+    "Chelsea Girl\nCouldn": {
+      "title": "Chelsea Girl\nCouldn",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Stooges Ah balls forget it": {
+      "title": "Stooges Ah balls forget it",
+      "validated": false,
+      "confidence": "low"
+    },
+    "France Gall good shout": {
+      "title": "France Gall good shout",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Sonny Sharrock": {
+      "title": "Sonny Sharrock Band - Lucerna Hall Prague 4.10.90",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1327551,
+        "voteAverage": 0,
+        "popularity": 0.1878
+      }
+    },
+    "Black Women": {
+      "title": "Black Women",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 280702,
+        "releaseDate": "1985-01-02",
+        "voteAverage": 0,
+        "popularity": 0.0261
+      }
+    },
+    "The United States Of America": {
+      "title": "The United States of America",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 380429,
+        "releaseDate": "1975-03-05",
+        "voteAverage": 7.6,
+        "popularity": 0.1779
+      }
+    },
+    "Monastic Trio\nThe Lollipop Shoppe": {
+      "title": "Monastic Trio\nThe Lollipop Shoppe",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Just Colour\nOdetta": {
+      "title": "Just Colour\nOdetta",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Odetta Sings Ballads and Blues\n\nThanks": {
+      "title": "Odetta Sings Ballads and Blues\n\nThanks",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Sonny": {
+      "title": "Sonny",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 457812,
+        "releaseDate": "1922-05-22",
+        "voteAverage": 0,
+        "popularity": 1.6514
+      }
+    },
+    "damn missed Sonny Sharrock": {
+      "title": "damn missed Sonny Sharrock",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Hi Rich": {
+      "title": "Hi Rich",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Thomas & Richard Frost": {
+      "title": "Thomas & Richard Frost",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Pentangle": {
+      "title": "Swing In mit The Pentangle",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1493326,
+        "releaseDate": "1970-06-12",
+        "voteAverage": 0,
+        "popularity": 0.0143
+      }
+    },
+    "The Velvet Underground and Nico": {
+      "title": "The Velvet Underground And Nico",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 341621,
+        "releaseDate": "2013-10-21",
+        "voteAverage": 0,
+        "popularity": 0.0168
+      }
+    },
+    "Os Mutantes": {
+      "title": "Os Mutantes",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 502313,
+        "releaseDate": "1970-01-01",
+        "voteAverage": 9.5,
+        "popularity": 0.9688
+      }
+    },
+    "Gift From": {
+      "title": "Gift From Above",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 71319,
+        "releaseDate": "2003-12-18",
+        "voteAverage": 4.7,
+        "popularity": 1.8923
+      }
+    },
+    "Hi Richard \nMy": {
+      "title": "Hi Richard \nMy",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Byrds Mr Tambourine Man": {
+      "title": "Byrds Mr Tambourine Man",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Flying Burrito Brothers Gilded Palace Of Sin": {
+      "title": "Flying Burrito Brothers Gilded Palace Of Sin",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Velvet Underground And Nico": {
+      "title": "The Velvet Underground And Nico",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 341621,
+        "releaseDate": "2013-10-21",
+        "voteAverage": 0,
+        "popularity": 0.0168
+      }
+    },
+    "Gene Clark Godsin Brothers": {
+      "title": "Gene Clark Godsin Brothers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Zombies Begin Here \nGreat": {
+      "title": "Zombies Begin Here \nGreat",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Psychedeli Sounds": {
+      "title": "The Psychedeli Sounds",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Girl Called Dusty": {
+      "title": "Girl Called Dusty",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Court of the Crimson King": {
+      "title": "In the Court of the Crimson King: King Crimson at 50",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 827484,
+        "releaseDate": "2022-10-19",
+        "voteAverage": 7.235,
+        "popularity": 0.4514
+      }
+    },
+    "Blind Faith": {
+      "title": "Blind Faith",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 238972,
+        "releaseDate": "1998-11-23",
+        "voteAverage": 6,
+        "popularity": 0.7072
+      }
+    },
+    "Dear Mr Fantasy": {
+      "title": "Dear Mr. Fantasy - A Celebration for Jim Capaldi",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 339968,
+        "releaseDate": "2007-01-13",
+        "voteAverage": 0,
+        "popularity": 0.3768
+      }
+    },
+    "The Gilded Palace of Sin\n\nVelvet Underground & Nico": {
+      "title": "The Gilded Palace of Sin\n\nVelvet Underground & Nico",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Neil Young": {
+      "title": "Neil Young: Freedom",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 336526,
+        "releaseDate": "1990-06-15",
+        "voteAverage": 3.8,
+        "popularity": 0.2953
+      }
+    },
+    "Elton John": {
+      "title": "Discovering Elton John",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1338832,
+        "releaseDate": "2013-05-01",
+        "voteAverage": 0,
+        "popularity": 0.3756
+      }
+    },
+    "Empty Sky\n\nThanks": {
+      "title": "Empty Sky\n\nThanks",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Can- Monster Movie": {
+      "title": "Can- Monster Movie",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Captain Beefheart and His Magic Band- Safe As Milk": {
+      "title": "Captain Beefheart and His Magic Band- Safe As Milk",
+      "validated": false,
+      "confidence": "low"
+    },
+    "I never thought of Can": {
+      "title": "I never thought of Can",
+      "validated": false,
+      "confidence": "low"
+    },
+    "rather I never not think of Can": {
+      "title": "rather I never not think of Can",
+      "validated": false,
+      "confidence": "low"
+    },
+    "I never not think of Can": {
+      "title": "I never not think of Can",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Love the Can": {
+      "title": "Those Who Love Me Can Take the Train",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 31353,
+        "releaseDate": "1998-05-15",
+        "voteAverage": 6.025,
+        "popularity": 0.7123
+      }
+    },
+    "Evening Rich": {
+      "title": "Richard Rodgers: Some Enchanted Evening",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 100769,
+        "releaseDate": "2002-01-01",
+        "voteAverage": 0,
+        "popularity": 0.4656
+      }
+    },
+    "Happy Friday": {
+      "title": "Happy Friday",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1469622,
+        "releaseDate": "2019-01-01",
+        "voteAverage": 0,
+        "popularity": 1.4104
+      }
+    },
+    "Laura Nyro": {
+      "title": "Laura Nyro",
+      "validated": false,
+      "confidence": "low"
+    },
+    "More Than a New Discovery": {
+      "title": "More Than a New Discovery",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Miriam Makeba": {
+      "title": "Miriam Makeba",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Miriam Makeba \n\nCheers": {
+      "title": "Miriam Makeba \n\nCheers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Champion Jack Dupree": {
+      "title": "Jazz Icons: Champion Jack Dupree",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 339017,
+        "releaseDate": "1991-01-01",
+        "voteAverage": 0,
+        "popularity": 0.0143
+      }
+    },
+    "Blues from the Gutter": {
+      "title": "Blues from the Gutter",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Junior Wells and his Chicago Blues Band": {
+      "title": "Junior Wells and his Chicago Blues Band",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Hoodoo Man Blues": {
+      "title": "Hoodoo Man Blues",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Genius of Modern Music": {
+      "title": "Genius of Modern Music",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Close: Cecil Taylor": {
+      "title": "Close: Cecil Taylor",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Soft Machine": {
+      "title": "Soft Machine: Legacy",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 87634,
+        "releaseDate": "2006-01-05",
+        "voteAverage": 0,
+        "popularity": 0.0755
+      }
+    },
+    "Kevin Ayers": {
+      "title": "Kevin Ayers - Musical Express 1981",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1195925,
+        "voteAverage": 0,
+        "popularity": 0.0593
+      }
+    },
+    "Bud Powell": {
+      "title": "Chick Corea & Friends: Live - Remembering Bud Powell",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 230842,
+        "releaseDate": "2000-02-22",
+        "voteAverage": 6,
+        "popularity": 0.0848
+      }
+    },
+    "Grant Green": {
+      "title": "The Grant Green Story",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1421773,
+        "releaseDate": "2017-01-01",
+        "voteAverage": 7,
+        "popularity": 0.045
+      }
+    },
+    "Kick Out the Jams": {
+      "title": "MC5: Kick Out the Jams",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 148778,
+        "releaseDate": "1999-09-07",
+        "voteAverage": 8,
+        "popularity": 0.2243
+      }
+    },
+    "The Wailing Wailers": {
+      "title": "The Wailing Wailers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Safe as Milk\n\nCheers Rich": {
+      "title": "Safe as Milk\n\nCheers Rich",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Billie Holiday": {
+      "title": "Billie Holiday: A Sensation",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 398466,
+        "releaseDate": "2015-04-07",
+        "voteAverage": 8,
+        "popularity": 0.0946
+      }
+    },
+    "Billie Holiday Sings": {
+      "title": "Billie Holiday: Lady Day Sings the Blues",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 317804,
+        "voteAverage": 0,
+        "popularity": 0.0286
+      }
+    },
+    "Astrud Gilberto": {
+      "title": "The Girl From Ipanema: Astrud Gilberto, Queen of Bossa Nova",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1614471,
+        "releaseDate": "2026-01-18",
+        "voteAverage": 8,
+        "popularity": 0.368
+      }
+    },
+    "Bubblers: Nina Simone": {
+      "title": "Bubblers: Nina Simone",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Stanley Turrentine": {
+      "title": "Stanley Turrentine: In Concert",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 322025,
+        "releaseDate": "1990-01-01",
+        "voteAverage": 0,
+        "popularity": 0.0261
+      }
+    },
+    "Cannonball Adderley": {
+      "title": "Jazz Icons: Cannonball Adderley Live in '63",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 104080,
+        "releaseDate": "2008-09-30",
+        "voteAverage": 0,
+        "popularity": 0.1143
+      }
+    },
+    "Nancy & Lee": {
+      "title": "Nancy & Lee",
+      "validated": false,
+      "confidence": "low"
+    },
+    "close but no cigar": {
+      "title": "Close But No Cigar",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 605376,
+        "releaseDate": "2017-12-01",
+        "voteAverage": 0,
+        "popularity": 0.0495
+      }
+    },
+    "Morning Rich": {
+      "title": "Korea: Rich Heritage, Land of Morning Calm",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1218321,
+        "releaseDate": "1979-01-01",
+        "voteAverage": 0,
+        "popularity": 0.0214
+      }
+    },
+    "Louvin Brothers": {
+      "title": "The Louvin Brothers: Insured Beyond the Grave",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1180822,
+        "releaseDate": "2023-03-20",
+        "voteAverage": 0,
+        "popularity": 0.0416
+      }
+    },
+    "Tragic Songs of Life\nNina Simone": {
+      "title": "Tragic Songs of Life\nNina Simone",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Little Girl Blue\nMothers of Invention": {
+      "title": "Little Girl Blue\nMothers of Invention",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Freak Out\nJimi Hendrix": {
+      "title": "Freak Out\nJimi Hendrix",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Are You Experienced\nPrince Lasha Quartet": {
+      "title": "Are You Experienced\nPrince Lasha Quartet",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Cry": {
+      "title": "The Cry",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 761318,
+        "releaseDate": "1984-07-31",
+        "voteAverage": 0,
+        "popularity": 0.4637
+      }
+    },
+    "Five Leaves Left\nNico": {
+      "title": "Five Leaves Left\nNico",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Chelsea Girl\nKing Crimson": {
+      "title": "Chelsea Girl\nKing Crimson",
+      "validated": false,
+      "confidence": "low"
+    },
+    "In The Court Of The Crimson King\nPink Floyd": {
+      "title": "In The Court Of The Crimson King\nPink Floyd",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Kick Out The Jams": {
+      "title": "MC5: Kick Out the Jams",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 148778,
+        "releaseDate": "1999-09-07",
+        "voteAverage": 8,
+        "popularity": 0.2243
+      }
+    },
+    "The Sonics": {
+      "title": "BOOM! A Film About the Sonics",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 543972,
+        "releaseDate": "2018-09-30",
+        "voteAverage": 7.8,
+        "popularity": 0.5738
+      }
+    },
+    "Here Are The Sonics\nHave": {
+      "title": "Here Are The Sonics\nHave",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Capt Beefheart": {
+      "title": "Capt Beefheart",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Ray Charles": {
+      "title": "Ray Charles - In Concert",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 212026,
+        "releaseDate": "2001-03-20",
+        "voteAverage": 0,
+        "popularity": 0.1162
+      }
+    },
+    "Bo Diddley": {
+      "title": "Bo Diddley's Back in Town",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1167427,
+        "releaseDate": "1972-01-01",
+        "voteAverage": 0,
+        "popularity": 0.0143
+      }
+    },
+    "Etta James": {
+      "title": "Etta James Live at Montreux 1993",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 134849,
+        "releaseDate": "1993-03-04",
+        "voteAverage": 10,
+        "popularity": 0.0729
+      }
+    },
+    "At Last": {
+      "title": "At Last",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 775311,
+        "releaseDate": "2020-11-11",
+        "voteAverage": 4,
+        "popularity": 1.1404
+      }
+    },
+    "What a list": {
+      "title": "What a list",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Amazing era": {
+      "title": "In the Amazing Communication Age",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1007400,
+        "releaseDate": "2017-11-19",
+        "voteAverage": 0,
+        "popularity": 0.0379
+      }
+    },
+    "In the Court of the Crimson King\nThe Doors": {
+      "title": "In the Court of the Crimson King\nThe Doors",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Leanord Cohen": {
+      "title": "Leanord Cohen",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Byrds and Captain Beefheart": {
+      "title": "The Byrds and Captain Beefheart",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Pink Floyd: Piper": {
+      "title": "Rock Milestones: Pink Floyd's The Piper at the Gates of Dawn",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 160949,
+        "releaseDate": "2006-07-31",
+        "voteAverage": 0,
+        "popularity": 0.0357
+      }
+    },
+    "Skip Spence: Oar": {
+      "title": "Skip Spence: Oar",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Jimi Hendrix Are": {
+      "title": "Jimi Hendrix: Learn to Play the Songs from Are You Experienced",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 647865,
+        "voteAverage": 0,
+        "popularity": 0.0214
+      }
+    },
+    "Scott Walker Scott": {
+      "title": "Scott Walker and the Walker Brothers - Video Anthology",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 440894,
+        "releaseDate": "2006-01-01",
+        "voteAverage": 0,
+        "popularity": 0.0143
+      }
+    },
+    "Pink Floyd Piper": {
+      "title": "Rock Milestones: Pink Floyd's The Piper at the Gates of Dawn",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 160949,
+        "releaseDate": "2006-07-31",
+        "voteAverage": 0,
+        "popularity": 0.0357
+      }
+    },
+    "The Who": {
+      "title": "The Who",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 674769,
+        "releaseDate": "1969-05-05",
+        "voteAverage": 0,
+        "popularity": 0
+      }
+    },
+    "My Generation\nJohnny Burnette and the Rock": {
+      "title": "My Generation\nJohnny Burnette and the Rock",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Roll Trio": {
+      "title": "Roll Trio",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Johnny B": {
+      "title": "Johnny Banco",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 321388,
+        "releaseDate": "1967-08-10",
+        "voteAverage": 4.5,
+        "popularity": 0.3029
+      }
+    },
+    "Glad to see another Diddley fan": {
+      "title": "Glad to see another Diddley fan",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Music From Big Pink": {
+      "title": "Music from Big Pink",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Burrito Brothers": {
+      "title": "Burrito Brothers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Scott Walker- Scott": {
+      "title": "Scott Walker: 30 Century Man",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 30867,
+        "releaseDate": "2007-04-27",
+        "voteAverage": 7.061,
+        "popularity": 0.3851
+      }
+    },
+    "The Byrds- Mr Tambourine Man": {
+      "title": "The Byrds- Mr Tambourine Man",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Bob Dylan": {
+      "title": "Bob Dylan Hates Me",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 379386,
+        "releaseDate": "2016-01-24",
+        "voteAverage": 8.5,
+        "popularity": 0.1182
+      }
+    },
+    "Crosby Stills & Nash": {
+      "title": "Crosby Stills and Nash  CSN",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1279799,
+        "releaseDate": "2012-01-01",
+        "voteAverage": 10,
+        "popularity": 0.087
+      }
+    },
+    "The Flying Burrito Bros": {
+      "title": "The Flying Burrito Bros",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Creedence Clearwater Revival": {
+      "title": "Creedence Clearwater Revival",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 679779,
+        "releaseDate": "2006-04-20",
+        "voteAverage": 0,
+        "popularity": 0.0362
+      }
+    },
+    "The Move": {
+      "title": "The Move",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1263238,
+        "releaseDate": "2024-07-21",
+        "voteAverage": 7.4,
+        "popularity": 2.6852
+      }
+    },
+    "Van Dyke Parks": {
+      "title": "Van Dyke Parks",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Roy Harper": {
+      "title": "Roy Harper",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Buffalo Springfield": {
+      "title": "The Buffalo Springfield",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Searchers": {
+      "title": "The Searchers",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 3114,
+        "releaseDate": "1956-05-16",
+        "voteAverage": 7.699,
+        "popularity": 5.2592
+      }
+    },
+    "Phil Ochs": {
+      "title": "Phil Ochs: There But for Fortune",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 55845,
+        "releaseDate": "2011-01-05",
+        "voteAverage": 6.6,
+        "popularity": 0.2922
+      }
+    },
+    "Paul Simon": {
+      "title": "Paul Simon BBC",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 122298,
+        "voteAverage": 0,
+        "popularity": 0.0143
+      }
+    },
+    "Lee Hazlewood": {
+      "title": "Lee Hazlewood",
+      "validated": false,
+      "confidence": "low"
+    },
+    "That's a great list": {
+      "title": "That's a great list",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Nick Drake: Five Leaves Left": {
+      "title": "Nick Drake: Five Leaves Left",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Meters": {
+      "title": "± 5 Meters From the Surface of the Oceans",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 554202,
+        "releaseDate": "2015-11-21",
+        "voteAverage": 0,
+        "popularity": 0.2004
+      }
+    },
+    "Herbie Hancock: Takin": {
+      "title": "Herbie Hancock: Takin",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Nina Simone: Little Girl Blue\n\nDamn Close: The Band": {
+      "title": "Nina Simone: Little Girl Blue\n\nDamn Close: The Band",
+      "validated": false,
+      "confidence": "low"
+    },
+    "James Taylor": {
+      "title": "James Taylor Live",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1607802,
+        "voteAverage": 0,
+        "popularity": 0.0071
+      }
+    },
+    "Buddy Holly": {
+      "title": "BUDDY HOLLY",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 777247,
+        "releaseDate": "2020-12-18",
+        "voteAverage": 0,
+        "popularity": 0.0261
+      }
+    },
+    "Ricky Nelson": {
+      "title": "Ricky Nelson Sings",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 77783,
+        "releaseDate": "2005-12-01",
+        "voteAverage": 0,
+        "popularity": 0.1365
+      }
+    },
+    "Leonard Cohen": {
+      "title": "Leonard Cohen: Spring 96",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 409949,
+        "releaseDate": "1997-01-01",
+        "voteAverage": 6.8,
+        "popularity": 0.1796
+      }
+    },
+    "Nancy Sinatra & Lee Hazelwood": {
+      "title": "Nancy Sinatra & Lee Hazelwood",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Mamas & Papas": {
+      "title": "Mamas & Papas",
+      "validated": false,
+      "confidence": "low"
+    },
+    "If You Can Believe Your Eyes and Ears": {
+      "title": "If You Can Believe Your Eyes and Ears",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Bonzo Dog Doo Dah Band": {
+      "title": "The Bonzo Dog Doo Dah Band",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Billy Fury": {
+      "title": "Billy Fury: The Sound of Fury",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 395718,
+        "releaseDate": "2015-08-03",
+        "voteAverage": 0,
+        "popularity": 0.2161
+      }
+    },
+    "The Sound of Fury": {
+      "title": "The Sound of Fury",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 27543,
+        "releaseDate": "1950-12-12",
+        "voteAverage": 6.4,
+        "popularity": 0.8347
+      }
+    },
+    "Herbie Hancock": {
+      "title": "Herbie Hancock Special",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 353260,
+        "releaseDate": "2004-07-23",
+        "voteAverage": 0,
+        "popularity": 0.1119
+      }
+    },
+    "The Chirping Crickets\n\nThey": {
+      "title": "The Chirping Crickets\n\nThey",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Pain In My Heart": {
+      "title": "Pain In My Heart",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Music From Big Pink\n\nClose: Bob": {
+      "title": "Music From Big Pink\n\nClose: Bob",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Small Faces \n\nCheers": {
+      "title": "Small Faces \n\nCheers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Doors and Band": {
+      "title": "Doors and Band",
+      "validated": false,
+      "confidence": "low"
+    },
+    "I have Zep Doors and Band as well": {
+      "title": "I have Zep Doors and Band as well",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Hard to leave them out": {
+      "title": "Hard to leave them out",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Richie Havens": {
+      "title": "Richie Havens - Live at Montreux Casino 1972",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 950859,
+        "releaseDate": "1972-01-01",
+        "voteAverage": 0,
+        "popularity": 0.0892
+      }
+    },
+    "Love the Havens": {
+      "title": "Love the Havens",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Love the Havens pick Just missed my 5": {
+      "title": "Love the Havens pick Just missed my 5",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Always make time for Havens lol": {
+      "title": "Always make time for Havens lol",
+      "validated": false,
+      "confidence": "low"
+    },
+    "David Axlerod": {
+      "title": "David Axlerod",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Song of Innocence": {
+      "title": "A Song of Innocence",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 274674,
+        "releaseDate": "2005-08-31",
+        "voteAverage": 3.4,
+        "popularity": 1.523
+      }
+    },
+    "Mr Tambourine Man\nGreat": {
+      "title": "Mr Tambourine Man\nGreat",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Unexpected by me but great to see": {
+      "title": "Unexpected by me but great to see",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Pink Floyd\n\nThanks Rich": {
+      "title": "Pink Floyd\n\nThanks Rich",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Im over here nodding with approval": {
+      "title": "Im over here nodding with approval",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Led Zeppelin\n\nHave": {
+      "title": "Led Zeppelin\n\nHave",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Thanks Richard": {
+      "title": "Thanks Richard",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Songs Of": {
+      "title": "Songs of Abai",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 752642,
+        "releaseDate": "1946-01-20",
+        "voteAverage": 5,
+        "popularity": 0.1306
+      }
+    },
+    "Piper At The Gates Of Dawn": {
+      "title": "Rock Milestones: Pink Floyd's The Piper at the Gates of Dawn",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 160949,
+        "releaseDate": "2006-07-31",
+        "voteAverage": 0,
+        "popularity": 0.0357
+      }
+    },
+    "Music From The Big Pink": {
+      "title": "Music From The Big Pink",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Ronettes": {
+      "title": "The Ronettes",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Tim Buckley": {
+      "title": "Tim Buckley: Review and Critique Of The Man And His Music",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1167963,
+        "voteAverage": 0,
+        "popularity": 0.0362
+      }
+    },
+    "Gordon Lightfoot": {
+      "title": "Gordon Lightfoot: Live in Reno",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 354049,
+        "releaseDate": "2002-01-29",
+        "voteAverage": 0,
+        "popularity": 0.0286
+      }
+    },
+    "Thanks Stu": {
+      "title": "Thanks Stu",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Taste and The Doors": {
+      "title": "The Taste of Next Door Sister",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 660039,
+        "releaseDate": "2019-12-30",
+        "voteAverage": 3.067,
+        "popularity": 0.0077
+      }
+    },
+    "Stills & Nash and King Crimson": {
+      "title": "Stills & Nash and King Crimson",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Nice Taste :": {
+      "title": "Taste of Excitement",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 108483,
+        "releaseDate": "1969-11-01",
+        "voteAverage": 5.9,
+        "popularity": 0.4865
+      }
+    },
+    "Are You": {
+      "title": "Who Are You?",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 137618,
+        "releaseDate": "2010-02-25",
+        "voteAverage": 6.6,
+        "popularity": 0.3889
+      }
+    },
+    "Music From": {
+      "title": "Music from Jasibara",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1193804,
+        "releaseDate": "2011-01-01",
+        "voteAverage": 0,
+        "popularity": 0.0482
+      }
+    },
+    "The Piper": {
+      "title": "The Piper",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 845643,
+        "releaseDate": "2023-10-12",
+        "voteAverage": 5.2,
+        "popularity": 0.6807
+      }
+    },
+    "Ars Nova": {
+      "title": "Arpeggio of Blue Steel -Ars Nova DC-",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 296918,
+        "releaseDate": "2015-01-31",
+        "voteAverage": 7.1,
+        "popularity": 7.2575
+      }
+    },
+    "Black Pearl": {
+      "title": "Black Pearl",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1397153,
+        "releaseDate": "2025-03-14",
+        "voteAverage": 10,
+        "popularity": 5.5966
+      }
+    },
+    "Flying Burrito": {
+      "title": "Flying Burrito",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Ford Theatre": {
+      "title": "The Ford Theatre Hour: Alice in Wonderland",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1551965,
+        "releaseDate": "1950-12-15",
+        "voteAverage": 0,
+        "popularity": 0.6167
+      }
+    },
+    "Johnny Winter": {
+      "title": "Johnny Winter: Live",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1051221,
+        "releaseDate": "2003-10-20",
+        "voteAverage": 0,
+        "popularity": 0.0956
+      }
+    },
+    "They'll be fine!": {
+      "title": "They'll be fine!",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Chelsea Girl": {
+      "title": "Chelsea Girls",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1686,
+        "releaseDate": "1966-09-01",
+        "voteAverage": 5.6,
+        "popularity": 0.9892
+      }
+    },
+    "The Psychedelic Sounds Of": {
+      "title": "The Psychedelic Sounds Of",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Songs Of": {
+      "title": "The Songs of the Sea",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 499108,
+        "releaseDate": "1971-10-07",
+        "voteAverage": 5.3,
+        "popularity": 1.3159
+      }
+    },
+    "Monster Movie \nHave": {
+      "title": "Monster Movie \nHave",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Love to see Can in there": {
+      "title": "Can't See Me Love You",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 599367,
+        "releaseDate": "2018-11-02",
+        "voteAverage": 3,
+        "popularity": 0.4808
+      }
+    },
+    "The Psychadelic Sounds of \nMighty Baby": {
+      "title": "The Psychadelic Sounds of \nMighty Baby",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Mighty Baby \nMoby Grape": {
+      "title": "Mighty Baby \nMoby Grape",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Moby Grape \nNick Drake": {
+      "title": "Moby Grape \nNick Drake",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Five Leaves Left  \nTim Buckley": {
+      "title": "Five Leaves Left  \nTim Buckley",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Tim Buckley\n\nThank": {
+      "title": "Tim Buckley\n\nThank",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Psychedelic": {
+      "title": "Psychedelic",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 797373,
+        "releaseDate": "2021-02-14",
+        "voteAverage": 5,
+        "popularity": 1.8492
+      }
+    },
+    "Hello Rich": {
+      "title": "Hello Rich",
+      "validated": false,
+      "confidence": "low"
+    },
+    "My Tambourine Man": {
+      "title": "My Tambourine Man",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Left Banke": {
+      "title": "Left Bank",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 12135,
+        "releaseDate": "2008-03-26",
+        "voteAverage": 5.6,
+        "popularity": 2.3315
+      }
+    },
+    "Walk Away Renee\n\nClose": {
+      "title": "Walk Away Renee\n\nClose",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Jimi Hendrix Experience": {
+      "title": "The Jimi Hendrix Experience: BBC Sessions",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 927588,
+        "releaseDate": "2010-08-05",
+        "voteAverage": 0,
+        "popularity": 0.1557
+      }
+    },
+    "Tangerine Dream": {
+      "title": "Tangerine Dream",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 920857,
+        "releaseDate": "2019-04-05",
+        "voteAverage": 0,
+        "popularity": 0.0592
+      }
+    },
+    "The Psychedelic": {
+      "title": "The Psychedelics",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 715971,
+        "releaseDate": "1966-07-06",
+        "voteAverage": 0,
+        "popularity": 0.3166
+      }
+    },
+    "Alexander Spence": {
+      "title": "Alexander Spence",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Oar": {
+      "title": "Oar",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 114909,
+        "releaseDate": "1985-01-15",
+        "voteAverage": 5.125,
+        "popularity": 1.5169
+      }
+    },
+    "The Piper at the Gates of Dawn": {
+      "title": "Rock Milestones: Pink Floyd's The Piper at the Gates of Dawn",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 160949,
+        "releaseDate": "2006-07-31",
+        "voteAverage": 0,
+        "popularity": 0.0357
+      }
+    },
+    "Pretty similar list to mine": {
+      "title": "Pretty similar list to mine",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Fugs First Album": {
+      "title": "The Fugs First Album",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Mothers-Freak Out": {
+      "title": "The Mothers-Freak Out",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Red Krayola-The Parable of Arable Land": {
+      "title": "The Red Krayola-The Parable of Arable Land",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Wayouts from the Flintstones": {
+      "title": "Wayouts from the Flintstones",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Where the Fun Is": {
+      "title": "Where the Fun Is",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Presenting The Fabulous Ronettes": {
+      "title": "Presenting The Fabulous Ronettes",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Beatles Please Please Me": {
+      "title": "The Beatles' Please Please Me: Remaking a Classic",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1269073,
+        "voteAverage": 0,
+        "popularity": 0.1195
+      }
+    },
+    "Jimi Hendrix Are You Experienced": {
+      "title": "Jimi Hendrix: Learn to Play the Songs from Are You Experienced",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 647865,
+        "voteAverage": 0,
+        "popularity": 0.0214
+      }
+    },
+    "The Four Tops": {
+      "title": "The Four Tops: Reach Out",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1085945,
+        "releaseDate": "2008-11-04",
+        "voteAverage": 0,
+        "popularity": 0
+      }
+    },
+    "Dick Dale & his Deltones": {
+      "title": "Dick Dale & his Deltones",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Monster Movie": {
+      "title": "Monster Movie",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 432844,
+        "releaseDate": "2008-09-18",
+        "voteAverage": 3.5,
+        "popularity": 0.0808
+      }
+    },
+    "Jimi Hendrix Experience": {
+      "title": "The Jimi Hendrix Experience: BBC Sessions",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 927588,
+        "releaseDate": "2010-08-05",
+        "voteAverage": 0,
+        "popularity": 0.1557
+      }
+    },
+    "Evening Rich\n\nThe Doors": {
+      "title": "Evening Rich\n\nThe Doors",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Doors\nElvis Presley": {
+      "title": "The Doors\nElvis Presley",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Elvis Presley\nVelvet Underground": {
+      "title": "Elvis Presley\nVelvet Underground",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Velvet Underground & Nico \nCaptain Beefheart & His Magic Band": {
+      "title": "Velvet Underground & Nico \nCaptain Beefheart & His Magic Band",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Safe as Milk\nGetz": {
+      "title": "Safe as Milk\nGetz",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Gilberto\n\nBubblers: Five Leaves Left": {
+      "title": "Gilberto\n\nBubblers: Five Leaves Left",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Captain Beefheart & His Magic Band": {
+      "title": "Captain Beefheart & His Magic Band",
+      "validated": false,
+      "confidence": "low"
+    },
+    "After School Session": {
+      "title": "After School Session",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Chuck Berry": {
+      "title": "Chuck Berry in Concert",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 496910,
+        "releaseDate": "1972-07-22",
+        "voteAverage": 8,
+        "popularity": 0.0338
+      }
+    },
+    "You Better Move On": {
+      "title": "You Better Move On",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Arthur Alexander": {
+      "title": "Arthur Alexander",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Velvets\nThe Band\nNick Drake\nBuddy Holly\nThe Byrds\nSpecial": {
+      "title": "Velvets\nThe Band\nNick Drake\nBuddy Holly\nThe Byrds\nSpecial",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Light in the Attic \nHappy Weekend": {
+      "title": "Light in the Attic \nHappy Weekend",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Songs Of\n\nMany": {
+      "title": "Songs Of\n\nMany",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Alright Rich": {
+      "title": "Alright Rich",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Song to the Seagull": {
+      "title": "Song to the Seagull",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Nancy and Lee": {
+      "title": "Nancy and Lee",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Etta and Nina": {
+      "title": "Etta and Nina",
+      "validated": false,
+      "confidence": "low"
+    },
+    "I was a drummer back in the day": {
+      "title": "I was a drummer back in the day",
+      "validated": false,
+      "confidence": "low"
+    },
+    "My Bloody Valentine": {
+      "title": "My Bloody Valentine",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 14435,
+        "releaseDate": "2009-01-16",
+        "voteAverage": 5.576,
+        "popularity": 4.4023
+      }
+    },
+    "Chet Baker Sings": {
+      "title": "Chet Baker Sings",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Hank Williams": {
+      "title": "The Ghost of Hank Williams",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 812427,
+        "releaseDate": "2019-11-15",
+        "voteAverage": 0,
+        "popularity": 0.2609
+      }
+    },
+    "Cheers Amigo": {
+      "title": "Cheers Amigo",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Leaves Left": {
+      "title": "Door on the Left as You Leave the Elevator",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 39422,
+        "releaseDate": "1988-08-31",
+        "voteAverage": 6.154,
+        "popularity": 0.5358
+      }
+    },
+    "Leonard Cohen's": {
+      "title": "Leonard Cohen's Lonesome Heroes",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 748900,
+        "releaseDate": "2010-12-31",
+        "voteAverage": 5,
+        "popularity": 0.2164
+      }
+    },
+    "I'm Not There'": {
+      "title": "I'M NOT THERE",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1506630,
+        "releaseDate": "2025-03-01",
+        "voteAverage": 0,
+        "popularity": 0.0379
+      }
+    },
+    "Song Of Innocence": {
+      "title": "A Song of Innocence",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 274674,
+        "releaseDate": "2005-08-31",
+        "voteAverage": 3.4,
+        "popularity": 1.523
+      }
+    },
+    "Santana": {
+      "title": "Santana",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 734309,
+        "releaseDate": "2020-08-28",
+        "voteAverage": 5.721,
+        "popularity": 3.9513
+      }
+    },
+    "the meters damn i missed that one": {
+      "title": "the meters damn i missed that one",
+      "validated": false,
+      "confidence": "low"
+    },
+    "My Generation": {
+      "title": "My Generation",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 481101,
+        "releaseDate": "2017-11-09",
+        "voteAverage": 7,
+        "popularity": 0.2501
+      }
+    },
+    "The Beatles- Please Please Me": {
+      "title": "The Beatles' Please Please Me: Remaking a Classic",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1269073,
+        "voteAverage": 0,
+        "popularity": 0.1195
+      }
+    },
+    "The Kinks": {
+      "title": "The Kinks at the BBC",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1199706,
+        "releaseDate": "2011-07-15",
+        "voteAverage": 8,
+        "popularity": 0.0621
+      }
+    },
+    "Blue Cheer": {
+      "title": "Blue Cheer",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Vincebus Eruptum": {
+      "title": "Vincebus Eruptum",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Great list": {
+      "title": "Great list",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Have you got yours down": {
+      "title": "Have you got yours down",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Not yet Almost done spinning 67": {
+      "title": "Not yet Almost done spinning 67",
+      "validated": false,
+      "confidence": "low"
+    },
+    "You ready to post yet": {
+      "title": "You ready to post yet",
+      "validated": false,
+      "confidence": "low"
+    },
+    "dont miss the deadline": {
+      "title": "dont miss the deadline",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Presenting the Fabulous Ronettes": {
+      "title": "Presenting The Fabulous Ronettes",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Doors\nSorry to Jimi Hendrix Experience and the Stooges": {
+      "title": "The Doors\nSorry to Jimi Hendrix Experience and the Stooges",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Stooges\nKick Out the Jams": {
+      "title": "The Stooges\nKick Out the Jams",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Sonics\nMy Generation": {
+      "title": "The Sonics\nMy Generation",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Drop of the Hard Stuff": {
+      "title": "Drop of the Hard Stuff",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Dubliners": {
+      "title": "The Dubliners The Parting Glass",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1177274,
+        "voteAverage": 0,
+        "popularity": 0.0071
+      }
+    },
+    "Allman Brothers Band": {
+      "title": "The Allman Brothers Band: 40",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 279249,
+        "releaseDate": "2009-03-26",
+        "voteAverage": 6.2,
+        "popularity": 0.1901
+      }
+    },
+    "Chicago Transit Authority": {
+      "title": "Chicago Transit Authority",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Magic Sam": {
+      "title": "Magic Samson",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 180566,
+        "releaseDate": "1988-06-06",
+        "voteAverage": 7,
+        "popularity": 0.4967
+      }
+    },
+    "Are You Experienced\nThanks": {
+      "title": "Are You Experienced\nThanks",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Jimi Hendrix": {
+      "title": "The Jimi Hendrix Experience: BBC Sessions",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 927588,
+        "releaseDate": "2010-08-05",
+        "voteAverage": 0,
+        "popularity": 0.1557
+      }
+    },
+    "Graaf Generator": {
+      "title": "Inside Van Der Graaf Generator",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 312060,
+        "releaseDate": "2005-01-01",
+        "voteAverage": 8,
+        "popularity": 0.0143
+      }
+    },
+    "The Aerosol Grey Machine": {
+      "title": "The Aerosol Grey Machine",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Adge Cutler and the Wurzels": {
+      "title": "Adge Cutler and the Wurzels",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Live at the Royal Oak": {
+      "title": "Utopia: Live at the Royal Oak",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 309969,
+        "releaseDate": "1983-01-01",
+        "voteAverage": 0,
+        "popularity": 0
+      }
+    },
+    "Third Ear Band": {
+      "title": "Third Ear Band",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Black Monk Time": {
+      "title": "Black Monk Time",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Parable Of Arable Land": {
+      "title": "The Parable Of Arable Land",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Red Krayola": {
+      "title": "The Red Krayola",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The United States Of America\n\nCheers": {
+      "title": "The United States Of America\n\nCheers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Sublime list": {
+      "title": "Sublime list",
+      "validated": false,
+      "confidence": "low"
+    },
+    "You daft bugger": {
+      "title": "You daft bugger",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Five Leaves": {
+      "title": "The Train Leaves at Five to Seven",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 700363,
+        "voteAverage": 0,
+        "popularity": 0.0588
+      }
+    },
+    "Court\nBeefheart": {
+      "title": "Court\nBeefheart",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Safe as Milk\nLed Zeppelin \n\nProb": {
+      "title": "Safe as Milk\nLed Zeppelin \n\nProb",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Aargh Too much pressure": {
+      "title": "Aargh Too much pressure",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Etta James\nThe Doors": {
+      "title": "Etta James\nThe Doors",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Dusty Springfield \nPlease Please Me": {
+      "title": "Dusty Springfield \nPlease Please Me",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Beatles\nAre You Experienced": {
+      "title": "The Beatles\nAre You Experienced",
+      "validated": false,
+      "confidence": "low"
+    },
+    "For The Sake Of The Song": {
+      "title": "For the Sake of the Song: The Story of Anderson Fair",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 604386,
+        "releaseDate": "2010-03-17",
+        "voteAverage": 0,
+        "popularity": 0.2045
+      }
+    },
+    "Jacques Brel": {
+      "title": "Jacques Brel, fou de vivre",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 543714,
+        "releaseDate": "2017-02-03",
+        "voteAverage": 7.7,
+        "popularity": 0.171
+      }
+    },
+    "Jacques Brel Et Ses Chansons": {
+      "title": "Jacques Brel Et Ses Chansons",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Skatalites": {
+      "title": "The Skatalites",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Ska Boo-Da-Ba": {
+      "title": "Ska Boo-Da-Ba",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Ken Boothe": {
+      "title": "Ken Boothe",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Mr Rock Steady": {
+      "title": "Mr Rock Steady",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Hopeton Lewis": {
+      "title": "Hopeton Lewis",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Take It Easy": {
+      "title": "Take It Easy",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 138099,
+        "releaseDate": "1986-03-21",
+        "voteAverage": 3.667,
+        "popularity": 0.7632
+      }
+    },
+    "The Gaylads": {
+      "title": "The Gaylads",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Soul Beat": {
+      "title": "Two Beats One Soul",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 792846,
+        "releaseDate": "2018-10-01",
+        "voteAverage": 0,
+        "popularity": 0.4546
+      }
+    },
+    "Pat Kelly": {
+      "title": "Pat Kelly",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Listening to Mr": {
+      "title": "Listening to Mr. Fan Talk About the Past",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1041596,
+        "releaseDate": "2002-11-21",
+        "voteAverage": 0,
+        "popularity": 0.0496
+      }
+    },
+    "Rock Steady": {
+      "title": "Rock Steady",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1177140,
+        "releaseDate": "2002-08-04",
+        "voteAverage": 0,
+        "popularity": 3.8975
+      }
+    },
+    "Red Krayola- The Parable of Arable Land": {
+      "title": "Red Krayola- The Parable of Arable Land",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Fresh Cream": {
+      "title": "Fresh Cream - Live",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1088956,
+        "voteAverage": 0,
+        "popularity": 0
+      }
+    },
+    "Crickets Booker": {
+      "title": "Crickets Booker",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Beach Boys Beatles Prince Buster The Rolling Stones": {
+      "title": "Beach Boys Beatles Prince Buster The Rolling Stones",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Cream - Fresh Cream": {
+      "title": "Fresh Cream - Live",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1088956,
+        "voteAverage": 0,
+        "popularity": 0
+      }
+    },
+    "The Who - My Generation": {
+      "title": "The Who - My Generation",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Procol Harum - Procol Harum": {
+      "title": "Procol Harum - Live in Copenhagen",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 274606,
+        "releaseDate": "2002-01-01",
+        "voteAverage": 8,
+        "popularity": 1.3853
+      }
+    },
+    "Silver Apples\nThe Stooges": {
+      "title": "Silver Apples\nThe Stooges",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Stooges\nHere Are The Sonics": {
+      "title": "The Stooges\nHere Are The Sonics",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Sonics\nFive Leaves Left": {
+      "title": "The Sonics\nFive Leaves Left",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Fabulous list I forgot ALL about Silver Apples": {
+      "title": "Fabulous list I forgot ALL about Silver Apples",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Thanks Craig": {
+      "title": "Thanks Craig",
+      "validated": false,
+      "confidence": "low"
+    },
+    "I only recently learned of them": {
+      "title": "I only recently learned of them",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Oh they're pioneers Ya enjoy them": {
+      "title": "Oh they're pioneers Ya enjoy them",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Absolutely": {
+      "title": "Absolutely",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1577504,
+        "voteAverage": 0,
+        "popularity": 0.0168
+      }
+    },
+    "The Toys": {
+      "title": "The Toys",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1454352,
+        "releaseDate": "2025-03-02",
+        "voteAverage": 0,
+        "popularity": 0.1001
+      }
+    },
+    "Lovers Concerto": {
+      "title": "Lovers' Concerto",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 54332,
+        "releaseDate": "2002-09-13",
+        "voteAverage": 7,
+        "popularity": 1.0014
+      }
+    },
+    "Wipe Out": {
+      "title": "Wipe Out",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1147995,
+        "releaseDate": "1998-12-04",
+        "voteAverage": 0,
+        "popularity": 0.5312
+      }
+    },
+    "Walk Away Renee": {
+      "title": "Walk Away Renee",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 97572,
+        "releaseDate": "2011-05-14",
+        "voteAverage": 4.6,
+        "popularity": 0.2589
+      }
+    },
+    "Pretty Ballerina": {
+      "title": "I Had a Date with a Pretty Ballerina",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1592449,
+        "releaseDate": "1967-01-01",
+        "voteAverage": 0,
+        "popularity": 0.0143
+      }
+    },
+    "Harper Valley": {
+      "title": "Harper Valley P.T.A.",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 113777,
+        "releaseDate": "1978-08-02",
+        "voteAverage": 7.1,
+        "popularity": 0.5972
+      }
+    },
+    "Love-Love": {
+      "title": "Love-Love",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Beatles\nOn": {
+      "title": "The Beatles on Record",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 57153,
+        "releaseDate": "2009-09-06",
+        "voteAverage": 6.4,
+        "popularity": 0.4672
+      }
+    },
+    "Miles Davis": {
+      "title": "The Sound of Miles Davis",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 277573,
+        "releaseDate": "1959-04-09",
+        "voteAverage": 0,
+        "popularity": 0.32
+      }
+    },
+    "The New Sounds\n\nHave": {
+      "title": "The New Sounds\n\nHave",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Howya Richard": {
+      "title": "Howya Richard",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Doors\n\nThanks": {
+      "title": "The Doors\n\nThanks",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Strawberry Jam'": {
+      "title": "Strawberry Jam",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 673694,
+        "releaseDate": "2010-01-01",
+        "voteAverage": 0,
+        "popularity": 2.7231
+      }
+    },
+    "The Flying Buritto Brothers\nCheers": {
+      "title": "The Flying Buritto Brothers\nCheers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Not a dud in the bunch": {
+      "title": "Not a dud in the bunch",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Songs": {
+      "title": "Smokey Joe's Cafe: The Songs of Leiber and Stoller",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 51921,
+        "releaseDate": "2002-12-31",
+        "voteAverage": 4.2,
+        "popularity": 0.2785
+      }
+    },
+    "Captain Beefheart & His": {
+      "title": "Captain Beefheart & His",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Seriously considered Alice Coltrane Just missed the cut": {
+      "title": "Seriously considered Alice Coltrane Just missed the cut",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Ornette Coleman": {
+      "title": "Ornette Coleman",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1255243,
+        "releaseDate": "2018-07-09",
+        "voteAverage": 0,
+        "popularity": 0.0791
+      }
+    },
+    "The Mothers": {
+      "title": "The Mothers",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 845259,
+        "voteAverage": 0,
+        "popularity": 0.4623
+      }
+    },
+    "Led Zep": {
+      "title": "Led Zeppelin",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 32835,
+        "releaseDate": "2003-05-26",
+        "voteAverage": 7.7,
+        "popularity": 0.254
+      }
+    },
+    "Jeff Beck": {
+      "title": "Jeff Beck In Japan 1999",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1081845,
+        "voteAverage": 0,
+        "popularity": 0.0143
+      }
+    },
+    "The Songs of Leonard Cohen": {
+      "title": "Songs from the Life of Leonard Cohen",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 409908,
+        "releaseDate": "1988-07-15",
+        "voteAverage": 7,
+        "popularity": 0.2486
+      }
+    },
+    "Mr Tambourine Man\nNeil Young\nMothers of Invention": {
+      "title": "Mr Tambourine Man\nNeil Young\nMothers of Invention",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Freak Out\nLove\nBuffalo Springfield\nTraffic": {
+      "title": "Freak Out\nLove\nBuffalo Springfield\nTraffic",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Mr Fantasy\nProcol Harum\nThe Band": {
+      "title": "Mr Fantasy\nProcol Harum\nThe Band",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Music from Big Pink\nJethro Tull": {
+      "title": "Music from Big Pink\nJethro Tull",
+      "validated": false,
+      "confidence": "low"
+    },
+    "This Was\nJohn Mc": {
+      "title": "This Was\nJohn Mc",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Extrapolation\nJack Bruce": {
+      "title": "Extrapolation\nJack Bruce",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Songs for a Tailor": {
+      "title": "Songs for a Tailor",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Folk Roots": {
+      "title": "Folk Americana Roots Hall of Fame: Inaugural Induction Ceremony",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1391711,
+        "releaseDate": "2024-10-18",
+        "voteAverage": 0,
+        "popularity": 0.183
+      }
+    },
+    "Mamadou Seck & Boubacar Diabate": {
+      "title": "Mamadou Seck & Boubacar Diabate",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Chansons Africaines": {
+      "title": "Chansons Africaines",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Bobby Bland": {
+      "title": "Bobby Bland",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Otis Rush": {
+      "title": "Otis Rush - Live Part One",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 232178,
+        "releaseDate": "2002-12-31",
+        "voteAverage": 0,
+        "popularity": 0.0214
+      }
+    },
+    "The Gilded Palace Of Sin": {
+      "title": "The Gilded Palace of Sin",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Jimi Hendrix Experience: Are You Experienced": {
+      "title": "Jimi Hendrix Experience: Are You Experienced",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Band: Songs From Big Pink": {
+      "title": "The Band: Songs From Big Pink",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Music From Big Pink -argh-": {
+      "title": "Music From Big Pink -argh-",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Bonzo Dog Doo-Dah Band": {
+      "title": "Bonzo Dog Doo Dah Band - 40th Anniversary Celebration",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 389277,
+        "releaseDate": "2006-05-22",
+        "voteAverage": 0,
+        "popularity": 0.3116
+      }
+    },
+    "The Watersons": {
+      "title": "The Watersons",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Frost & Fire \n\nClose: Os Mutantes": {
+      "title": "Frost & Fire \n\nClose: Os Mutantes",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Jimi Hendrix Experience- Are You Experienced": {
+      "title": "Jimi Hendrix Experience- Are You Experienced",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Tambourine Man\n\nCheers": {
+      "title": "Tambourine Man\n\nCheers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Velvet Underground: The": {
+      "title": "The Velvet Underground",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 543836,
+        "releaseDate": "2021-10-15",
+        "voteAverage": 6.787,
+        "popularity": 1.2222
+      }
+    },
+    "Leonard Cohen: Songs Of Leonard Cohen": {
+      "title": "Songs from the Life of Leonard Cohen",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 409908,
+        "releaseDate": "1988-07-15",
+        "voteAverage": 7,
+        "popularity": 0.2486
+      }
+    },
+    "Missed Love": {
+      "title": "Love, Sex, and Missed Connections",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 206916,
+        "releaseDate": "2013-06-05",
+        "voteAverage": 3.5,
+        "popularity": 1.4234
+      }
+    },
+    "Missed Love : Nice list": {
+      "title": "Missed Love : Nice list",
+      "validated": false,
+      "confidence": "low"
+    },
+    "In The Court of the Crimson King": {
+      "title": "In the Court of the Crimson King: King Crimson at 50",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 827484,
+        "releaseDate": "2022-10-19",
+        "voteAverage": 7.235,
+        "popularity": 0.4514
+      }
+    },
+    "The Allman Brothers Band": {
+      "title": "The Allman Brothers Band: 40",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 279249,
+        "releaseDate": "2009-03-26",
+        "voteAverage": 6.2,
+        "popularity": 0.1901
+      }
+    },
+    "Allman Brothers": {
+      "title": "The Allman Brothers Band: 40",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 279249,
+        "releaseDate": "2009-03-26",
+        "voteAverage": 6.2,
+        "popularity": 0.1901
+      }
+    },
+    "Big Bill": {
+      "title": "Big Bill Blues",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 774688,
+        "releaseDate": "1957-07-02",
+        "voteAverage": 0,
+        "popularity": 0.1542
+      }
+    },
+    "Here Are The Sonics": {
+      "title": "Here Are The Sonics",
+      "validated": false,
+      "confidence": "low"
+    },
+    "John Fahey": {
+      "title": "John Fahey: Live at Audimax Hamburg",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 255919,
+        "releaseDate": "1978-03-17",
+        "voteAverage": 0,
+        "popularity": 0.1171
+      }
+    },
+    "Blind Joe Death": {
+      "title": "In Search of Blind Joe Death: The Saga of John Fahey",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 142914,
+        "releaseDate": "2013-08-16",
+        "voteAverage": 7.5,
+        "popularity": 0.0168
+      }
+    },
+    "Muddy Waters": {
+      "title": "Muddy Waters",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1327167,
+        "releaseDate": "2016-10-22",
+        "voteAverage": 0,
+        "popularity": 0
+      }
+    },
+    "The Doors\n\nBest": {
+      "title": "The Best Of The Doors",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 579369,
+        "releaseDate": "2017-09-15",
+        "voteAverage": 0,
+        "popularity": 0.2881
+      }
+    },
+    "The Monks & The Seeds": {
+      "title": "The Monks & The Seeds",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Led Zeppellin": {
+      "title": "Led Zeppellin",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Ten Years After": {
+      "title": "Ten Years After",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1124542,
+        "releaseDate": "1969-05-01",
+        "voteAverage": 0,
+        "popularity": 0.1119
+      }
+    },
+    "Ten Years After\n\nCheers\n\nBob": {
+      "title": "Ten Years After\n\nCheers\n\nBob",
+      "validated": false,
+      "confidence": "low"
+    },
+    "first solo record,": {
+      "title": "first solo record,",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Rave On.": {
+      "title": "Rave On",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1257425,
+        "releaseDate": "2025-07-31",
+        "voteAverage": 5.3,
+        "popularity": 4.0464
+      }
+    },
+    "The Chirping Crickets": {
+      "title": "Classic Albums: The Chirping Crickets",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 706998,
+        "releaseDate": "2019-07-19",
+        "voteAverage": 7.2,
+        "popularity": 0.2707
+      }
+    },
+    "My Generation\n\nIt": {
+      "title": "My Generation",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 456053,
+        "releaseDate": "2004-12-03",
+        "voteAverage": 5.8,
+        "popularity": 0.154
+      }
+    },
+    "Buddy Holly's": {
+      "title": "Buddy Holly's",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Rave On": {
+      "title": "Rave On",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1257425,
+        "releaseDate": "2025-07-31",
+        "voteAverage": 5.3,
+        "popularity": 4.0464
+      }
+    },
+    "Jefferson Airplane": {
+      "title": "Jefferson Airplane: Fly",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 55034,
+        "releaseDate": "2004-07-20",
+        "voteAverage": 7.8,
+        "popularity": 0.1602
+      }
+    },
+    "Takes Off": {
+      "title": "Fish Takes Off",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 575850,
+        "releaseDate": "2019-02-10",
+        "voteAverage": 0,
+        "popularity": 0.0948
+      }
+    },
+    "Sorry to Janis": {
+      "title": "Sorry to Janis",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Blue Note": {
+      "title": "Blue Note",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1031096,
+        "releaseDate": "2022-09-23",
+        "voteAverage": 6,
+        "popularity": 0.526
+      }
+    },
+    "Takin' Off": {
+      "title": "Takin' It All Off",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 77967,
+        "releaseDate": "1987-10-03",
+        "voteAverage": 4.2,
+        "popularity": 0.5137
+      }
+    },
+    "Pete La Roca": {
+      "title": "Pete La Roca",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Joe Henderson - Page One": {
+      "title": "Joe Henderson - Page One",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Herbie Hancock - Takin' Off": {
+      "title": "Herbie Hancock - Takin' Off",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Open Sesame - Freddie Hubbard": {
+      "title": "Open Sesame - Freddie Hubbard",
+      "validated": false,
+      "confidence": "low"
+    },
+    "True Blue - Tina Brooks": {
+      "title": "True Blue - Tina Brooks",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Page One is tops": {
+      "title": "Page One is tops",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Takin Off": {
+      "title": "Takin' It All Off",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 77967,
+        "releaseDate": "1987-10-03",
+        "voteAverage": 4.2,
+        "popularity": 0.5137
+      }
+    },
+    "I completely forgot about Takin Off": {
+      "title": "I completely forgot about Takin Off",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Mord Jazz": {
+      "title": "Mord Jazz",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Mord Jazz We matched 1": {
+      "title": "Mord Jazz We matched 1",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Experienced\n\nRegards": {
+      "title": "Experienced\n\nRegards",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Velvet": {
+      "title": "The Velvet",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1162595,
+        "voteAverage": 0,
+        "popularity": 0.0214
+      }
+    },
+    "The Pipers at the Gates of Dawn": {
+      "title": "The Pipers at the Gates of Dawn",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Skip Spence": {
+      "title": "Skip Spence",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Oar \nThanks": {
+      "title": "Oar \nThanks",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Good Evening Richard": {
+      "title": "Good Evening Richard",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Grateful Dead": {
+      "title": "The Grateful Dead Movie",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 41384,
+        "releaseDate": "1977-06-02",
+        "voteAverage": 7.1,
+        "popularity": 0.3263
+      }
+    },
+    "Joe Gordon": {
+      "title": "Joe Gordon",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Introducing\nClifford Brown & Max Roach": {
+      "title": "Introducing\nClifford Brown & Max Roach",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Open Sesame\nThe Velvet Underground & Nico": {
+      "title": "Open Sesame\nThe Velvet Underground & Nico",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Stooge": {
+      "title": "The Stooge",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 58182,
+        "releaseDate": "1951-11-15",
+        "voteAverage": 6.636,
+        "popularity": 1.0075
+      }
+    },
+    "Bridget St John": {
+      "title": "Bridget St John",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Ask Me No Questions": {
+      "title": "If You Ask Me the Question",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 530935,
+        "releaseDate": "2017-01-01",
+        "voteAverage": 0,
+        "popularity": 0.0143
+      }
+    },
+    "Marianne Faithfull": {
+      "title": "Marianne Faithfull - No Exit",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1124383,
+        "releaseDate": "2016-01-01",
+        "voteAverage": 0,
+        "popularity": 0.0143
+      }
+    },
+    "Dana Gillespie": {
+      "title": "Dana Gillespie: As Blue As I Can Be",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 834025,
+        "voteAverage": 0,
+        "popularity": 0.0071
+      }
+    },
+    "Foolish Seasons": {
+      "title": "Foolish Seasons",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Kathe Green": {
+      "title": "Kathe Green",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Run The Length of Your Wildness\n\nNick Drake and The": {
+      "title": "Run The Length of Your Wildness\n\nNick Drake and The",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Girl Power": {
+      "title": "Girl Power",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 396333,
+        "releaseDate": "2014-08-09",
+        "voteAverage": 0,
+        "popularity": 0.2575
+      }
+    },
+    "Yes I'd": {
+      "title": "Yes I'd",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Ottilie Patterson": {
+      "title": "Ottilie Patterson",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Let me know what you think": {
+      "title": "Let me know what you think",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Stills and Nash": {
+      "title": "Crosby Stills and Nash  CSN",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1279799,
+        "releaseDate": "2012-01-01",
+        "voteAverage": 10,
+        "popularity": 0.087
+      }
+    },
+    "Joy Of": {
+      "title": "Joy of Flying",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 300380,
+        "releaseDate": "1977-09-09",
+        "voteAverage": 3.6,
+        "popularity": 0.6267
+      }
+    },
+    "Tim Buckley\n\nMany Thanks": {
+      "title": "Tim Buckley\n\nMany Thanks",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Doors\nThe Velvet Underground and Nico": {
+      "title": "The Doors\nThe Velvet Underground and Nico",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Velvet Underground and Nico \nThe Jimi Hendrix Experience": {
+      "title": "The Velvet Underground and Nico \nThe Jimi Hendrix Experience",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Are You Experienced \nLed Zeppelin": {
+      "title": "Are You Experienced \nLed Zeppelin",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Page One \nBubblers: Jackson": {
+      "title": "Page One \nBubblers: Jackson",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Francois Hardy": {
+      "title": "Francois Hardy",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Velvets": {
+      "title": "Listopad: A Memory of the Velvet Revolution",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 428146,
+        "releaseDate": "2014-10-24",
+        "voteAverage": 4,
+        "popularity": 0.6341
+      }
+    },
+    "Girl Called": {
+      "title": "A Girl Called Apple",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 566183,
+        "releaseDate": "1997-06-09",
+        "voteAverage": 0,
+        "popularity": 0.2423
+      }
+    },
+    "Wednesday Morning": {
+      "title": "Wednesday Morning",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1472116,
+        "voteAverage": 0,
+        "popularity": 0.0978
+      }
+    },
+    "Simon & Garfunkel": {
+      "title": "Simon and Garfunkel: Songs of America",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 366616,
+        "releaseDate": "1969-11-30",
+        "voteAverage": 0,
+        "popularity": 3.0649
+      }
+    },
+    "Piper at the Gates": {
+      "title": "Rock Milestones: Pink Floyd's The Piper at the Gates of Dawn",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 160949,
+        "releaseDate": "2006-07-31",
+        "voteAverage": 0,
+        "popularity": 0.0357
+      }
+    },
+    "Country Joe": {
+      "title": "A Day In The Life Of Country Joe And The Fish",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1618753,
+        "releaseDate": "1967-12-09",
+        "voteAverage": 0,
+        "popularity": 0.0453
+      }
+    },
+    "Electric Music\n\nOtis": {
+      "title": "Electric Music\n\nOtis",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Doors & Hendrix": {
+      "title": "The Doors & Hendrix",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Hello Richard\nGood Evening": {
+      "title": "Hello Richard\nGood Evening",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Court Of The Crimson King": {
+      "title": "In the Court of the Crimson King: King Crimson at 50",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 827484,
+        "releaseDate": "2022-10-19",
+        "voteAverage": 7.235,
+        "popularity": 0.4514
+      }
+    },
+    "Joni Mitchell The Stooges": {
+      "title": "Joni Mitchell The Stooges",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Excellent list and a fabulous": {
+      "title": "Excellent list and a fabulous",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Thanks": {
+      "title": "Thanks",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 250554,
+        "releaseDate": "2011-01-07",
+        "voteAverage": 1.2,
+        "popularity": 4.066
+      }
+    },
+    "The Beat Of The Earth": {
+      "title": "The Beat Of The Earth",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Korla Pandit": {
+      "title": "Soundies, Vol. 8: The Exotic World of Korla Pandit!",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 456850,
+        "releaseDate": "2007-01-01",
+        "voteAverage": 0,
+        "popularity": 0.0579
+      }
+    },
+    "The Grand Moghul Suite": {
+      "title": "The Grand Moghul Suite",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Arthur Lyman": {
+      "title": "Arthur Lyman",
+      "validated": false,
+      "confidence": "low"
+    },
+    "John Hurt": {
+      "title": "Interview with John Hurt",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 710707,
+        "releaseDate": "2007-01-22",
+        "voteAverage": 9,
+        "popularity": 0.2846
+      }
+    },
+    "Swingle Singers": {
+      "title": "Swingle Singers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Dylan and the Fabs": {
+      "title": "Dylan and the Fabs",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Listened to the Dylan": {
+      "title": "Listened to the Dylan",
+      "validated": false,
+      "confidence": "low"
+    },
+    "King Crimson- in the Court": {
+      "title": "In the Court of the Crimson King: King Crimson at 50",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 827484,
+        "releaseDate": "2022-10-19",
+        "voteAverage": 7.235,
+        "popularity": 0.4514
+      }
+    },
+    "Tons of Sobs": {
+      "title": "Tons of Sobs",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Frost": {
+      "title": "The Frost",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 39698,
+        "releaseDate": "2009-09-16",
+        "voteAverage": 4.429,
+        "popularity": 0.47
+      }
+    },
+    "Frost Music \n\nThanks": {
+      "title": "Frost Music \n\nThanks",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Btw shame I forgot this": {
+      "title": "Btw shame I forgot this",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Steppenwolf \n\nNext": {
+      "title": "Steppenwolf \n\nNext",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Staple Singers": {
+      "title": "The Staple Singers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Uncloudy Day\n\nBubblers": {
+      "title": "Uncloudy Day\n\nBubblers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "I think was also grooving to it": {
+      "title": "I think was also grooving to it",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Same Because it's 20 fucking years Still vexed": {
+      "title": "Same Because it's 20 fucking years Still vexed",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Cohen or Burrito Brothers": {
+      "title": "Cohen or Burrito Brothers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Songs of Leonard": {
+      "title": "Songs from the Life of Leonard Cohen",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 409908,
+        "releaseDate": "1988-07-15",
+        "voteAverage": 7,
+        "popularity": 0.2486
+      }
+    },
+    "The Gilded Palace": {
+      "title": "The Gilded Palace",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Tyrannosaurus Rex": {
+      "title": "Money or Cyber Money - The new Tyrannosaurus Rex",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 794781,
+        "releaseDate": "2019-03-31",
+        "voteAverage": 3.5,
+        "popularity": 0.0286
+      }
+    },
+    "Velvets & The Doors": {
+      "title": "Velvets & The Doors",
+      "validated": false,
+      "confidence": "low"
+    },
+    "You mean there are other methods": {
+      "title": "You mean there are other methods",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Here's Little Richard\nJimi Hendrix": {
+      "title": "Here's Little Richard\nJimi Hendrix",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Are You Experienced\nNick Drake": {
+      "title": "Are You Experienced\nNick Drake",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Five Leaves Left\nLeonard Cohen": {
+      "title": "Five Leaves Left\nLeonard Cohen",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Yeah not seeing much of either so far": {
+      "title": "Yeah not seeing much of either so far",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Sigh So sad": {
+      "title": "Sigh So sad",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Nico\nPink Floyd": {
+      "title": "Nico\nPink Floyd",
+      "validated": false,
+      "confidence": "low"
+    },
+    "In the Court": {
+      "title": "Order in the Court",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 742238,
+        "releaseDate": "1919-11-23",
+        "voteAverage": 0,
+        "popularity": 0.2825
+      }
+    },
+    "First Take\nOrnette Coleman": {
+      "title": "First Take\nOrnette Coleman",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Something Else": {
+      "title": "Something Else",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 862753,
+        "releaseDate": "2000-11-11",
+        "voteAverage": 0,
+        "popularity": 1.234
+      }
+    },
+    "Floor Elevs\nCan": {
+      "title": "Floor Elevs\nCan",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Simone\nDoors": {
+      "title": "Simone\nDoors",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Cohen\nLove\nMonks": {
+      "title": "Cohen\nLove\nMonks",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Captain Beehheart": {
+      "title": "Captain Beehheart",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Floor Elevators\nCheers": {
+      "title": "Floor Elevators\nCheers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Grand Funk": {
+      "title": "Grand Funk Railroad: Greatest Hits",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 782638,
+        "releaseDate": "2007-01-28",
+        "voteAverage": 0,
+        "popularity": 0.0261
+      }
+    },
+    "On Time": {
+      "title": "On Time",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 681394,
+        "releaseDate": "2008-02-14",
+        "voteAverage": 5.5,
+        "popularity": 0.0941
+      }
+    },
+    "The Yardbirds": {
+      "title": "Yardbirds",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 157378,
+        "releaseDate": "1992-04-07",
+        "voteAverage": 8,
+        "popularity": 2.4015
+      }
+    },
+    "Five Live Yardbirds": {
+      "title": "Five Live Yardbirds",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Mr Tambourine Man\n\nMissing": {
+      "title": "Mr Tambourine Man\n\nMissing",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Paul Butterfield Blues Band": {
+      "title": "The Paul Butterfield Blues Band – Bluesrock Legends Vol 2-Rockpalast",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1081881,
+        "voteAverage": 0,
+        "popularity": 0.0143
+      }
+    },
+    "Stan Getz & Joao Gilberto": {
+      "title": "Stan Getz & Joao Gilberto",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Astrud Gilberto Album": {
+      "title": "The Astrud Gilberto Album",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Composer of Desafinado Plays": {
+      "title": "The Composer of Desafinado Plays",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Antonio Carlos Jobim": {
+      "title": "Antonio Carlos Jobim In Concert",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 542724,
+        "releaseDate": "2006-08-22",
+        "voteAverage": 0,
+        "popularity": 0.0071
+      }
+    },
+    "The Piper At The Gates of Dawn": {
+      "title": "Rock Milestones: Pink Floyd's The Piper at the Gates of Dawn",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 160949,
+        "releaseDate": "2006-07-31",
+        "voteAverage": 0,
+        "popularity": 0.0357
+      }
+    },
+    "Nick Drake\nCheers": {
+      "title": "Nick Drake\nCheers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Five Years Left": {
+      "title": "Five Years Left",
+      "validated": false,
+      "confidence": "low"
+    },
+    "David Bowie\nLed Zeppelin \nThe Doors\nVelvet Underground\nKing Crimson": {
+      "title": "David Bowie\nLed Zeppelin \nThe Doors\nVelvet Underground\nKing Crimson",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Take It Easy With The Walker Brothers": {
+      "title": "Take It Easy With The Walker Brothers",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Presenting the Fabulous": {
+      "title": "Presenting the Fabulous",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Ooh Jackson": {
+      "title": "Ooh Jackson",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Blues Run the Game": {
+      "title": "Blues Run the Game: The Strange Tale of Jackson C. Frank",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 523397,
+        "releaseDate": "2023-10-28",
+        "voteAverage": 0,
+        "popularity": 0.3567
+      }
+    },
+    "Nice to see Dr John": {
+      "title": "Nice to see Dr John",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Gal Costa": {
+      "title": "Gal Costa Sings Tom Jobim",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 137263,
+        "releaseDate": "1999-01-01",
+        "voteAverage": 0,
+        "popularity": 0.0783
+      }
+    },
+    "Years with Ottilie": {
+      "title": "Years with Ottilie",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The above mentioned LPs lying on a table.": {
+      "title": "The above mentioned LPs lying on a table.",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Really enjoyed that Dana Gillespie album": {
+      "title": "Really enjoyed that Dana Gillespie album",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Try the Ottilie Patterson": {
+      "title": "Try the Ottilie Patterson",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Northern Ireland": {
+      "title": "Welcome to Northern Ireland",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1061044,
+        "releaseDate": "2020-11-21",
+        "voteAverage": 10,
+        "popularity": 0.0854
+      }
+    },
+    "It's just brilliant": {
+      "title": "It's just brilliant",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Really enjoying it": {
+      "title": "The man who really enjoys snacks",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1576911,
+        "voteAverage": 0,
+        "popularity": 0.0143
+      }
+    },
+    "Deep Purple": {
+      "title": "Deep Purple",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1433692,
+        "releaseDate": "2010-08-18",
+        "voteAverage": 2,
+        "popularity": 0.3813
+      }
+    },
+    "Shades Of Deep Purple": {
+      "title": "Shades Of Deep Purple",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Helloooo Richard": {
+      "title": "Helloooo Richard",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Gilded Palace of Sin": {
+      "title": "Gilded Palace of Sin",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Beach Boys": {
+      "title": "Beach Boys",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1027947,
+        "releaseDate": "2016-03-10",
+        "voteAverage": 0,
+        "popularity": 3.8541
+      }
+    },
+    "William Bell": {
+      "title": "William Bell",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Soul of a Bell": {
+      "title": "The Soul of a Bell",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Gilded Palace of Sin\nHi": {
+      "title": "Gilded Palace of Sin\nHi",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Dubliners\nHi": {
+      "title": "Dubliners\nHi",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Rod Stewart": {
+      "title": "Rod Stewart at the BBC",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 974288,
+        "releaseDate": "2014-05-10",
+        "voteAverage": 7.5,
+        "popularity": 0.1364
+      }
+    },
+    "An Old Raincoat Won't Ever Let You Down": {
+      "title": "An Old Raincoat Won't Ever Let You Down",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Beach Boys": {
+      "title": "The Beach Boys",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1265066,
+        "releaseDate": "2024-05-21",
+        "voteAverage": 6.576,
+        "popularity": 2.7564
+      }
+    },
+    "Surfin' Safari": {
+      "title": "Surfin' Safari",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Nick Drake is always an excellent choice": {
+      "title": "Nick Drake is always an excellent choice",
+      "validated": false,
+      "confidence": "low"
+    }
+  }
+}

@@ -1,0 +1,1335 @@
+{
+  "meta": {
+    "labeledAt": "2026-02-09T20:48:36.460Z",
+    "labeledBy": "claude-opus-4-6",
+    "fixtureFile": "books-reading.json",
+    "postCount": 181,
+    "labeledCount": 181,
+    "onTopicCount": 171,
+    "offTopicCount": 10,
+    "uniqueTitles": 167,
+    "confidence": {
+      "high": 130,
+      "medium": 23,
+      "low": 28
+    }
+  },
+  "labels": {
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3me7he3bflc2u": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "high",
+      "note": "Root prompt"
+    },
+    "at://did:plc:zjl4jdd3ge55ilkii635jf5v/app.bsky.feed.post/3me7s7ybfxk2x": {
+      "topics": [
+        "Harry Hole series"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:zhvk2ozp4t5sy2o7tdv3xugh/app.bsky.feed.post/3me7hwpg2pc2m": {
+      "topics": [
+        "The Index of Self-Destructive Acts"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:z45kcsfv3sti37slravrnp6r/app.bsky.feed.post/3me7qzuaggs2s": {
+      "topics": [
+        "Interior Chinatown",
+        "Elmore Leonard biography"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:yl3nx3d3ne2dsqp7x44oyzfk/app.bsky.feed.post/3me7hxvr3e22s": {
+      "topics": [
+        "The Hadacol Boogie"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ajxmukibgx5l5hz7vfdfkni7/app.bsky.feed.post/3meegcuwbyc2q": {
+      "topics": [
+        "The Hadacol Boogie"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction inheriting from parent"
+    },
+    "at://did:plc:yikkz3voqroxcczippqgjgjq/app.bsky.feed.post/3me7kvy3rf22m": {
+      "topics": [
+        "The Unselected Journals of Emma M. Lion"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:xpcnvwnznc3w6jvbk56jfk55/app.bsky.feed.post/3me7om5jup22y": {
+      "topics": [
+        "Cosmos",
+        "Hyperion"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3me7pqwwrtc2p": {
+      "topics": [
+        "Hyperion"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:xoccbtxncwt4eygksrmuurnh/app.bsky.feed.post/3me7ophuqcc2m": {
+      "topics": [
+        "Paper"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ploasagetz3dpeb65c3mw3lo/app.bsky.feed.post/3me7yh6lnoc2d": {
+      "topics": [
+        "Paper"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction inheriting from parent"
+    },
+    "at://did:plc:wta4djn357opdabbkavmkiny/app.bsky.feed.post/3me7irzbcwc22": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic but title unclear from URL alone"
+    },
+    "at://did:plc:wg3xo23fiyc3gzy3s2aci2ew/app.bsky.feed.post/3me7i4i3yuk2e": {
+      "topics": [
+        "The Immortal King Rao"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:wfquoh6mne2h7asoyye6sv5r/app.bsky.feed.post/3me7vuerkk22n": {
+      "topics": [
+        "1929"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:waon6wr4ayisvcckyq3pzpcg/app.bsky.feed.post/3me7n45nmkk25": {
+      "topics": [
+        "The Rise and Fall of the Galactic Empire"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:vvnj5w5wm6obypg27lkfzqi4/app.bsky.feed.post/3me7ht7x44s2m": {
+      "topics": [
+        "The Times"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:tw6r6ae6b3mbtdch2e75uiee/app.bsky.feed.post/3me7mkxgbyc2p": {
+      "topics": [
+        "The Alchemist",
+        "The Chronicles of Narnia",
+        "Mexican Gothic"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:syr4pyycnawifxcinafpkctu/app.bsky.feed.post/3me7hgtyyrc2u": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic image recommendation"
+    },
+    "at://did:plc:svx4kfhrx2ob62b3ukg5oo72/app.bsky.feed.post/3mealfz3hr22q": {
+      "topics": [
+        "Snake Eater",
+        "Sheepfarmer's Daughter"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:sorngos3h7pkryajp4lmozvv/app.bsky.feed.post/3me7hqra6ns2m": {
+      "topics": [
+        "The Breakdown of Democratic Regimes",
+        "The Way We Live Now"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:sgh5piujiv5cnxbxd2bskqx5/app.bsky.feed.post/3me7zrmi2ac2v": {
+      "topics": [
+        "Too Like the Lightning"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:se2eu7y2k56stza7bfnmydyg/app.bsky.feed.post/3meafwlakjc2l": {
+      "topics": [
+        "Amartya Sen memoir",
+        "Robbie Robertson memoir"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:u67iwjzqmzky6jfytpwagfz5/app.bsky.feed.post/3medzxyae7he3": {
+      "topics": [
+        "Robbie Robertson memoir"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Discusses Robbie Robertson audiobook, inherits from parent"
+    },
+    "at://did:plc:7uw2zbuqllmee5ntixixx7iz/app.bsky.feed.post/3meaimhyai22t": {
+      "topics": [
+        "The Last Waltz"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Discusses The Last Waltz in context of memoir discussion"
+    },
+    "at://did:plc:rjpavdkerritsqthr2li3bl3/app.bsky.feed.post/3me7wuv5q5k2n": {
+      "topics": [
+        "The Mirror and the Light",
+        "When The Going Was Good",
+        "Surrender"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:redhjtnmtt53wzhu3di4a7ps/app.bsky.feed.post/3me7jb5grws2y": {
+      "topics": [
+        "The Uninnocent"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:qkylgl7wxccptkz66bdwnt3w/app.bsky.feed.post/3me7vrnzjjs2e": {
+      "topics": [
+        "Life During Wartime"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3me7vuiyor22n": {
+      "topics": [
+        "Life During Wartime"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction inheriting from parent"
+    },
+    "at://did:plc:q6ny2dm3qz3jrnr46efjhhmy/app.bsky.feed.post/3mebype2xtk2h": {
+      "topics": [
+        "Born in Flames"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:pxloktgqh4ang6u5rrahgryt/app.bsky.feed.post/3me7ytt5bgs2r": {
+      "topics": [
+        "The Tennis Partner"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:pqbmfuugukc3xcjkphvgdizq/app.bsky.feed.post/3meajh7t5dk2r": {
+      "topics": [
+        "Tress of the Emerald Sea",
+        "The King in Yellow"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ploasagetz3dpeb65c3mw3lo/app.bsky.feed.post/3me7yceggfc2d": {
+      "topics": [
+        "1929",
+        "All Quiet on the Western Front"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:nygqyxsnkoenezgeofqmqhve/app.bsky.feed.post/3me7hwudfuc2g": {
+      "topics": [
+        "Folding the World"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:n622lnip64uhho554eynvyz2/app.bsky.feed.post/3me7ht7duvc23": {
+      "topics": [
+        "The Sisters"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:n5edmhf3rwn4keivog76dhdf/app.bsky.feed.post/3mefokki75k2d": {
+      "topics": [
+        "The Hidden Life of Trees",
+        "How To Stand Up To A Dictator",
+        "The Bird Hotel",
+        "1984"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:m7zlmwrem3g7xyp6ndds3ep4/app.bsky.feed.post/3me7w35srmc24": {
+      "topics": [
+        "Three Bags Full"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:lvjzy256l4q6loruuw6ifrnv/app.bsky.feed.post/3mecwinreqs2w": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic but specific title unclear"
+    },
+    "at://did:plc:kzh56l7wrybe3qt5plngs6a4/app.bsky.feed.post/3mecvcpqctc22": {
+      "topics": [
+        "The Elephant in the Room"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ku2436dxivashnqbem2kdq5g/app.bsky.feed.post/3meafr4vdec2h": {
+      "topics": [
+        "In Memoriam",
+        "When the Sea Came Alive"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:iu37cdzfdl6bf2tdgtmtwrao/app.bsky.feed.post/3me7hvnfthk2j": {
+      "topics": [
+        "Discworld",
+        "Small Gods",
+        "Night Watch"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:iu37cdzfdl6bf2tdgtmtwrao/app.bsky.feed.post/3me7hvnqibs2j": {
+      "topics": [
+        "Discworld"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Continues Discworld discussion"
+    },
+    "at://did:plc:eahlrjdxhlq6dige63qilpfx/app.bsky.feed.post/3me7yredk4s2p": {
+      "topics": [
+        "Wyrd Sisters"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:abpc6idgac4iri2lgxa3kykn/app.bsky.feed.post/3meafyb6g2k2r": {
+      "topics": [
+        "Unseen Academicals"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ezey5atji4w6bn7shqa6ba2v/app.bsky.feed.post/3mea2euyaxs24": {
+      "topics": [
+        "Night Watch"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:iskxjpqylfelo4ihsq5nddl2/app.bsky.feed.post/3me7voyc5h22b": {
+      "topics": [
+        "The Blue Machine"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:hzkwkcvqq2qfho4pv37vclre/app.bsky.feed.post/3me7u4oanx22e": {
+      "topics": [
+        "Cold Comfort Farm"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:hm43ouk563i5vahxyulvwmmm/app.bsky.feed.post/3me7xzu6nt3bv": {
+      "topics": [
+        "The Last Lion"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3me7ylbahsk2t": {
+      "topics": [
+        "The Last Lion"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction inheriting from parent"
+    },
+    "at://did:plc:nb6ezmsuwiejmtra72vc7ejj/app.bsky.feed.post/3meca5u5ops2j": {
+      "topics": [
+        "The Last Lion"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction inheriting from parent chain"
+    },
+    "at://did:plc:hh5bzym65ejzc655x3eaz7li/app.bsky.feed.post/3mebzesncmk23": {
+      "topics": [
+        "Kings and Pawns"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:hbivwcoxsjpo5ntbok7j2dza/app.bsky.feed.post/3me7vwgy7g225": {
+      "topics": [
+        "Reconstruction books",
+        "El Paso",
+        "Fatherland"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:hbivwcoxsjpo5ntbok7j2dza/app.bsky.feed.post/3me7wox4jjc25": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Off-topic meta discussion about Bluesky Lullaby posts"
+    },
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3me7ynbnqqk2t": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Off-topic social reply"
+    },
+    "at://did:plc:ajxmukibgx5l5hz7vfdfkni7/app.bsky.feed.post/3meegbm2je22q": {
+      "topics": [
+        "Fatherland"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:gefkfdnow24lo7xy7kx5glpx/app.bsky.feed.post/3meaomsyymk2j": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic audiobook recommendation with image"
+    },
+    "at://did:plc:gazfqxudgj4orawnq4fr5ot6/app.bsky.feed.post/3meahbmui2s2e": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic book with image, title in image alt text but truncated"
+    },
+    "at://did:plc:ga3nfoqbeoiur4hvx3pkfzqd/app.bsky.feed.post/3meagitesuc2g": {
+      "topics": [
+        "On Time and Water"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ezey5atji4w6bn7shqa6ba2v/app.bsky.feed.post/3mea2n7u7c224": {
+      "topics": [
+        "The Long Way to a Small, Angry Planet"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3meadabx53k2q": {
+      "topics": [
+        "The Long Way to a Small, Angry Planet"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction inheriting from parent"
+    },
+    "at://did:plc:ey2ngl4l3fymyibjzhjx4dcy/app.bsky.feed.post/3me7hw7s3ok2e": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic with external link/image"
+    },
+    "at://did:plc:epnmgr7xamghlbxwfp55vwxx/app.bsky.feed.post/3meahj6a6bc2y": {
+      "topics": [
+        "The Reformatory"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:e64uc4qzoca3wyfn3m7oe5zz/app.bsky.feed.post/3me7ihpheec2m": {
+      "topics": [
+        "Copaganda"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:dludkc5mmp4uvbbv2w23aqhw/app.bsky.feed.post/3me7hlq66wc23": {
+      "topics": [
+        "Valiant Ambition",
+        "A Tomb with a View",
+        "The Last Devil to Die"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:cssfhsusxg32xw2a732q6422/app.bsky.feed.post/3me7lg5m5ys2f": {
+      "topics": [
+        "Blue Mars"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3me7ltfhcj22u": {
+      "topics": [
+        "Blue Mars"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction inheriting from parent"
+    },
+    "at://did:plc:bpochv2a7osa6td2hz5dnsok/app.bsky.feed.post/3meaftn7his2q": {
+      "topics": [
+        "The Correspondent",
+        "Theo of Golden"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:bklnh4rn7lbfb3h3zwf3kakw/app.bsky.feed.post/3me7hv6j5kk2y": {
+      "topics": [
+        "Written on the Dark",
+        "Tigana"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:au5qv3b25vizzgfv2azlbqc5/app.bsky.feed.post/3meafk26owc2k": {
+      "topics": [
+        "In Search of Lost Time"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:as2d3pyjaxmuxnmfkdzz564h/app.bsky.feed.post/3me7vnlddhc2k": {
+      "topics": [
+        "Phantoms of a Beleaguered Republic"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ajxmukibgx5l5hz7vfdfkni7/app.bsky.feed.post/3meefrcwhks2q": {
+      "topics": [
+        "How to Change Your Mind"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ajxmukibgx5l5hz7vfdfkni7/app.bsky.feed.post/3meefrpkn5s2q": {
+      "topics": [
+        "How to Change Your Mind"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Link to Michael Pollan book, continues parent discussion"
+    },
+    "at://did:plc:ajxmukibgx5l5hz7vfdfkni7/app.bsky.feed.post/3meefzti3ec2q": {
+      "topics": [
+        "How to Change Your Mind"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Continues discussion of How to Change Your Mind"
+    },
+    "at://did:plc:7r442kzz223iddd4k2dradgy/app.bsky.feed.post/3me7hya34us24": {
+      "topics": [
+        "Katabasis"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:5p5nnby64p7iyqgaafu2zdz6/app.bsky.feed.post/3meapjbscz22v": {
+      "topics": [
+        "The Demon of Unrest"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:5nvm7kqccwflmn2cx7eogkpu/app.bsky.feed.post/3meab7ho2ok2w": {
+      "topics": [
+        "Company Wars"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:5nvm7kqccwflmn2cx7eogkpu/app.bsky.feed.post/3meab7hrmws2w": {
+      "topics": [
+        "Company Wars"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Continues Company Wars discussion"
+    },
+    "at://did:plc:5hogumhg7lvx6qlkw66iyxry/app.bsky.feed.post/3me7vw5lw222r": {
+      "topics": [
+        "What a Plant Knows",
+        "Quantum Gravity",
+        "My Murder"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:5eya6u6qgbygfuqckhvz3p6h/app.bsky.feed.post/3mecasqs67s2m": {
+      "topics": [
+        "The Anarchist Toolchest"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:54vyuywi67744pjuvezmcajk/app.bsky.feed.post/3me7icrlzrs23": {
+      "topics": [
+        "A Brief History of Ireland"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:52o2hepoixayw2jnaav3xixn/app.bsky.feed.post/3me7nimiau223": {
+      "topics": [
+        "A Brotherhood Betrayed",
+        "Bright Young Women"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:4kg7blgtzd76ehd5fmh65hii/app.bsky.feed.post/3mec2jntlos2v": {
+      "topics": [
+        "Golden Son"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:4i3uqplnfh4dwjfyvds3lfzr/app.bsky.feed.post/3me7nqfz3wp22": {
+      "topics": [
+        "Proof of My Innocence",
+        "Amsterdam",
+        "Man in the Queue"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:4i3uqplnfh4dwjfyvds3lfzr/app.bsky.feed.post/3me7nju42y42k": {
+      "topics": [
+        "Anna Karenina"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3me7prijio22p": {
+      "topics": [
+        "Anna Karenina"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction inheriting from parent"
+    },
+    "at://did:plc:4i3uqplnfh4dwjfyvds3lfzr/app.bsky.feed.post/3meafa4unxj22": {
+      "topics": [
+        "Anna Karenina"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Continues Anna Karenina discussion"
+    },
+    "at://did:plc:3p2a6mkhk5fsodsgwt76lb7y/app.bsky.feed.post/3me7hs6x4522z": {
+      "topics": [
+        "Jesse James: Last Rebel of the Civil War"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:3bwzeauywgod5akqh4lbj6dh/app.bsky.feed.post/3meam2ylgyk26": {
+      "topics": [
+        "Thursday Murder Club"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:34i4y6v44qponiq3bdkpzgwt/app.bsky.feed.post/3me7whamz4s2c": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic blog link with book list"
+    },
+    "at://did:plc:2hcglsn76hwdoh4g2tk2yrly/app.bsky.feed.post/3me7pmn3okk2c": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Image-only post, likely shows a book"
+    },
+    "at://did:plc:7uw2zbuqllmee5ntixixx7iz/app.bsky.feed.post/3meahjjywvs2t": {
+      "topics": [
+        "James"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3mecsxyy5222t": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "high",
+      "note": "Re-up post"
+    },
+    "at://did:plc:jqdpljwpa5dkvdwpxhldl7yi/app.bsky.feed.post/3mebzj2zd2k2j": {
+      "topics": [
+        "The Persians"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:upp6ezdsjityf5md7ezazsiw/app.bsky.feed.post/3mebzcbf7ik23": {
+      "topics": [
+        "There Is No Antimemetics Division"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3mebylaicms2y": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "high",
+      "note": "Re-up post"
+    },
+    "at://did:plc:2v2d5k3ca4hqat2e5k3pnvvt/app.bsky.feed.post/3meaipalsr22w": {
+      "topics": [
+        "Miracles and Wonder",
+        "Zealot",
+        "The Night Ship",
+        "Dead First",
+        "The Old Magic of Christmas"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ga3nfoqbeoiur4hvx3pkfzqd/app.bsky.feed.post/3meagjoncrs2g": {
+      "topics": [
+        "On Time and Water"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3meafgiikys2s": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "high",
+      "note": "Re-up post"
+    },
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3me7vkidxyc2n": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "high",
+      "note": "Re-up post"
+    },
+    "at://did:plc:yu3ahm2zi635p4hrjsmj7rcg/app.bsky.feed.post/3mectfh4a7k2i": {
+      "topics": [
+        "The Warehouse"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:yt5edu2dims5toq4nfqf27zp/app.bsky.feed.post/3mecuv23ofc26": {
+      "topics": [
+        "Rules of Civility"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:x7p45hdqeee3gefw4km2wwzd/app.bsky.feed.post/3mectr2lpms2m": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic with image/link but title not clear from text"
+    },
+    "at://did:plc:x4njipe2ivtvikhgh6asyc7t/app.bsky.feed.post/3mectifk4fs2w": {
+      "topics": [
+        "Victorian Psycho"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:uajjy5vj3omd2hlffps3hfi4/app.bsky.feed.post/3mectz5af5c2w": {
+      "topics": [
+        "Seven Years of Darkness"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:hatnh5kmjqvlpoh2clgprcpq/app.bsky.feed.post/3mecuqgvygk2c": {
+      "topics": [
+        "Mortal Republic"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:g5qylkyv6r2pux6sy7s742xm/app.bsky.feed.post/3mectsibkwc2i": {
+      "topics": [
+        "Shadow Ticket"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ezkno6wafokuoptlpxkqf5hd/app.bsky.feed.post/3mectibmoqc2i": {
+      "topics": [
+        "1929",
+        "Mercy in the City"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:cgnp7bkgr6ft4gzxmbe24wst/app.bsky.feed.post/3mecvi4cuj22r": {
+      "topics": [
+        "The Best and the Brightest"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:4zeoz7gwixhxfgmjhbxvlx5b/app.bsky.feed.post/3mectpok2as2i": {
+      "topics": [
+        "Helm"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:3tamsriphhwunbzxyg4cfytk/app.bsky.feed.post/3mectgfhai22p": {
+      "topics": [
+        "Every Living Thing"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:2otnxncsfcacsgggxxao27ke/app.bsky.feed.post/3mect47hbac26": {
+      "topics": [
+        "Runelord"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:xkwzkti3bxfjkqroqv47ucpz/app.bsky.feed.post/3mebzocuc5k2m": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Meta reaction to the thread"
+    },
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3mec2it55vc24": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Meta comment about reading plans"
+    },
+    "at://did:plc:upp6ezdsjityf5md7ezazsiw/app.bsky.feed.post/3mec2l5zlgs23": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Meta encouragement"
+    },
+    "at://did:plc:rtiqvrkkv6pytlgyesrlnpco/app.bsky.feed.post/3mebzojsz422n": {
+      "topics": [
+        "There Is No Antimemetics Division"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Context reference to Antimemetics Division (Tenet comparison)"
+    },
+    "at://did:plc:upp6ezdsjityf5md7ezazsiw/app.bsky.feed.post/3mebzpgq2o223": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Meta encouragement"
+    },
+    "at://did:plc:c3jcr6sypdvclobi4gnhff46/app.bsky.feed.post/3mec2kbbpvc2k": {
+      "topics": [
+        "There Is No Antimemetics Division"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Discusses Antimemetics Division audiobook experience"
+    },
+    "at://did:plc:upp6ezdsjityf5md7ezazsiw/app.bsky.feed.post/3mec2nh4rwk23": {
+      "topics": [
+        "There Is No Antimemetics Division"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Continues Antimemetics Division structure discussion"
+    },
+    "at://did:plc:4pitqccbnfmi7nl52wpo6jkr/app.bsky.feed.post/3mebzwkjp7s27": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Off-topic, discussing Tenet the movie not a book"
+    },
+    "at://did:plc:xbf6udiblnsa3n6cuilnkemb/app.bsky.feed.post/3mebzhop4ak2m": {
+      "topics": [
+        "The Iliad or The Poem of Force"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:x2xmijn2egk5g67u3cwkddzy/app.bsky.feed.post/3mecjmlyyzk25": {
+      "topics": [
+        "Hatchet"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3mecjrvbn2k2z": {
+      "topics": [
+        "Hatchet"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction inheriting Hatchet from parent"
+    },
+    "at://did:plc:vawl4cyvwuvxaneuwbm6r4cb/app.bsky.feed.post/3mec4obghuk2g": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic image post"
+    },
+    "at://did:plc:usldrq5nl7cazhcvjswhyby7/app.bsky.feed.post/3mebyojsvys2t": {
+      "topics": [
+        "Foundational Papers in Complexity Science"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ufg5lje5ca247w2sjmjbizoi/app.bsky.feed.post/3mecjiq452c2p": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic with bookshop.org link"
+    },
+    "at://did:plc:tfusco6lurhflepbh3g7m7s5/app.bsky.feed.post/3mec27iuecc24": {
+      "topics": [
+        "Howards End",
+        "Shy"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:sbudvynolzrsvgzl2ohaf24p/app.bsky.feed.post/3mebyrrsle22s": {
+      "topics": [
+        "East of Eden"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:oxzxwly7tl7rslhlt6ycns5u/app.bsky.feed.post/3mecjrn6qus2a": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic but title only in link"
+    },
+    "at://did:plc:ivn4xhafftaoizrtonzx6xio/app.bsky.feed.post/3mebzkztux22m": {
+      "topics": [
+        "Culture in the Age of Three Worlds"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Title from image alt text"
+    },
+    "at://did:plc:iirtgmzqcdy5lsiimgfyvwvu/app.bsky.feed.post/3mec3zfpydc2r": {
+      "topics": [
+        "Trump: A Tool Of US Hegemony?"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:hrkdu4d4xpt445eylzp3l6hf/app.bsky.feed.post/3mebymdx6zs25": {
+      "topics": [
+        "Jungle House",
+        "Costs of Connection"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:4gbfe34dbyxc7ewy5ie7uvml/app.bsky.feed.post/3mebyzqfgl22q": {
+      "topics": [
+        "The Expanse",
+        "The Haunting of Hill House",
+        "On Writing",
+        "The Book of the Long Sun"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:2srtjfmjwkonru5jc2fzvety/app.bsky.feed.post/3mebz5ngvh22b": {
+      "topics": [
+        "Cyberselfish"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:2v2d5k3ca4hqat2e5k3pnvvt/app.bsky.feed.post/3meaiqc5aek2w": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic but no specific title named"
+    },
+    "at://did:plc:zxxn7qzktg7j67xlaonhi344/app.bsky.feed.post/3meaiibqxb22s": {
+      "topics": [
+        "1929",
+        "The Correspondent"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:zumpzkgtpt7653cr76xgpgb4/app.bsky.feed.post/3meagmcc7w22x": {
+      "topics": [
+        "Fantastic Numbers and Where to Find Them"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:zavuojz56kezvkupedygclvl/app.bsky.feed.post/3mebtlr3jrc2o": {
+      "topics": [
+        "An Immense World"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:xkjgyy4iuyalmdq24yiny64v/app.bsky.feed.post/3meahv4iqnk24": {
+      "topics": [
+        "Nations Apart",
+        "A Land As God Made It"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:wub6hbmekh55fjfowotnj7oa/app.bsky.feed.post/3meafsv6e6c27": {
+      "topics": [
+        "Family of Spies"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:wtvd5ml2rsvp2kyhstqk2ban/app.bsky.feed.post/3meagdhwhf224": {
+      "topics": [
+        "The Expanse",
+        "Caliban's War"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Expanse series with Caliban's War image"
+    },
+    "at://did:plc:sn4mv7josnwewvvugv3y7s5l/app.bsky.feed.post/3meah6jahhk2k": {
+      "topics": [
+        "Nemesis Games"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:i7f6j2mbyjpaogyxo5tv4zxs/app.bsky.feed.post/3mealqv2ts22y": {
+      "topics": [
+        "The Expanse"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Continues Expanse discussion"
+    },
+    "at://did:plc:sn4mv7josnwewvvugv3y7s5l/app.bsky.feed.post/3meamx3kpq22g": {
+      "topics": [
+        "The Expanse"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Continues Expanse discussion"
+    },
+    "at://did:plc:i7f6j2mbyjpaogyxo5tv4zxs/app.bsky.feed.post/3meanla3c2k2m": {
+      "topics": [
+        "The Expanse"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Continues Expanse discussion"
+    },
+    "at://did:plc:nbpzgfifs3xz4etf3tufzkop/app.bsky.feed.post/3meagyj56l22x": {
+      "topics": [
+        "The Expanse"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Discusses Expanse audiobooks"
+    },
+    "at://did:plc:wfbgoverdsjfqceizhjs36xk/app.bsky.feed.post/3meagqsx3ws2j": {
+      "topics": [
+        "Crook Manifesto"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ttjajixe7ts5moiriruzy6df/app.bsky.feed.post/3meagl5svgc2t": {
+      "topics": [
+        "Cradle series"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:tcmg44lyde223llpnlmxjubf/app.bsky.feed.post/3meagalua3k2i": {
+      "topics": [
+        "Old Path White Clouds"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:tcmg44lyde223llpnlmxjubf/app.bsky.feed.post/3meagbavb722i": {
+      "topics": [
+        "Old Path White Clouds"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction inheriting from parent"
+    },
+    "at://did:plc:s53mqg2vdkmoumqmnv24qs4x/app.bsky.feed.post/3meafr34tqk2h": {
+      "topics": [
+        "Gold Diggers"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:s3i5nku6lfxq7mj3whwdogxl/app.bsky.feed.post/3meaflu7juk2s": {
+      "topics": [
+        "The Happiness Advantage",
+        "The Culture Map"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:qeeyjl5sqxi6dzupwtvzktgx/app.bsky.feed.post/3meaiay5s6k2e": {
+      "topics": [
+        "Humans",
+        "Vigil",
+        "The Splendid and the Vile"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:pgvzqognkz56ayewy5tqog6u/app.bsky.feed.post/3meafnwy4xk2u": {
+      "topics": [
+        "Being Here is Everything"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ohaitxudgc5adhtpczhrk2mx/app.bsky.feed.post/3meapsecli22l": {
+      "topics": [
+        "Sherlock Holmes",
+        "The Princess Bride"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:oebpsglaakip7afvovlzcrwa/app.bsky.feed.post/3meaptauqfs2e": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic with external link"
+    },
+    "at://did:plc:nbpzgfifs3xz4etf3tufzkop/app.bsky.feed.post/3meagxarljc2x": {
+      "topics": [
+        "Babel",
+        "The Golden Road",
+        "Punk Rock Jesus",
+        "Metaphors We Live By"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:n3gd7vwa4nu2hqta7xxdsvbk/app.bsky.feed.post/3meag4jessk2m": {
+      "topics": [
+        "The Passenger"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:mwmx7pxgan6susynih54osf3/app.bsky.feed.post/3meafrf3yn22w": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic image with 4 books, titles in image only"
+    },
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3meaia5l7gk2s": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Off-topic social arrangement"
+    },
+    "at://did:plc:mwmx7pxgan6susynih54osf3/app.bsky.feed.post/3mebenqd4ys2z": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Off-topic social reply"
+    },
+    "at://did:plc:mv6d7eytd3wst5gprzdd74hw/app.bsky.feed.post/3meaqkmoyxk2l": {
+      "topics": [
+        "The Spy Who Came in from the Cold",
+        "True Grit"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:m5nqhemghungfnhpmdkc5yar/app.bsky.feed.post/3meaflukgis2f": {
+      "topics": [
+        "Village of Secrets"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Title from image alt text"
+    },
+    "at://did:plc:koc3haimsa72xvt4xqzw7u2l/app.bsky.feed.post/3meafmhlkos2d": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic Amazon link only"
+    },
+    "at://did:plc:i7f6j2mbyjpaogyxo5tv4zxs/app.bsky.feed.post/3meak6dqvss2x": {
+      "topics": [
+        "Wind and Truth",
+        "There Is No Antimemetics Division"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3meal5x5ayk2h": {
+      "topics": [
+        "On the Calculation of Volume"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:gztltz6bcpdybn4oux3ii4i4/app.bsky.feed.post/3meafszcjo226": {
+      "topics": [
+        "1929"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:dyh2xi44ogg5fs6ydp6zwkdk/app.bsky.feed.post/3meafv2d7p223": {
+      "topics": [
+        "Political Fictions"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:dyh2xi44ogg5fs6ydp6zwkdk/app.bsky.feed.post/3meagdsqhnk23": {
+      "topics": [
+        "The Wayward Bus",
+        "God's Grace"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:dsluo4ff7pw2qw2vvbd4rlk3/app.bsky.feed.post/3meafpxgc7s22": {
+      "topics": [
+        "Dirty Snow"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:dgs6vbc7toclibggda25nwhy/app.bsky.feed.post/3meafsveihk2a": {
+      "topics": [
+        "Between Two Fires"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ahoweo62klfhigvz5y3jicu7/app.bsky.feed.post/3meagbg62ks24": {
+      "topics": [
+        "The Portrait of a Lady"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:7rr5eam2whrwlkqhwpwou4f3/app.bsky.feed.post/3meag7ltruc24": {
+      "topics": [
+        "Stalin's Architect"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Title from image alt text"
+    },
+    "at://did:plc:7gcd5hg35vqqutp7lv2wphir/app.bsky.feed.post/3meagnmljlc2p": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic reaction but no specific title"
+    },
+    "at://did:plc:5pwzpepcw2qcf4xi5bgrkult/app.bsky.feed.post/3meafmnunb22k": {
+      "topics": [
+        "The Lord of the Rings",
+        "The Globe",
+        "Rose Madder"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:u27cygy2ortpq65lvdxe5rlc/app.bsky.feed.post/3meaicq7sf22s": {
+      "topics": [
+        "Rose Madder"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:5pwzpepcw2qcf4xi5bgrkult/app.bsky.feed.post/3meal2cfsss2h": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic continuation"
+    },
+    "at://did:plc:4f5yturspi2zsu26y4ipsybw/app.bsky.feed.post/3meagvxtnkc2j": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic reaction"
+    },
+    "at://did:plc:2t3fw4qapt2so3sfjs3enrid/app.bsky.feed.post/3meaho2yye22s": {
+      "topics": [
+        "Hamnet"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:uivt3o5we475gtsjfy5amuxv/app.bsky.feed.post/3me7yig5cnk2q": {
+      "topics": [
+        "Swerve"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:eahlrjdxhlq6dige63qilpfx/app.bsky.feed.post/3me7yyazgls2p": {
+      "topics": [
+        "The Justice of Kings"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:csh6ozx2tdqgkwfkhocroqhs/app.bsky.feed.post/3me7wawihxk2o": {
+      "topics": [
+        "Lincoln in the Bardo"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:awgxoysewqudpafjy3ydoqsp/app.bsky.feed.post/3me7vyf5dr22x": {
+      "topics": [
+        "The Travelling Cat Chronicles",
+        "The Bell in the Lake"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    }
+  }
+}

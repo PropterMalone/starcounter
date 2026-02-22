@@ -1,0 +1,367 @@
+{
+  "meta": {
+    "fixture": "letterboxd",
+    "mediaType": "MOVIE",
+    "apiUrl": "https://f206ccf0.starcounter.pages.dev/api/validate",
+    "generatedAt": "2026-02-07T15:13:55.924Z",
+    "totalCandidates": 39,
+    "totalValidated": 23
+  },
+  "validations": {
+    "2011": {
+      "title": "2011",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 730339,
+        "releaseDate": "2020-08-20",
+        "voteAverage": 3.5,
+        "popularity": 0.0613
+      }
+    },
+    "Emmet Otter's Jug-Band Christmas": {
+      "title": "Emmet Otter's Jug-Band Christmas",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 20785,
+        "releaseDate": "1977-12-04",
+        "voteAverage": 6.9,
+        "popularity": 0.4809
+      }
+    },
+    "Great Muppet Caper": {
+      "title": "The Great Muppet Caper",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 14900,
+        "releaseDate": "1981-06-26",
+        "voteAverage": 6.902,
+        "popularity": 4.9806
+      }
+    },
+    "The Muppets": {
+      "title": "The Muppets",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 64328,
+        "releaseDate": "2011-11-23",
+        "voteAverage": 6.682,
+        "popularity": 5.004
+      }
+    },
+    "The Muppets 2011": {
+      "title": "The Muppets 2011",
+      "validated": false,
+      "confidence": "low"
+    },
+    "muppets from space": {
+      "title": "Muppets from Space",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 10208,
+        "releaseDate": "1999-07-14",
+        "voteAverage": 6.1,
+        "popularity": 4.8721
+      }
+    },
+    "Manhattan for me The wedding scene makes me": {
+      "title": "Manhattan for me The wedding scene makes me",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Muppet Movie": {
+      "title": "The Muppet Movie",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 11176,
+        "releaseDate": "1979-06-22",
+        "voteAverage": 7.2,
+        "popularity": 4.0215
+      }
+    },
+    "Jack Burns": {
+      "title": "Jack Burns",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Jerry Juhl": {
+      "title": "Jerry Juhl",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Christmas Carol": {
+      "title": "Christmas Carol",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 882580,
+        "releaseDate": "2022-12-07",
+        "voteAverage": 6.333,
+        "popularity": 1.0918
+      }
+    },
+    "Other Muppet": {
+      "title": "Other Muppet",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Muppet Christmas Carol": {
+      "title": "The Muppet Christmas Carol",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 10437,
+        "releaseDate": "1992-12-11",
+        "voteAverage": 7.44,
+        "popularity": 9.1693
+      }
+    },
+    "There can only be one": {
+      "title": "There Can Only Be One",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 878853,
+        "releaseDate": "2019-05-28",
+        "voteAverage": 4,
+        "popularity": 0.0357
+      }
+    },
+    "Rainbow Connection": {
+      "title": "Rainbow Connection",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Muppet Movie or Muppets Take Manhattan": {
+      "title": "The Muppet Movie or Muppets Take Manhattan",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Muppets Most Wanted": {
+      "title": "Muppets Most Wanted",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 145220,
+        "releaseDate": "2014-03-20",
+        "voteAverage": 6.312,
+        "popularity": 4.2249
+      }
+    },
+    "Muppet Treasure Island": {
+      "title": "Muppet Treasure Island",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 10874,
+        "releaseDate": "1996-02-16",
+        "voteAverage": 6.685,
+        "popularity": 5.676
+      }
+    },
+    "The Great Muppet Caper and The Muppet Christmas Carol": {
+      "title": "The Great Muppet Caper and The Muppet Christmas Carol",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Muppet Show": {
+      "title": "The Muppet Show",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1548113,
+        "releaseDate": "2026-02-03",
+        "voteAverage": 6.694,
+        "popularity": 63.5686
+      }
+    },
+    "charles grodin holding kermit hostage": {
+      "title": "charles grodin holding kermit hostage",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Great Muppet Caper": {
+      "title": "The Great Muppet Caper",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 14900,
+        "releaseDate": "1981-06-26",
+        "voteAverage": 6.902,
+        "popularity": 4.9806
+      }
+    },
+    "For me its The Great Muppet Caper": {
+      "title": "For me its The Great Muppet Caper",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Always the first one It was perfect": {
+      "title": "Always the first one It was perfect",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Yep": {
+      "title": "Yep",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1252361,
+        "releaseDate": "2022-08-28",
+        "voteAverage": 9,
+        "popularity": 0.061
+      }
+    },
+    "Muppet Christmas Carol": {
+      "title": "The Muppet Christmas Carol",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 10437,
+        "releaseDate": "1992-12-11",
+        "voteAverage": 7.44,
+        "popularity": 9.1693
+      }
+    },
+    "Muppet Movie": {
+      "title": "The Muppet Movie",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 11176,
+        "releaseDate": "1979-06-22",
+        "voteAverage": 7.2,
+        "popularity": 2.5294
+      }
+    },
+    "Absolutely the Great Muppet Caper": {
+      "title": "Absolutely the Great Muppet Caper",
+      "validated": false,
+      "confidence": "low"
+    },
+    "The Muppets Take Manhattan": {
+      "title": "The Muppets Take Manhattan",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 11899,
+        "releaseDate": "1984-06-27",
+        "voteAverage": 6.6,
+        "popularity": 1.7511
+      }
+    },
+    "The Muppet Movie or The Great Muppet Caper": {
+      "title": "The Muppet Movie or The Great Muppet Caper",
+      "validated": false,
+      "confidence": "low"
+    },
+    "All of them are god's perfect children": {
+      "title": "All of them are god's perfect children",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Life's like a movie, write your own ending.": {
+      "title": "Life's like a movie, write your own ending.",
+      "validated": false,
+      "confidence": "low"
+    },
+    "From Space": {
+      "title": "Mozart from Space",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 753569,
+        "releaseDate": "2022-07-15",
+        "voteAverage": 3.6,
+        "popularity": 0.8029
+      }
+    },
+    "The Muppet": {
+      "title": "The Muppet",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1451008,
+        "releaseDate": "2025-04-01",
+        "voteAverage": 0,
+        "popularity": 0.0143
+      }
+    },
+    "The Muppet movie": {
+      "title": "The Muppet Movie",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 11176,
+        "releaseDate": "1979-06-22",
+        "voteAverage": 7.2,
+        "popularity": 4.0215
+      }
+    },
+    "Thanks to the lovers the dreamers and you": {
+      "title": "Thanks to the lovers the dreamers and you",
+      "validated": false,
+      "confidence": "low"
+    },
+    "Agreed": {
+      "title": "And The Ocean Agreed",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 1319649,
+        "voteAverage": 7,
+        "popularity": 0.0143
+      }
+    },
+    "Muppets Christmas Carol": {
+      "title": "The Muppet Christmas Carol",
+      "validated": true,
+      "confidence": "medium",
+      "source": "tmdb",
+      "metadata": {
+        "id": 10437,
+        "releaseDate": "1992-12-11",
+        "voteAverage": 7.44,
+        "popularity": 9.1693
+      }
+    },
+    "well yes": {
+      "title": "Jane Doe: Yes, I Remember It Well",
+      "validated": true,
+      "confidence": "low",
+      "source": "tmdb",
+      "metadata": {
+        "id": 111177,
+        "releaseDate": "2006-01-14",
+        "voteAverage": 6,
+        "popularity": 0.398
+      }
+    }
+  }
+}
