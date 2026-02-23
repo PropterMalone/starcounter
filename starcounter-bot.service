@@ -1,0 +1,22 @@
+[Unit]
+Description=Starcounter Bluesky Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=karl
+WorkingDirectory=/home/karl/Projects/starcounter
+ExecStart=/usr/bin/node dist/bot-daemon.js
+EnvironmentFile=/home/karl/Projects/starcounter/.env
+Restart=always
+RestartSec=10
+TimeoutStopSec=300
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=starcounter-bot
+
+[Install]
+WantedBy=multi-user.target

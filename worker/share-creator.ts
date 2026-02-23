@@ -57,4 +57,30 @@ export async function createShareFromResult(
   return createShare(db, data);
 }
 
+const SHARE_API_URL = 'https://starcounter.pages.dev/api/share';
+
+/** Create share via HTTP POST to the Pages Function (for daemon deploys where D1 isn't available). */
+export async function createShareViaHttp(data: SharedData): Promise<string> {
+  const json = JSON.stringify(data);
+  const res = await fetch(SHARE_API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: json,
+  });
+
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`share API failed: ${res.status} ${body}`);
+  }
+
+  const result = (await res.json()) as { id: string };
+  return result.id;
+}
+
+/** Build SharedData from analysis result and POST to Pages Function. Returns share ID. */
+export async function createShareFromResultViaHttp(result: AnalysisResult): Promise<string> {
+  const data = buildSharedData(result);
+  return createShareViaHttp(data);
+}
+
 export type { SharedData, StoredPost };
