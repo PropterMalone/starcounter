@@ -9,6 +9,10 @@ public/bundle.js.map
 
 # Worker build output
 worker/dist/
+dist/
+
+# Bot data (local SQLite)
+data/
 
 # Cloudflare Workers
 .wrangler/

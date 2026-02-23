@@ -17,7 +17,7 @@ import {
   hasRepliedToMention,
   saveRepliedMention,
 } from './state';
-import { createShareFromResult } from './share-creator';
+import { createShareFromResult, createShareFromResultViaHttp } from './share-creator';
 import { buildShareUrl } from './reply-composer';
 import { analyzeThread } from '../src/lib/analyze';
 import type { AnalysisResult } from '../src/lib/analyze';
@@ -205,11 +205,14 @@ function buildReply(
   return record;
 }
 
+type ShareCreator = (db: D1Database, result: AnalysisResult) => Promise<string>;
+
 /** Process a single mention target: analyze thread or return cached result. */
 async function processTarget(
   target: MentionTarget,
   db: D1Database,
-  client: BlueskyClient
+  client: BlueskyClient,
+  createShareFn: ShareCreator = createShareFromResult
 ): Promise<ProcessResult> {
   // Check for cached result regardless of media type.
   // Re-analysis for different media types can be triggered manually via the web app.
@@ -227,7 +230,7 @@ async function processTarget(
       return { status: 'skipped', reason: `thread too large: ${result.postCount} posts` };
     }
 
-    const shareId = await createShareFromResult(db, result);
+    const shareId = await createShareFn(db, result);
 
     await saveProcessedThread(db, {
       threadUri: target.rootUri,
@@ -247,7 +250,8 @@ async function processTarget(
 /** Main bot loop: authenticate, fetch notifications, process mentions, reply. */
 export async function runBot(
   env: Env,
-  debug = false
+  debug = false,
+  options?: { useHttpShares?: boolean }
 ): Promise<{ processed: number; errors: number; debug?: string[] }> {
   const log: string[] = [];
   const auth = new SessionManager({
@@ -317,7 +321,10 @@ export async function runBot(
     }
 
     log.push(`processing ${target.rootUri}`);
-    const result = await processTarget(target, env.SHARED_RESULTS, client);
+    const shareCreator: ShareCreator = options?.useHttpShares
+      ? (_db, r) => createShareFromResultViaHttp(r)
+      : createShareFromResult;
+    const result = await processTarget(target, env.SHARED_RESULTS, client, shareCreator);
     log.push(`result: ${result.status}${result.status === 'error' ? ' - ' + result.error : ''}`);
 
     if (result.status === 'error') {
@@ -328,6 +335,8 @@ export async function runBot(
 
     if (result.status === 'skipped') {
       console.log(`skipped ${target.rootUri}: ${result.reason}`);
+      // Mark as replied so we don't re-attempt on every cycle
+      await saveRepliedMention(env.SHARED_RESULTS, target.mentionUri, target.rootUri, Date.now());
       continue;
     }
 
