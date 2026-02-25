@@ -244,19 +244,76 @@ describe('ShareButton', () => {
       consoleSpy.mockRestore();
     });
 
-    it('should show error feedback when clipboard fails', async () => {
-      vi.mocked(navigator.clipboard.writeText).mockRejectedValueOnce(new Error('Clipboard error'));
+    it('should fall back to execCommand when clipboard API fails', async () => {
+      vi.mocked(navigator.clipboard.writeText).mockRejectedValueOnce(
+        new Error('user activation expired')
+      );
+      document.execCommand = vi.fn().mockReturnValue(true);
 
       shareButton.setStateProvider(() => makeState());
-
-      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
       button.click();
       await new Promise((resolve) => setTimeout(resolve, 10));
 
-      expect(feedbackText.textContent).toContain('Failed');
+      expect(document.execCommand).toHaveBeenCalledWith('copy');
+      expect(feedbackText.textContent).toContain('copied');
+    });
 
-      consoleSpy.mockRestore();
+    it('should show manual copy URL when execCommand returns false', async () => {
+      vi.mocked(navigator.clipboard.writeText).mockRejectedValueOnce(
+        new Error('user activation expired')
+      );
+      document.execCommand = vi.fn().mockReturnValue(false);
+
+      shareButton.setStateProvider(() => makeState());
+
+      button.click();
+      await new Promise((resolve) => setTimeout(resolve, 10));
+
+      expect(feedbackText.textContent).toContain('copy it manually');
+      const input = feedbackText.querySelector('input.share-url-fallback') as HTMLInputElement;
+      expect(input).not.toBeNull();
+      expect(input.value).toContain('?s=abc12345');
+    });
+
+    it('should show manual copy URL when execCommand throws', async () => {
+      vi.mocked(navigator.clipboard.writeText).mockRejectedValueOnce(
+        new Error('user activation expired')
+      );
+      document.execCommand = vi.fn().mockImplementation(() => {
+        throw new Error('not supported');
+      });
+
+      shareButton.setStateProvider(() => makeState());
+
+      button.click();
+      await new Promise((resolve) => setTimeout(resolve, 10));
+
+      expect(feedbackText.textContent).toContain('copy it manually');
+    });
+
+    it('should auto-hide manual copy URL feedback after delay', async () => {
+      vi.useFakeTimers();
+
+      vi.mocked(navigator.clipboard.writeText).mockRejectedValueOnce(
+        new Error('user activation expired')
+      );
+      document.execCommand = vi.fn().mockReturnValue(false);
+
+      shareButton.setStateProvider(() => makeState());
+
+      button.click();
+      // Flush only the microtasks (fetch + clipboard), not the setTimeout timers
+      await vi.advanceTimersByTimeAsync(0);
+
+      expect(feedback.style.display).toBe('block');
+
+      // Advance past the 10s + 300ms fadeout
+      vi.advanceTimersByTime(10300);
+
+      expect(feedback.style.display).toBe('none');
+
+      vi.useRealTimers();
     });
   });
 

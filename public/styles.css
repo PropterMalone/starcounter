@@ -482,6 +482,17 @@ header h1 {
   animation: fadeOutDown 0.3s ease-out forwards;
 }
 
+.share-url-fallback {
+  font-size: 0.85rem;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  width: 18rem;
+  max-width: 60vw;
+}
+
 /* Original prompt post */
 #original-prompt {
   margin-bottom: 1.5rem;

@@ -21,7 +21,7 @@ export type ShareState = {
  */
 export class ShareButton {
   private stateProvider: (() => ShareState) | null = null;
-  private feedbackTimeout: ReturnType<typeof setTimeout> | null = null;
+  private feedbackTimeout: ReturnType<typeof setTimeout> | undefined;
 
   constructor(
     private button: HTMLButtonElement,
@@ -94,8 +94,12 @@ export class ShareButton {
       const baseUrl = `${window.location.origin}${window.location.pathname}`;
       const url = `${baseUrl}?s=${id}`;
 
-      await navigator.clipboard.writeText(url);
-      this.showFeedback('Link copied to clipboard!');
+      const copied = await this.copyToClipboard(url);
+      if (copied) {
+        this.showFeedback('Link copied to clipboard!');
+      } else {
+        this.showFeedbackWithUrl('Link ready (copy it manually):', url);
+      }
     } catch (error) {
       console.error('Failed to share results:', error);
       this.showFeedback('Failed to share results');
@@ -105,13 +109,76 @@ export class ShareButton {
   }
 
   /**
+   * Try clipboard API first, fall back to execCommand, return false if both fail.
+   * The clipboard API can reject after an async gap (user activation expires).
+   */
+  private async copyToClipboard(text: string): Promise<boolean> {
+    // Try modern clipboard API
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      // Expected on Firefox after async gap — fall through to legacy
+    }
+
+    // Legacy fallback: temporary textarea + execCommand
+    try {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      return ok;
+    } catch {
+      return false;
+    }
+  }
+
+  /**
+   * Show feedback with a selectable URL input so user can copy manually.
+   * Used when both clipboard methods fail.
+   */
+  private showFeedbackWithUrl(message: string, url: string): void {
+    clearTimeout(this.feedbackTimeout);
+
+    this.feedback.classList.remove('fade-out');
+    this.feedbackText.innerHTML = '';
+
+    const label = document.createElement('span');
+    label.textContent = message + ' ';
+    this.feedbackText.appendChild(label);
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.readOnly = true;
+    input.value = url;
+    input.className = 'share-url-fallback';
+    input.addEventListener('click', () => input.select());
+    this.feedbackText.appendChild(input);
+
+    this.feedback.style.display = 'block';
+
+    // Select the URL automatically so a quick Ctrl+C works
+    requestAnimationFrame(() => input.select());
+
+    // Longer timeout since user needs to manually copy
+    this.feedbackTimeout = setTimeout(() => {
+      this.feedback.classList.add('fade-out');
+      setTimeout(() => {
+        this.feedback.style.display = 'none';
+        this.feedback.classList.remove('fade-out');
+      }, 300);
+    }, 10000);
+  }
+
+  /**
    * Show feedback message temporarily with smooth fadeout
    */
   private showFeedback(message: string): void {
-    // Clear any existing timeout
-    if (this.feedbackTimeout) {
-      clearTimeout(this.feedbackTimeout);
-    }
+    clearTimeout(this.feedbackTimeout);
 
     // Reset state: remove fadeout class and show
     this.feedback.classList.remove('fade-out');
