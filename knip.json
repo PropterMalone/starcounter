@@ -1,0 +1,20 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "src/main.ts",
+    "worker/bot-daemon.ts",
+    "worker/bot.ts",
+    "functions/_middleware.ts",
+    "functions/api/**/*.ts",
+    "scripts/bundle-worker.js",
+    "scripts/generate-og-image.js",
+    "src/workers/sentiment-worker.ts",
+    "**/*.test.ts"
+  ],
+  "project": ["src/**/*.ts", "worker/**/*.ts", "functions/**/*.ts", "scripts/**/*.js"],
+  "ignoreDependencies": ["fallow"],
+  "ignoreExportsUsedInFile": true,
+  "rules": {
+    "types": "warn"
+  }
+}

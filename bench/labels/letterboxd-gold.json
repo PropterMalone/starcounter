@@ -1,0 +1,346 @@
+{
+  "meta": {
+    "labeledAt": "2026-02-07T15:01:25.999Z",
+    "labeledBy": "claude-opus-4-6",
+    "fixtureFile": "letterboxd.json",
+    "postCount": 48,
+    "labeledCount": 48,
+    "onTopicCount": 35,
+    "offTopicCount": 13,
+    "uniqueTitles": 9,
+    "confidence": {
+      "high": 24,
+      "medium": 1,
+      "low": 23
+    }
+  },
+  "labels": {
+    "at://did:plc:ebczxy5kirxbwzoippkbb2jf/app.bsky.feed.post/3me2bgtq4es2d": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "high",
+      "note": "Root prompt"
+    },
+    "at://did:plc:xf5q3tpdhsbfizxrfm56opgo/app.bsky.feed.post/3me2bqnzkbc2i": {
+      "topics": [
+        "Emmet Otter's Jug-Band Christmas"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:suxcolqmy2i4hsnfzgbvo7ro/app.bsky.feed.post/3me2gb5ccos2a": {
+      "topics": [
+        "The Great Muppet Caper"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ro5xrazoq22cz4pikxfbqdjb/app.bsky.feed.post/3me2hx2bhqc2s": {
+      "topics": [
+        "The Muppets"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:rezrsq6ys3hm6o4a44ohdbrl/app.bsky.feed.post/3me2xerpjpk2m": {
+      "topics": [
+        "Muppets from Space"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:hd3raioogvhj4ng5xpzlpnbu/app.bsky.feed.post/3me2drybegc2b": {
+      "topics": [
+        "The Muppets Take Manhattan"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ebczxy5kirxbwzoippkbb2jf/app.bsky.feed.post/3me2bgus2cs2d": {
+      "topics": [
+        "The Muppet Movie"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:donj2cjjnuvfsrhzyie7uogp/app.bsky.feed.post/3me2bkbyhm22x": {
+      "topics": [
+        "The Muppet Movie",
+        "The Great Muppet Caper",
+        "The Muppet Christmas Carol"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:axyfu72ogrioocxodkrk3bz7/app.bsky.feed.post/3me2rhrvyfk2a": {
+      "topics": [
+        "The Muppet Movie",
+        "The Great Muppet Caper"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:izsmq5t2g6otkrk3m4cvxutz/app.bsky.feed.post/3me2o7nyjok2n": {
+      "topics": [
+        "The Muppet Movie",
+        "The Muppet Christmas Carol"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:gueelk2k64t7lwkc3ghvw7nh/app.bsky.feed.post/3me2japjdus24": {
+      "topics": [
+        "The Muppet Movie"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:tmc426oprfnlz3hd5xgy5z2d/app.bsky.feed.post/3me2hvtggfc2i": {
+      "topics": [
+        "The Muppet Movie"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:irfkx5ebunfbtqcwdx6ljada/app.bsky.feed.post/3me2hfwwuws2f": {
+      "topics": [
+        "The Muppet Movie",
+        "The Muppets Take Manhattan"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:37vlyutujr3j6cvbxij6bfdx/app.bsky.feed.post/3me2h6tdy7c2n": {
+      "topics": [
+        "Muppet Treasure Island",
+        "Muppets Most Wanted"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:l2bvvzvzohlmhjhaezxmlfgm/app.bsky.feed.post/3me2gdokloc2e": {
+      "topics": [
+        "The Great Muppet Caper",
+        "The Muppet Christmas Carol"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:7tvperqvsmjgfdvixmoesimt/app.bsky.feed.post/3me2e7ssauc2n": {
+      "topics": [
+        "The Great Muppet Caper",
+        "The Muppets"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:m4jxvgpreufcq5vqu6eg5kgg/app.bsky.feed.post/3me2cpubchk2n": {
+      "topics": [
+        "The Great Muppet Caper"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:c3dke53pszc7z6562jkhxwku/app.bsky.feed.post/3me2comcoh22n": {
+      "topics": [
+        "The Muppet Movie"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:v3x5fwavwz7cu4wetdubfu4f/app.bsky.feed.post/3me2cdn6itc2m": {
+      "topics": [
+        "The Muppet Movie",
+        "The Muppet Christmas Carol"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:lhtrxvn52xb5ofnzyeatruky/app.bsky.feed.post/3me2c4glltc2m": {
+      "topics": [
+        "The Great Muppet Caper"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:jm7tdjepc37awspemg2mjm36/app.bsky.feed.post/3me2bs46f2k2n": {
+      "topics": [
+        "The Muppet Movie",
+        "The Great Muppet Caper",
+        "The Muppets Take Manhattan",
+        "The Muppets"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:3bioumfx3w3vom3w7ojmhdpp/app.bsky.feed.post/3me2bm4os2c2h": {
+      "topics": [
+        "Muppets from Space",
+        "The Muppets"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:dbso4s5kxgnewcxfodbtjkvg/app.bsky.feed.post/3me2bizkhfk2q": {
+      "topics": [
+        "The Muppet Movie"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:hieu5evszvpm4bgfhme727ie/app.bsky.feed.post/3me2dfi4z622b": {
+      "topics": [
+        "The Muppet Christmas Carol"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:vkugtro7rzphwot6gv6agayt/app.bsky.feed.post/3me2bo3lvxs23": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Image-only reply, likely shows a specific movie"
+    },
+    "at://did:plc:sakjfv47e6fpamwjeqkvckjl/app.bsky.feed.post/3me2dfxko222q": {
+      "topics": [
+        "The Muppet Movie",
+        "The Muppet Christmas Carol"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction to parent"
+    },
+    "at://did:plc:xwmjld7q5llhnqgcjkdm7mpv/app.bsky.feed.post/3me2j26eg2c2j": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Empty post"
+    },
+    "at://did:plc:xkemx2t2v2554xdu52zbraca/app.bsky.feed.post/3me2dsstco226": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic reply but title not recognized"
+    },
+    "at://did:plc:jzvmsjzbzgqmzbpybwyt7sqo/app.bsky.feed.post/3me2dhg55e22z": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Empty post"
+    },
+    "at://did:plc:jwilaewhsmf6pcwrozo2vxn2/app.bsky.feed.post/3me2bwn2bos2p": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Empty post"
+    },
+    "at://did:plc:few57okq2f5gqq6xzbvewtq7/app.bsky.feed.post/3me2lw6ukvk2m": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Empty post"
+    },
+    "at://did:plc:b3ay6ptu7tblzo6jx7gd5ghq/app.bsky.feed.post/3me2bskfx6k2o": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic reply but title not recognized"
+    },
+    "at://did:plc:4duw6pwkeeqs46mf57yatvfk/app.bsky.feed.post/3me2jmjkgd22d": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Empty post"
+    },
+    "at://did:plc:3ppeodqse5jrghzvytdxpgoy/app.bsky.feed.post/3me2ejexy7c25": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Empty post"
+    },
+    "at://did:plc:tbp3gwl465bw4rzrxv2gtqxj/app.bsky.feed.post/3me3gd4roac24": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic reply but title not recognized"
+    },
+    "at://did:plc:2vggw353ry7m7evexotkaxko/app.bsky.feed.post/3me2lxzuot22z": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic reply but title not recognized"
+    },
+    "at://did:plc:4duw6pwkeeqs46mf57yatvfk/app.bsky.feed.post/3me2jlmg3ec2d": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Empty post"
+    },
+    "at://did:plc:lxgdcpenet3dscptkd7xa7xu/app.bsky.feed.post/3me2ihsq5ps2l": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Empty post"
+    },
+    "at://did:plc:nfa2llztri3am4ip43a6ripn/app.bsky.feed.post/3me2htaejns2d": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Empty post"
+    },
+    "at://did:plc:4ajyy3jksgj7fhpwgmhjydfk/app.bsky.feed.post/3me2hdld5cc2g": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Empty post"
+    },
+    "at://did:plc:fiukarpkp3frhyooza4scmgi/app.bsky.feed.post/3me2chzhai22q": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic reply but title not recognized"
+    },
+    "at://did:plc:rqiuqg7gdydd3tjfkfsfzp6v/app.bsky.feed.post/3me2cemxrks2n": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Empty post"
+    },
+    "at://did:plc:j7evhuu4orepn4rr43zkr7en/app.bsky.feed.post/3me2cd64yms2d": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses muppet movies without naming one"
+    },
+    "at://did:plc:sagfhdufwgtxkukog2pxo4h4/app.bsky.feed.post/3me2bpn6odk2v": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic reply but title not recognized"
+    },
+    "at://did:plc:gq3nvclmszjgub3sk7w5zo3d/app.bsky.feed.post/3me2bj44u4k2d": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "low",
+      "note": "Empty post"
+    },
+    "at://did:plc:tnn3agxiqy6m7ik7mp6xwkqw/app.bsky.feed.post/3me3itsydus2d": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic reply but title not recognized"
+    },
+    "at://did:plc:jm7tdjepc37awspemg2mjm36/app.bsky.feed.post/3me2djdkd3s2n": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses muppet movies without naming one"
+    },
+    "at://did:plc:ebczxy5kirxbwzoippkbb2jf/app.bsky.feed.post/3me2bwnj6as2d": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "On-topic reply but title not recognized"
+    }
+  }
+}

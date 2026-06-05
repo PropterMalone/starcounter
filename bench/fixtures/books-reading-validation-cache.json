@@ -1,0 +1,1692 @@
+{
+  "meta": {
+    "fixture": "books-reading",
+    "generatedAt": "2026-02-09T21:09:38.616Z",
+    "mode": "self-validation",
+    "categoryWords": [],
+    "candidateCount": 280,
+    "validatedCount": 210
+  },
+  "validations": {
+    "1929": {
+      "title": "1929",
+      "normalizedTitle": "1929",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Jo Nesbo the Harry Hole": {
+      "title": "Jo Nesbo The Harry Hole",
+      "normalizedTitle": "jo nesbo the harry hole",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Christopher Beha": {
+      "title": "Christopher Beha",
+      "normalizedTitle": "christopher beha",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Interior Chinatown": {
+      "title": "Interior Chinatown",
+      "normalizedTitle": "interior chinatown",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Interior Chinatown,": {
+      "title": "Interior Chinatown",
+      "normalizedTitle": "interior chinatown",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Charles Yu": {
+      "title": "Charles Yu",
+      "normalizedTitle": "charles yu",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Elmore Leonard": {
+      "title": "Elmore Leonard",
+      "normalizedTitle": "elmore leonard",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Unselected Journals of Emma": {
+      "title": "Unselected Journals Of Emma",
+      "normalizedTitle": "unselected journals of emma",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Rereading Cosmos by Carl Sagan": {
+      "title": "Rereading Cosmos By Carl Sagan",
+      "normalizedTitle": "rereading cosmos by carl sagan",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Hyperion by Dan Simmons": {
+      "title": "Hyperion By Dan Simmons",
+      "normalizedTitle": "hyperion by dan simmons",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Mark Kurlansky": {
+      "title": "Mark Kurlansky",
+      "normalizedTitle": "mark kurlansky",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Thanks for the lead": {
+      "title": "Thanks For The Lead",
+      "normalizedTitle": "thanks for the lead",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Rural Electrification Admin": {
+      "title": "Rural Electrification Admin",
+      "normalizedTitle": "rural electrification admin",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Immortal King Rao": {
+      "title": "Immortal King Rao",
+      "normalizedTitle": "immortal king rao",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "How It Shattered a Nation": {
+      "title": "How It Shattered A Nation",
+      "normalizedTitle": "how it shattered a nation",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Andrew Ross Sorkin": {
+      "title": "Andrew Ross Sorkin",
+      "normalizedTitle": "andrew ross sorkin",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Like Nemek": {
+      "title": "Like Nemek",
+      "normalizedTitle": "like nemek",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "non-fiction": {
+      "title": "Non-fiction",
+      "normalizedTitle": "nonfiction",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Times": {
+      "title": "Times",
+      "normalizedTitle": "times",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Adam Nagourney": {
+      "title": "Adam Nagourney",
+      "normalizedTitle": "adam nagourney",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Times-Newspa": {
+      "title": "Times-newspa",
+      "normalizedTitle": "timesnewspa",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Alchemist": {
+      "title": "Alchemist",
+      "normalizedTitle": "alchemist",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Chronicles of Narnia\nMexican Gothic": {
+      "title": "Chronicles Of Narnia Mexican Gothic",
+      "normalizedTitle": "chronicles of narnia mexican gothic",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "You might try this one": {
+      "title": "You Might Try This One",
+      "normalizedTitle": "you might try this one",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Snake Eater": {
+      "title": "Snake Eater",
+      "normalizedTitle": "snake eater",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Elizabeth Moon": {
+      "title": "Elizabeth Moon",
+      "normalizedTitle": "elizabeth moon",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Linz and Stepan": {
+      "title": "Linz And Stepan",
+      "normalizedTitle": "linz and stepan",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Way We Live Now": {
+      "title": "Way We Live Now",
+      "normalizedTitle": "way we live now",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Too Like The Lightning": {
+      "title": "Too Like The Lightning",
+      "normalizedTitle": "too like the lightning",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Amartya Sen": {
+      "title": "Amartya Sen",
+      "normalizedTitle": "amartya sen",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Robbie Robertson": {
+      "title": "Robbie Robertson",
+      "normalizedTitle": "robbie robertson",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Martin Scorcese": {
+      "title": "Martin Scorcese",
+      "normalizedTitle": "martin scorcese",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Insomnia by Robbie Robertson": {
+      "title": "Insomnia By Robbie Robertson",
+      "normalizedTitle": "insomnia by robbie robertson",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Surrender by Bono": {
+      "title": "Surrender By Bono",
+      "normalizedTitle": "surrender by bono",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "good messed-up sci-fi.": {
+      "title": "Good Messed-up Sci-fi.",
+      "normalizedTitle": "good messedup scifi",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Tennis Partner": {
+      "title": "Tennis Partner",
+      "normalizedTitle": "tennis partner",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Tress of the Emerald Sea": {
+      "title": "Tress Of The Emerald Sea",
+      "normalizedTitle": "tress of the emerald sea",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Brian Sanderson": {
+      "title": "Brian Sanderson",
+      "normalizedTitle": "brian sanderson",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The King in Yellow": {
+      "title": "King In Yellow",
+      "normalizedTitle": "king in yellow",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Robert Chambers": {
+      "title": "Robert Chambers",
+      "normalizedTitle": "robert chambers",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Lee Young": {
+      "title": "Lee Young",
+      "normalizedTitle": "lee young",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Folding the World": {
+      "title": "Folding The World",
+      "normalizedTitle": "folding the world",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Folding the World by foldingtheworldnetbook": {
+      "title": "Folding The World By Foldingtheworldnetbook",
+      "normalizedTitle": "folding the world by foldingtheworldnetbook",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Hidden Life of Trees": {
+      "title": "Hidden Life Of Trees",
+      "normalizedTitle": "hidden life of trees",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "How To Stand Up To": {
+      "title": "How To Stand Up To",
+      "normalizedTitle": "how to stand up to",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Bird Hotel": {
+      "title": "Bird Hotel",
+      "normalizedTitle": "bird hotel",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Joyce Maynard": {
+      "title": "Joyce Maynard",
+      "normalizedTitle": "joyce maynard",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Big One": {
+      "title": "Big One",
+      "normalizedTitle": "big one",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Eviatar Zerubavel\n\nAs": {
+      "title": "Eviatar Zerubavel As",
+      "normalizedTitle": "eviatar zerubavel as",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Olivia Dean": {
+      "title": "Olivia Dean",
+      "normalizedTitle": "olivia dean",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Eviatar Zerubavel": {
+      "title": "Eviatar Zerubavel",
+      "normalizedTitle": "eviatar zerubavel",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Fiction: In Memoriam": {
+      "title": "Fiction: In Memoriam",
+      "normalizedTitle": "fiction in memoriam",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Garrett Graff\n\nBoth": {
+      "title": "Garrett Graff Both",
+      "normalizedTitle": "garrett graff both",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Terry Pratchett": {
+      "title": "Terry Pratchett",
+      "normalizedTitle": "terry pratchett",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Small Gods": {
+      "title": "Small Gods",
+      "normalizedTitle": "small gods",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Night Watch": {
+      "title": "Night Watch",
+      "normalizedTitle": "night watch",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Truth": {
+      "title": "Truth",
+      "normalizedTitle": "truth",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "fantasy,": {
+      "title": "Fantasy,",
+      "normalizedTitle": "fantasy",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Wyrd Sisters": {
+      "title": "Wyrd Sisters",
+      "normalizedTitle": "wyrd sisters",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Tiffany Aching": {
+      "title": "Tiffany Aching",
+      "normalizedTitle": "tiffany aching",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Unseen Academicals": {
+      "title": "Unseen Academicals",
+      "normalizedTitle": "unseen academicals",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Yes Night Watch is excellent": {
+      "title": "Yes Night Watch Is Excellent",
+      "normalizedTitle": "yes night watch is excellent",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Blue Machine": {
+      "title": "Blue Machine",
+      "normalizedTitle": "blue machine",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "bskyappprofiletena": {
+      "title": "Bskyappprofiletena",
+      "normalizedTitle": "bskyappprofiletena",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Cold Comfort Farm": {
+      "title": "Cold Comfort Farm",
+      "normalizedTitle": "cold comfort farm",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "William Manchester": {
+      "title": "William Manchester",
+      "normalizedTitle": "william manchester",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Paul Reid": {
+      "title": "Paul Reid",
+      "normalizedTitle": "paul reid",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "TY Sir": {
+      "title": "Ty Sir",
+      "normalizedTitle": "ty sir",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Kings and Pawns": {
+      "title": "Kings And Pawns",
+      "normalizedTitle": "kings and pawns",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Howard Bryant": {
+      "title": "Howard Bryant",
+      "normalizedTitle": "howard bryant",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Mariner Books": {
+      "title": "Mariner Books",
+      "normalizedTitle": "mariner books",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Professionally: Eric Foner": {
+      "title": "Professionally: Eric Foner",
+      "normalizedTitle": "professionally eric foner",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Jazmine Ulloa": {
+      "title": "Jazmine Ulloa",
+      "normalizedTitle": "jazmine ulloa",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "El Paso": {
+      "title": "El Paso",
+      "normalizedTitle": "el paso",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Robert Harris": {
+      "title": "Robert Harris",
+      "normalizedTitle": "robert harris",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Fatherland": {
+      "title": "Fatherland",
+      "normalizedTitle": "fatherland",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Bluesky Lullaby": {
+      "title": "Bluesky Lullaby",
+      "normalizedTitle": "bluesky lullaby",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Very well done audiobook": {
+      "title": "Very Well Done Audiobook",
+      "normalizedTitle": "very well done audiobook",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Mark Shaw's": {
+      "title": "Mark Shaw's",
+      "normalizedTitle": "mark shaws",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Thomas Merton": {
+      "title": "Thomas Merton",
+      "normalizedTitle": "thomas merton",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "On Time and Water": {
+      "title": "On Time And Water",
+      "normalizedTitle": "on time and water",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Angry Planet  by Becky Chambers": {
+      "title": "Angry Planet By Becky Chambers",
+      "normalizedTitle": "angry planet by becky chambers",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Reformatory by Tananarive Due": {
+      "title": "Reformatory By Tananarive Due",
+      "normalizedTitle": "reformatory by tananarive due",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Reading Copaganda": {
+      "title": "Reading Copaganda",
+      "normalizedTitle": "reading copaganda",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "By Alec Karakatsanis": {
+      "title": "By Alec Karakatsanis",
+      "normalizedTitle": "by alec karakatsanis",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Valiant Ambition": {
+      "title": "Valiant Ambition",
+      "normalizedTitle": "valiant ambition",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Nathaniel Philbrick": {
+      "title": "Nathaniel Philbrick",
+      "normalizedTitle": "nathaniel philbrick",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "American Revolution": {
+      "title": "American Revolution",
+      "normalizedTitle": "american revolution",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Tomb with a View": {
+      "title": "Tomb With A View",
+      "normalizedTitle": "tomb with a view",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "A Tomb with a View": {
+      "title": "Tomb With A View",
+      "normalizedTitle": "tomb with a view",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Peter Ross": {
+      "title": "Peter Ross",
+      "normalizedTitle": "peter ross",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Last Devil to Die": {
+      "title": "Last Devil To Die",
+      "normalizedTitle": "last devil to die",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Richard Osman": {
+      "title": "Richard Osman",
+      "normalizedTitle": "richard osman",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Blue Mars": {
+      "title": "Blue Mars",
+      "normalizedTitle": "blue mars",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Kim Stanley Robinson's Red Mars": {
+      "title": "Kim Stanley Robinson's Red Mars",
+      "normalizedTitle": "kim stanley robinsons red mars",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Written on the Dark": {
+      "title": "Written On The Dark",
+      "normalizedTitle": "written on the dark",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Finding Time Again": {
+      "title": "Finding Time Again",
+      "normalizedTitle": "finding time again",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Phantoms of a Beleaguered Republic": {
+      "title": "Phantoms Of A Beleaguered Republic",
+      "normalizedTitle": "phantoms of a beleaguered republic",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Michael Pollan": {
+      "title": "Michael Pollan",
+      "normalizedTitle": "michael pollan",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "michaelpollancombookshow-to": {
+      "title": "Michaelpollancombookshow-to",
+      "normalizedTitle": "michaelpollancombookshowto",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Rebecca Kuang": {
+      "title": "Rebecca Kuang",
+      "normalizedTitle": "rebecca kuang",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Katabasis": {
+      "title": "Katabasis",
+      "normalizedTitle": "katabasis",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Company Wars": {
+      "title": "Company Wars",
+      "normalizedTitle": "company wars",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Quantum Gravity by Carlo Rovelli": {
+      "title": "Quantum Gravity By Carlo Rovelli",
+      "normalizedTitle": "quantum gravity by carlo rovelli",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "My Murder by Katie Williams": {
+      "title": "My Murder By Katie Williams",
+      "normalizedTitle": "my murder by katie williams",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Good Bones by Maggie Smith": {
+      "title": "Good Bones By Maggie Smith",
+      "normalizedTitle": "good bones by maggie smith",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Anarchist Toolchest \n\nNot": {
+      "title": "Anarchist Toolchest Not",
+      "normalizedTitle": "anarchist toolchest not",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Michael Cannell": {
+      "title": "Michael Cannell",
+      "normalizedTitle": "michael cannell",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Red Rising": {
+      "title": "Red Rising",
+      "normalizedTitle": "red rising",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Proof of My Innocence": {
+      "title": "Proof Of My Innocence",
+      "normalizedTitle": "proof of my innocence",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Man In the Queue": {
+      "title": "Man In The Queue",
+      "normalizedTitle": "man in the queue",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Anna Karenina": {
+      "title": "Anna Karenina",
+      "normalizedTitle": "anna karenina",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Finishing the Thursday Murder Club": {
+      "title": "Finishing The Thursday Murder Club",
+      "normalizedTitle": "finishing the thursday murder club",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "There is no Antimemetics Division": {
+      "title": "There Is No Antimemetics Division",
+      "normalizedTitle": "there is no antimemetics division",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "There is no antimemetics division": {
+      "title": "There Is No Antimemetics Division",
+      "normalizedTitle": "there is no antimemetics division",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Tenet obviously made perfect sense": {
+      "title": "Tenet Obviously Made Perfect Sense",
+      "normalizedTitle": "tenet obviously made perfect sense",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Re-upping for the weekenders:": {
+      "title": "Re-upping For The Weekenders:",
+      "normalizedTitle": "reupping for the weekenders",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Elaine Pagels'": {
+      "title": "Elaine Pagels'",
+      "normalizedTitle": "elaine pagels",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Reza Aslan's": {
+      "title": "Reza Aslan's",
+      "normalizedTitle": "reza aslans",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Linda Raedisch": {
+      "title": "Linda Raedisch",
+      "normalizedTitle": "linda raedisch",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "MIRACLES AND WONDER": {
+      "title": "Miracles And Wonder",
+      "normalizedTitle": "miracles and wonder",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "ZEALOT\n\nTHE NIGHT SHIP": {
+      "title": "Zealot The Night Ship",
+      "normalizedTitle": "zealot the night ship",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "DEAD FIRST": {
+      "title": "Dead First",
+      "normalizedTitle": "dead first",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "THE OLD MAGIC OF CHRISTMAS": {
+      "title": "Old Magic Of Christmas",
+      "normalizedTitle": "old magic of christmas",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Re-upping for the evening crowd:": {
+      "title": "Re-upping For The Evening Crowd:",
+      "normalizedTitle": "reupping for the evening crowd",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Warehouse": {
+      "title": "Warehouse",
+      "normalizedTitle": "warehouse",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Warehouse: A Novel": {
+      "title": "Warehouse: A Novel",
+      "normalizedTitle": "warehouse a novel",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "imagessquarespace-cdncomcontentv16 good series": {
+      "title": "Imagessquarespace-cdncomcontentv16 Good Series",
+      "normalizedTitle": "imagessquarespacecdncomcontentv16 good series",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Victorian Psycho by Virginia Feito": {
+      "title": "Victorian Psycho By Virginia Feito",
+      "normalizedTitle": "victorian psycho by virginia feito",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Mortal Republic": {
+      "title": "Mortal Republic",
+      "normalizedTitle": "mortal republic",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Shadow Ticket": {
+      "title": "Shadow Ticket",
+      "normalizedTitle": "shadow ticket",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Hicks Mc": {
+      "title": "Hicks Mc",
+      "normalizedTitle": "hicks mc",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Found David Halberstam": {
+      "title": "Found David Halberstam",
+      "normalizedTitle": "found david halberstam",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Best & the Brightest": {
+      "title": "Best & The Brightest",
+      "normalizedTitle": "best the brightest",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Viet Nam": {
+      "title": "Viet Nam",
+      "normalizedTitle": "viet nam",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Helm by Sarah Hall": {
+      "title": "Helm By Sarah Hall",
+      "normalizedTitle": "helm by sarah hall",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Runelord series via libraryHoopla audiobooks": {
+      "title": "Runelord Series Via Libraryhoopla Audiobooks",
+      "normalizedTitle": "runelord series via libraryhoopla audiobooks",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Libby on the Tenet": {
+      "title": "Libby On The Tenet",
+      "normalizedTitle": "libby on the tenet",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Temporal pincer movement": {
+      "title": "Temporal Pincer Movement",
+      "normalizedTitle": "temporal pincer movement",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Simone Weil": {
+      "title": "Simone Weil",
+      "normalizedTitle": "simone weil",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Hatchet": {
+      "title": "Hatchet",
+      "normalizedTitle": "hatchet",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "My own fifth-grader loves it": {
+      "title": "My Own Fifth-grader Loves It",
+      "normalizedTitle": "my own fifthgrader loves it",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Howards End": {
+      "title": "Howards End",
+      "normalizedTitle": "howards end",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Thomas Ligotti": {
+      "title": "Thomas Ligotti",
+      "normalizedTitle": "thomas ligotti",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Mary Rodgers's": {
+      "title": "Mary Rodgers's",
+      "normalizedTitle": "mary rodgerss",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "John Steinbeck's": {
+      "title": "John Steinbeck's",
+      "normalizedTitle": "john steinbecks",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "East of Eden": {
+      "title": "East Of Eden",
+      "normalizedTitle": "east of eden",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "East of Eden.": {
+      "title": "East Of Eden",
+      "normalizedTitle": "east of eden",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "this today wwwversobookscomproducts188": {
+      "title": "This Today Wwwversobookscomproducts188",
+      "normalizedTitle": "this today wwwversobookscomproducts188",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Amazon Kindle: Trump": {
+      "title": "Amazon Kindle: Trump",
+      "normalizedTitle": "amazon kindle trump",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Tool Of": {
+      "title": "Tool Of",
+      "normalizedTitle": "tool of",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Jungle House": {
+      "title": "Jungle House",
+      "normalizedTitle": "jungle house",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Costs of Connection": {
+      "title": "Costs Of Connection",
+      "normalizedTitle": "costs of connection",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Jungle House Costs of Connection": {
+      "title": "Jungle House Costs Of Connection",
+      "normalizedTitle": "jungle house costs of connection",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Haunting of Hill House": {
+      "title": "Haunting Of Hill House",
+      "normalizedTitle": "haunting of hill house",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "On Writing": {
+      "title": "On Writing",
+      "normalizedTitle": "on writing",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Barracoon": {
+      "title": "Barracoon",
+      "normalizedTitle": "barracoon",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Cyberselfish by Paulina Borsook": {
+      "title": "Cyberselfish By Paulina Borsook",
+      "normalizedTitle": "cyberselfish by paulina borsook",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "the correspondent": {
+      "title": "Correspondent",
+      "normalizedTitle": "correspondent",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Ed Yong": {
+      "title": "Ed Yong",
+      "normalizedTitle": "ed yong",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Nations Apart": {
+      "title": "Nations Apart",
+      "normalizedTitle": "nations apart",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Land As God Made It": {
+      "title": "Land As God Made It",
+      "normalizedTitle": "land as god made it",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Caliban's War": {
+      "title": "Caliban's War",
+      "normalizedTitle": "calibans war",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Book cover of Caliban's War": {
+      "title": "Book Cover Of Caliban's War",
+      "normalizedTitle": "book cover of calibans war",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Nemesis Games": {
+      "title": "Nemesis Games",
+      "normalizedTitle": "nemesis games",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Crook Manifesto": {
+      "title": "Crook Manifesto",
+      "normalizedTitle": "crook manifesto",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Crook Manifesto by": {
+      "title": "Crook Manifesto By",
+      "normalizedTitle": "crook manifesto by",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Will Wight": {
+      "title": "Will Wight",
+      "normalizedTitle": "will wight",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Old Path White Clouds": {
+      "title": "Old Path White Clouds",
+      "normalizedTitle": "old path white clouds",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The audiobook is phenomenal": {
+      "title": "Audiobook Is Phenomenal",
+      "normalizedTitle": "audiobook is phenomenal",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Gold Diggers by Sanjena Sathian": {
+      "title": "Gold Diggers By Sanjena Sathian",
+      "normalizedTitle": "gold diggers by sanjena sathian",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Happiness Advantage": {
+      "title": "Happiness Advantage",
+      "normalizedTitle": "happiness advantage",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Shawn Achor": {
+      "title": "Shawn Achor",
+      "normalizedTitle": "shawn achor",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Marie Darrieussecq": {
+      "title": "Marie Darrieussecq",
+      "normalizedTitle": "marie darrieussecq",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Translated by Perry Hueston": {
+      "title": "Translated By Perry Hueston",
+      "normalizedTitle": "translated by perry hueston",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Sherlock Holmes": {
+      "title": "Sherlock Holmes",
+      "normalizedTitle": "sherlock holmes",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "William Goldman's": {
+      "title": "William Goldman's",
+      "normalizedTitle": "william goldmans",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Princess Bride": {
+      "title": "Princess Bride",
+      "normalizedTitle": "princess bride",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "A book on light olafureliassonnetpublication": {
+      "title": "Book On Light Olafureliassonnetpublication",
+      "normalizedTitle": "book on light olafureliassonnetpublication",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Or the Australian": {
+      "title": "Or The Australian",
+      "normalizedTitle": "or the australian",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Fiction: Babel": {
+      "title": "Fiction: Babel",
+      "normalizedTitle": "fiction babel",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Kuang\nNon": {
+      "title": "Kuang Non",
+      "normalizedTitle": "kuang non",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Golden Road": {
+      "title": "Golden Road",
+      "normalizedTitle": "golden road",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "William Dalrymple \nGraphic": {
+      "title": "William Dalrymple Graphic",
+      "normalizedTitle": "william dalrymple graphic",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Punk Rock Jesus": {
+      "title": "Punk Rock Jesus",
+      "normalizedTitle": "punk rock jesus",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Sean Murphy\nRe": {
+      "title": "Sean Murphy Re",
+      "normalizedTitle": "sean murphy re",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Metaphors We Live By": {
+      "title": "Metaphors We Live By",
+      "normalizedTitle": "metaphors we live by",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "George Lakoff & Mark Johnson": {
+      "title": "George Lakoff & Mark Johnson",
+      "normalizedTitle": "george lakoff mark johnson",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Passenger": {
+      "title": "Passenger",
+      "normalizedTitle": "passenger",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Germany and Trump's America": {
+      "title": "Germany And Trump's America",
+      "normalizedTitle": "germany and trumps america",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "True Grit": {
+      "title": "True Grit",
+      "normalizedTitle": "true grit",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "acod08xvSsdh": {
+      "title": "Acod08xvssdh",
+      "normalizedTitle": "acod08xvssdh",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Wind and Truth": {
+      "title": "Wind And Truth",
+      "normalizedTitle": "wind and truth",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "On the Calculation of Volume'": {
+      "title": "On The Calculation Of Volume'",
+      "normalizedTitle": "on the calculation of volume",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "DIRTY SNOW": {
+      "title": "Dirty Snow",
+      "normalizedTitle": "dirty snow",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "DIRTY SNOW Simenon": {
+      "title": "Dirty Snow Simenon",
+      "normalizedTitle": "dirty snow simenon",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Henry James": {
+      "title": "Henry James",
+      "normalizedTitle": "henry james",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Portrait of a Lady": {
+      "title": "Portrait Of A Lady",
+      "normalizedTitle": "portrait of a lady",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Portrait of a Lady.": {
+      "title": "Portrait Of A Lady",
+      "normalizedTitle": "portrait of a lady",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Deyan Sujuc": {
+      "title": "Deyan Sujuc",
+      "normalizedTitle": "deyan sujuc",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Lord of the Rings": {
+      "title": "Lord Of The Rings",
+      "normalizedTitle": "lord of the rings",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Stephen King's Rose Madder": {
+      "title": "Stephen King's Rose Madder",
+      "normalizedTitle": "stephen kings rose madder",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Rose Madder": {
+      "title": "Rose Madder",
+      "normalizedTitle": "rose madder",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Fascinating": {
+      "title": "Fascinating",
+      "normalizedTitle": "fascinating",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Swerve by Steven Greenblatt": {
+      "title": "Swerve By Steven Greenblatt",
+      "normalizedTitle": "swerve by steven greenblatt",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Richard Swan": {
+      "title": "Richard Swan",
+      "normalizedTitle": "richard swan",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Lincoln in the Bardo": {
+      "title": "Lincoln In The Bardo",
+      "normalizedTitle": "lincoln in the bardo",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "The Travelling Cat Chronicles": {
+      "title": "Travelling Cat Chronicles",
+      "normalizedTitle": "travelling cat chronicles",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Hiro Arikawa": {
+      "title": "Hiro Arikawa",
+      "normalizedTitle": "hiro arikawa",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Sister Bells Trilogy": {
+      "title": "Sister Bells Trilogy",
+      "normalizedTitle": "sister bells trilogy",
+      "validated": true,
+      "confidence": "high",
+      "mediaType": "OTHER"
+    },
+    "Jo Nesbo the Harry Hole series": {
+      "validated": false
+    },
+    "The Index of Self Destructive Acts": {
+      "validated": false
+    },
+    "James Lee Burke's The Hadacol Boogie": {
+      "validated": false
+    },
+    "James Lee Burke's The Hadacol Boogie Outstanding": {
+      "validated": false
+    },
+    "So so good": {
+      "validated": false
+    },
+    "Inside the Greatest Crash in Wall Street History": {
+      "validated": false
+    },
+    "The Rise and Fall of the Galactic Empire": {
+      "validated": false
+    },
+    "The Times by NYT journalist Adam Nagourney wwwamazoncomTimes-Newspa": {
+      "validated": false
+    },
+    "The Alchemist Chronicles of Narnia Mexican Gothic": {
+      "validated": false
+    },
+    "The Breakdown of Democratic Regimes\nFor": {
+      "validated": false
+    },
+    "The Last Waltz with Martin Scorsese and Robbie Robertson": {
+      "validated": false
+    },
+    "The Mirror and the Light by Hilary Mantel": {
+      "validated": false
+    },
+    "When The Going Was Good by Graydon Carter": {
+      "validated": false
+    },
+    "The Uninnocent:Notes on Violence and Mercy by Katharine Blake\nJust": {
+      "validated": false
+    },
+    "Life During Wartime by Lucius Shepard": {
+      "validated": false
+    },
+    "Currently Born in Flames by Bench Ansfield": {
+      "validated": false
+    },
+    "Doctor's Story of Friendship and Loss by Abraham Verghese": {
+      "validated": false
+    },
+    "눈물을 마시는 새": {
+      "validated": false
+    },
+    "All Quiet on the Western Front": {
+      "validated": false
+    },
+    "The Sisters by Jonas Hassen Khemiri": {
+      "validated": false
+    },
+    "Three Bags Full by Leonie Swann": {
+      "validated": false
+    },
+    "The Elephant in the Room: Silence and Denial in Everyday Life": {
+      "validated": false
+    },
+    "Loud": {
+      "validated": false
+    },
+    "The silence is so loud\nAnd everything's unspoken now": {
+      "validated": false
+    },
+    "Alice Winn\n\nNonfiction: When the Sea Came Alive: An Oral History": {
+      "validated": false
+    },
+    "The Last Lion: Winston Spencer Churchill: Alone": {
+      "validated": false
+    },
+    "Kings and Pawns: Jackie Robinson and Paul Robeson in America": {
+      "validated": false
+    },
+    "Just started Kings and Pawns by Howard Bryant": {
+      "validated": false
+    },
+    "that's so very kind of you thanks": {
+      "validated": false
+    },
+    "Beneath the Mask of Holiness: Thomas Merton": {
+      "validated": false
+    },
+    "The Long Way to a Small": {
+      "validated": false
+    },
+    "The Correspondent and Theo of Golden": {
+      "validated": false
+    },
+    "In Search of Lost Time with Time Regained": {
+      "validated": false
+    },
+    "The Demon of Unrest by Erik Larson": {
+      "validated": false
+    },
+    "What a Plant Knows by Daniel Chamovitz": {
+      "validated": false
+    },
+    "Brotherhood Betrayed: The Man Behind the Rise and Fall of Murder": {
+      "validated": false
+    },
+    "Bright Young Women by Jessica Knoll": {
+      "validated": false
+    },
+    "Jesse James: Last Rebel of the Civil War": {
+      "validated": false
+    },
+    "Wrote up my recent list here: wwwjacobgriercomblog202601": {
+      "validated": false
+    },
+    "I just finished James about a month ago": {
+      "validated": false
+    },
+    "Re-upping one last time for the weekend-evening gang:": {
+      "validated": false
+    },
+    "Combined with Amor Towles'\nRules of Civility": {
+      "validated": false
+    },
+    "Seven Years of Darkness by You-Jeong Jeong": {
+      "validated": false
+    },
+    "Mercy in the City by Kerry Webber": {
+      "validated": false
+    },
+    "Every Living Thing by Jason Roberts": {
+      "validated": false
+    },
+    "Curious what youll think of it": {
+      "validated": false
+    },
+    "The Iliad or The Poem of Force": {
+      "validated": false
+    },
+    "Foundational Papers in Complexity Science Volume": {
+      "validated": false
+    },
+    "This one is so good bookshoporgpbooksthe-": {
+      "validated": false
+    },
+    "Michael Denning Culture in the Age of Three Worlds": {
+      "validated": false
+    },
+    "The Book of the Long Sun": {
+      "validated": false
+    },
+    "The Defender: How the Legendary Black Newspaper Changed America": {
+      "validated": false
+    },
+    "Fantastic Numbers and Where to Find Them": {
+      "validated": false
+    },
+    "Cosmic Quest from Zero to Infinity by Antonio Padilla": {
+      "validated": false
+    },
+    "An Immense World: How Animal Senses Reveal the Hidden Realms Around Us": {
+      "validated": false
+    },
+    "Jamestown and the Birth of America by James Horn": {
+      "validated": false
+    },
+    "Family of spies by christine Kuehn": {
+      "validated": false
+    },
+    "The Culture Map by Erin Meyer": {
+      "validated": false
+    },
+    "Vigil \n\nThe Splendid and the Vile": {
+      "validated": false
+    },
+    "Being Here is Everything: The Life of Paula Modersohn-Becker": {
+      "validated": false
+    },
+    "That would be great": {
+      "validated": false
+    },
+    "The Spy Who Came in from the Cold": {
+      "validated": false
+    },
+    "Village of Secrets: Defying the Nazis in Vichy France": {
+      "validated": false
+    },
+    "Didion's Political Fictions and Bruce Gordon's": {
+      "validated": false
+    },
+    "Steinbeck's Wayward Bus and Malamud's God's Grace": {
+      "validated": false
+    },
+    "Between Two Fires by Christopher Buehlman": {
+      "validated": false
+    },
+    "Stalin's Architect: Power and Survival in Moscow": {
+      "validated": false
+    },
+    "So good so sad so relevant": {
+      "validated": false
+    },
+    "The Globe: Life in Shakespeare's London": {
+      "validated": false
+    },
+    "Lars Mytting's The Bell in the Lake": {
+      "validated": false
+    }
+  }
+}

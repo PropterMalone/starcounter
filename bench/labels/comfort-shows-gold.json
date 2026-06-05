@@ -1,0 +1,884 @@
+{
+  "meta": {
+    "labeledAt": "2026-02-09T20:42:45.754Z",
+    "labeledBy": "claude-opus-4-6",
+    "fixtureFile": "comfort-shows.json",
+    "postCount": 110,
+    "labeledCount": 110,
+    "onTopicCount": 102,
+    "offTopicCount": 8,
+    "uniqueTitles": 68,
+    "confidence": {
+      "high": 69,
+      "medium": 29,
+      "low": 12
+    }
+  },
+  "labels": {
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdyzybspwc2i": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "high",
+      "note": "Root prompt post"
+    },
+    "at://did:plc:zlqqvr2qhdpjne5dkcrw35p5/app.bsky.feed.post/3me3cbsgais2e": {
+      "topics": [
+        "Sailor Moon"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:z672yqi4dodzbxhq32b7qsqq/app.bsky.feed.post/3mdz7fyd5vc2x": {
+      "topics": [
+        "Regular Show"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me2mge3vi22z": {
+      "topics": [
+        "Bob's Burgers"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:yttmdlh4ygwgf5pqmuggaeki/app.bsky.feed.post/3mdz3rexku22h": {
+      "topics": [
+        "Breaking Bad"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ylcuvbqmaur6bpxxs3mk34n4/app.bsky.feed.post/3mdz4nj63h22k": {
+      "topics": [
+        "Castle"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzlqaf4l22k": {
+      "topics": [
+        "Castle",
+        "Psych"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:xysu2a4yckbehaf6dglg4ony/app.bsky.feed.post/3mdzmm6g5tc2w": {
+      "topics": [
+        "The West Wing"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:xfdiqnbzhezlz7k4yjthrfq6/app.bsky.feed.post/3me2o4sktmc2x": {
+      "topics": [
+        "Community",
+        "Friends",
+        "Sons of Anarchy",
+        "Dexter",
+        "Only Fools and Horses",
+        "Brooklyn Nine-Nine"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdz2dxhsus2i": {
+      "topics": [
+        "Game of Thrones"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:utsahvxeeagx6bhexqgousva/app.bsky.feed.post/3mdzexpzzmk2m": {
+      "topics": [
+        "Teen Titans"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzlttgtys2k": {
+      "topics": [
+        "Teen Titans"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:utsahvxeeagx6bhexqgousva/app.bsky.feed.post/3mdzmsayupk2c": {
+      "topics": [
+        "Teen Titans Go!"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:twiq7hgl66brbs7ubkaysjih/app.bsky.feed.post/3mdz6sdan522e": {
+      "topics": [
+        "Dallas"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:tunghoqxpaycfkv4khdccjxn/app.bsky.feed.post/3mdz2z2sbzs22": {
+      "topics": [
+        "The Simpsons",
+        "Supernatural"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:sq7n6toq2qbutptso6dvmafx/app.bsky.feed.post/3me2353ztks2w": {
+      "topics": [
+        "It's Always Sunny in Philadelphia",
+        "Family Guy"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:s4cqvdwgbjryuqi6ecz2btx3/app.bsky.feed.post/3mdz3cvvbck2i": {
+      "topics": [
+        "Futurama",
+        "M*A*S*H",
+        "Avatar: The Last Airbender"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:rouc5cqysj4eesmlmlds2cpy/app.bsky.feed.post/3mdz253tcrc2t": {
+      "topics": [
+        "Friends",
+        "Schitt's Creek"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:r34kaxcb4yia2dew5czbyrlw/app.bsky.feed.post/3mdzbw3saz22x": {
+      "topics": [
+        "Archer"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:poopskkrv4gb7xarxc26gvxg/app.bsky.feed.post/3mdzijddkk22w": {
+      "topics": [
+        "Friends"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:oy4pqejw7t2niteobeqbs3cq/app.bsky.feed.post/3mdz2o6munc26": {
+      "topics": [
+        "Bob's Burgers",
+        "How I Met Your Mother"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzlxqr35k2k": {
+      "topics": [
+        "Bob's Burgers",
+        "How I Met Your Mother"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:oy4pqejw7t2niteobeqbs3cq/app.bsky.feed.post/3me22hqn7o223": {
+      "topics": [
+        "Bob's Burgers"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdz26raacs2i": {
+      "topics": [
+        "Psych",
+        "The Simpsons",
+        "Arrested Development",
+        "Batman: The Animated Series"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:25u2ubgya3xjo6br4so3zb47/app.bsky.feed.post/3mdzswqx37c2s": {
+      "topics": [
+        "The Simpsons",
+        "Seinfeld",
+        "Arrested Development",
+        "Parks and Recreation"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:nitn7l72lsnjnilr7bqcmzia/app.bsky.feed.post/3me2436wqb22d": {
+      "topics": [
+        "Avatar: The Last Airbender"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:m6ws3fem44eggdjfvj5glqfy/app.bsky.feed.post/3mdz3atwmc22n": {
+      "topics": [
+        "Doctor Who"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzlohlhjs2k": {
+      "topics": [
+        "Doctor Who"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:lltasocsk5t5mocbrjexaogs/app.bsky.feed.post/3mdzwu23xbk2m": {
+      "topics": [
+        "Gumby"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Direct answer: Gumby"
+    },
+    "at://did:plc:koo7unyovqv7hrhojs2uipul/app.bsky.feed.post/3me2fwk5wd22r": {
+      "topics": [
+        "Sons of Anarchy",
+        "Supernatural"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:kmgxdf2vbrzpourmnsacyrbm/app.bsky.feed.post/3mdzlyj4ubk2m": {
+      "topics": [
+        "It's Always Sunny in Philadelphia"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:kc4rnh6k37t2bzhmyqvebvez/app.bsky.feed.post/3mdze6tsgws2p": {
+      "topics": [
+        "Scrubs",
+        "Fawlty Towers"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzlujinws2k": {
+      "topics": [
+        "Scrubs"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:kblxrrrrkliciaerwbrbct53/app.bsky.feed.post/3mdz7n62jzs25": {
+      "topics": [
+        "Supernatural",
+        "Buffy the Vampire Slayer"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzm2pv7b22k": {
+      "topics": [
+        "Buffy the Vampire Slayer",
+        "Angel"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:jdhcp5qqkca5z67jwrnevnsf/app.bsky.feed.post/3mdzxzvupps25": {
+      "topics": [
+        "Buffy the Vampire Slayer"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:i6ytz473zj7tutnhmo6sysxp/app.bsky.feed.post/3me3hwokp6s2l": {
+      "topics": [
+        "Community",
+        "Futurama",
+        "The Office"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me3kb6jsos2n": {
+      "topics": [
+        "Bob's Burgers"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:fbjctr3ksmvvysq76olqxm5g/app.bsky.feed.post/3mdzm27eics2i": {
+      "topics": [
+        "Top Gear",
+        "Good Eats"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:dex56z6tyill6jhxcbcpwy32/app.bsky.feed.post/3mdz5nirefc26": {
+      "topics": [
+        "Taskmaster"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:dar75gaosyak5rqujgr4iq2s/app.bsky.feed.post/3mdz25zmcuc2y": {
+      "topics": [
+        "Star Trek: The Next Generation"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:chn6wnkjehfv25oiqqkahcjv/app.bsky.feed.post/3mdz2qywzyk2b": {
+      "topics": [
+        "It's Always Sunny in Philadelphia",
+        "Futurama",
+        "Arrested Development"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:c5lc5a4n6g33mfggddkvieez/app.bsky.feed.post/3mdzwl4gwlc2j": {
+      "topics": [
+        "Brooklyn Nine-Nine",
+        "Archer",
+        "Doctor Who"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:c5lc5a4n6g33mfggddkvieez/app.bsky.feed.post/3me2ord6qhs2z": {
+      "topics": [
+        "Ghost Stories"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:ard3qegivcr2wgdsjxaj4srt/app.bsky.feed.post/3me2aqoa42k25": {
+      "topics": [
+        "Robotech: The Macross Saga"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:6irylomud4saesa5cgv3qnd4/app.bsky.feed.post/3mdz7qbeiek2z": {
+      "topics": [
+        "Mystery Science Theater 3000",
+        "The Addams Family",
+        "The Twilight Zone",
+        "Batman (1966)"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:6d565bt6re33bkc6adzrozid/app.bsky.feed.post/3me2es5jhis2e": {
+      "topics": [
+        "Supernatural"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:5kyhmpl7jdm5k3tpzury22rt/app.bsky.feed.post/3mdz7crgmks2c": {
+      "topics": [
+        "Futurama",
+        "Phineas and Ferb"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:2gjhn2orspdpksiyrcoh77pe/app.bsky.feed.post/3mdzm6yknhc2r": {
+      "topics": [
+        "Scrubs",
+        "Kiff",
+        "The Ghost and Molly McGee",
+        "Chowder",
+        "Batman (1966)"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:rbg3qtoapb2gqgv2n25lucdw/app.bsky.feed.post/3me3hasu36s26": {
+      "topics": [
+        "Iron Chef",
+        "VS Arashi",
+        "The Joy of Painting",
+        "Aria the Animation"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Quote post with images of Iron Chef, VS Arashi, Joy of Painting, Aria"
+    },
+    "at://did:plc:4ncojchbwsywe5etagp6jwv3/app.bsky.feed.post/3me2l3dr5cs2f": {
+      "topics": [
+        "Constantine",
+        "Midnight, Texas",
+        "Day 5",
+        "Dexter",
+        "Lucifer",
+        "The Night Manager",
+        "Big Bang Theory",
+        "One Day at a Time",
+        "Friends",
+        "Brooklyn Nine-Nine"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Quote post listing 10 comfort shows"
+    },
+    "at://did:plc:q4gbj2ctowolepgpt6pxbioh/app.bsky.feed.post/3mdzszue3722t": {
+      "topics": [
+        "The Walking Dead",
+        "Arrow",
+        "Creepshow",
+        "Lucifer"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Quote post listing 4 shows (Lucifer misspelled as Luicfer)"
+    },
+    "at://did:plc:2mwevsq2wdgqgq2ck3rijpoy/app.bsky.feed.post/3mdz6rexocc2r": {
+      "topics": [
+        "Dexter",
+        "The Office",
+        "The Bad Batch",
+        "Andor"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:hxkxn7w34qoe364mjkovpmwp/app.bsky.feed.post/3me3idegfn223": {
+      "topics": [
+        "The Joy of Painting"
+      ],
+      "onTopic": true,
+      "confidence": "high"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me3cf52qp22v": {
+      "topics": [
+        "Sailor Moon"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Emoji reaction to Sailor Moon post"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzlv3smw22k": {
+      "topics": [
+        "Regular Show"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "References Rigby (Regular Show character)"
+    },
+    "at://did:plc:z2yruwpumanw4raqisckrur6/app.bsky.feed.post/3mdzxn6iub22r": {
+      "topics": [
+        "Bob's Burgers"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Empty post with external embed; confirmed Bob's Burgers from conversation context"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me2mesfku22z": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "high",
+      "note": "Just tagging another user"
+    },
+    "at://did:plc:z2yruwpumanw4raqisckrur6/app.bsky.feed.post/3me2noilqps2d": {
+      "topics": [
+        "Bob's Burgers"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction discussing Bob's Burgers (parent context)"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me2p3tq5ks2z": {
+      "topics": [
+        "Bob's Burgers"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "References Louise (Bob's Burgers character)"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzobkzrx22k": {
+      "topics": [
+        "The West Wing"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "References Dule Hill (West Wing actor), replying to West Wing post"
+    },
+    "at://did:plc:xysu2a4yckbehaf6dglg4ony/app.bsky.feed.post/3mdzugqk2hs2w": {
+      "topics": [
+        "The West Wing"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Discusses West Wing cast members (Dule Hill, Elisabeth Moss)"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me2lzarnos2z": {
+      "topics": [
+        "The West Wing"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Continues discussion about Dule Hill from West Wing"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me2p7tosuc2z": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "high",
+      "note": "Generic compliment, not referencing specific shows"
+    },
+    "at://did:plc:veokwl4m2z7m65tjedb7yduj/app.bsky.feed.post/3mdz24ays4c2v": {
+      "topics": [
+        "Game of Thrones"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Empty post with embed; confirmed GoT from reply asking \"game of thrones?\""
+    },
+    "at://did:plc:veokwl4m2z7m65tjedb7yduj/app.bsky.feed.post/3mdz2ygn5is2v": {
+      "topics": [
+        "Game of Thrones"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Confirms GoT, references \"shit last two seasons\""
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzlrryw5c2k": {
+      "topics": [
+        "The Simpsons",
+        "Supernatural"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Inherits from parent (Simpsons/Supernatural): \"his parents watched this show\""
+    },
+    "at://did:plc:t5zzbf7a254hq47ms2t5nnhj/app.bsky.feed.post/3mdzubb7p7s2l": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Empty post with external embed link; likely an answer but show not identifiable from text"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me2lxs4dkk2z": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Reaction to unknown show post"
+    },
+    "at://did:plc:oy4pqejw7t2niteobeqbs3cq/app.bsky.feed.post/3mdz2nhr7kk26": {
+      "topics": [
+        "Schitt's Creek",
+        "Friends"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Empty GIF reaction to Schitt's Creek / Friends post"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdz2aeeau22i": {
+      "topics": [
+        "Schitt's Creek",
+        "Friends"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Empty GIF reaction to Schitt's Creek / Friends post"
+    },
+    "at://did:plc:q5hhofr36ct7gjfzh7hyukio/app.bsky.feed.post/3mdzgiegno22n": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "References a show via embed but title not identifiable from text"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzltajfy22k": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses unknown show from parent embed"
+    },
+    "at://did:plc:q5hhofr36ct7gjfzh7hyukio/app.bsky.feed.post/3mdzwpalvq22n": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Continues discussion about unknown show"
+    },
+    "at://did:plc:ppseob43lpzhi3j6vaa4pk4r/app.bsky.feed.post/3mdzym3mbxk2l": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Image-only post, show not identifiable from text"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me2miaxqjs2z": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Empty reaction to image post"
+    },
+    "at://did:plc:poopskkrv4gb7xarxc26gvxg/app.bsky.feed.post/3mdzlxytct22g": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "high",
+      "note": "Generic comment about watching, no show reference"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me2lwajr2c2z": {
+      "topics": [
+        "The Simpsons",
+        "Seinfeld",
+        "Arrested Development",
+        "Parks and Recreation"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Empty GIF reaction inheriting from parent show list"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me2nfq3qcc2z": {
+      "topics": [
+        "Avatar: The Last Airbender"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Says \"Avatar\" in reply to ATLA post"
+    },
+    "at://did:plc:m6ws3fem44eggdjfvj5glqfy/app.bsky.feed.post/3me22fpb4fk2h": {
+      "topics": [
+        "Doctor Who"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Discusses Doctor Who (grew up watching it), parent is Doctor Who conversation"
+    },
+    "at://did:plc:c5lc5a4n6g33mfggddkvieez/app.bsky.feed.post/3mdzwy5xkmk2j": {
+      "topics": [
+        "Doctor Who"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Offering Doctor Who episode recommendations"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me2m7picn22z": {
+      "topics": [
+        "Doctor Who"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction accepting Doctor Who recommendations"
+    },
+    "at://did:plc:c5lc5a4n6g33mfggddkvieez/app.bsky.feed.post/3me2opatmzc2z": {
+      "topics": [
+        "Doctor Who"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Lists Doctor Who episode recommendations"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me2pcw7tds2z": {
+      "topics": [
+        "Doctor Who"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Saving Doctor Who episode recommendations"
+    },
+    "at://did:plc:m6ws3fem44eggdjfvj5glqfy/app.bsky.feed.post/3me2pez76b22y": {
+      "topics": [
+        "Doctor Who"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Agrees with Doctor Who episode recommendations"
+    },
+    "at://did:plc:c5lc5a4n6g33mfggddkvieez/app.bsky.feed.post/3me2ppvqnfc2z": {
+      "topics": [
+        "Doctor Who"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Discusses Doctor Who classic era (McCoy/Ace seasons)"
+    },
+    "at://did:plc:c5lc5a4n6g33mfggddkvieez/app.bsky.feed.post/3me2opbnpy22z": {
+      "topics": [
+        "Doctor Who"
+      ],
+      "onTopic": true,
+      "confidence": "high",
+      "note": "Discusses Doctor Who modern episodes (60th specials, Ncuti)"
+    },
+    "at://did:plc:lvhgbnkr4hg5syhdszed5sdp/app.bsky.feed.post/3me2nq52ock2m": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Image-only post, show not identifiable from text"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me2p4x63p22z": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "high",
+      "note": "Generic reaction to image post"
+    },
+    "at://did:plc:kzofb7deovtxrtzfwyi6w3ro/app.bsky.feed.post/3mdz22nycu225": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Empty post with external embed; show not identifiable"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdz2c54f2s2i": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "high",
+      "note": "Reaction to unknown show"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me2nwuc6p22z": {
+      "topics": [
+        "Supernatural",
+        "Sons of Anarchy"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Empty GIF reaction to Supernatural/Sons of Anarchy post"
+    },
+    "at://did:plc:xfdiqnbzhezlz7k4yjthrfq6/app.bsky.feed.post/3me2nzca5dk2x": {
+      "topics": [
+        "Sons of Anarchy"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Rewatching Sons of Anarchy (mentions excellent soundtrack)"
+    },
+    "at://did:plc:kmgxdf2vbrzpourmnsacyrbm/app.bsky.feed.post/3mdz3vusxh22m": {
+      "topics": [
+        "It's Always Sunny in Philadelphia"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Empty post with embed; confirmed IASIP from reply 'It's Always Sunny is hilarious!'"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzlwhdpzc2k": {
+      "topics": [
+        "It's Always Sunny in Philadelphia"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Discusses IASIP (inherited from parent)"
+    },
+    "at://did:plc:lvhgbnkr4hg5syhdszed5sdp/app.bsky.feed.post/3me2neixiz22m": {
+      "topics": [
+        "It's Always Sunny in Philadelphia"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Emoji reaction in IASIP conversation"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me2mhe7kak2z": {
+      "topics": [
+        "Buffy the Vampire Slayer"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Empty GIF reaction to Buffy post"
+    },
+    "at://did:plc:h3ftgqa6mmcg7wewegts4xyh/app.bsky.feed.post/3mdz4dshakc2v": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Image post with shows but titles not identifiable from text"
+    },
+    "at://did:plc:cp3jqgfia3woppnwzb5ti74t/app.bsky.feed.post/3me2lzy2atk25": {
+      "topics": [],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Empty post with external embed; show not identifiable"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdz2b73xo22i": {
+      "topics": [
+        "Star Trek: The Next Generation"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Empty GIF reaction to Star Trek TNG post"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzm4rrusc2k": {
+      "topics": [
+        "It's Always Sunny in Philadelphia",
+        "Futurama",
+        "Arrested Development"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Empty GIF reaction to IASIP/Futurama/AD post"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3me2m6lmi622z": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "high",
+      "note": "Generic compliment, not referencing specific shows"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzm26wc7k2k": {
+      "topics": [
+        "Mystery Science Theater 3000",
+        "Batman (1966)",
+        "Batman: The Animated Series",
+        "The Addams Family",
+        "The Twilight Zone"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Empty GIF reaction to MST3K/Batman/Addams/Twilight Zone post"
+    },
+    "at://did:plc:npbjqwsbyopjaae7volnog2u/app.bsky.feed.post/3me2xxsonm22y": {
+      "topics": [
+        "Mystery Science Theater 3000"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction acknowledging MST3K presence in thread"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzlvzfugs2k": {
+      "topics": [
+        "Futurama",
+        "Phineas and Ferb"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Empty GIF reaction to Futurama/Phineas and Ferb post"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzoahmeg22k": {
+      "topics": [],
+      "onTopic": false,
+      "confidence": "high",
+      "note": "Generic compliment, not referencing specific shows"
+    },
+    "at://did:plc:enizfadfu2g24cs5flilj7zl/app.bsky.feed.post/3mdzl3ohduk2n": {
+      "topics": [
+        "The Office"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "References Peacock; The Office implied from context and embed"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzly7kens2k": {
+      "topics": [
+        "Futurama",
+        "M*A*S*H",
+        "Avatar: The Last Airbender"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction/agreement inheriting from parent"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzlzgybjc2k": {
+      "topics": [
+        "Archer"
+      ],
+      "onTopic": true,
+      "confidence": "low",
+      "note": "Discusses parent show without naming it"
+    },
+    "at://did:plc:o5tdec5wp4574zdj4bucsd5f/app.bsky.feed.post/3mdzlsnhw322k": {
+      "topics": [
+        "Friends"
+      ],
+      "onTopic": true,
+      "confidence": "medium",
+      "note": "Reaction/agreement inheriting from parent"
+    }
+  }
+}

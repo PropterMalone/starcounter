@@ -1,0 +1,29 @@
+{
+  "entry": [
+    "src/main.ts",
+    "worker/bot-daemon.ts",
+    "worker/bot.ts",
+    "functions/_middleware.ts",
+    "functions/api/**/*.ts",
+    "src/workers/sentiment-worker.ts",
+    "**/*.test.ts"
+  ],
+  "ignorePatterns": [
+    "dist/**",
+    "public/bundle.js",
+    "public/bundle.js.map",
+    "coverage/**",
+    "bench/**",
+    "node_modules/**",
+    "scripts/**",
+    "public/styles.css"
+  ],
+  "ignoreExportsUsedInFile": true,
+  "rules": {
+    "unused-exports": "warn",
+    "unused-types": "warn",
+    "unused-class-members": "warn",
+    "duplicate-exports": "warn",
+    "unused-dev-dependencies": "warn"
+  }
+}

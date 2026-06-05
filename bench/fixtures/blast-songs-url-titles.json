@@ -1,0 +1,3623 @@
+{
+  "resolvedAt": "2026-02-10T16:02:48.025Z",
+  "stats": {
+    "fromEmbeds": 144,
+    "fromOembed": 294,
+    "oembedFailed": 1,
+    "totalResolved": 516
+  },
+  "titles": {
+    "at://did:plc:knesgtisie2penngfdgddvfc/app.bsky.feed.post/3mehwp4smps2k": {
+      "url": "https://youtu.be/vzyHxYxc-Mo?si=jpTB7EOzrlI32bNb",
+      "platform": "youtube",
+      "videoTitle": "Battlestar Galactica (1978) Theme",
+      "parsedSong": "Battlestar Galactica (1978) Theme",
+      "parsedArtist": null
+    },
+    "at://did:plc:o4hu4hnzgs7p2u64e4gjuaj4/app.bsky.feed.post/3mehmn6yaec2v": {
+      "url": "https://youtu.be/oHRNrgDIJfo?si=3XPMJqhDeHIqrvZl",
+      "platform": "youtube",
+      "videoTitle": "Nina Simone - Feeling Good (Official Video)",
+      "parsedSong": "Feeling Good",
+      "parsedArtist": "Nina Simone"
+    },
+    "at://did:plc:hfzjfx74jxvecaenmegowfth/app.bsky.feed.post/3mei3onor7c2x": {
+      "url": "https://youtu.be/3GwjfUFyY6M?si=H4rOEoeX0_hM0Td5",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Celebration",
+      "parsedSong": "Celebration",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:af5buc5yicebnocrpljjxstx/app.bsky.feed.post/3mehh6drl722s": {
+      "url": "https://www.youtube.com/watch?v=wrrCJnetu2M",
+      "platform": "youtube",
+      "videoTitle": "Party and Bullshit in the U.S.A - Notorious B.I.G and Miley Cyrus",
+      "parsedSong": "Notorious B.I.G and Miley Cyrus",
+      "parsedArtist": "Party and Bullshit in the U.S.A"
+    },
+    "at://did:plc:xqvr6gdbt4oiolam3q4ii7bd/app.bsky.feed.post/3mehwdu3gv22z": {
+      "url": "https://youtu.be/v94OGc7LNaI?si=1wl9F-JJkEjZnEFx",
+      "platform": "youtube",
+      "videoTitle": "Neil Cicierega - Party Rangers",
+      "parsedSong": "Party Rangers",
+      "parsedArtist": "Neil Cicierega"
+    },
+    "at://did:plc:3rxcq5wacdop5thjoh3sny3p/app.bsky.feed.post/3mehmhnfydc2b": {
+      "url": "https://youtu.be/1OkiYJnpmzI?si=OGSjSSW2b-Mkfw12",
+      "platform": "youtube",
+      "videoTitle": "See You Later Fuckface",
+      "parsedSong": "See You Later Fuckface",
+      "parsedArtist": null
+    },
+    "at://did:plc:ee5766maoq44wcclmw2znqhn/app.bsky.feed.post/3mehnhgoh222r": {
+      "url": "https://youtu.be/dZDj2CnG5dE",
+      "platform": "youtube",
+      "videoTitle": "Ricky Martin - The Cup of Life (Official Video)",
+      "parsedSong": "The Cup of Life",
+      "parsedArtist": "Ricky Martin"
+    },
+    "at://did:plc:6ck2mfqdsj3ihdlwlb6g6ewr/app.bsky.feed.post/3mehyl7sga22s": {
+      "url": "https://youtu.be/M4p9qXIWN2Q?si=X1SbSnFmKrukX7U9",
+      "platform": "youtube",
+      "videoTitle": "Martha Reeves & The Vandellas - Dancing In The Street (Official Music Video)",
+      "parsedSong": "Dancing In The Street",
+      "parsedArtist": "Martha Reeves & The Vandellas"
+    },
+    "at://did:plc:ahmp47hcctr23zeet7mxdc2e/app.bsky.feed.post/3mehy4g47q224": {
+      "url": "https://www.youtube.com/watch?v=6j5CEissIpg",
+      "platform": "youtube",
+      "videoTitle": "the queers - see ya later fuckface",
+      "parsedSong": "see ya later fuckface",
+      "parsedArtist": "the queers"
+    },
+    "at://did:plc:ahmp47hcctr23zeet7mxdc2e/app.bsky.feed.post/3mehxwgfuvk24": {
+      "url": "https://youtu.be/d8g2HQPFulo",
+      "platform": "youtube",
+      "videoTitle": "I've Been So Mad Lately - Butt Trumpet",
+      "parsedSong": "Butt Trumpet",
+      "parsedArtist": "I've Been So Mad Lately"
+    },
+    "at://did:plc:zzq5qs4k4jverueqvm7v2cej/app.bsky.feed.post/3mehsfbdtsk2a": {
+      "url": "https://share.google/OgQAYZA86yzHMcBoU",
+      "platform": "unknown",
+      "videoTitle": "Jack Hylton - Happy Days Are Here Again (1930)",
+      "parsedSong": "Happy Days Are Here Again (1930)",
+      "parsedArtist": "Jack Hylton"
+    },
+    "at://did:plc:zv4hqlrqxtqfgugvwpxglwgp/app.bsky.feed.post/3mehmvl6dcs2f": {
+      "url": "https://www.youtube.com/watch?v=QpFLoVXdPBg",
+      "platform": "youtube",
+      "videoTitle": "Doechii, JT - ALTER EGO (Audio)",
+      "parsedSong": "ALTER EGO",
+      "parsedArtist": "Doechii, JT"
+    },
+    "at://did:plc:ztsjiqabitcsux3hjfrafjdq/app.bsky.feed.post/3mehsgr5vps2q": {
+      "url": "https://m.youtube.com/watch?v=OLkPwxcIji0",
+      "platform": "youtube",
+      "videoTitle": "Chumbawamba - The day the nazi died",
+      "parsedSong": "The day the nazi died",
+      "parsedArtist": "Chumbawamba"
+    },
+    "at://did:plc:ztikaiaxvpndhrs56x7eapca/app.bsky.feed.post/3mehpticl6c2v": {
+      "url": "https://woodyguthrie.org/Lyrics/This_Land.htm",
+      "platform": "unknown",
+      "videoTitle": "\"This Land Is Your Land\" by Woody Guthrie",
+      "parsedSong": "\"This Land Is Your Land\" by Woody Guthrie",
+      "parsedArtist": null
+    },
+    "at://did:plc:zthmrvvjxbxnhyfb2qtyg6nm/app.bsky.feed.post/3mei2wdoqe22x": {
+      "url": "https://www.youtube.com/watch?v=226uRm2hqtE",
+      "platform": "youtube",
+      "videoTitle": "Penis Music but Hal, The warden and the gaurds dance to the full song",
+      "parsedSong": "Penis Music but Hal, The warden and the gaurds dance to the full song",
+      "parsedArtist": null
+    },
+    "at://did:plc:zqcz5hpj3qgrn5dzacdsmt3q/app.bsky.feed.post/3mehvvkg4ik22": {
+      "url": "https://m.youtube.com/watch?v=XhzpxjuwZy0",
+      "platform": "youtube",
+      "videoTitle": "House of Pain - Jump Around (Official Music Video)",
+      "parsedSong": "Jump Around",
+      "parsedArtist": "House of Pain"
+    },
+    "at://did:plc:ejivxmz43mbxaehy5cmzmwbi/app.bsky.feed.post/3mei6ow7ibs2p": {
+      "url": "https://media.tenor.com/gc9AbghY6xsAAAAC/turn-up.gif?hh=373&ww=498",
+      "platform": "unknown",
+      "videoTitle": "a person is adjusting a knob with the word bankroll on the bottom",
+      "parsedSong": "a person is adjusting a knob with the word bankroll on the bottom",
+      "parsedArtist": null
+    },
+    "at://did:plc:zpqflbqnknm6skxcuja7rruf/app.bsky.feed.post/3mehho4bqi22b": {
+      "url": "https://youtu.be/Xaw--HWHecg?si=8HRodIM-IZHB8AAj",
+      "platform": "youtube",
+      "videoTitle": "Volunteers (Remastered)",
+      "parsedSong": "Volunteers",
+      "parsedArtist": null
+    },
+    "at://did:plc:zpqflbqnknm6skxcuja7rruf/app.bsky.feed.post/3mehzaoobp22o": {
+      "url": "https://youtu.be/iLcyWgSChhs?si=m9Sru0Dy54yuh2GO",
+      "platform": "youtube",
+      "videoTitle": "Scotty doesn't know - Lustra / Matt Damon - Lyrics",
+      "parsedSong": "Lustra / Matt Damon - Lyrics",
+      "parsedArtist": "Scotty doesn't know"
+    },
+    "at://did:plc:znqriibwczzauntoi3ggbplj/app.bsky.feed.post/3mehmwbd7v22t": {
+      "url": "https://www.youtube.com/watch?v=Z0GFRcFm-aY",
+      "platform": "youtube",
+      "videoTitle": "R.E.M. - It's The End Of The World",
+      "parsedSong": "It's The End Of The World",
+      "parsedArtist": "R.E.M."
+    },
+    "at://did:plc:zhio657vtstsstb2yxb4oumg/app.bsky.feed.post/3mei653fiks2e": {
+      "url": "https://www.youtube.com/watch?v=Lo03pWIpHh8&pp=ygUec2FiZXJ0b290aCB6b21iaWUgbGl2ZSBpbiBoZWxs",
+      "platform": "youtube",
+      "videoTitle": "Sabertooth Zombie - Live in Hell Rot in Dirt",
+      "parsedSong": "Live in Hell Rot in Dirt",
+      "parsedArtist": "Sabertooth Zombie"
+    },
+    "at://did:plc:zd4nacagwt7efpzuqrrumfnr/app.bsky.feed.post/3mehhqbqbl22o": {
+      "url": "https://www.youtube.com/watch?v=rJSCHb0yrpI&list=RDrJSCHb0yrpI&start_radio=1",
+      "platform": "youtube",
+      "videoTitle": "Piss On Your Grave",
+      "parsedSong": "Piss On Your Grave",
+      "parsedArtist": null
+    },
+    "at://did:plc:z7lixe5tcfphmjwnztg27lck/app.bsky.feed.post/3mej6uc6qg22c": {
+      "url": "https://youtu.be/kbJcQYVtZMo?si=ku0dvUGQWYWDVE3J&t=4m7s",
+      "platform": "youtube",
+      "videoTitle": "Flashmob Flash Mob - Ode an die Freude ( Ode to Joy ) Beethoven Symphony No.9 classical music",
+      "parsedSong": "Ode an die Freude ( Ode to Joy ) Beethoven Symphony No.9 classical music",
+      "parsedArtist": "Flashmob Flash Mob"
+    },
+    "at://did:plc:yxieflarqcxvhikmswkmrwao/app.bsky.feed.post/3mehlnyjfm22m": {
+      "url": "https://youtu.be/CdvITn5cAVc",
+      "platform": "youtube",
+      "videoTitle": "Martha & The Vandellas \"Dancing in the Streets\"",
+      "parsedSong": "Dancing in the Streets",
+      "parsedArtist": "Martha & The Vandellas"
+    },
+    "at://did:plc:yuuwjr4u2jvrhenvar37woq3/app.bsky.feed.post/3mehybneh7k2a": {
+      "url": "https://music.apple.com/us/album/the-best-day-ever-with-sandy-mr-krabs-plankton-patrick/323049082?i=323049174",
+      "platform": "apple",
+      "videoTitle": "The Best Day Ever (with Sandy, Mr. Krabs, Plankton & Patrick) by SpongeBob SquarePants on Apple Music",
+      "parsedSong": "The Best Day Ever (with Sandy, Mr. Krabs, Plankton & Patrick) by SpongeBob SquarePants on Apple Music",
+      "parsedArtist": null
+    },
+    "at://did:plc:ytr73weptqep5sikyhysigfv/app.bsky.feed.post/3mehr2ml4hk2f": {
+      "url": "https://www.youtube.com/watch?v=Gv-n1LKTiRE",
+      "platform": "youtube",
+      "videoTitle": "Lily Allen - F*** You // Lyrics",
+      "parsedSong": "F*** You // Lyrics",
+      "parsedArtist": "Lily Allen"
+    },
+    "at://did:plc:ytr73weptqep5sikyhysigfv/app.bsky.feed.post/3mehr4zqd4c2f": {
+      "url": "https://www.youtube.com/watch?v=zXYLMevMsd0",
+      "platform": "youtube",
+      "videoTitle": "Hoku - Perfect Day (Music Video) (1080p Remaster by aTunes)",
+      "parsedSong": "Perfect Day (1080p Remaster by aTunes)",
+      "parsedArtist": "Hoku"
+    },
+    "at://did:plc:yqplhmuehwjln67lg7wa4mbu/app.bsky.feed.post/3mehmggfpyk2r": {
+      "url": "https://music.apple.com/us/album/f-k-donald-trump-live-in-vienna/1715383167?i=1715383173",
+      "platform": "apple",
+      "videoTitle": "F**k Donald Trump (Live in Vienna) by Marc Rebillet on Apple Music",
+      "parsedSong": "F**k Donald Trump by Marc Rebillet on Apple Music",
+      "parsedArtist": null
+    },
+    "at://did:plc:vkq6xa3vp2xchb7rqyjw57lf/app.bsky.feed.post/3mehjpa772c2s": {
+      "url": "https://www.youtube.com/watch?v=41NOMETNp3U",
+      "platform": "youtube",
+      "videoTitle": "Malört & Savior - On The Day It Finally Happens",
+      "parsedSong": "On The Day It Finally Happens",
+      "parsedArtist": "Malört & Savior"
+    },
+    "at://did:plc:vea3d4ftflkgqtdaxxup3pla/app.bsky.feed.post/3mehhtptlo226": {
+      "url": "https://media.tenor.com/t6MPvej6GX8AAAAC/lit-jam.gif?hh=268&ww=498",
+      "platform": "unknown",
+      "videoTitle": "a close up of a woman making a funny face while sitting in a dark room .",
+      "parsedSong": "a close up of a woman making a funny face while sitting in a dark room .",
+      "parsedArtist": null
+    },
+    "at://did:plc:yqbkyqa2b3fjtbqe6m5f7wjn/app.bsky.feed.post/3mehpepqhx22h": {
+      "url": "https://www.youtube.com/watch?v=o9mJ82x_l-E",
+      "platform": "youtube",
+      "videoTitle": "Filter - Hey Man, Nice Shot (Official HD Music Video)",
+      "parsedSong": "Hey Man, Nice Shot (Official HD Music Video)",
+      "parsedArtist": "Filter"
+    },
+    "at://did:plc:ypxesk6pdy62ay3ogtl4deac/app.bsky.feed.post/3mehxkc5imtkq": {
+      "url": "https://youtu.be/XDkhzVw0yBs?si=0yNlcOwd1UB_1Dmd",
+      "platform": "youtube",
+      "videoTitle": "When that Man is Dead and Gone (1941) - Protest song against Hitler (Live Take)",
+      "parsedSong": "Protest song against Hitler",
+      "parsedArtist": "When that Man is Dead and Gone (1941)"
+    },
+    "at://did:plc:ypupkaa4xso5la2rdyka2dad/app.bsky.feed.post/3mehtd4t7w22r": {
+      "url": "https://youtu.be/CZGOECYAU_8?si=i9KL50Jy8MAij4eB",
+      "platform": "youtube",
+      "videoTitle": "Xanadu | \"All Over the World\" - Gene Kelly & Electric Light Orchestra",
+      "parsedSong": "Gene Kelly & Electric Light Orchestra",
+      "parsedArtist": "Xanadu | \"All Over the World\""
+    },
+    "at://did:plc:yoqhimjo6xs3fmf7q7wgywy3/app.bsky.feed.post/3mehnbl2h4c2p": {
+      "url": "https://www.youtube.com/watch?v=9ZhI19z7s2M",
+      "platform": "youtube",
+      "videoTitle": "When That Man Is Dead And Gone",
+      "parsedSong": "When That Man Is Dead And Gone",
+      "parsedArtist": null
+    },
+    "at://did:plc:ylhfj6hccv3sndl53pkchvt7/app.bsky.feed.post/3mehhzdur3k2q": {
+      "url": "https://www.youtube.com/watch?v=mPpGp_J3z2A",
+      "platform": "youtube",
+      "videoTitle": "The Pogues - Streams of Whiskey",
+      "parsedSong": "Streams of Whiskey",
+      "parsedArtist": "The Pogues"
+    },
+    "at://did:plc:yk5moqwjh32mrgyw6rst5b55/app.bsky.feed.post/3mei3twquas2r": {
+      "url": "https://media.tenor.com/_iHDSOPtqzUAAAAC/dance-moves-happy-dance.gif?hh=373&ww=498",
+      "platform": "unknown",
+      "videoTitle": "a man in a silver leotard is dancing on a stage",
+      "parsedSong": "a man in a silver leotard is dancing on a stage",
+      "parsedArtist": null
+    },
+    "at://did:plc:yilzm4al3fs2pzhxtuc6t5m2/app.bsky.feed.post/3mehx7z4lzc24": {
+      "url": "https://youtu.be/XDkhzVw0yBs?si=pGkqDSbxn5V0mU8G",
+      "platform": "youtube",
+      "videoTitle": "When that Man is Dead and Gone (1941) - Protest song against Hitler (Live Take)",
+      "parsedSong": "Protest song against Hitler",
+      "parsedArtist": "When that Man is Dead and Gone (1941)"
+    },
+    "at://did:plc:yilhjmkpqr2u6ksy6xkfpwep/app.bsky.feed.post/3mehndbfco22u": {
+      "url": "https://www.youtube.com/watch?v=pc0mxOXbWIU",
+      "platform": "youtube",
+      "videoTitle": "CeeLo Green - FUCK YOU (Official Video)",
+      "parsedSong": "FUCK YOU",
+      "parsedArtist": "CeeLo Green"
+    },
+    "at://did:plc:pyw7hfbvkerlusl6ngvkovoy/app.bsky.feed.post/3mehmkt7aqs2x": {
+      "url": "https://youtu.be/OLkPwxcIji0?si=BbczfrSX0PEYlWxV",
+      "platform": "youtube",
+      "videoTitle": "Chumbawamba - The day the nazi died",
+      "parsedSong": "The day the nazi died",
+      "parsedArtist": "Chumbawamba"
+    },
+    "at://did:plc:jyflqulsw4xhnbun4uuw534w/app.bsky.feed.post/3mehqoeuqu22t": {
+      "url": "https://www.youtube.com/watch?v=LlB9BZkSWrM",
+      "platform": "youtube",
+      "videoTitle": "Iowa State University Marching Band - Juicy Wiggle (Oct. 7, 2023)",
+      "parsedSong": "Juicy Wiggle (Oct. 7, 2023)",
+      "parsedArtist": "Iowa State University Marching Band"
+    },
+    "at://did:plc:ycnckdxbynbuxqdn22big36p/app.bsky.feed.post/3meierq7mfk2s": {
+      "url": "https://www.youtube.com/watch?v=UM1Rn3PD3Z0",
+      "platform": "youtube",
+      "videoTitle": "\"When that Man is Dead and Gone\" (1941) Anti-Hitler Song by Irving Berlin - Live at Joe's Pub",
+      "parsedSong": "Live at Joe's Pub",
+      "parsedArtist": "\"When that Man is Dead and Gone\" (1941) Anti-Hitler Song by Irving Berlin"
+    },
+    "at://did:plc:y6ucrxbxjdy7fghneov7du6h/app.bsky.feed.post/3mehx3vgqbc2r": {
+      "url": "https://youtu.be/N2o9A6RA_fE",
+      "platform": "youtube",
+      "videoTitle": "Steam - Na Na Hey Hey Kiss Him Goodbye  (1969)",
+      "parsedSong": "Na Na Hey Hey Kiss Him Goodbye  (1969)",
+      "parsedArtist": "Steam"
+    },
+    "at://did:plc:y5wpkg2jdij7x2v6vbpdnhnq/app.bsky.feed.post/3mehnsxan422m": {
+      "url": "https://youtu.be/9jK-NcRmVcw?si=MmmfElhPVblgPzxY",
+      "platform": "youtube",
+      "videoTitle": "Europe - The Final Countdown (Official Video)",
+      "parsedSong": "The Final Countdown",
+      "parsedArtist": "Europe"
+    },
+    "at://did:plc:y5pmojmtkiq6hu46tcxx22bj/app.bsky.feed.post/3mehtcm6ba22k": {
+      "url": "https://youtu.be/h8RnD9Qz1tI?si=5KMejmD9L7ucxOu2",
+      "platform": "youtube",
+      "videoTitle": "Famous Marches by John Philip Sousa",
+      "parsedSong": "Famous Marches by John Philip Sousa",
+      "parsedArtist": null
+    },
+    "at://did:plc:xz54fyuojxhs3j7i7wtvnqzk/app.bsky.feed.post/3mehhjtvag22a": {
+      "url": "https://youtu.be/5QYxuGQMCuU?si=74jJaSXI0KyUnqD8",
+      "platform": "youtube",
+      "videoTitle": "Michael Bublé - It's A Beautiful Day [Official Music Video] (New 4K Upgrade)",
+      "parsedSong": "It's A Beautiful Day (New 4K Upgrade)",
+      "parsedArtist": "Michael Bublé"
+    },
+    "at://did:plc:xykjul4v75r2l6353mshsaez/app.bsky.feed.post/3mehhf5kwq22h": {
+      "url": "https://music.youtube.com/watch?v=iKejQrGq04w&si=aI5eBG46MhhDT6Uf",
+      "platform": "youtube",
+      "videoTitle": "Unwritten",
+      "parsedSong": "Unwritten",
+      "parsedArtist": null
+    },
+    "at://did:plc:xykjul4v75r2l6353mshsaez/app.bsky.feed.post/3mehhjckbms2h": {
+      "url": "https://music.youtube.com/watch?v=kZyoiEPWdkM&si=aLuPk3TSoe6bb-Zb",
+      "platform": "youtube",
+      "videoTitle": "ABANDON HIM",
+      "parsedSong": "ABANDON HIM",
+      "parsedArtist": null
+    },
+    "at://did:plc:xwax6pcpirpbogxno5xepaud/app.bsky.feed.post/3mehlfjswf227": {
+      "url": "https://music.youtube.com/watch?v=QCgeitX5xg0&si=jTQl4f-a252bbOMd",
+      "platform": "youtube",
+      "videoTitle": "Lovely Day",
+      "parsedSong": "Lovely Day",
+      "parsedArtist": null
+    },
+    "at://did:plc:xvoidqxddjdxhplvuvi4qcwv/app.bsky.feed.post/3mehvbvcqfc2a": {
+      "url": "https://www.youtube.com/watch?v=1_uNMy20qAI",
+      "platform": "youtube",
+      "videoTitle": "James Brown - Get Up Offa That Thing",
+      "parsedSong": "Get Up Offa That Thing",
+      "parsedArtist": "James Brown"
+    },
+    "at://did:plc:6asa2ztpcd4ncerqmwrsylj3/app.bsky.feed.post/3mehzgikv622h": {
+      "url": "https://youtu.be/1cBZcpSeiFc?si=97Jesmp3WQ9y94wI",
+      "platform": "youtube",
+      "videoTitle": "James Brown - The Payback",
+      "parsedSong": "The Payback",
+      "parsedArtist": "James Brown"
+    },
+    "at://did:plc:xu4bb6qjr5m7p5pr77aw5ozp/app.bsky.feed.post/3mehyz5h7wk2l": {
+      "url": "https://www.youtube.com/watch?v=Dkq7WZTzkLQ",
+      "platform": "youtube",
+      "videoTitle": "Scrooge - Thank You Very Much",
+      "parsedSong": "Thank You Very Much",
+      "parsedArtist": "Scrooge"
+    },
+    "at://did:plc:xq6h5qs3efyadpd3e6bi7ety/app.bsky.feed.post/3mehhgd2fk22h": {
+      "url": "https://youtu.be/XpYGgtrMTYs?si=SWgrZFeijkABxdtg",
+      "platform": "youtube",
+      "videoTitle": "Luciano Pavarotti - Ave Maria (Schubert)",
+      "parsedSong": "Ave Maria (Schubert)",
+      "parsedArtist": "Luciano Pavarotti"
+    },
+    "at://did:plc:xp5milwc3mipfcsbpvcdpsyz/app.bsky.feed.post/3meifvt7i7s22": {
+      "url": "https://youtu.be/_yijcWsLda8?si=aAiAIZclqd3ut4Ra",
+      "platform": "youtube",
+      "videoTitle": "ENTERPRISE Season 1 & 2 Opening Titles (HQ)",
+      "parsedSong": "ENTERPRISE Season 1 & 2 Opening Titles",
+      "parsedArtist": null
+    },
+    "at://did:plc:xma2htxmswqnzxtaiy43kvp2/app.bsky.feed.post/3mei76f7ae22d": {
+      "url": "https://media.tenor.com/Y3Fk2p9yz9oAAAAC/cell-block.gif?hh=150&ww=244",
+      "platform": "unknown",
+      "videoTitle": "a group of people are dancing on a stage with the words they had it coming behind them .",
+      "parsedSong": "a group of people are dancing on a stage with the words they had it coming behind them .",
+      "parsedArtist": null
+    },
+    "at://did:plc:xkugwnb5dsq3uakt7zelokus/app.bsky.feed.post/3meiel2pgjc2e": {
+      "url": "https://youtu.be/HmrGnOe-LVs?si=6cn7o15czpLEEbTt",
+      "platform": "youtube",
+      "videoTitle": "Die Mother Fucker Die by Dope (uncensored) High Quality (w/ lyrics)",
+      "parsedSong": "Die Mother Fucker Die by Dope (uncensored) High Quality (w/ lyrics)",
+      "parsedArtist": null
+    },
+    "at://did:plc:xk4phpqe4nsbhbfdlodt4tk7/app.bsky.feed.post/3mehhnqh4bc2e": {
+      "url": "https://youtu.be/3GwjfUFyY6M?si=NVHjS5zA_FMtMIsS",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Celebration",
+      "parsedSong": "Celebration",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:baygxzjghnjds2rvsbmsd4sc/app.bsky.feed.post/3mehxrsfkfk2i": {
+      "url": "https://youtu.be/bACKLW19XdE?si=rLWrK61yxMU0-2a2",
+      "platform": "youtube",
+      "videoTitle": "The Gap Band - Party Train",
+      "parsedSong": "Party Train",
+      "parsedArtist": "The Gap Band"
+    },
+    "at://did:plc:67zdpnkfgenaeirfcn2mqime/app.bsky.feed.post/3mehwf753ts2g": {
+      "url": "https://media.tenor.com/wYNJpgVGMiMAAAAC/the-simpsons-simpsons.gif?hh=373&ww=498",
+      "platform": "unknown",
+      "videoTitle": "a cartoon of a man sitting at a desk that says well this calls for a celebration",
+      "parsedSong": "a cartoon of a man sitting at a desk that says well this calls for a celebration",
+      "parsedArtist": null
+    },
+    "at://did:plc:xi3ge5nuhdgmaroaxolvcq72/app.bsky.feed.post/3mehrcdnjds2r": {
+      "url": "https://m.youtube.com/watch?v=-sxh52qEMmQ&pp=ygUWZGluZyBkb25nIGVtZXJhbGQgY2l0eQ%3D%3D",
+      "platform": "youtube",
+      "videoTitle": "Ding-Dong! Emerald City (Outtake)",
+      "parsedSong": "Ding-Dong! Emerald City (Outtake)",
+      "parsedArtist": null
+    },
+    "at://did:plc:x6l3uz63jjt43tcaif7tdvgj/app.bsky.feed.post/3mehlpjzrsc2x": {
+      "url": "https://www.youtube.com/watch?v=7iRDRgr40NE&list=RD7iRDRgr40NE&start_radio=1",
+      "platform": "youtube",
+      "videoTitle": "Everything's Coming Our Way",
+      "parsedSong": "Everything's Coming Our Way",
+      "parsedArtist": null
+    },
+    "at://did:plc:x67wjnnylxhuxlhfcimudaet/app.bsky.feed.post/3mehzaljox22d": {
+      "url": "https://youtu.be/Sff7Kc77QAY?si=0-Nu1N5XEK64LW1h",
+      "platform": "youtube",
+      "videoTitle": "Run The Jewels \"Ooh LA LA\" feat. Greg Nice & DJ Premier (Official Music Video)",
+      "parsedSong": "Run The Jewels \"Ooh LA LA\" feat. Greg Nice & DJ Premier",
+      "parsedArtist": null
+    },
+    "at://did:plc:x5ksuvfku54kfdt4trq2aokp/app.bsky.feed.post/3mehorx65mk2d": {
+      "url": "https://youtu.be/6CYkZcPYXQI?si=pPYS9b4qx1TMKCLF",
+      "platform": "youtube",
+      "videoTitle": "Green Day - Ha Ha You're Dead lyrics",
+      "parsedSong": "Ha Ha You're Dead lyrics",
+      "parsedArtist": "Green Day"
+    },
+    "at://did:plc:x3tl56duwdigvehkztv5j3sj/app.bsky.feed.post/3meicqndtxc2e": {
+      "url": "https://youtu.be/YVc1yirdzdI?si=w7V3c-iuowQZwg0X",
+      "platform": "youtube",
+      "videoTitle": "The Wizard of Oz - Ding Dong The Witch Is Dead",
+      "parsedSong": "Ding Dong The Witch Is Dead",
+      "parsedArtist": "The Wizard of Oz"
+    },
+    "at://did:plc:x3rshb7zvrs6nty7gvk2wbyq/app.bsky.feed.post/3meigtvxio22b": {
+      "url": "https://www.youtube.com/watch?v=fzyO3fLV5O0&t=800s",
+      "platform": "youtube",
+      "videoTitle": "Ludwig van Beethoven: Symphony No 9 'Ode to Joy' // Sir Antonio Pappano & London Symphony Orchestra",
+      "parsedSong": "Symphony No 9 'Ode to Joy' // Sir Antonio Pappano & London Symphony Orchestra",
+      "parsedArtist": "Ludwig van Beethoven"
+    },
+    "at://did:plc:x2hui4xou3cqrwljc6hgydfe/app.bsky.feed.post/3mehz5ndazs2x": {
+      "url": "https://youtu.be/HgzGwKwLmgM?si=tn1TZKMkKXdTaPWN",
+      "platform": "youtube",
+      "videoTitle": "Queen - Don't Stop Me Now (Official Video)",
+      "parsedSong": "Don't Stop Me Now",
+      "parsedArtist": "Queen"
+    },
+    "at://did:plc:wztlzks23nfm7befroexmk66/app.bsky.feed.post/3mehuaapzk22g": {
+      "url": "https://share.google/60qMVT5cUUlXCWEpx",
+      "platform": "unknown",
+      "videoTitle": "Bathory - A Fine Day to Die",
+      "parsedSong": "A Fine Day to Die",
+      "parsedArtist": "Bathory"
+    },
+    "at://did:plc:wtm4v3odcsgcetva53fztk6k/app.bsky.feed.post/3mehlch75z22k": {
+      "url": "https://music.apple.com/us/album/%C3%B4-fortuna-feat-dj-patrick-samoy-apocalypse-chorus-mix-mixed/1591207701?i=1591207932",
+      "platform": "apple",
+      "videoTitle": "Ô Fortuna (feat. DJ Patrick Samoy) [Apocalypse Chorus Mix] [Mixed] by Apotheosis on Apple Music",
+      "parsedSong": "Ô Fortuna [Apocalypse Chorus Mix] [Mixed] by Apotheosis on Apple Music",
+      "parsedArtist": null
+    },
+    "at://did:plc:wrffkejzcdeq6aal4nr34pmt/app.bsky.feed.post/3mehiptz23c2b": {
+      "url": "https://youtu.be/auzfTPp4moA",
+      "platform": "youtube",
+      "videoTitle": "Yeah Yeah Yeahs - Heads Will Roll (Official Music Video)",
+      "parsedSong": "Heads Will Roll",
+      "parsedArtist": "Yeah Yeah Yeahs"
+    },
+    "at://did:plc:wrffkejzcdeq6aal4nr34pmt/app.bsky.feed.post/3mehig5uoy22b": {
+      "url": "https://youtu.be/np6vAuS0KNs",
+      "platform": "youtube",
+      "videoTitle": "Yub Nub (Star Wars Episode VI: Return of the Jedi Ending)",
+      "parsedSong": "Return of the Jedi Ending)",
+      "parsedArtist": "Yub Nub (Star Wars Episode VI"
+    },
+    "at://did:plc:e6zs5itze3hu5v7hjgegwb5k/app.bsky.feed.post/3mehrf7w5ps2k": {
+      "url": "https://youtu.be/TfUxy7PdHxY?si=DTD6E4p6bAIHEFHp",
+      "platform": "youtube",
+      "videoTitle": "Meco - Ewok Celebration",
+      "parsedSong": "Ewok Celebration",
+      "parsedArtist": "Meco"
+    },
+    "at://did:plc:nmpasbt335jdfiray3diohfp/app.bsky.feed.post/3meiazs3ib22u": {
+      "url": "https://youtu.be/p_ULdXn3C_8?si=D4UZfl3lhO-tHZww",
+      "platform": "youtube",
+      "videoTitle": "Star Wars Episode I - The Phantom Menace. Freedom of Naboo (Celebration Parade). 4K ULTRA HD.",
+      "parsedSong": "The Phantom Menace. Freedom of Naboo (Celebration Parade). 4K ULTRA HD.",
+      "parsedArtist": "Star Wars Episode I"
+    },
+    "at://did:plc:wq3tpey2deirk4wz6ft2htbf/app.bsky.feed.post/3mehtnfm7s22i": {
+      "url": "https://youtu.be/U6rzVVwvlLU?si=RBJPl1Ks7E7DYmmP",
+      "platform": "youtube",
+      "videoTitle": "The Hell Of It",
+      "parsedSong": "The Hell Of It",
+      "parsedArtist": null
+    },
+    "at://did:plc:wpiweiwtnbkekb2q5rbzqkk5/app.bsky.feed.post/3mehxh7e6pk2t": {
+      "url": "https://youtu.be/rB0mMPCNAOM?si=iXeG3DvZujuTTMsy",
+      "platform": "youtube",
+      "videoTitle": "Ding Dong! The Witch Is Dead - Barbra Streisand & Harold Arlen (Duets)",
+      "parsedSong": "Barbra Streisand & Harold Arlen (Duets)",
+      "parsedArtist": "Ding Dong! The Witch Is Dead"
+    },
+    "at://did:plc:woaza3ufyd6luukp5hc26qh3/app.bsky.feed.post/3meiyrj7nw22r": {
+      "url": "https://youtu.be/gO17hN-YvBc?si=ZNTxaImY_rxeP55g",
+      "platform": "youtube",
+      "videoTitle": "Bang the Drum All Day (2015 Remaster)",
+      "parsedSong": "Bang the Drum All Day (2015 Remaster)",
+      "parsedArtist": null
+    },
+    "at://did:plc:wncoqjggfsmz2mxrvydlw5gv/app.bsky.feed.post/3meixee66es27": {
+      "url": "https://media.tenor.com/9towAw3USe0AAAAC/munchkin-munchkins-running.gif?hh=347&ww=498",
+      "platform": "unknown",
+      "videoTitle": "a man in a cowboy hat is dancing in front of a thatched building with the words `` good news '' written below him .",
+      "parsedSong": "a man in a cowboy hat is dancing in front of a thatched building with the words `` good news '' written below him .",
+      "parsedArtist": null
+    },
+    "at://did:plc:wmxwakyp445w4e7bworofooc/app.bsky.feed.post/3mei3ccohx22k": {
+      "url": "https://youtube.com/watch?v=r57J0jPyZRs",
+      "platform": "youtube",
+      "videoTitle": "NINA SIMONE - Sinnerman (1965) [Video Clip]",
+      "parsedSong": "Sinnerman (1965) [Video Clip]",
+      "parsedArtist": "NINA SIMONE"
+    },
+    "at://did:plc:wluyvvzupehfgox7xcmuulz5/app.bsky.feed.post/3mehnae5k7223": {
+      "url": "https://www.youtube.com/watch?v=pi_YQul7XXk",
+      "platform": "youtube",
+      "videoTitle": "Tramp the Dirt Down",
+      "parsedSong": "Tramp the Dirt Down",
+      "parsedArtist": null
+    },
+    "at://did:plc:wls6m6x4y5nzlqhtvtikgy2c/app.bsky.feed.post/3mehyfrdd2c2r": {
+      "url": "https://youtu.be/I_cCj-e_kPc?si=XZkH9GodgX8vcAUs",
+      "platform": "youtube",
+      "videoTitle": "Elvis Costello- \"Tramp The Dirt Down\" LIVE 1989 [Reelin' In The Years Archive]",
+      "parsedSong": "Elvis Costello- \"Tramp The Dirt Down\" LIVE 1989 [Reelin' In The Years Archive]",
+      "parsedArtist": null
+    },
+    "at://did:plc:whk32yeere5h6l2zq42od7pw/app.bsky.feed.post/3meiqptw7cc2e": {
+      "url": "https://youtu.be/o2vdCm4tZDA?si=0P6E5QzfWKDhopab",
+      "platform": "youtube",
+      "videoTitle": "[I'll Be Glad When You're Dead] You Rascal You",
+      "parsedSong": "[I'll Be Glad When You're Dead] You Rascal You",
+      "parsedArtist": null
+    },
+    "at://did:plc:w475svwwaby3v65o6tubzel4/app.bsky.feed.post/3mehyrao5ds2w": {
+      "url": "https://youtu.be/UM1Rn3PD3Z0",
+      "platform": "youtube",
+      "videoTitle": "\"When that Man is Dead and Gone\" (1941) Anti-Hitler Song by Irving Berlin - Live at Joe's Pub",
+      "parsedSong": "Live at Joe's Pub",
+      "parsedArtist": "\"When that Man is Dead and Gone\" (1941) Anti-Hitler Song by Irving Berlin"
+    },
+    "at://did:plc:vy5ozkmnlx4elg2lmeyec7y5/app.bsky.feed.post/3mehtvhqwks2f": {
+      "url": "https://open.spotify.com/track/0Jw3cPBXlGnA6DEJrZSTI0?si=7IrXjZBeR2K2drriwoBP8A",
+      "platform": "spotify",
+      "videoTitle": "Soul Bossa Nova",
+      "parsedSong": "Soul Bossa Nova",
+      "parsedArtist": null
+    },
+    "at://did:plc:vxmvvejnqpw7lajld3oez3nc/app.bsky.feed.post/3mei36oye6c2f": {
+      "url": "https://www.youtube.com/watch?v=rl3FstCc_OY",
+      "platform": "youtube",
+      "videoTitle": "Death - Politicians In My Eyes (1974/2009) [HQ]",
+      "parsedSong": "Politicians In My Eyes (1974/2009)",
+      "parsedArtist": "Death"
+    },
+    "at://did:plc:vxmvvejnqpw7lajld3oez3nc/app.bsky.feed.post/3mei37nez6c2f": {
+      "url": "https://www.youtube.com/watch?v=wqbEsS5kFb8",
+      "platform": "youtube",
+      "videoTitle": "The Honey Drippers - Impeach The President",
+      "parsedSong": "Impeach The President",
+      "parsedArtist": "The Honey Drippers"
+    },
+    "at://did:plc:vrytdjwmb4uqy2rfko2pcv5x/app.bsky.feed.post/3mehmcfn3nc2e": {
+      "url": "https://youtu.be/np6vAuS0KNs?si=EpnSVeUWQM7PWkbE",
+      "platform": "youtube",
+      "videoTitle": "Yub Nub (Star Wars Episode VI: Return of the Jedi Ending)",
+      "parsedSong": "Return of the Jedi Ending)",
+      "parsedArtist": "Yub Nub (Star Wars Episode VI"
+    },
+    "at://did:plc:vn6pibnz7vqqyjzyp2bvzak7/app.bsky.feed.post/3mehhqpfpmk2a": {
+      "url": "https://media.tenor.com/Dk_oVuqpu_4AAAAC/djdee-animal-house-movie.gif?hh=267&ww=498",
+      "platform": "unknown",
+      "videoTitle": "a group of men in tuxedos are singing and playing instruments in front of a sign that says \" welcome \"",
+      "parsedSong": "welcome",
+      "parsedArtist": "a group of men in tuxedos are singing and playing instruments in front of a sign that says"
+    },
+    "at://did:plc:vl5obfcdcel7xb23bdsfncbu/app.bsky.feed.post/3mehwnssmvs2j": {
+      "url": "https://youtu.be/o2vdCm4tZDA?si=Z3PNcqy0WUDuPX0C",
+      "platform": "youtube",
+      "videoTitle": "[I'll Be Glad When You're Dead] You Rascal You",
+      "parsedSong": "[I'll Be Glad When You're Dead] You Rascal You",
+      "parsedArtist": null
+    },
+    "at://did:plc:vjqbi5iiljlwc33x5voqtizr/app.bsky.feed.post/3mehn2u5udc2r": {
+      "url": "https://youtu.be/yWeuUwpEQfs?si=KcnXb3ODKMSW9TQr",
+      "platform": "youtube",
+      "videoTitle": "Coldplay - Don't Panic (Official Video)",
+      "parsedSong": "Don't Panic",
+      "parsedArtist": "Coldplay"
+    },
+    "at://did:plc:vhnfl7xl452tli2pzoqsxiu4/app.bsky.feed.post/3mehmtpqc3c2r": {
+      "url": "https://youtu.be/OLkPwxcIji0?si=aWlAGK2KGSeaxOyu",
+      "platform": "youtube",
+      "videoTitle": "Chumbawamba - The day the nazi died",
+      "parsedSong": "The day the nazi died",
+      "parsedArtist": "Chumbawamba"
+    },
+    "at://did:plc:vea3d4ftflkgqtdaxxup3pla/app.bsky.feed.post/3mehgv5i2ts26": {
+      "url": "https://media.tenor.com/tZXlmOJJ8w4AAAAC/free-the-wiz.gif?hh=278&ww=498",
+      "platform": "unknown",
+      "videoTitle": "a woman in a white dress is dancing in front of a crowd with the words \" can you feel a brand new day \" below her",
+      "parsedSong": "a woman in a white dress is dancing in front of a crowd with the words \" can you feel a brand new day \" below her",
+      "parsedArtist": null
+    },
+    "at://did:plc:vdsy525lbx26k3353pc7wxbd/app.bsky.feed.post/3mehsnumgsk2j": {
+      "url": "https://youtu.be/TqT_izKjCtU",
+      "platform": "youtube",
+      "videoTitle": "Five Gears In Reverse",
+      "parsedSong": "Five Gears In Reverse",
+      "parsedArtist": null
+    },
+    "at://did:plc:vcw7jnwljglbvxeqs3hkkglm/app.bsky.feed.post/3mehmhnorlc2p": {
+      "url": "https://youtu.be/w8kitwhOUTE?si=8DQxE0ufUzsWPt03",
+      "platform": "youtube",
+      "videoTitle": "Philadelphia 76ers Win Song (Here Come the Sixers)",
+      "parsedSong": "Philadelphia 76ers Win Song (Here Come the Sixers)",
+      "parsedArtist": null
+    },
+    "at://did:plc:vcuhbon7i37objkptanyotpr/app.bsky.feed.post/3mehwiarn722j": {
+      "url": "https://youtu.be/mHoCR7u5NzY?si=lNydm7pKhv63v-Ce",
+      "platform": "youtube",
+      "videoTitle": "Fat Boys - Stick 'em",
+      "parsedSong": "Stick 'em",
+      "parsedArtist": "Fat Boys"
+    },
+    "at://did:plc:vchb6pgxv7uqkgxhhlkxe2x2/app.bsky.feed.post/3mehybfof6s2i": {
+      "url": "https://youtu.be/pi_YQul7XXk?si=dv6_MQJMrrny8VKY",
+      "platform": "youtube",
+      "videoTitle": "Tramp the Dirt Down",
+      "parsedSong": "Tramp the Dirt Down",
+      "parsedArtist": null
+    },
+    "at://did:plc:vbor7bs7xyam4rdppunutb2h/app.bsky.feed.post/3mej34vmgs22u": {
+      "url": "https://www.youtube.com/watch?v=VRVPLPFoJL0",
+      "platform": "youtube",
+      "videoTitle": "Rare Earth - I Just Want to Celebrate",
+      "parsedSong": "I Just Want to Celebrate",
+      "parsedArtist": "Rare Earth"
+    },
+    "at://did:plc:vb7iikxpdtc3ox5o27tjl4sl/app.bsky.feed.post/3mehicr5sr224": {
+      "url": "https://youtu.be/pj9OzHQqyIE?si=Nx59rqEjhwDjKERd",
+      "platform": "youtube",
+      "videoTitle": "Jaded (2007 Remaster)",
+      "parsedSong": "Jaded (2007 Remaster)",
+      "parsedArtist": null
+    },
+    "at://did:plc:v43msxnm73bn5onpcz3llglp/app.bsky.feed.post/3mehsaibzdk27": {
+      "url": "https://youtu.be/UI1cuht8jh0?si=4FT-p53f9vs1EbC5",
+      "platform": "youtube",
+      "videoTitle": "Party Party Party",
+      "parsedSong": "Party Party Party",
+      "parsedArtist": null
+    },
+    "at://did:plc:v336cuknk42uszs6kw65qlin/app.bsky.feed.post/3meht6hkz2c2h": {
+      "url": "https://www.youtube.com/watch?v=X_sIbcO4iuw",
+      "platform": "youtube",
+      "videoTitle": "When That Man Is Dead And Gone",
+      "parsedSong": "When That Man Is Dead And Gone",
+      "parsedArtist": null
+    },
+    "at://did:plc:v2vaxukti27hkkdtbm2zkuvz/app.bsky.feed.post/3mei3x3cack2d": {
+      "url": "https://youtu.be/QIfotf13gzE?si=gbxR_NgedVrZdD38",
+      "platform": "youtube",
+      "videoTitle": "Dancing in the Street (2015 Remaster)",
+      "parsedSong": "Dancing in the Street (2015 Remaster)",
+      "parsedArtist": null
+    },
+    "at://did:plc:uvc55lxzlfeh3epdherak5g3/app.bsky.feed.post/3meia3zkcsc2i": {
+      "url": "https://youtu.be/dWUa7aAIfLE?si=VxlG0qqeBaxXPHAR",
+      "platform": "youtube",
+      "videoTitle": "Resistance Revival Chorus with Rhiannon Giddens \"All You Fascists Bound To Lose\"",
+      "parsedSong": "All You Fascists Bound To Lose",
+      "parsedArtist": "Resistance Revival Chorus with Rhiannon Giddens"
+    },
+    "at://did:plc:uuibfh77qbgk2hzrs7czfdtp/app.bsky.feed.post/3mehh5eipu222": {
+      "url": "https://youtu.be/HGrq1SzkHs0?si=zOMy3Pfk_6sgP5xa",
+      "platform": "youtube",
+      "videoTitle": "Neighborhood Inaugural Ball \"At Last\" Performance",
+      "parsedSong": "Neighborhood Inaugural Ball \"At Last\" Performance",
+      "parsedArtist": null
+    },
+    "at://did:plc:utrafbbdcgxuncgucm6qbikx/app.bsky.feed.post/3mehvmcukvc2a": {
+      "url": "https://youtu.be/TnrTzd5RjgI?si=GluswFD73eElMOk-",
+      "platform": "youtube",
+      "videoTitle": "Neil Diamond \"Holly Holy\" on The Ed Sullivan Show",
+      "parsedSong": "Neil Diamond \"Holly Holy\" on The Ed Sullivan Show",
+      "parsedArtist": null
+    },
+    "at://did:plc:ups73axf3ve2zfehyrhmka5y/app.bsky.feed.post/3mehw4dbg4c2v": {
+      "url": "https://www.youtube.com/watch?v=1UsQjNcm-u4",
+      "platform": "youtube",
+      "videoTitle": "1939 Glenn Miller - Ding-Dong! The Witch Is Dead (Marion Hutton, vocal)",
+      "parsedSong": "Ding-Dong! The Witch Is Dead (Marion Hutton, vocal)",
+      "parsedArtist": "1939 Glenn Miller"
+    },
+    "at://did:plc:unsf4crwl2ara5k35734sasa/app.bsky.feed.post/3mei5mcch7k2z": {
+      "url": "https://youtu.be/FHRysTfaMi4?si=5s0d5YE3TnKpVTBq",
+      "platform": "youtube",
+      "videoTitle": "DNC 1996 Rocks Out to MACARENA: Bill Clinton, Hillary Clinton, Delegates",
+      "parsedSong": "Bill Clinton, Hillary Clinton, Delegates",
+      "parsedArtist": "DNC 1996 Rocks Out to MACARENA"
+    },
+    "at://did:plc:e6zs5itze3hu5v7hjgegwb5k/app.bsky.feed.post/3mehrw7yogs2k": {
+      "url": "https://youtu.be/NGGACRwYDo8?si=aa0wa4GFw_USI2jU",
+      "platform": "youtube",
+      "videoTitle": "HOLY SH*T (You've Got To Vote) w/ Rachel Bloom, Elizabeth Banks, Patti Lupone, Naya Rivera, & more!",
+      "parsedSong": "HOLY SH*T (You've Got To Vote) w/ Rachel Bloom, Elizabeth Banks, Patti Lupone, Naya Rivera, & more!",
+      "parsedArtist": null
+    },
+    "at://did:plc:uka22kzz42ejgkpjw6ejykmr/app.bsky.feed.post/3mehrb6h6jk2v": {
+      "url": "https://youtu.be/QIfotf13gzE",
+      "platform": "youtube",
+      "videoTitle": "Dancing in the Street (2015 Remaster)",
+      "parsedSong": "Dancing in the Street (2015 Remaster)",
+      "parsedArtist": null
+    },
+    "at://did:plc:uk2wnfiht4fj23jxvffdrok4/app.bsky.feed.post/3mehiv3iouk2v": {
+      "url": "https://media.tenor.com/MEcRCFNQiVsAAAAC/let%27s-go.gif?hh=334&ww=498",
+      "platform": "unknown",
+      "videoTitle": "prince is singing on stage and says let 's get nuts !",
+      "parsedSong": "prince is singing on stage and says let 's get nuts !",
+      "parsedArtist": null
+    },
+    "at://did:plc:uibtitmn7wptsxnwqfdozm32/app.bsky.feed.post/3mehwu6otd22j": {
+      "url": "https://youtu.be/OT6sqbzyS0I?si=rUf0T26wc4qGV7-n",
+      "platform": "youtube",
+      "videoTitle": "Okkervil River- The President Is Dead",
+      "parsedSong": "Okkervil River- The President Is Dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:ufnowsd3lku4e4ndpubuy7p5/app.bsky.feed.post/3mei3tqkmis23": {
+      "url": "https://www.youtube.com/watch?v=JU5LMG3WFBw",
+      "platform": "youtube",
+      "videoTitle": "Queen - Hammer To Fall (Official Video)",
+      "parsedSong": "Hammer To Fall",
+      "parsedArtist": "Queen"
+    },
+    "at://did:plc:ahmp47hcctr23zeet7mxdc2e/app.bsky.feed.post/3mehkrcz7ac24": {
+      "url": "https://youtu.be/SEzc0VLiwQw",
+      "platform": "youtube",
+      "videoTitle": "Guardians of the Galaxy Vol. 3 - Groot Dancing| Drax Dance| Dog Days are Over",
+      "parsedSong": "Groot Dancing| Drax Dance| Dog Days are Over",
+      "parsedArtist": "Guardians of the Galaxy Vol. 3"
+    },
+    "at://did:plc:uarokaofng32ebsei7ur4lxa/app.bsky.feed.post/3mehwojsdus2a": {
+      "url": "https://media.tenor.com/2v6SQSYv6vEAAAAC/ding-dong-the-witch-is-dead-wizard-of-oz.gif?hh=331&ww=498",
+      "platform": "unknown",
+      "videoTitle": "a group of people are dancing in a village with the words ding dong the witch is dead",
+      "parsedSong": "a group of people are dancing in a village with the words ding dong the witch is dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:uagkxcrzs5ctgltyhsfgn65a/app.bsky.feed.post/3mej2oq3rjc2y": {
+      "url": "https://youtu.be/oHRNrgDIJfo?si=BEzE165w5znCq4Jx",
+      "platform": "youtube",
+      "videoTitle": "Nina Simone - Feeling Good (Official Video)",
+      "parsedSong": "Feeling Good",
+      "parsedArtist": "Nina Simone"
+    },
+    "at://did:plc:u5aspyo7nhlacfed6xkpkor2/app.bsky.feed.post/3mehwfmmtbk2d": {
+      "url": "https://youtu.be/FRlTjErEDPQ?si=A_miICrF22oZG-LC",
+      "platform": "youtube",
+      "videoTitle": "Na Na Hey Hey Kiss Him Goodbye",
+      "parsedSong": "Na Na Hey Hey Kiss Him Goodbye",
+      "parsedArtist": null
+    },
+    "at://did:plc:ejivxmz43mbxaehy5cmzmwbi/app.bsky.feed.post/3mei6lwrfss2p": {
+      "url": "https://media.tenor.com/K7UReCxDbt8AAAAC/bankroll-pump-the-volume.gif?hh=374&ww=498",
+      "platform": "unknown",
+      "videoTitle": "a person is adjusting a volume knob and the words volume up are visible",
+      "parsedSong": "a person is adjusting a volume knob and the words volume up are visible",
+      "parsedArtist": null
+    },
+    "at://did:plc:u3poes4s43pognroygp7kjbn/app.bsky.feed.post/3mehutjijvk2j": {
+      "url": "https://m.youtube.com/watch?v=lLdv3ngkeJs&pp=0gcJCUABo7VqN5tD",
+      "platform": "youtube",
+      "videoTitle": "Ying Yang Twins - Halftime (Stand Up and Get Crunk!) (feat. Homebwoi) (Official Audio)",
+      "parsedSong": "Halftime (Stand Up and Get Crunk!)",
+      "parsedArtist": "Ying Yang Twins"
+    },
+    "at://did:plc:u3fd2p2wz5w3pw7f2fdfsfap/app.bsky.feed.post/3mehy4sr3rs2k": {
+      "url": "https://youtu.be/NE3VTL4IOts?si=RefcCwnVVSpUdsyR",
+      "platform": "youtube",
+      "videoTitle": "Start The Party",
+      "parsedSong": "Start The Party",
+      "parsedArtist": null
+    },
+    "at://did:plc:ttum7yaf2ow3vicglhxg7cde/app.bsky.feed.post/3meho4oivmk2c": {
+      "url": "https://www.youtube.com/watch?v=QEq-KYcj7Rs",
+      "platform": "youtube",
+      "videoTitle": "Ewok Celebration and Finale",
+      "parsedSong": "Ewok Celebration and Finale",
+      "parsedArtist": null
+    },
+    "at://did:plc:ttfcs6rcrcag26qlk3tybfda/app.bsky.feed.post/3mehhyuwifk2r": {
+      "url": "https://m.youtube.com/watch?v=4bJb5SI04ac&list=RD4bJb5SI04ac&start_radio=1&pp=ygUTZGUgcGhhenogYmV0dGVyIG5vd6AHAQ%3D%3D",
+      "platform": "youtube",
+      "videoTitle": "Better Now",
+      "parsedSong": "Better Now",
+      "parsedArtist": null
+    },
+    "at://did:plc:trh27gcpy2ycrnk5pn2myssb/app.bsky.feed.post/3mehv67qlps2d": {
+      "url": "https://music.apple.com/us/album/one-bourbon-one-scotch-one-beer/1440719230?i=1440719501",
+      "platform": "apple",
+      "videoTitle": "One Bourbon, One Scotch, One Beer by John Lee Hooker on Apple Music",
+      "parsedSong": "One Bourbon, One Scotch, One Beer by John Lee Hooker on Apple Music",
+      "parsedArtist": null
+    },
+    "at://did:plc:tlxpzpsmumfwzy3ghs7yndft/app.bsky.feed.post/3mehgvcfzjs2n": {
+      "url": "https://media.tenor.com/oHYyv3LOSeAAAAAC/goodtimes-koolandthegang.gif?hh=360&ww=480",
+      "platform": "unknown",
+      "videoTitle": "a man singing into a microphone with the words good times written above him .",
+      "parsedSong": "a man singing into a microphone with the words good times written above him .",
+      "parsedArtist": null
+    },
+    "at://did:plc:tky2qf4fnd3yzkblqwol5ukl/app.bsky.feed.post/3mehx7462m22j": {
+      "url": "https://media.tenor.com/dVOOiDqYBXkAAAAC/theyre-dancing-in-the-street-martha-and-the-vandellas.gif?hh=371&ww=498",
+      "platform": "unknown",
+      "videoTitle": "three women in yellow dresses are dancing and singing with the words they 're dancing in the street above them",
+      "parsedSong": "three women in yellow dresses are dancing and singing with the words they 're dancing in the street above them",
+      "parsedArtist": null
+    },
+    "at://did:plc:ti7ks7ucaxllj3fbjqf4bldz/app.bsky.feed.post/3mehkg5ehs22d": {
+      "url": "https://youtu.be/kCXYTu5thZE?si=sfKvFuleMkG8LeDf",
+      "platform": "youtube",
+      "videoTitle": "Good Riddance",
+      "parsedSong": "Good Riddance",
+      "parsedArtist": null
+    },
+    "at://did:plc:ti7ks7ucaxllj3fbjqf4bldz/app.bsky.feed.post/3mehip5jxdk2n": {
+      "url": "https://youtu.be/-k7NvkAk_FQ?si=dCBamkMt9LkTLi94",
+      "platform": "youtube",
+      "videoTitle": "Awake",
+      "parsedSong": "Awake",
+      "parsedArtist": null
+    },
+    "at://did:plc:ti7ks7ucaxllj3fbjqf4bldz/app.bsky.feed.post/3mehisq52yk2n": {
+      "url": "https://youtu.be/FLriItemphE?si=0D3QPYLAyniMEiuV",
+      "platform": "youtube",
+      "videoTitle": "Swingin' Utters - Yes I Hope He Dies (Official Audio)",
+      "parsedSong": "Yes I Hope He Dies",
+      "parsedArtist": "Swingin' Utters"
+    },
+    "at://did:plc:th3l3gtaswuu5vook7duibqq/app.bsky.feed.post/3mehxljxbks2t": {
+      "url": "https://youtu.be/5PaUTnk9k9Y?si=u9ghKW4N0Zdd7zo0",
+      "platform": "youtube",
+      "videoTitle": "Star Trek Beyond (2016) - Sabotage Scene (8/10) | Movieclips",
+      "parsedSong": "Sabotage Scene (8/10) | Movieclips",
+      "parsedArtist": "Star Trek Beyond (2016)"
+    },
+    "at://did:plc:tg5nvennkc67467gbufj2nhk/app.bsky.feed.post/3mehw7wtotk2k": {
+      "url": "https://www.youtube.com/watch?v=7ImsN748Wqo&list=RD7ImsN748Wqo&start_radio=1",
+      "platform": "youtube",
+      "videoTitle": "Still",
+      "parsedSong": "Still",
+      "parsedArtist": null
+    },
+    "at://did:plc:tfaezkecxsu3t7cfzr5abfhs/app.bsky.feed.post/3mehofbbhwc2b": {
+      "url": "https://youtu.be/16xGceArnz8?si=ks14n58D668K68d1",
+      "platform": "youtube",
+      "videoTitle": "ОРУЩИЙ КОВБОЙ 10 ЧАСОВ / SCREAMING COWBOY 10 HOURS",
+      "parsedSong": "ОРУЩИЙ КОВБОЙ 10 ЧАСОВ / SCREAMING COWBOY 10 HOURS",
+      "parsedArtist": null
+    },
+    "at://did:plc:teoekurth2o7uu5bo5io5seq/app.bsky.feed.post/3mehwllqv5c2j": {
+      "url": "https://youtu.be/GtSRKwDCaZM?si=djmxroZrifeudVey",
+      "platform": "youtube",
+      "videoTitle": "BAD BUNNY - YO PERREO SOLA | YHLQMDLG (Video Oficial)",
+      "parsedSong": "YO PERREO SOLA | YHLQMDLG (Video Oficial)",
+      "parsedArtist": "BAD BUNNY"
+    },
+    "at://did:plc:t5olagbf2pbvma3shunmeh2p/app.bsky.feed.post/3mehod6uwl22q": {
+      "url": "https://youtu.be/41NOMETNp3U?si=-sAOgLMasWQrxkuy",
+      "platform": "youtube",
+      "videoTitle": "Malört & Savior - On The Day It Finally Happens",
+      "parsedSong": "On The Day It Finally Happens",
+      "parsedArtist": "Malört & Savior"
+    },
+    "at://did:plc:t5olagbf2pbvma3shunmeh2p/app.bsky.feed.post/3mehobb2rs22q": {
+      "url": "https://youtu.be/XDkhzVw0yBs?si=S0bWoIu1UfCiZJXU",
+      "platform": "youtube",
+      "videoTitle": "When that Man is Dead and Gone (1941) - Protest song against Hitler (Live Take)",
+      "parsedSong": "Protest song against Hitler",
+      "parsedArtist": "When that Man is Dead and Gone (1941)"
+    },
+    "at://did:plc:t57khkn45cpna5ljz6fjcjdd/app.bsky.feed.post/3mehw4i5ags2i": {
+      "url": "https://www.youtube.com/watch?v=CdvITn5cAVc",
+      "platform": "youtube",
+      "videoTitle": "Martha & The Vandellas \"Dancing in the Streets\"",
+      "parsedSong": "Dancing in the Streets",
+      "parsedArtist": "Martha & The Vandellas"
+    },
+    "at://did:plc:svrtuz7vto2weeibdoukmqde/app.bsky.feed.post/3mehxfzuj2s2o": {
+      "url": "https://media.tenor.com/PDPAt2u-8RkAAAAC/i-can-see-clearly-now.gif?hh=220&ww=220",
+      "platform": "unknown",
+      "videoTitle": "a man wearing a turban and a yellow shirt is standing in a field and says i can see clearly now .",
+      "parsedSong": "a man wearing a turban and a yellow shirt is standing in a field and says i can see clearly now .",
+      "parsedArtist": null
+    },
+    "at://did:plc:suxjofvsncecnpsjfaecoghb/app.bsky.feed.post/3mehizcw6qk2t": {
+      "url": "https://youtu.be/Xg9Wqs4vjZM?si=pFr7j2-vMBpUXFu5",
+      "platform": "youtube",
+      "videoTitle": "Utah Saints - Something Good (Official Video)",
+      "parsedSong": "Something Good",
+      "parsedArtist": "Utah Saints"
+    },
+    "at://did:plc:stx6uitodiw5ke4hox7dq7it/app.bsky.feed.post/3mei3vkvetc23": {
+      "url": "https://youtu.be/cBiKePi3QMY?si=XTiMwFZDn4LxfgEQ",
+      "platform": "youtube",
+      "videoTitle": "Gabriel O Pensador - Tô Feliz (Matei o Presidente) 2",
+      "parsedSong": "Tô Feliz (Matei o Presidente) 2",
+      "parsedArtist": "Gabriel O Pensador"
+    },
+    "at://did:plc:sr5euzva3mrsu5j4fubsnfs2/app.bsky.feed.post/3mehy6bes5s2w": {
+      "url": "https://youtu.be/aQUlA8Hcv4s",
+      "platform": "youtube",
+      "videoTitle": "Electric Light Orchestra - Mr. Blue Sky (Official Video)",
+      "parsedSong": "Mr. Blue Sky",
+      "parsedArtist": "Electric Light Orchestra"
+    },
+    "at://did:plc:sr5euzva3mrsu5j4fubsnfs2/app.bsky.feed.post/3mehw22n46k2w": {
+      "url": "https://youtu.be/eJlN9jdQFSc?si=UkgMPZffLR8vXo3N",
+      "platform": "youtube",
+      "videoTitle": "Johnny Cash - God's Gonna Cut You Down (Official Music Video)",
+      "parsedSong": "God's Gonna Cut You Down",
+      "parsedArtist": "Johnny Cash"
+    },
+    "at://did:plc:sqnobj3jrfu3h4pqdomljgyw/app.bsky.feed.post/3mehwnmh3ac2f": {
+      "url": "https://youtu.be/NPqDIwWMtxg?si=R2pfmFfKmKVJYjQ5",
+      "platform": "youtube",
+      "videoTitle": "euphoria",
+      "parsedSong": "euphoria",
+      "parsedArtist": null
+    },
+    "at://did:plc:spw2rjy3zdwg2j5omod477vi/app.bsky.feed.post/3mehwqxgnwc2d": {
+      "url": "https://www.youtube.com/watch?v=jsaTElBljOE",
+      "platform": "youtube",
+      "videoTitle": "Na Na Hey Hey Kiss Him Goodbye",
+      "parsedSong": "Na Na Hey Hey Kiss Him Goodbye",
+      "parsedArtist": null
+    },
+    "at://did:plc:sljr4osei4w5jwioxu2eyauz/app.bsky.feed.post/3meisi2jxi22n": {
+      "url": "https://youtu.be/2K3ho-n9DOg?si=XVypeeWo7-3FAH5k",
+      "platform": "youtube",
+      "videoTitle": "Lily Allen - F You (Dedicated To Donald Trump Live in Boston 10-24-18)",
+      "parsedSong": "F You (Dedicated To Donald Trump Live in Boston 10-24-18)",
+      "parsedArtist": "Lily Allen"
+    },
+    "at://did:plc:sjp2tz4w43tbxe5vf4vy5x46/app.bsky.feed.post/3mehkwcushc2u": {
+      "url": "https://youtu.be/BoXu6QmxpJE?si=83jBrsiNrg5uvLr6",
+      "platform": "youtube",
+      "videoTitle": "Wang Chung - Everybody Have Fun Tonight",
+      "parsedSong": "Everybody Have Fun Tonight",
+      "parsedArtist": "Wang Chung"
+    },
+    "at://did:plc:serr3gwyynbpuqwcbslonfsn/app.bsky.feed.post/3mehweyww2c2j": {
+      "url": "https://youtu.be/x9LsqMsJ3do",
+      "platform": "youtube",
+      "videoTitle": "little dog spot got hit by a car",
+      "parsedSong": "little dog spot got hit by a car",
+      "parsedArtist": null
+    },
+    "at://did:plc:se3hkxf3smcz6qgdrczpmdxl/app.bsky.feed.post/3mehwq5u2mc2v": {
+      "url": "https://youtu.be/chcyTeyEM04?si=dyrMApLAtiInDXnu",
+      "platform": "youtube",
+      "videoTitle": "Curtis Mayfield - Move On Up | Soul Sunday",
+      "parsedSong": "Move On Up | Soul Sunday",
+      "parsedArtist": "Curtis Mayfield"
+    },
+    "at://did:plc:scld2y347u7d2yq7l4k4fpmq/app.bsky.feed.post/3mehh6dmxqc2k": {
+      "url": "https://youtu.be/7m7AGT80VQk?si=dHD_HLAtxEJsYwpv&t=92",
+      "platform": "youtube",
+      "videoTitle": "I (Remastered 2014)",
+      "parsedSong": "I",
+      "parsedArtist": null
+    },
+    "at://did:plc:sabzpn5jtd4ouww3nfce5iyx/app.bsky.feed.post/3mehpus3zys26": {
+      "url": "https://media.tenor.com/19r66yDNxcIAAAAC/all-night-long-lionel-richie.gif?hh=371&ww=498",
+      "platform": "unknown",
+      "videoTitle": "a man in a red shirt is dancing with a woman in a blue dress and the words all night long are visible",
+      "parsedSong": "a man in a red shirt is dancing with a woman in a blue dress and the words all night long are visible",
+      "parsedArtist": null
+    },
+    "at://did:plc:sa4rj6zvjihbzsoifabk2y25/app.bsky.feed.post/3mehtnk6jgk2w": {
+      "url": "https://media.tenor.com/x8hxJQORFQgAAAAC/ding-dong-the-witch-is-dead-wizard-of-oz.gif?hh=252&ww=340",
+      "platform": "unknown",
+      "videoTitle": "a witch is laying on the ground in front of a wooden building .",
+      "parsedSong": "a witch is laying on the ground in front of a wooden building .",
+      "parsedArtist": null
+    },
+    "at://did:plc:wm44w4u342ruydlmxbr7g57t/app.bsky.feed.post/3mehlrgbzvk2b": {
+      "url": "https://www.youtube.com/watch?v=7-R8oN4z7zg",
+      "platform": "youtube",
+      "videoTitle": "\"Nothing Can Stop Us Now\" -  Mickey and Minnie's Runaway Railway Song - Mickey Mouse",
+      "parsedSong": "Mickey and Minnie's Runaway Railway Song - Mickey Mouse",
+      "parsedArtist": "\"Nothing Can Stop Us Now\""
+    },
+    "at://did:plc:v72jv7ring5jjg5h636tbs35/app.bsky.feed.post/3mejao6zxqs2u": {
+      "url": "https://www.youtube.com/watch?v=jG3_jNXzkpI",
+      "platform": "youtube",
+      "videoTitle": "When the Other Foot Drops, Uncle",
+      "parsedSong": "When the Other Foot Drops, Uncle",
+      "parsedArtist": null
+    },
+    "at://did:plc:vopzsmxctuxltrhtegfwdj43/app.bsky.feed.post/3mej2qtqups2t": {
+      "url": "https://www.youtube.com/watch?v=GlC2Wg48D7U",
+      "platform": "youtube",
+      "videoTitle": "Yeah Yeah Yeahs x A-trak - Heads Will Roll (Protostar D&B Bootleg)",
+      "parsedSong": "Heads Will Roll (Protostar D&B Bootleg)",
+      "parsedArtist": "Yeah Yeah Yeahs x A-trak"
+    },
+    "at://did:plc:5i22xvuo3ucpt3kh4yh26gv7/app.bsky.feed.post/3mej2jck7nk2o": {
+      "url": "https://www.youtube.com/watch?v=fc7_1GAYNOw",
+      "platform": "youtube",
+      "videoTitle": "'A Brand New Day (Everybody Rejoice)' from THE WIZ: 1080p",
+      "parsedSong": "1080p",
+      "parsedArtist": "'A Brand New Day (Everybody Rejoice)' from THE WIZ"
+    },
+    "at://did:plc:bmjlfj3zqjgp5ygjlx3tpy54/app.bsky.feed.post/3meixozpjn22x": {
+      "url": "https://www.youtube.com/watch?v=U6rzVVwvlLU",
+      "platform": "youtube",
+      "videoTitle": "The Hell Of It",
+      "parsedSong": "The Hell Of It",
+      "parsedArtist": null
+    },
+    "at://did:plc:derg3aszc6wnb7jwcbhensly/app.bsky.feed.post/3meisuoipq22w": {
+      "url": "https://www.youtube.com/watch?v=WSqUBwlHld4",
+      "platform": "youtube",
+      "videoTitle": "Chumbawamba - The Day The Nazi Died Lyrics",
+      "parsedSong": "The Day The Nazi Died Lyrics",
+      "parsedArtist": "Chumbawamba"
+    },
+    "at://did:plc:vbkds3ojmqxo7sip3bl4wtsv/app.bsky.feed.post/3meis3ci4vc27": {
+      "url": "https://www.youtube.com/watch?v=OKpP8_uKXDY",
+      "platform": "youtube",
+      "videoTitle": "Steely Dan - Kings",
+      "parsedSong": "Kings",
+      "parsedArtist": "Steely Dan"
+    },
+    "at://did:plc:lwj6jvi76hgzlvwqab5cxavl/app.bsky.feed.post/3meilvirxgc2e": {
+      "url": "https://www.youtube.com/watch?v=5IEnPXcV8oc",
+      "platform": "youtube",
+      "videoTitle": "El Grande Americano – El Grande (Entrance Theme)",
+      "parsedSong": "El Grande Americano – El Grande (Entrance Theme)",
+      "parsedArtist": null
+    },
+    "at://did:plc:5qb3ytp5wgwjkmby6ei7emsm/app.bsky.feed.post/3meik7roces26": {
+      "url": "https://www.youtube.com/watch?v=pi_YQul7XXk",
+      "platform": "youtube",
+      "videoTitle": "Tramp the Dirt Down",
+      "parsedSong": "Tramp the Dirt Down",
+      "parsedArtist": null
+    },
+    "at://did:plc:swwbcm2sgfccm2pylrr2ku4z/app.bsky.feed.post/3meijygkbt22w": {
+      "url": "https://www.youtube.com/watch?v=SWTsLnYO68U",
+      "platform": "youtube",
+      "videoTitle": "DJ Rashad,  I Don't Give A Fuck",
+      "parsedSong": "DJ Rashad,  I Don't Give A Fuck",
+      "parsedArtist": null
+    },
+    "at://did:plc:squcwsoa45f5ibxykhzpnvnc/app.bsky.feed.post/3meijvjnkuk2h": {
+      "url": "https://www.youtube.com/watch?v=WkZ5e94QnWk",
+      "platform": "youtube",
+      "videoTitle": "YG & Nipsey Hussle \"FDT (Fuck Donald Trump)\" (WSHH Exclusive - Official Music Video)",
+      "parsedSong": "Official Music Video)",
+      "parsedArtist": "YG & Nipsey Hussle \"FDT (Fuck Donald Trump)\" (WSHH Exclusive"
+    },
+    "at://did:plc:awgsbgj4z6sgmel4qfl2by4u/app.bsky.feed.post/3meijtfrf422g": {
+      "url": "https://www.youtube.com/watch?v=CF4-e5b3Bjo",
+      "platform": "youtube",
+      "videoTitle": "Touch the Sky (feat. Casey Lee Williams) by Jeff Williams with Lyrics",
+      "parsedSong": "Touch the Sky by Jeff Williams with Lyrics",
+      "parsedArtist": null
+    },
+    "at://did:plc:7pflvwfgh6otgavq6hftkjc7/app.bsky.feed.post/3meiij4c4622q": {
+      "url": "https://www.youtube.com/watch?v=Vuikvl7zt3E",
+      "platform": "youtube",
+      "videoTitle": "Phantom of the Paradise - Paul Williams - The Hell Of it",
+      "parsedSong": "Paul Williams - The Hell Of it",
+      "parsedArtist": "Phantom of the Paradise"
+    },
+    "at://did:plc:au4dsenriho7bnve4naxc3fb/app.bsky.feed.post/3meihl7znd22n": {
+      "url": "https://www.youtube.com/watch?v=X_ZT9nz9mLs",
+      "platform": "youtube",
+      "videoTitle": "A Brand New Day | The Wiz (1978) | TUNE",
+      "parsedSong": "The Wiz (1978) | TUNE",
+      "parsedArtist": "A Brand New Day"
+    },
+    "at://did:plc:4jgk5hbbotec5aykgpjpmugt/app.bsky.feed.post/3meihj3vioc24": {
+      "url": "https://www.youtube.com/watch?v=PvtZkn3RYbU",
+      "platform": "youtube",
+      "videoTitle": "The Pogues ~ Fiesta",
+      "parsedSong": "Fiesta",
+      "parsedArtist": "The Pogues"
+    },
+    "at://did:plc:hdkmnmmysewhy3ktiv5tzho6/app.bsky.feed.post/3meigrnpdfs2z": {
+      "url": "https://www.youtube.com/watch?v=qchPLaiKocI",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Get Down On It",
+      "parsedSong": "Get Down On It",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:jacahp6xotj3deuhokfvvsnm/app.bsky.feed.post/3meigc5wtds2e": {
+      "url": "https://www.youtube.com/watch?v=H6qN9QFrOJs",
+      "platform": "youtube",
+      "videoTitle": "[MV] Mill 'beat' (be #5)",
+      "parsedSong": "[MV] Mill 'beat' (be #5)",
+      "parsedArtist": null
+    },
+    "at://did:plc:3m26ghar3vvbe3czjh5tqgp7/app.bsky.feed.post/3meifwx6ja22u": {
+      "url": "https://www.youtube.com/watch?v=weFJHtcxJt0",
+      "platform": "youtube",
+      "videoTitle": "Handel's 'Hallelujah!' Chorus live at the Sydney Opera House",
+      "parsedSong": "Handel's 'Hallelujah!' Chorus live at the Sydney Opera House",
+      "parsedArtist": null
+    },
+    "at://did:plc:gdz5eayrjs72gzhxt23oynem/app.bsky.feed.post/3meidzcfvyk2c": {
+      "url": "https://www.youtube.com/watch?v=-qmqFzR8bR4",
+      "platform": "youtube",
+      "videoTitle": "In Time",
+      "parsedSong": "In Time",
+      "parsedArtist": null
+    },
+    "at://did:plc:klui4r7g6kvtjxhgccurirgn/app.bsky.feed.post/3meidoyfnbs26": {
+      "url": "https://www.youtube.com/watch?v=3GwjfUFyY6M",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Celebration",
+      "parsedSong": "Celebration",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:jtfyybbk2w3refgsgzug6kt2/app.bsky.feed.post/3meid5lw3ic22": {
+      "url": "https://www.youtube.com/watch?v=MQak222RrEg",
+      "platform": "youtube",
+      "videoTitle": "SONIC ADVENTURE 2 \"LIVE AND LEARN\" ANIMATED LYRICS",
+      "parsedSong": "SONIC ADVENTURE 2 \"LIVE AND LEARN\" ANIMATED LYRICS",
+      "parsedArtist": null
+    },
+    "at://did:plc:h2s3iddbmphlcwiqkdvpiilk/app.bsky.feed.post/3meicslumek2w": {
+      "url": "https://www.youtube.com/watch?v=wFrqclcm8pU",
+      "platform": "youtube",
+      "videoTitle": "Tom Waits - \"Come On Up To The House\"",
+      "parsedSong": "\"Come On Up To The House\"",
+      "parsedArtist": "Tom Waits"
+    },
+    "at://did:plc:nshlpjs6tbdleudcdcqw2o5n/app.bsky.feed.post/3meicpehtj22f": {
+      "url": "https://www.youtube.com/watch?v=2S7DJEr3wy4",
+      "platform": "youtube",
+      "videoTitle": "Time Ends",
+      "parsedSong": "Time Ends",
+      "parsedArtist": null
+    },
+    "at://did:plc:eq3tu7u4n6pnutxdyoibiqei/app.bsky.feed.post/3meibu72zv22i": {
+      "url": "https://www.youtube.com/watch?v=o8qRZA-PIV8",
+      "platform": "youtube",
+      "videoTitle": "F1 Podium Theme by Georges Bizet- \"Les Toreadors\" (Carmen Suite No. 1) #F1 #F1Theme #F1Anthem",
+      "parsedSong": "F1 Podium Theme by Georges Bizet- \"Les Toreadors\" (Carmen Suite No. 1) #F1 #F1Theme #F1Anthem",
+      "parsedArtist": null
+    },
+    "at://did:plc:rjetkunxqw22j6dlq7e5hau4/app.bsky.feed.post/3meiartzcak2b": {
+      "url": "https://www.youtube.com/watch?v=gHTcQB_4AFw",
+      "platform": "youtube",
+      "videoTitle": "Hot Chocolate - Every 1’s A Winner (ZDF Disco, 12.06.1978)",
+      "parsedSong": "Every 1’s A Winner (ZDF Disco, 12.06.1978)",
+      "parsedArtist": "Hot Chocolate"
+    },
+    "at://did:plc:m44eznegia7oqw5g5i4l6qtr/app.bsky.feed.post/3meiagumee22n": {
+      "url": "https://www.youtube.com/watch?v=jAb-nbMtSbk",
+      "platform": "youtube",
+      "videoTitle": "Tacocat - New World [OFFICIAL VIDEO]",
+      "parsedSong": "New World",
+      "parsedArtist": "Tacocat"
+    },
+    "at://did:plc:zo7j4sovkfad45yocv6mu5mj/app.bsky.feed.post/3meiaegxuh227": {
+      "url": "https://www.youtube.com/watch?v=HajiEqEtIRY",
+      "platform": "youtube",
+      "videoTitle": "Florence + The Machine - The Odyssey (Full film, directed by Vincent Haycock)",
+      "parsedSong": "The Odyssey (Full film, directed by Vincent Haycock)",
+      "parsedArtist": "Florence + The Machine"
+    },
+    "at://did:plc:nx2i7iktrxay632w7yx5vswt/app.bsky.feed.post/3meia62gcgs2p": {
+      "url": "https://www.youtube.com/watch?v=XIanxOcpXsU",
+      "platform": "youtube",
+      "videoTitle": "Planningtorock - 'Get Your Fckin Laws Off My Body' (Official Visualiser)",
+      "parsedSong": "'Get Your Fckin Laws Off My Body' (Official Visualiser)",
+      "parsedArtist": "Planningtorock"
+    },
+    "at://did:plc:2xxkxgkjlyii24rzorqmuxf7/app.bsky.feed.post/3meia2bci322c": {
+      "url": "https://www.youtube.com/watch?v=plwtsFHZGeA",
+      "platform": "youtube",
+      "videoTitle": "45 Grave - Partytime (The Return of the Living Dead Soundtrack)",
+      "parsedSong": "Partytime (The Return of the Living Dead Soundtrack)",
+      "parsedArtist": "45 Grave"
+    },
+    "at://did:plc:tbnw7d5dv4efx553mypgokeq/app.bsky.feed.post/3mei7t5ufn22z": {
+      "url": "https://www.youtube.com/watch?v=kj141rdReMM",
+      "platform": "youtube",
+      "videoTitle": "John Fullbright \"Fat Man\"",
+      "parsedSong": "Fat Man",
+      "parsedArtist": "John Fullbright"
+    },
+    "at://did:plc:xblzeiuydsyhitgj3vsax64i/app.bsky.feed.post/3mei7rc7xd22z": {
+      "url": "https://www.youtube.com/watch?v=wD6jCMn5nq0",
+      "platform": "youtube",
+      "videoTitle": "The Rockafeller Skank",
+      "parsedSong": "The Rockafeller Skank",
+      "parsedArtist": null
+    },
+    "at://did:plc:jvmzfxxtt3mqdtqpw24yvfia/app.bsky.feed.post/3mei7ovqpsc2x": {
+      "url": "https://www.youtube.com/watch?v=ib_tNClFSxc",
+      "platform": "youtube",
+      "videoTitle": "tony tuff it's happening",
+      "parsedSong": "tony tuff it's happening",
+      "parsedArtist": null
+    },
+    "at://did:plc:m2qlsnaljbgk7ju3f2u567bj/app.bsky.feed.post/3mei7kyqvns2j": {
+      "url": "https://www.youtube.com/watch?v=IUZEtVbJT5c",
+      "platform": "youtube",
+      "videoTitle": "Royal Choral Society: 'Hallelujah Chorus' from Handel's Messiah",
+      "parsedSong": "'Hallelujah Chorus' from Handel's Messiah",
+      "parsedArtist": "Royal Choral Society"
+    },
+    "at://did:plc:lc5y4phmnd3qojsgholwnmbj/app.bsky.feed.post/3mei7abguwc24": {
+      "url": "https://www.youtube.com/watch?v=hqgqqrUaJHk",
+      "platform": "youtube",
+      "videoTitle": "Go to Hell",
+      "parsedSong": "Go to Hell",
+      "parsedArtist": null
+    },
+    "at://did:plc:wwbgjlnzkfs2ic2ed4hzrnyv/app.bsky.feed.post/3mei76ezvhc2m": {
+      "url": "https://www.youtube.com/watch?v=55btGpGsuDo",
+      "platform": "youtube",
+      "videoTitle": "Ha Ha You're Dead",
+      "parsedSong": "Ha Ha You're Dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:3aqginvlqozpbzis2meufp5a/app.bsky.feed.post/3mei75ugpfs2o": {
+      "url": "https://www.youtube.com/watch?v=jhBCiEEMkrc",
+      "platform": "youtube",
+      "videoTitle": "Chumbawamba - So Long, So Long",
+      "parsedSong": "So Long, So Long",
+      "parsedArtist": "Chumbawamba"
+    },
+    "at://did:plc:7v3irvxqo5q7dpzblngyd5n5/app.bsky.feed.post/3mei6zw4ook2s": {
+      "url": "https://www.youtube.com/watch?v=wh3i3vWgPyk",
+      "platform": "youtube",
+      "videoTitle": "E.L.O (Electric Light Orchestra) All Over The World",
+      "parsedSong": "E.L.O (Electric Light Orchestra) All Over The World",
+      "parsedArtist": null
+    },
+    "at://did:plc:ogqlkrwznaivdmlyqyw6n32b/app.bsky.feed.post/3mei6nm7pck27": {
+      "url": "https://www.youtube.com/watch?v=wmKHHdqwVes",
+      "platform": "youtube",
+      "videoTitle": "BloodHound Gang- I Hope You Die Lyrics",
+      "parsedSong": "BloodHound Gang- I Hope You Die Lyrics",
+      "parsedArtist": null
+    },
+    "at://did:plc:mnafiv7fvodxiqlds2pux6lx/app.bsky.feed.post/3mei66vt5o22u": {
+      "url": "https://www.youtube.com/watch?v=H48kOqqaWv0",
+      "platform": "youtube",
+      "videoTitle": "My Chemical Romance - Dead!",
+      "parsedSong": "Dead!",
+      "parsedArtist": "My Chemical Romance"
+    },
+    "at://did:plc:4s6o52m3iis4aiyfjm2jykt7/app.bsky.feed.post/3mei63hugzs2h": {
+      "url": "https://www.youtube.com/watch?v=nFMYHEczWmY",
+      "platform": "youtube",
+      "videoTitle": "Type O Negative- Kill All The White People ( with Phil Anselmo)",
+      "parsedSong": "Type O Negative- Kill All The White People ( with Phil Anselmo)",
+      "parsedArtist": null
+    },
+    "at://did:plc:g4uxgupjzlt2n2df5ueoy42p/app.bsky.feed.post/3mei5qgkhzc24": {
+      "url": "https://www.youtube.com/watch?v=jefl9dVlHsI",
+      "platform": "youtube",
+      "videoTitle": "The Good Lovelies - Free",
+      "parsedSong": "Free",
+      "parsedArtist": "The Good Lovelies"
+    },
+    "at://did:plc:s2yjtyovansh33ygtydwafg3/app.bsky.feed.post/3mei5bmglzc2p": {
+      "url": "https://www.youtube.com/watch?v=wuP5-abZgbE",
+      "platform": "youtube",
+      "videoTitle": "Ministry - Dead Guy",
+      "parsedSong": "Dead Guy",
+      "parsedArtist": "Ministry"
+    },
+    "at://did:plc:ogjdq5pgdvodpt65sdzyajg2/app.bsky.feed.post/3mei4vzy5ak2y": {
+      "url": "https://www.youtube.com/watch?v=3GwjfUFyY6M",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Celebration",
+      "parsedSong": "Celebration",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:af4q64ykokylngcgu4u6wijr/app.bsky.feed.post/3mei4vxytu226": {
+      "url": "https://www.youtube.com/watch?v=q1B5s5Fc00Q",
+      "platform": "youtube",
+      "videoTitle": "Jesus Wrote a Blank Check",
+      "parsedSong": "Jesus Wrote a Blank Check",
+      "parsedArtist": null
+    },
+    "at://did:plc:juw6ao5hy5p3gdvs6qdfnebl/app.bsky.feed.post/3mei4qbq7d22e": {
+      "url": "https://www.youtube.com/watch?v=1AOydLHGMnY",
+      "platform": "youtube",
+      "videoTitle": "Jayme Lawson - Pale, Pale Moon | Sinners (Original Motion Picture Soundtrack)",
+      "parsedSong": "Pale, Pale Moon | Sinners (Original Motion Picture Soundtrack)",
+      "parsedArtist": "Jayme Lawson"
+    },
+    "at://did:plc:2b262n67gsbscmrovr4m5clh/app.bsky.feed.post/3mei4oglc3c2z": {
+      "url": "https://www.youtube.com/watch?v=WvU-ZD7Q-gY",
+      "platform": "youtube",
+      "videoTitle": "Beethoven - Symphony 5 - IV. Finale (Bernstein/Vienna Philharmonic 1977)",
+      "parsedSong": "Symphony 5 - IV. Finale (Bernstein/Vienna Philharmonic 1977)",
+      "parsedArtist": "Beethoven"
+    },
+    "at://did:plc:ddfnbn72uclbilxnvpxfrbl2/app.bsky.feed.post/3mei4gjdonk2a": {
+      "url": "https://www.youtube.com/watch?v=Dkq7WZTzkLQ",
+      "platform": "youtube",
+      "videoTitle": "Scrooge - Thank You Very Much",
+      "parsedSong": "Thank You Very Much",
+      "parsedArtist": "Scrooge"
+    },
+    "at://did:plc:yyv4wgln727qpd2ntewyovrv/app.bsky.feed.post/3mei43kv5g22x": {
+      "url": "https://www.youtube.com/watch?v=X_ZT9nz9mLs",
+      "platform": "youtube",
+      "videoTitle": "A Brand New Day | The Wiz (1978) | TUNE",
+      "parsedSong": "The Wiz (1978) | TUNE",
+      "parsedArtist": "A Brand New Day"
+    },
+    "at://did:plc:hcy4treg7hs5u7iddffna4no/app.bsky.feed.post/3mei3uzr3vs23": {
+      "url": "https://www.youtube.com/watch?v=sJgv-qBBT3Y",
+      "platform": "youtube",
+      "videoTitle": "Grim Reaper - See You In Hell [HD]",
+      "parsedSong": "See You In Hell",
+      "parsedArtist": "Grim Reaper"
+    },
+    "at://did:plc:o32a46f5kb3xsueh5n5kvmip/app.bsky.feed.post/3mei3sgqwtk25": {
+      "url": "https://www.youtube.com/watch?v=GlCFPo6YYbU",
+      "platform": "youtube",
+      "videoTitle": "Star Wars Episode VI: Return Of The Jedi - Victory Celebration HD [1080p]",
+      "parsedSong": "Victory Celebration HD [1080p]",
+      "parsedArtist": "Star Wars Episode VI: Return Of The Jedi"
+    },
+    "at://did:plc:ae5ei7a5bmzjcnlbs5hfxpd6/app.bsky.feed.post/3mei3dfhexolx": {
+      "url": "https://www.youtube.com/watch?v=55btGpGsuDo",
+      "platform": "youtube",
+      "videoTitle": "Ha Ha You're Dead",
+      "parsedSong": "Ha Ha You're Dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:iocfsxood3ghzjam3j7c5bkw/app.bsky.feed.post/3mei35bg53k2b": {
+      "url": "https://www.youtube.com/watch?v=lXgkuM2NhYI",
+      "platform": "youtube",
+      "videoTitle": "David Bowie - \"Heroes\" (Official Video) [HD]",
+      "parsedSong": "\"Heroes\"",
+      "parsedArtist": "David Bowie"
+    },
+    "at://did:plc:iocfsxood3ghzjam3j7c5bkw/app.bsky.feed.post/3mei33lerak2b": {
+      "url": "https://www.youtube.com/watch?v=Vm1fBzWoPFw",
+      "platform": "youtube",
+      "videoTitle": "Summer Breeze, Pts. 1 & 2",
+      "parsedSong": "Summer Breeze, Pts. 1 & 2",
+      "parsedArtist": null
+    },
+    "at://did:plc:jwl54txekszdmt4r7xkr3mpa/app.bsky.feed.post/3mei33bcetk2p": {
+      "url": "https://www.youtube.com/watch?v=lCNpLpN4dro",
+      "platform": "youtube",
+      "videoTitle": "Simon Stålenhag - Fluvial Beat Deposits",
+      "parsedSong": "Fluvial Beat Deposits",
+      "parsedArtist": "Simon Stålenhag"
+    },
+    "at://did:plc:qnvvr2e6ihqwasxunt5ok6bs/app.bsky.feed.post/3mei32xzhuc2n": {
+      "url": "https://www.youtube.com/watch?v=uw66FA6OTqA",
+      "platform": "youtube",
+      "videoTitle": "Toots and the Maytals - Pressure drop",
+      "parsedSong": "Pressure drop",
+      "parsedArtist": "Toots and the Maytals"
+    },
+    "at://did:plc:qyzrsfalfhke5gv6i47mabh5/app.bsky.feed.post/3mei2y6saoc2n": {
+      "url": "https://www.youtube.com/watch?v=8uMGkPyaNAo",
+      "platform": "youtube",
+      "videoTitle": "The \"Xanadu\" Musical Finale (Olivia Newton-John) | Xanadu",
+      "parsedSong": "Xanadu",
+      "parsedArtist": "The \"Xanadu\" Musical Finale (Olivia Newton-John)"
+    },
+    "at://did:plc:jsqrkezdhkyc6zdttq7nnrbr/app.bsky.feed.post/3mei2y2zmd22e": {
+      "url": "https://www.youtube.com/watch?v=d2e1vvh7dPA",
+      "platform": "youtube",
+      "videoTitle": "Sea Of Love",
+      "parsedSong": "Sea Of Love",
+      "parsedArtist": null
+    },
+    "at://did:plc:jeroykgnupcijro5ydn2j7zf/app.bsky.feed.post/3mei2rikhvs2x": {
+      "url": "https://www.youtube.com/watch?v=WbOW2H9sBnk",
+      "platform": "youtube",
+      "videoTitle": "Hybrid - If I Survive",
+      "parsedSong": "If I Survive",
+      "parsedArtist": "Hybrid"
+    },
+    "at://did:plc:p7sdgcimobdo4pavaxyi4d4w/app.bsky.feed.post/3mei2prjcic2n": {
+      "url": "https://www.youtube.com/watch?v=XIbJylD_c84",
+      "platform": "youtube",
+      "videoTitle": "A Minha Menina",
+      "parsedSong": "A Minha Menina",
+      "parsedArtist": null
+    },
+    "at://did:plc:3fywjynhm6jsbhgi6zxbqjbf/app.bsky.feed.post/3mei2ozhknk2u": {
+      "url": "https://www.youtube.com/watch?v=YmtLHcx2kxs",
+      "platform": "youtube",
+      "videoTitle": "Clarence Carter (Official 4K Video) Strokin'",
+      "parsedSong": "Clarence Carter (Official 4K Video) Strokin'",
+      "parsedArtist": null
+    },
+    "at://did:plc:xzkjqutbqk5m2h2jofbzodib/app.bsky.feed.post/3mei2o3n3ok22": {
+      "url": "https://www.youtube.com/watch?v=qGd7SkdETro",
+      "platform": "youtube",
+      "videoTitle": "The Rolling Stones - Jumpin' Jack Flash (Official Music Video) (With Makeup)",
+      "parsedSong": "Jumpin' Jack Flash (With Makeup)",
+      "parsedArtist": "The Rolling Stones"
+    },
+    "at://did:plc:xuszxmiqfzejruoejxk3dzme/app.bsky.feed.post/3mei2mr74m22z": {
+      "url": "https://www.youtube.com/watch?v=SRR1a4LAdNA",
+      "platform": "youtube",
+      "videoTitle": "R.E.M. - It Happened Today (Official Music Video)",
+      "parsedSong": "It Happened Today",
+      "parsedArtist": "R.E.M."
+    },
+    "at://did:plc:bx45f3a3rd6kwc2f2heufvzn/app.bsky.feed.post/3mei2fl3wjs2f": {
+      "url": "https://www.youtube.com/watch?v=ivDEFm-738w",
+      "platform": "youtube",
+      "videoTitle": "Wembanyama Go Spurs Go",
+      "parsedSong": "Wembanyama Go Spurs Go",
+      "parsedArtist": null
+    },
+    "at://did:plc:scphp4cl2ytcij5bga5aogeu/app.bsky.feed.post/3mei2fddt3c2s": {
+      "url": "https://www.youtube.com/watch?v=44F34jc7wGI",
+      "platform": "youtube",
+      "videoTitle": "Master Blaster (Jammin')",
+      "parsedSong": "Master Blaster (Jammin')",
+      "parsedArtist": null
+    },
+    "at://did:plc:rxf2cfzgfpgchyd4qfno6253/app.bsky.feed.post/3mei2c5bgo227": {
+      "url": "https://www.youtube.com/watch?v=yh6QxtRpSH8",
+      "platform": "youtube",
+      "videoTitle": "Kendrick Lamar - Rigamortis (Official Video)",
+      "parsedSong": "Rigamortis",
+      "parsedArtist": "Kendrick Lamar"
+    },
+    "at://did:plc:zxnsiknwilepf7gophkkieep/app.bsky.feed.post/3mei2btaads2u": {
+      "url": "https://www.youtube.com/watch?v=VRL1hGPOUTo",
+      "platform": "youtube",
+      "videoTitle": "Go to Hell",
+      "parsedSong": "Go to Hell",
+      "parsedArtist": null
+    },
+    "at://did:plc:ra35dfdotovwjmjxs5tua3hs/app.bsky.feed.post/3mei2birejk2m": {
+      "url": "https://www.youtube.com/watch?v=VNnx_ra2x2U",
+      "platform": "youtube",
+      "videoTitle": "Prince & The Revolution - I Would Die 4 U (Official Music Video)",
+      "parsedSong": "I Would Die 4 U",
+      "parsedArtist": "Prince & The Revolution"
+    },
+    "at://did:plc:rpzkljgui3pehpvfvqlpen6t/app.bsky.feed.post/3mei262dw7k2g": {
+      "url": "https://www.youtube.com/watch?v=P_EXmWzLhZI",
+      "platform": "youtube",
+      "videoTitle": "I Wanna Destroy You (2025 Remaster)",
+      "parsedSong": "I Wanna Destroy You (2025 Remaster)",
+      "parsedArtist": null
+    },
+    "at://did:plc:rg6p5q47l535nxjgs62q47h2/app.bsky.feed.post/3mei23x4w6k2s": {
+      "url": "https://www.youtube.com/watch?v=55btGpGsuDo",
+      "platform": "youtube",
+      "videoTitle": "Ha Ha You're Dead",
+      "parsedSong": "Ha Ha You're Dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:4moy6gtkteb6cpysjdc4pmt4/app.bsky.feed.post/3mei23pl4us2b": {
+      "url": "https://www.youtube.com/watch?v=XuRnNRHcN4A",
+      "platform": "youtube",
+      "videoTitle": "Gloria Estefan - Reach",
+      "parsedSong": "Reach",
+      "parsedArtist": "Gloria Estefan"
+    },
+    "at://did:plc:otmzequf2dxgbtkqswf42oh4/app.bsky.feed.post/3mei22f6lp224": {
+      "url": "https://www.youtube.com/watch?v=atuFSv2bLa8",
+      "platform": "youtube",
+      "videoTitle": "Manuel - Gas Gas Gas",
+      "parsedSong": "Gas Gas Gas",
+      "parsedArtist": "Manuel"
+    },
+    "at://did:plc:efd33yrp7zl64xzpdwet42hj/app.bsky.feed.post/3mehzzchqt22i": {
+      "url": "https://www.youtube.com/watch?v=wuJIqmha2Hk",
+      "platform": "youtube",
+      "videoTitle": "Mr. Blue Sky",
+      "parsedSong": "Mr. Blue Sky",
+      "parsedArtist": null
+    },
+    "at://did:plc:f435gwy4lp36qwimnvvqapj5/app.bsky.feed.post/3mehzy5qt622v": {
+      "url": "https://www.youtube.com/watch?v=cZVhhnXOI84",
+      "platform": "youtube",
+      "videoTitle": "Twista ft. Anthony Hamilton - Sunshine (Lovely Day)",
+      "parsedSong": "Twista",
+      "parsedArtist": null
+    },
+    "at://did:plc:gj4z5zjckatluvt6tlvbscbf/app.bsky.feed.post/3mehzr7gylk2v": {
+      "url": "https://www.youtube.com/watch?v=eJlN9jdQFSc",
+      "platform": "youtube",
+      "videoTitle": "Johnny Cash - God's Gonna Cut You Down (Official Music Video)",
+      "parsedSong": "God's Gonna Cut You Down",
+      "parsedArtist": "Johnny Cash"
+    },
+    "at://did:plc:2owlzxdcs6g6bxgkhouxuvcu/app.bsky.feed.post/3mehzqfptrc2v": {
+      "url": "https://www.youtube.com/watch?v=YzHtePuz13U",
+      "platform": "youtube",
+      "videoTitle": "Arthur Brown - Fire 🔥 (1968)",
+      "parsedSong": "Fire 🔥 (1968)",
+      "parsedArtist": "Arthur Brown"
+    },
+    "at://did:plc:e2rhpqhhrt357byd2wveje5e/app.bsky.feed.post/3mehzo36hqc2a": {
+      "url": "https://www.youtube.com/watch?v=EL-D9LrFJd4",
+      "platform": "youtube",
+      "videoTitle": "Cowboy Bebop - Opening | Tank!",
+      "parsedSong": "Opening | Tank!",
+      "parsedArtist": "Cowboy Bebop"
+    },
+    "at://did:plc:2vrbb5rfcqez75pn22ilh7i3/app.bsky.feed.post/3mehzjh2b7k2p": {
+      "url": "https://www.youtube.com/watch?v=XSGL98uh-js",
+      "platform": "youtube",
+      "videoTitle": "Alexander Nevsky, Op. 78: VII. Alexander's Entry into Pskov",
+      "parsedSong": "VII. Alexander's Entry into Pskov",
+      "parsedArtist": "Alexander Nevsky, Op. 78"
+    },
+    "at://did:plc:6vpua44hdnfgjvzszdqsghwx/app.bsky.feed.post/3mehzi3eshk2s": {
+      "url": "https://www.youtube.com/watch?v=CWWDKZ-kydE",
+      "platform": "youtube",
+      "videoTitle": "just play it loud.wmv",
+      "parsedSong": "just play it loud.wmv",
+      "parsedArtist": null
+    },
+    "at://did:plc:3me4kuhd7wg4ew6anz4wpmrw/app.bsky.feed.post/3mehzgag2ic2t": {
+      "url": "https://www.youtube.com/watch?v=HMUDVMiITOU",
+      "platform": "youtube",
+      "videoTitle": "DJ Snake, Lil Jon - Turn Down for What",
+      "parsedSong": "Turn Down for What",
+      "parsedArtist": "DJ Snake, Lil Jon"
+    },
+    "at://did:plc:zdzzsm7ezij56ztsip46x7gc/app.bsky.feed.post/3mehzfgcysk27": {
+      "url": "https://www.youtube.com/watch?v=VzxIJR7H-vg",
+      "platform": "youtube",
+      "videoTitle": "Wham! - If You Were There Megamix (DMC Mix by Bizzie Bee Nov 1997)",
+      "parsedSong": "If You Were There Megamix (DMC Mix by Bizzie Bee Nov 1997)",
+      "parsedArtist": "Wham!"
+    },
+    "at://did:plc:ubhmfseodx6zjexcdwiu3uzb/app.bsky.feed.post/3mehze54nck2m": {
+      "url": "https://www.youtube.com/watch?v=pl9GyRmSxOk",
+      "platform": "youtube",
+      "videoTitle": "Axl Rose asks for some reggae for 10 hours",
+      "parsedSong": "Axl Rose asks for some reggae for 10 hours",
+      "parsedArtist": null
+    },
+    "at://did:plc:bwc57aeuk3gjnvus5blleyhe/app.bsky.feed.post/3mehz7d772c2o": {
+      "url": "https://www.youtube.com/watch?v=XDkhzVw0yBs",
+      "platform": "youtube",
+      "videoTitle": "When that Man is Dead and Gone (1941) - Protest song against Hitler (Live Take)",
+      "parsedSong": "Protest song against Hitler",
+      "parsedArtist": "When that Man is Dead and Gone (1941)"
+    },
+    "at://did:plc:66ftfhltfcldsypapto2wc23/app.bsky.feed.post/3mehz5sp2422o": {
+      "url": "https://www.youtube.com/watch?v=eJlN9jdQFSc",
+      "platform": "youtube",
+      "videoTitle": "Johnny Cash - God's Gonna Cut You Down (Official Music Video)",
+      "parsedSong": "God's Gonna Cut You Down",
+      "parsedArtist": "Johnny Cash"
+    },
+    "at://did:plc:6xo4fvxhlov52bmjgit7wkgv/app.bsky.feed.post/3mehz47oivc2e": {
+      "url": "https://www.youtube.com/watch?v=p_ULdXn3C_8",
+      "platform": "youtube",
+      "videoTitle": "Star Wars Episode I - The Phantom Menace. Freedom of Naboo (Celebration Parade). 4K ULTRA HD.",
+      "parsedSong": "The Phantom Menace. Freedom of Naboo (Celebration Parade). 4K ULTRA HD.",
+      "parsedArtist": "Star Wars Episode I"
+    },
+    "at://did:plc:zpqflbqnknm6skxcuja7rruf/app.bsky.feed.post/3mehz3hezyc2o": {
+      "url": "https://www.youtube.com/watch?v=iLcyWgSChhs",
+      "platform": "youtube",
+      "videoTitle": "Scotty doesn't know - Lustra / Matt Damon - Lyrics",
+      "parsedSong": "Lustra / Matt Damon - Lyrics",
+      "parsedArtist": "Scotty doesn't know"
+    },
+    "at://did:plc:puvdaa2y2fwhvp4kd3d2hm7s/app.bsky.feed.post/3mehz2gnx5k22": {
+      "url": "https://www.youtube.com/watch?v=sJgv-qBBT3Y",
+      "platform": "youtube",
+      "videoTitle": "Grim Reaper - See You In Hell [HD]",
+      "parsedSong": "See You In Hell",
+      "parsedArtist": "Grim Reaper"
+    },
+    "at://did:plc:sicrze73fnfen7lp5nf427om/app.bsky.feed.post/3mehyy4ov2k2m": {
+      "url": "https://www.youtube.com/watch?v=kTs_Q4hEqmA",
+      "platform": "youtube",
+      "videoTitle": "Dead Kennedys - Nazi Punks Fuck Off (Live)",
+      "parsedSong": "Nazi Punks Fuck Off",
+      "parsedArtist": "Dead Kennedys"
+    },
+    "at://did:plc:2yoeze2u4meteiorl2rwzumd/app.bsky.feed.post/3mehyww5t2c2e": {
+      "url": "https://www.youtube.com/watch?v=41NOMETNp3U",
+      "platform": "youtube",
+      "videoTitle": "Malört & Savior - On The Day It Finally Happens",
+      "parsedSong": "On The Day It Finally Happens",
+      "parsedArtist": "Malört & Savior"
+    },
+    "at://did:plc:5x37w5ajyolm56biqfccvvbr/app.bsky.feed.post/3mehyvmxz4s23": {
+      "url": "https://www.youtube.com/watch?v=rP65Ex1JHAM",
+      "platform": "youtube",
+      "videoTitle": "Testament - D.N.R. (Do Not Resuscitate)",
+      "parsedSong": "D.N.R. (Do Not Resuscitate)",
+      "parsedArtist": "Testament"
+    },
+    "at://did:plc:2yoeze2u4meteiorl2rwzumd/app.bsky.feed.post/3mehyvlsrps2e": {
+      "url": "https://www.youtube.com/watch?v=6Dqj_dOzgO8",
+      "platform": "youtube",
+      "videoTitle": "Bon Iver - Battle Cry of Freedom",
+      "parsedSong": "Battle Cry of Freedom",
+      "parsedArtist": "Bon Iver"
+    },
+    "at://did:plc:xnyejeogvebktyw23kpimwf7/app.bsky.feed.post/3mehyupu5s22r": {
+      "url": "https://www.youtube.com/watch?v=yS2IBMQIjDo",
+      "platform": "youtube",
+      "videoTitle": "Squirrel Nut Zippers \"Hell\" - Music Video directed by Norwood Cheek and Grady Cooper",
+      "parsedSong": "Music Video directed by Norwood Cheek and Grady Cooper",
+      "parsedArtist": "Squirrel Nut Zippers \"Hell\""
+    },
+    "at://did:plc:zxxn7qzktg7j67xlaonhi344/app.bsky.feed.post/3mehyufdeh22j": {
+      "url": "https://www.youtube.com/watch?v=lAJB6HsYiNA",
+      "platform": "youtube",
+      "videoTitle": "Boots Randolph - Yakety Sax (Audio)",
+      "parsedSong": "Yakety Sax",
+      "parsedArtist": "Boots Randolph"
+    },
+    "at://did:plc:j32l65zhai6ecny55gtzagu5/app.bsky.feed.post/3mehyr2jyy22q": {
+      "url": "https://www.youtube.com/watch?v=OLkPwxcIji0",
+      "platform": "youtube",
+      "videoTitle": "Chumbawamba - The day the nazi died",
+      "parsedSong": "The day the nazi died",
+      "parsedArtist": "Chumbawamba"
+    },
+    "at://did:plc:2yoeze2u4meteiorl2rwzumd/app.bsky.feed.post/3mehyozihm22e": {
+      "url": "https://www.youtube.com/watch?v=h2IGoEqneac",
+      "platform": "youtube",
+      "videoTitle": "Jon Bon Jovi - Here Comes The Sun - “Celebrating America” Biden Inauguration 1/20/21",
+      "parsedSong": "Here Comes The Sun - “Celebrating America” Biden Inauguration 1/20/21",
+      "parsedArtist": "Jon Bon Jovi"
+    },
+    "at://did:plc:ok3m6rodirtylitlob2jtpw3/app.bsky.feed.post/3mehylkwjqc2j": {
+      "url": "https://www.youtube.com/watch?v=CS9OO0S5w2k",
+      "platform": "youtube",
+      "videoTitle": "Village People - YMCA (OFFICIAL Music Video 1978)",
+      "parsedSong": "YMCA (OFFICIAL Music Video 1978)",
+      "parsedArtist": "Village People"
+    },
+    "at://did:plc:rty67iblcn7zj7kiaj6qyw27/app.bsky.feed.post/3mehykmlhjc23": {
+      "url": "https://www.youtube.com/watch?v=K1b8AhIsSYQ",
+      "platform": "youtube",
+      "videoTitle": "Starship - We Built This City (Official Music Video) [HD]",
+      "parsedSong": "We Built This City",
+      "parsedArtist": "Starship"
+    },
+    "at://did:plc:s73ejyulktlslpahtqttsdnt/app.bsky.feed.post/3mehyk34qmc2r": {
+      "url": "https://www.youtube.com/watch?v=bACKLW19XdE",
+      "platform": "youtube",
+      "videoTitle": "The Gap Band - Party Train",
+      "parsedSong": "Party Train",
+      "parsedArtist": "The Gap Band"
+    },
+    "at://did:plc:xasyjid4xzvlky46ogisgw4y/app.bsky.feed.post/3mehyjgf3ck2r": {
+      "url": "https://www.youtube.com/watch?v=X_sIbcO4iuw",
+      "platform": "youtube",
+      "videoTitle": "When That Man Is Dead And Gone",
+      "parsedSong": "When That Man Is Dead And Gone",
+      "parsedArtist": null
+    },
+    "at://did:plc:uavhufzz55frplosltaxywda/app.bsky.feed.post/3mehyia2vys2n": {
+      "url": "https://www.youtube.com/watch?v=55btGpGsuDo",
+      "platform": "youtube",
+      "videoTitle": "Ha Ha You're Dead",
+      "parsedSong": "Ha Ha You're Dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:xj7qlumcjhfxw3vq7434yh4e/app.bsky.feed.post/3mehyhv6y7k2w": {
+      "url": "https://www.youtube.com/watch?v=bEJe2PIvam0",
+      "platform": "youtube",
+      "videoTitle": "When That Man Is Dead and Gone",
+      "parsedSong": "When That Man Is Dead and Gone",
+      "parsedArtist": null
+    },
+    "at://did:plc:v42soa4g36rejhixr7v2mi7h/app.bsky.feed.post/3mehygtbfwk2j": {
+      "url": "https://www.youtube.com/watch?v=OLkPwxcIji0",
+      "platform": "youtube",
+      "videoTitle": "Chumbawamba - The day the nazi died",
+      "parsedSong": "The day the nazi died",
+      "parsedArtist": "Chumbawamba"
+    },
+    "at://did:plc:3tmnq5kqaelvewwwqab26nd6/app.bsky.feed.post/3mehyetwcqk24": {
+      "url": "https://www.youtube.com/watch?v=f6tnj7IEI0E",
+      "platform": "youtube",
+      "videoTitle": "Tommy Seebach Apache HQ (Original)",
+      "parsedSong": "Tommy Seebach Apache HQ (Original)",
+      "parsedArtist": null
+    },
+    "at://did:plc:cjlbvea5pws5gxmhprbkrimn/app.bsky.feed.post/3mehye7x7l22y": {
+      "url": "https://www.youtube.com/watch?v=Pa5IV_3fVfk",
+      "platform": "youtube",
+      "videoTitle": "Big Freedia \"Explode\" (Official Video)",
+      "parsedSong": "Explode",
+      "parsedArtist": "Big Freedia"
+    },
+    "at://did:plc:hqx5bnidodyo6hfcri3oan7u/app.bsky.feed.post/3mehye57d322y": {
+      "url": "https://www.youtube.com/watch?v=coCjlhyFug8",
+      "platform": "youtube",
+      "videoTitle": "The Kinks - Death of a Clown (Official Audio)",
+      "parsedSong": "Death of a Clown",
+      "parsedArtist": "The Kinks"
+    },
+    "at://did:plc:jgk3azwbeaf7deqkqkud6f2a/app.bsky.feed.post/3mehycn36vc2d": {
+      "url": "https://www.youtube.com/watch?v=DqLSBS8E7Do",
+      "platform": "youtube",
+      "videoTitle": "Augie's Great Municipal Band and End Credits",
+      "parsedSong": "Augie's Great Municipal Band and End Credits",
+      "parsedArtist": null
+    },
+    "at://did:plc:6e6qvmgtblk3j7qxphqkxcvg/app.bsky.feed.post/3mehycewl2c2z": {
+      "url": "https://www.youtube.com/watch?v=WI3fVgcumx4",
+      "platform": "youtube",
+      "videoTitle": "Glee ding dong! the witch is dead full performance (Hd)",
+      "parsedSong": "Glee ding dong! the witch is dead full performance",
+      "parsedArtist": null
+    },
+    "at://did:plc:kvarukjs5ajlkf3uphb3caec/app.bsky.feed.post/3mehy6ica3s2f": {
+      "url": "https://www.youtube.com/watch?v=np6vAuS0KNs",
+      "platform": "youtube",
+      "videoTitle": "Yub Nub (Star Wars Episode VI: Return of the Jedi Ending)",
+      "parsedSong": "Return of the Jedi Ending)",
+      "parsedArtist": "Yub Nub (Star Wars Episode VI"
+    },
+    "at://did:plc:jjqeldngbi3yqjnmyve3kyag/app.bsky.feed.post/3mehy6bypu22k": {
+      "url": "https://www.youtube.com/watch?v=Nxazmzy0vAo",
+      "platform": "youtube",
+      "videoTitle": "The The - This Is the Day (Official 4K Video)",
+      "parsedSong": "This Is the Day (Official 4K Video)",
+      "parsedArtist": "The The"
+    },
+    "at://did:plc:vclmh5jyk5frwc7wkjudh2k7/app.bsky.feed.post/3mehy3salv22v": {
+      "url": "https://www.youtube.com/watch?v=eWzIlCJAw-o",
+      "platform": "youtube",
+      "videoTitle": "Sonic Youth - Youth Against Fascism",
+      "parsedSong": "Youth Against Fascism",
+      "parsedArtist": "Sonic Youth"
+    },
+    "at://did:plc:vbqdg5j26d5qhwcg7kk2d2pm/app.bsky.feed.post/3mehy3jschs2k": {
+      "url": "https://www.youtube.com/watch?v=3GwjfUFyY6M",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Celebration",
+      "parsedSong": "Celebration",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:zqo57swll26atauhzoymjgsu/app.bsky.feed.post/3mehy2scfwc2n": {
+      "url": "https://www.youtube.com/watch?v=LySCJuNkku8",
+      "platform": "youtube",
+      "videoTitle": "Goodbye-Goodbye (1988 Boingo Alive Version)",
+      "parsedSong": "Goodbye-Goodbye (1988 Boingo Alive Version)",
+      "parsedArtist": null
+    },
+    "at://did:plc:gbbk24v2yzlqtzuodtgyyrvp/app.bsky.feed.post/3mehxztwxyc22": {
+      "url": "https://www.youtube.com/watch?v=iSgU48YASEk",
+      "platform": "youtube",
+      "videoTitle": "1 SEASON OF THE WITCH - TO DIE FOR 1995",
+      "parsedSong": "TO DIE FOR 1995",
+      "parsedArtist": "1 SEASON OF THE WITCH"
+    },
+    "at://did:plc:obflbnyfhohrl26mo3vfm76o/app.bsky.feed.post/3mehxzebnyk2d": {
+      "url": "https://www.youtube.com/watch?v=W5q3lGIv3OI",
+      "platform": "youtube",
+      "videoTitle": "Beethoven: Symphony Nr.9 [Klemperer] 1957 Christa Ludwig, Løvberg,Kmentt,Hotter",
+      "parsedSong": "Symphony Nr.9 [Klemperer] 1957 Christa Ludwig, Løvberg,Kmentt,Hotter",
+      "parsedArtist": "Beethoven"
+    },
+    "at://did:plc:s644jooack3h2cl2dss6ab5o/app.bsky.feed.post/3mehxysaww226": {
+      "url": "https://www.youtube.com/watch?v=DOkdccLCmJk",
+      "platform": "youtube",
+      "videoTitle": "The Ren & Stimpy Show - Happy Happy Joy Joy",
+      "parsedSong": "Happy Happy Joy Joy",
+      "parsedArtist": "The Ren & Stimpy Show"
+    },
+    "at://did:plc:ncwmtmxj746jqwkxdpaedqsg/app.bsky.feed.post/3mehxvsgluk2v": {
+      "url": "https://www.youtube.com/watch?v=r6cnryxwH6A",
+      "platform": "youtube",
+      "videoTitle": "Ding Dong The Witch Is Dead - The Wizard of Oz",
+      "parsedSong": "The Wizard of Oz",
+      "parsedArtist": "Ding Dong The Witch Is Dead"
+    },
+    "at://did:plc:m7afqd2ngmjyrlnjbyhdloyr/app.bsky.feed.post/3mehxtcddhc2y": {
+      "url": "https://www.youtube.com/watch?v=XWoekUxnZ7w",
+      "platform": "youtube",
+      "videoTitle": "Resort Island : Can You Feel The Sunshine?",
+      "parsedSong": "Can You Feel The Sunshine?",
+      "parsedArtist": "Resort Island"
+    },
+    "at://did:plc:ooqnj2qum2tc4q5bcldcrri5/app.bsky.feed.post/3mehxt4c6s223": {
+      "url": "https://www.youtube.com/watch?v=9dU-17ojNWA",
+      "platform": "youtube",
+      "videoTitle": "The President's Dead",
+      "parsedSong": "The President's Dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:pjjlhlu6j6o7ffjzkfko6ugd/app.bsky.feed.post/3mehxsedepc2r": {
+      "url": "https://www.youtube.com/watch?v=5g2hT4GmAGU",
+      "platform": "youtube",
+      "videoTitle": "ROSALÍA - DESPECHÁ (Official Video)",
+      "parsedSong": "DESPECHÁ",
+      "parsedArtist": "ROSALÍA"
+    },
+    "at://did:plc:w7ue6bv7n333b64nqk7dlo2d/app.bsky.feed.post/3mehxqwhh322l": {
+      "url": "https://www.youtube.com/watch?v=_atqPcXvcr0",
+      "platform": "youtube",
+      "videoTitle": "Twisted Sister - Burn In Hell (Official banned Music Video)",
+      "parsedSong": "Burn In Hell (Official banned Music Video)",
+      "parsedArtist": "Twisted Sister"
+    },
+    "at://did:plc:6cjbukflm73ww4w62ismfvbf/app.bsky.feed.post/3mehxq7jqkk2m": {
+      "url": "https://www.youtube.com/watch?v=t7SvtikTkrM",
+      "platform": "youtube",
+      "videoTitle": "The Clash - Straight to Hell (Official Audio)",
+      "parsedSong": "Straight to Hell",
+      "parsedArtist": "The Clash"
+    },
+    "at://did:plc:xoizyyolbvbgsjlpls62iwll/app.bsky.feed.post/3mehxp2ngzk27": {
+      "url": "https://www.youtube.com/watch?v=liZ9Bf2UMSw",
+      "platform": "youtube",
+      "videoTitle": "Mr.Ghetto Walmart (Official Video) Wally Wally World 🌍",
+      "parsedSong": "Mr.Ghetto Walmart Wally Wally World 🌍",
+      "parsedArtist": null
+    },
+    "at://did:plc:z77chzu5ippyedjkakfztgry/app.bsky.feed.post/3mehxns3ews2b": {
+      "url": "https://www.youtube.com/watch?v=9KhbM2mqhCQ",
+      "platform": "youtube",
+      "videoTitle": "Martha Reeves & the Vandellas - Dancing in the Street (1964)",
+      "parsedSong": "Dancing in the Street (1964)",
+      "parsedArtist": "Martha Reeves & the Vandellas"
+    },
+    "at://did:plc:vecf3eeu4zzw4rgorxwxjqxx/app.bsky.feed.post/3mehxmoxzoc2w": {
+      "url": "https://www.youtube.com/watch?v=9dU-17ojNWA",
+      "platform": "youtube",
+      "videoTitle": "The President's Dead",
+      "parsedSong": "The President's Dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:pbtcnjz234rc4hvgr3tka3ag/app.bsky.feed.post/3mehxlxgmcc2k": {
+      "url": "https://www.youtube.com/watch?v=CBZgLM5HUzU",
+      "platform": "youtube",
+      "videoTitle": "LCE098 Yub Nub (Ewok Celebration Song)",
+      "parsedSong": "LCE098 Yub Nub (Ewok Celebration Song)",
+      "parsedArtist": null
+    },
+    "at://did:plc:blh6ymhsaivumkktbp6xxc3m/app.bsky.feed.post/3mehxlry2ec2z": {
+      "url": "https://www.youtube.com/watch?v=PlknAj_nou8",
+      "platform": "youtube",
+      "videoTitle": "TOOL - EULOGY",
+      "parsedSong": "EULOGY",
+      "parsedArtist": "TOOL"
+    },
+    "at://did:plc:bl6puc6bfgltavqfnam4ip2r/app.bsky.feed.post/3mehxla26422l": {
+      "url": "https://www.youtube.com/watch?v=yS2IBMQIjDo",
+      "platform": "youtube",
+      "videoTitle": "Squirrel Nut Zippers \"Hell\" - Music Video directed by Norwood Cheek and Grady Cooper",
+      "parsedSong": "Music Video directed by Norwood Cheek and Grady Cooper",
+      "parsedArtist": "Squirrel Nut Zippers \"Hell\""
+    },
+    "at://did:plc:hwzgfqwtuk4bnn2xamp6gkgt/app.bsky.feed.post/3mehxiwv4zc24": {
+      "url": "https://www.youtube.com/watch?v=GoouShcmGo8",
+      "platform": "youtube",
+      "videoTitle": "The Marriage of Figaro, K. 492: Overture",
+      "parsedSong": "Overture",
+      "parsedArtist": "The Marriage of Figaro, K. 492"
+    },
+    "at://did:plc:h7sd5u5glrmuuczoym73p35h/app.bsky.feed.post/3mehxiw322k2c": {
+      "url": "https://www.youtube.com/watch?v=WSqUBwlHld4",
+      "platform": "youtube",
+      "videoTitle": "Chumbawamba - The Day The Nazi Died Lyrics",
+      "parsedSong": "The Day The Nazi Died Lyrics",
+      "parsedArtist": "Chumbawamba"
+    },
+    "at://did:plc:2q5bmos7izvoe4phqdnslpj7/app.bsky.feed.post/3mehxim7ifk2z": {
+      "url": "https://www.youtube.com/watch?v=kPIdRJlzERo",
+      "platform": "youtube",
+      "videoTitle": "Ding Dong the Witch is Dead",
+      "parsedSong": "Ding Dong the Witch is Dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:x5tt7d5fpy3latpdzbwsfuhi/app.bsky.feed.post/3mehxiaqwvs2c": {
+      "url": "https://www.youtube.com/watch?v=kPIdRJlzERo",
+      "platform": "youtube",
+      "videoTitle": "Ding Dong the Witch is Dead",
+      "parsedSong": "Ding Dong the Witch is Dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:sdkdbuehlm73mws66adrtygu/app.bsky.feed.post/3mehxe4gkvs2w": {
+      "url": "https://www.youtube.com/watch?v=ofz2uoquALs",
+      "platform": "youtube",
+      "videoTitle": "No One Mourns The Wicked (From Wicked The Soundtrack)",
+      "parsedSong": "No One Mourns The Wicked (From Wicked The Soundtrack)",
+      "parsedArtist": null
+    },
+    "at://did:plc:bl5quleyd7cmng3trzgbibp5/app.bsky.feed.post/3mehxdukpdk2f": {
+      "url": "https://www.youtube.com/watch?v=-zg-MhEXb4c",
+      "platform": "youtube",
+      "videoTitle": "Rozalla - Everybody's Free (To Feel Good)",
+      "parsedSong": "Everybody's Free (To Feel Good)",
+      "parsedArtist": "Rozalla"
+    },
+    "at://did:plc:eivqo2tskdfn4dbrm3dv2mku/app.bsky.feed.post/3mehxdrezgk2n": {
+      "url": "https://www.youtube.com/watch?v=60xrQTUPies",
+      "platform": "youtube",
+      "videoTitle": "Light of the Seven",
+      "parsedSong": "Light of the Seven",
+      "parsedArtist": null
+    },
+    "at://did:plc:qnuzh2psg6u6z4vqgbk2ie32/app.bsky.feed.post/3mehxbd4msk2m": {
+      "url": "https://www.youtube.com/watch?v=_atqPcXvcr0",
+      "platform": "youtube",
+      "videoTitle": "Twisted Sister - Burn In Hell (Official banned Music Video)",
+      "parsedSong": "Burn In Hell (Official banned Music Video)",
+      "parsedArtist": "Twisted Sister"
+    },
+    "at://did:plc:l5rfv3wd3wc2uibgvhi5knjr/app.bsky.feed.post/3mehxbb7xfk24": {
+      "url": "https://www.youtube.com/watch?v=2EYozg_DHGM",
+      "platform": "youtube",
+      "videoTitle": "Sons of Privilege",
+      "parsedSong": "Sons of Privilege",
+      "parsedArtist": null
+    },
+    "at://did:plc:myvprqasfnsh4xrnduc7u2qn/app.bsky.feed.post/3mehxacy7ms2r": {
+      "url": "https://www.youtube.com/watch?v=QTt70QUB8sc",
+      "platform": "youtube",
+      "videoTitle": "There'll Be No Next Time",
+      "parsedSong": "There'll Be No Next Time",
+      "parsedArtist": null
+    },
+    "at://did:plc:bwrypw2btrhlf7mgb5eobjjv/app.bsky.feed.post/3mehxa3of7c2x": {
+      "url": "https://www.youtube.com/watch?v=WkZ5e94QnWk",
+      "platform": "youtube",
+      "videoTitle": "YG & Nipsey Hussle \"FDT (Fuck Donald Trump)\" (WSHH Exclusive - Official Music Video)",
+      "parsedSong": "Official Music Video)",
+      "parsedArtist": "YG & Nipsey Hussle \"FDT (Fuck Donald Trump)\" (WSHH Exclusive"
+    },
+    "at://did:plc:hcib3r3ubs74csflvorfp2g7/app.bsky.feed.post/3mehx6vyxxk24": {
+      "url": "https://www.youtube.com/watch?v=GLUUNJL5ZYw",
+      "platform": "youtube",
+      "videoTitle": "First We Take Manhattan - Warren Zevon",
+      "parsedSong": "Warren Zevon",
+      "parsedArtist": "First We Take Manhattan"
+    },
+    "at://did:plc:ioyta4qgiawnmix7mqbifd2p/app.bsky.feed.post/3mehx6o2ifs2g": {
+      "url": "https://www.youtube.com/watch?v=Z-48u_uWMHY",
+      "platform": "youtube",
+      "videoTitle": "Kendrick Lamar - Alright (Official Music Video)",
+      "parsedSong": "Alright",
+      "parsedArtist": "Kendrick Lamar"
+    },
+    "at://did:plc:p5qkaxrhqj3xagy7i7syduob/app.bsky.feed.post/3mehx6dklf22b": {
+      "url": "https://www.youtube.com/watch?v=6Zbi0XmGtMw",
+      "platform": "youtube",
+      "videoTitle": "Vengaboys - We like to Party! (The Vengabus)",
+      "parsedSong": "We like to Party! (The Vengabus)",
+      "parsedArtist": "Vengaboys"
+    },
+    "at://did:plc:52cbwfghblpoh6g2yybpqnad/app.bsky.feed.post/3mehx5p6l4s2s": {
+      "url": "https://www.youtube.com/watch?v=OLkPwxcIji0",
+      "platform": "youtube",
+      "videoTitle": "Chumbawamba - The day the nazi died",
+      "parsedSong": "The day the nazi died",
+      "parsedArtist": "Chumbawamba"
+    },
+    "at://did:plc:rbmaru5cex3kl5txtizrpz2p/app.bsky.feed.post/3mehx2og56s2g": {
+      "url": "https://www.youtube.com/watch?v=1YAud-0Xv-U",
+      "platform": "youtube",
+      "videoTitle": "Nemesis (S.A.M. Remix)",
+      "parsedSong": "Nemesis (S.A.M. Remix)",
+      "parsedArtist": null
+    },
+    "at://did:plc:yuaomexwisfsvffij7cfvolp/app.bsky.feed.post/3mehwxljhns2v": {
+      "url": "https://www.youtube.com/watch?v=U7mPqycQ0tQ",
+      "platform": "youtube",
+      "videoTitle": "Girls' Generation 소녀시대 'Gee' MV",
+      "parsedSong": "Girls' Generation 소녀시대 'Gee' MV",
+      "parsedArtist": null
+    },
+    "at://did:plc:sv524cvckefuardkofllsz44/app.bsky.feed.post/3mehww4zzys2o": {
+      "url": "https://www.youtube.com/watch?v=z5rRZdiu1UE",
+      "platform": "youtube",
+      "videoTitle": "Beastie Boys - Sabotage (Official Music Video)",
+      "parsedSong": "Sabotage",
+      "parsedArtist": "Beastie Boys"
+    },
+    "at://did:plc:ccyytvwn2s53u3u2scozvalm/app.bsky.feed.post/3mehwvqelfc2i": {
+      "url": "https://www.youtube.com/watch?v=l2C-Hwr3ozk",
+      "platform": "youtube",
+      "videoTitle": "Mr. Frump In the Iron Lung",
+      "parsedSong": "Mr. Frump In the Iron Lung",
+      "parsedArtist": null
+    },
+    "at://did:plc:2e6ukzylnmfp7fxk5y7ilftg/app.bsky.feed.post/3mehwsu7aic2e": {
+      "url": "https://www.youtube.com/watch?v=3GwjfUFyY6M",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Celebration",
+      "parsedSong": "Celebration",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:uu36opfv2rtx6q2hzkh26rnz/app.bsky.feed.post/3mehwrqcess2t": {
+      "url": "https://www.youtube.com/watch?v=IJFks7bCRrs",
+      "platform": "youtube",
+      "videoTitle": "Michelle Gurevich Performs Goodbye My Dictator at #oslofreedomforum",
+      "parsedSong": "Michelle Gurevich Performs Goodbye My Dictator at #oslofreedomforum",
+      "parsedArtist": null
+    },
+    "at://did:plc:ki2mxoyzkfggahrxdffeidjs/app.bsky.feed.post/3mehwpuxfac27": {
+      "url": "https://www.youtube.com/watch?v=IoyvvEWHodk",
+      "platform": "youtube",
+      "videoTitle": "Na Na Na Na Hey Hey-ey Goodbye",
+      "parsedSong": "Na Na Na Na Hey Hey-ey Goodbye",
+      "parsedArtist": null
+    },
+    "at://did:plc:adrknffbv2ozuzumjrbepdmc/app.bsky.feed.post/3mehwnvhbvc25": {
+      "url": "https://www.youtube.com/watch?v=aBE9EQ7gXKI",
+      "platform": "youtube",
+      "videoTitle": "Spanish Flea",
+      "parsedSong": "Spanish Flea",
+      "parsedArtist": null
+    },
+    "at://did:plc:n4e4twnmvvvzbnaucaysr4yu/app.bsky.feed.post/3mehwliue7c2k": {
+      "url": "https://www.youtube.com/watch?v=sLuNC5RCjY4",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Celebration [Official Music Video]",
+      "parsedSong": "Celebration",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:knesgtisie2penngfdgddvfc/app.bsky.feed.post/3mehwl6fei22k": {
+      "url": "https://www.youtube.com/watch?v=vzyHxYxc-Mo",
+      "platform": "youtube",
+      "videoTitle": "Battlestar Galactica (1978) Theme",
+      "parsedSong": "Battlestar Galactica (1978) Theme",
+      "parsedArtist": null
+    },
+    "at://did:plc:tm4rgekj2meunvvjppgnup74/app.bsky.feed.post/3mehwkyecqk2s": {
+      "url": "https://www.youtube.com/watch?v=po5HxJgyaMU",
+      "platform": "youtube",
+      "videoTitle": "Ewok Celebration / Yub Nub / Ewok Song (1983, Star Wars - Return of the Jedi Ending) HQ audio",
+      "parsedSong": "Return of the Jedi Ending) HQ audio",
+      "parsedArtist": "Ewok Celebration / Yub Nub / Ewok Song (1983, Star Wars"
+    },
+    "at://did:plc:l5ihk2qgjk6yyaf6qrvh4rg4/app.bsky.feed.post/3mehwjr5ock2q": {
+      "url": "https://www.youtube.com/watch?v=pFRk_cQIq2k",
+      "platform": "youtube",
+      "videoTitle": "Happiness",
+      "parsedSong": "Happiness",
+      "parsedArtist": null
+    },
+    "at://did:plc:5njjm4zcfrwcs6zzzassxsvw/app.bsky.feed.post/3mehwj5ipe22s": {
+      "url": "https://www.youtube.com/watch?v=pFptt7Cargc",
+      "platform": "youtube",
+      "videoTitle": "Tame Impala - Let It Happen (Official Video)",
+      "parsedSong": "Let It Happen",
+      "parsedArtist": "Tame Impala"
+    },
+    "at://did:plc:mljthhadxpdwtyoxks3fp36n/app.bsky.feed.post/3mehwiljwrk2b": {
+      "url": "https://www.youtube.com/watch?v=55btGpGsuDo",
+      "platform": "youtube",
+      "videoTitle": "Ha Ha You're Dead",
+      "parsedSong": "Ha Ha You're Dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:woqezerct2uiqwc7vlkopxoa/app.bsky.feed.post/3mehwg3qby22r": {
+      "url": "https://www.youtube.com/watch?v=0tQ19tAw6h0",
+      "platform": "youtube",
+      "videoTitle": "Dead Kennedys - \"Nazi Punks F*ck Off\" Subterranean Records - Official Live Video",
+      "parsedSong": "\"Nazi Punks F*ck Off\" Subterranean Records - Official Live Video",
+      "parsedArtist": "Dead Kennedys"
+    },
+    "at://did:plc:ccm7gttkbfs2eyyrlpshmeun/app.bsky.feed.post/3mehwexjgxs2b": {
+      "url": "https://www.youtube.com/watch?v=8sDv6mg799k",
+      "platform": "youtube",
+      "videoTitle": "That's Entertainment (Remastered)",
+      "parsedSong": "That's Entertainment",
+      "parsedArtist": null
+    },
+    "at://did:plc:nk444g7hh37dnggoewjqbxqe/app.bsky.feed.post/3mehwei2sts2a": {
+      "url": "https://www.youtube.com/watch?v=9zuQfEKI6P8",
+      "platform": "youtube",
+      "videoTitle": "Ring Them Bells",
+      "parsedSong": "Ring Them Bells",
+      "parsedArtist": null
+    },
+    "at://did:plc:s6ffatbio6ynoup3z7rokujx/app.bsky.feed.post/3mehwefzd5c2j": {
+      "url": "https://www.youtube.com/watch?v=55btGpGsuDo",
+      "platform": "youtube",
+      "videoTitle": "Ha Ha You're Dead",
+      "parsedSong": "Ha Ha You're Dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:6ix6snxcfgpg6hggrouaagbq/app.bsky.feed.post/3mehwcolu622u": {
+      "url": "https://www.youtube.com/watch?v=5DtO0QpEfnU",
+      "platform": "youtube",
+      "videoTitle": "Kim Jung Mi - The Sun",
+      "parsedSong": "The Sun",
+      "parsedArtist": "Kim Jung Mi"
+    },
+    "at://did:plc:pzqzwfhobi4ezaldfcnwe5wq/app.bsky.feed.post/3mehw7hl7y22e": {
+      "url": "https://www.youtube.com/watch?v=K2ns3cju5C4",
+      "platform": "youtube",
+      "videoTitle": "Manufactura - All Things Must Die (ISZOLOSCOPE Remix) Remastered",
+      "parsedSong": "All Things Must Die (ISZOLOSCOPE Remix) Remastered",
+      "parsedArtist": "Manufactura"
+    },
+    "at://did:plc:obmnkduruhpjqbj4d2suehaw/app.bsky.feed.post/3mehw6yt2m22e": {
+      "url": "https://www.youtube.com/watch?v=PxcDpkk6k5w",
+      "platform": "youtube",
+      "videoTitle": "Strokin'",
+      "parsedSong": "Strokin'",
+      "parsedArtist": null
+    },
+    "at://did:plc:rzrc4ibpps2hlbzecehrcs7m/app.bsky.feed.post/3mehw6uhjr226": {
+      "url": "https://www.youtube.com/watch?v=kSQ8tZ35t4U",
+      "platform": "youtube",
+      "videoTitle": "When Will You Die? - They Might Be Giants (Official Video)",
+      "parsedSong": "They Might Be Giants",
+      "parsedArtist": "When Will You Die?"
+    },
+    "at://did:plc:3a3qggax33oesqdexb2hpvqc/app.bsky.feed.post/3mehw4bpdl22j": {
+      "url": "https://www.youtube.com/watch?v=aXJhDltzYVQ",
+      "platform": "youtube",
+      "videoTitle": "Prince and the Revolution - Let's Go Crazy (Official Music Video)",
+      "parsedSong": "Let's Go Crazy",
+      "parsedArtist": "Prince and the Revolution"
+    },
+    "at://did:plc:4djfp3b27soxcfkxhirydi6d/app.bsky.feed.post/3mehw46smrk2f": {
+      "url": "https://www.youtube.com/watch?v=cE0wfjsybIQ",
+      "platform": "youtube",
+      "videoTitle": "Noisestorm - Crab Rave (Official Music Video)",
+      "parsedSong": "Crab Rave",
+      "parsedArtist": "Noisestorm"
+    },
+    "at://did:plc:i3b3zi76cwz4wakccusb3lhz/app.bsky.feed.post/3mehw2sz7322f": {
+      "url": "https://www.youtube.com/watch?v=t4QK8RxCAwo",
+      "platform": "youtube",
+      "videoTitle": "Boston - More Than a Feeling (Official HD Video)",
+      "parsedSong": "More Than a Feeling (Official HD Video)",
+      "parsedArtist": "Boston"
+    },
+    "at://did:plc:kt26gh3f5o4xtuhjph5kxgke/app.bsky.feed.post/3mehw2i6kcc2e": {
+      "url": "https://www.youtube.com/watch?v=yyjUmv1gJEg",
+      "platform": "youtube",
+      "videoTitle": "Wii Shop Channel Main Theme (HQ)",
+      "parsedSong": "Wii Shop Channel Main Theme",
+      "parsedArtist": null
+    },
+    "at://did:plc:4dj76l5an3outwlps2zonx6i/app.bsky.feed.post/3mehvx33oc22x": {
+      "url": "https://www.youtube.com/watch?v=bACKLW19XdE",
+      "platform": "youtube",
+      "videoTitle": "The Gap Band - Party Train",
+      "parsedSong": "Party Train",
+      "parsedArtist": "The Gap Band"
+    },
+    "at://did:plc:cruygconkjsehk4w5j7fllun/app.bsky.feed.post/3mehvwiufas2e": {
+      "url": "https://www.youtube.com/watch?v=JPOSGVUYgVQ",
+      "platform": "youtube",
+      "videoTitle": "Gloria Estefan - Get On Your Feet",
+      "parsedSong": "Get On Your Feet",
+      "parsedArtist": "Gloria Estefan"
+    },
+    "at://did:plc:67wdhrsgstmiyixg5bs6nptl/app.bsky.feed.post/3mehvungltc2n": {
+      "url": "https://www.youtube.com/watch?v=M11SvDtPBhA",
+      "platform": "youtube",
+      "videoTitle": "Miley Cyrus - Party In The U.S.A. (Official Video)",
+      "parsedSong": "Party In The U.S.A.",
+      "parsedArtist": "Miley Cyrus"
+    },
+    "at://did:plc:7x3p2xtgoaes7vwegzqnm22t/app.bsky.feed.post/3mehvual2v22x": {
+      "url": "https://www.youtube.com/watch?v=pi_YQul7XXk",
+      "platform": "youtube",
+      "videoTitle": "Tramp the Dirt Down",
+      "parsedSong": "Tramp the Dirt Down",
+      "parsedArtist": null
+    },
+    "at://did:plc:o6hvf22ktjktmw26nh5h6icw/app.bsky.feed.post/3mehvty35pk2l": {
+      "url": "https://www.youtube.com/watch?v=PzU1uxMVw9w",
+      "platform": "youtube",
+      "videoTitle": "circle jerks-all wound up",
+      "parsedSong": "circle jerks-all wound up",
+      "parsedArtist": null
+    },
+    "at://did:plc:wix3rsxxjbemcqmzv422bqpu/app.bsky.feed.post/3mehvtelct22f": {
+      "url": "https://www.youtube.com/watch?v=hUncflxsYMo",
+      "platform": "youtube",
+      "videoTitle": "You Haven't Done Nothin' Live Stevie Wonder",
+      "parsedSong": "You Haven't Done Nothin' Live Stevie Wonder",
+      "parsedArtist": null
+    },
+    "at://did:plc:xkg5kondd3pebyzcu5traeok/app.bsky.feed.post/3mehvt75u222o": {
+      "url": "https://www.youtube.com/watch?v=wT_zVoA6mYE",
+      "platform": "youtube",
+      "videoTitle": "Paul Simon - Gone at Last (Official Audio)",
+      "parsedSong": "Gone at Last",
+      "parsedArtist": "Paul Simon"
+    },
+    "at://did:plc:67ak4jbk5amgkdkkkbrqh5pj/app.bsky.feed.post/3mehvq2rtuc2z": {
+      "url": "https://www.youtube.com/watch?v=wTkLLQjgoEU",
+      "platform": "youtube",
+      "videoTitle": "Dancing Funeral Coffin Meme - Original Ful Version 1080p",
+      "parsedSong": "Original Ful Version 1080p",
+      "parsedArtist": "Dancing Funeral Coffin Meme"
+    },
+    "at://did:plc:c3txt32op7d7tt5iyxmpre2b/app.bsky.feed.post/3mehvpqkka22s": {
+      "url": "https://www.youtube.com/watch?v=V7awW5nrDHk",
+      "platform": "youtube",
+      "videoTitle": "Nina Simone - Pirate Jenny Live 1964",
+      "parsedSong": "Pirate Jenny Live 1964",
+      "parsedArtist": "Nina Simone"
+    },
+    "at://did:plc:nm64d3i2fyt5s7k56i5lkc2v/app.bsky.feed.post/3mehvpln36226": {
+      "url": "https://www.youtube.com/watch?v=YGIYSDkOUew",
+      "platform": "youtube",
+      "videoTitle": "Chief keef Laughin' To the Bank Bass Boosted",
+      "parsedSong": "Chief keef Laughin' To the Bank Bass Boosted",
+      "parsedArtist": null
+    },
+    "at://did:plc:bgrwrmnnp2qzbj2onm5wwpzo/app.bsky.feed.post/3mehvkeqdts2p": {
+      "url": "https://www.youtube.com/watch?v=cE0wfjsybIQ",
+      "platform": "youtube",
+      "videoTitle": "Noisestorm - Crab Rave (Official Music Video)",
+      "parsedSong": "Crab Rave",
+      "parsedArtist": "Noisestorm"
+    },
+    "at://did:plc:7wk7wmvzvunv7pdcegypqrgw/app.bsky.feed.post/3mehvjxk26c2e": {
+      "url": "https://www.youtube.com/watch?v=ZVaJH8pWnWk",
+      "platform": "youtube",
+      "videoTitle": "Bobby Roode's glorious entrance: NXT TakeOver: Toronto: November 19, 2016",
+      "parsedSong": "NXT TakeOver: Toronto: November 19, 2016",
+      "parsedArtist": "Bobby Roode's glorious entrance"
+    },
+    "at://did:plc:fmyke5g4ilntxhgk3bjod5cc/app.bsky.feed.post/3mehvjpamz22r": {
+      "url": "https://www.youtube.com/watch?v=iWOyfLBYtuU",
+      "platform": "youtube",
+      "videoTitle": "Florence + The Machine - Dog Days Are Over (2010 Version) (Official Music Video)",
+      "parsedSong": "Dog Days Are Over (2010 Version)",
+      "parsedArtist": "Florence + The Machine"
+    },
+    "at://did:plc:oenrg6tw4cil5jgco324nncl/app.bsky.feed.post/3mehvgytoik2l": {
+      "url": "https://www.youtube.com/watch?v=9t5G5XwDzmk",
+      "platform": "youtube",
+      "videoTitle": "Ronnie Coleman Screams [10 Hours]",
+      "parsedSong": "Ronnie Coleman Screams [10 Hours]",
+      "parsedArtist": null
+    },
+    "at://did:plc:l36u6nwnl4dqxxicdexdtb75/app.bsky.feed.post/3mehvgopz322f": {
+      "url": "https://www.youtube.com/watch?v=qMDxrXFQwU8",
+      "platform": "youtube",
+      "videoTitle": "Hey Man Nice Shot",
+      "parsedSong": "Hey Man Nice Shot",
+      "parsedArtist": null
+    },
+    "at://did:plc:va7lyrdfkcgjqfq6il4ja7cy/app.bsky.feed.post/3mehvf6jvg22v": {
+      "url": "https://www.youtube.com/watch?v=9KhbM2mqhCQ",
+      "platform": "youtube",
+      "videoTitle": "Martha Reeves & the Vandellas - Dancing in the Street (1964)",
+      "parsedSong": "Dancing in the Street (1964)",
+      "parsedArtist": "Martha Reeves & the Vandellas"
+    },
+    "at://did:plc:56gco33d4k75mmrdszpfkjuv/app.bsky.feed.post/3mehveidvos2o": {
+      "url": "https://www.youtube.com/watch?v=wuP5-abZgbE",
+      "platform": "youtube",
+      "videoTitle": "Ministry - Dead Guy",
+      "parsedSong": "Dead Guy",
+      "parsedArtist": "Ministry"
+    },
+    "at://did:plc:tfwbtb2mbfmen6wezbxo5bxf/app.bsky.feed.post/3mehv7spsws2w": {
+      "url": "https://www.youtube.com/watch?v=3GwjfUFyY6M",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Celebration",
+      "parsedSong": "Celebration",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:cvnlf46y2enxfkgky5ckouk3/app.bsky.feed.post/3mehv7qicu22h": {
+      "url": "https://www.youtube.com/watch?v=WkZ5e94QnWk",
+      "platform": "youtube",
+      "videoTitle": "YG & Nipsey Hussle \"FDT (Fuck Donald Trump)\" (WSHH Exclusive - Official Music Video)",
+      "parsedSong": "Official Music Video)",
+      "parsedArtist": "YG & Nipsey Hussle \"FDT (Fuck Donald Trump)\" (WSHH Exclusive"
+    },
+    "at://did:plc:4gmqattvuopfblk4fhyi5k54/app.bsky.feed.post/3mehv3xmcic2i": {
+      "url": "https://www.youtube.com/watch?v=FRlTjErEDPQ",
+      "platform": "youtube",
+      "videoTitle": "Na Na Hey Hey Kiss Him Goodbye",
+      "parsedSong": "Na Na Hey Hey Kiss Him Goodbye",
+      "parsedArtist": null
+    },
+    "at://did:plc:mieextl2bvpm2csymfg76k32/app.bsky.feed.post/3mehv3wqmqk2o": {
+      "url": "https://www.youtube.com/watch?v=BpI1fcJdFrA",
+      "platform": "youtube",
+      "videoTitle": "Soul Finger - Bar-Kays (1967)",
+      "parsedSong": "Bar-Kays (1967)",
+      "parsedArtist": "Soul Finger"
+    },
+    "at://did:plc:5hlyfnxkf42eskjrrf5dta26/app.bsky.feed.post/3mehv3dmb222h": {
+      "url": "https://www.youtube.com/watch?v=Xz9DX_VMXdI",
+      "platform": "youtube",
+      "videoTitle": "Metallica - King Nothing (Official Music Video)",
+      "parsedSong": "King Nothing",
+      "parsedArtist": "Metallica"
+    },
+    "at://did:plc:duontx357y2w3biujz6zqvqj/app.bsky.feed.post/3mehv2pwav22j": {
+      "url": "https://www.youtube.com/watch?v=lycEQJW6GFw",
+      "platform": "youtube",
+      "videoTitle": "Today's Empires, Tomorrow's Ashes",
+      "parsedSong": "Today's Empires, Tomorrow's Ashes",
+      "parsedArtist": null
+    },
+    "at://did:plc:7mzkixlrda5chpoq3d4em2wu/app.bsky.feed.post/3mehv2ejuq22l": {
+      "url": "https://www.youtube.com/watch?v=8JStdklntIY",
+      "platform": "youtube",
+      "videoTitle": "Thank You Very Much l Scrooge l 1970",
+      "parsedSong": "Thank You Very Much l Scrooge l 1970",
+      "parsedArtist": null
+    },
+    "at://did:plc:dcosmg3pinh35yme6twgm2lm/app.bsky.feed.post/3mehuzj3kbs2y": {
+      "url": "https://www.youtube.com/watch?v=6dBt3mJtgJc",
+      "platform": "youtube",
+      "videoTitle": "Joy Division - Transmission [OFFICIAL MUSIC VIDEO]",
+      "parsedSong": "Transmission",
+      "parsedArtist": "Joy Division"
+    },
+    "at://did:plc:iu7i53add2jrbjbvc5tfav4f/app.bsky.feed.post/3mehuxponz225": {
+      "url": "https://www.youtube.com/watch?v=3GwjfUFyY6M",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Celebration",
+      "parsedSong": "Celebration",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:fgsft4vopyd5vpwma2k74aux/app.bsky.feed.post/3mehuxoemck2c": {
+      "url": "https://www.youtube.com/watch?v=41NOMETNp3U",
+      "platform": "youtube",
+      "videoTitle": "Malört & Savior - On The Day It Finally Happens",
+      "parsedSong": "On The Day It Finally Happens",
+      "parsedArtist": "Malört & Savior"
+    },
+    "at://did:plc:txrok3ojeqfgtzt3bexlwxgv/app.bsky.feed.post/3mehuvpumck22": {
+      "url": "https://www.youtube.com/watch?v=ZIU0RMV_II8",
+      "platform": "youtube",
+      "videoTitle": "Dick Dale & The Del Tones \"Misirlou\" 1963",
+      "parsedSong": "Dick Dale & The Del Tones \"Misirlou\" 1963",
+      "parsedArtist": null
+    },
+    "at://did:plc:2pwapmv5aopc73qckdrfdb7g/app.bsky.feed.post/3mehutzsxoc2l": {
+      "url": "https://www.youtube.com/watch?v=_lt4O-EHNnw",
+      "platform": "youtube",
+      "videoTitle": "The Clash - Clampdown (Official Audio)",
+      "parsedSong": "Clampdown",
+      "parsedArtist": "The Clash"
+    },
+    "at://did:plc:c24b72wmwoadnqmbzvnvpj54/app.bsky.feed.post/3mehus7mh3k2k": {
+      "url": "https://www.youtube.com/watch?v=4ACKEGCvLtI",
+      "platform": "youtube",
+      "videoTitle": "Fear - I Don't Care About You",
+      "parsedSong": "I Don't Care About You",
+      "parsedArtist": "Fear"
+    },
+    "at://did:plc:s326cjaykxxfbca5mmsptnqw/app.bsky.feed.post/3mehuo33bcs2b": {
+      "url": "https://www.youtube.com/watch?v=o9i4sBBJyfs",
+      "platform": "youtube",
+      "videoTitle": "DJ Sabrina The Teenage DJ - Oh, What A Feeling (Music Video)",
+      "parsedSong": "Oh, What A Feeling",
+      "parsedArtist": "DJ Sabrina The Teenage DJ"
+    },
+    "at://did:plc:nqz53sdx5ijyns53fcdqxsmi/app.bsky.feed.post/3mehu4p42xc2q": {
+      "url": "https://www.youtube.com/watch?v=AC3EhGXunLM",
+      "platform": "youtube",
+      "videoTitle": "Shulk Victory Theme",
+      "parsedSong": "Shulk Victory Theme",
+      "parsedArtist": null
+    },
+    "at://did:plc:mheidq6jyh6h4meauzwofn2t/app.bsky.feed.post/3mehtpj4knk2u": {
+      "url": "https://www.youtube.com/watch?v=PWNboHU1uDc",
+      "platform": "youtube",
+      "videoTitle": "MUDRAT - YOU DON’T CARE ABOUT POOR PEOPLE [OFFICIAL VISUALISER]",
+      "parsedSong": "YOU DON’T CARE ABOUT POOR PEOPLE [OFFICIAL VISUALISER]",
+      "parsedArtist": "MUDRAT"
+    },
+    "at://did:plc:6wi3tboc23ater3hzqgr4wzv/app.bsky.feed.post/3mehto3d72c25": {
+      "url": "https://www.youtube.com/watch?v=kPIdRJlzERo",
+      "platform": "youtube",
+      "videoTitle": "Ding Dong the Witch is Dead",
+      "parsedSong": "Ding Dong the Witch is Dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:33dstzztb2h7arh7gprclwpw/app.bsky.feed.post/3mehtlgwwts2b": {
+      "url": "https://www.youtube.com/watch?v=3GwjfUFyY6M",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Celebration",
+      "parsedSong": "Celebration",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:72cjvd7xdy6hjlal2z6w7tb4/app.bsky.feed.post/3mehtjrtzmc2y": {
+      "url": "https://www.youtube.com/watch?v=5A4xBp2rizQ",
+      "platform": "youtube",
+      "videoTitle": "Pat Benatar - Invincible (Official Music Video)",
+      "parsedSong": "Invincible",
+      "parsedArtist": "Pat Benatar"
+    },
+    "at://did:plc:hu2tcx6kc2pnxt7cqwgbdu7l/app.bsky.feed.post/3mehtailtxk2d": {
+      "url": "https://www.youtube.com/watch?v=gFqNGWZrlh8",
+      "platform": "youtube",
+      "videoTitle": "He's Gone (Live in Amsterdam, 1972) (2001 Remaster})",
+      "parsedSong": "He's Gone (2001 Remaster})",
+      "parsedArtist": null
+    },
+    "at://did:plc:2ejdqeuct2qitx6n3e6f53y5/app.bsky.feed.post/3mehslzpek22q": {
+      "url": "https://www.youtube.com/watch?v=dny9-K64HjU",
+      "platform": "youtube",
+      "videoTitle": "King Nothing",
+      "parsedSong": "King Nothing",
+      "parsedArtist": null
+    },
+    "at://did:plc:ec6mey7n6gojqwapoisnxewm/app.bsky.feed.post/3mehskrwlzk2f": {
+      "url": "https://www.youtube.com/watch?v=5JUjFN9AuFU",
+      "platform": "youtube",
+      "videoTitle": "Ezra Collective - God Gave Me Feet For Dancing (ft. Yazmin Lacey)",
+      "parsedSong": "God Gave Me Feet For Dancing (",
+      "parsedArtist": "Ezra Collective"
+    },
+    "at://did:plc:ax4tsmkmy4hirmkzwngf57bj/app.bsky.feed.post/3mehs6inw2s2x": {
+      "url": "https://www.youtube.com/watch?v=r3Rd33DvJ7w",
+      "platform": "youtube",
+      "videoTitle": "The Emotions - Best of My Love (Official Audio)",
+      "parsedSong": "Best of My Love",
+      "parsedArtist": "The Emotions"
+    },
+    "at://did:plc:gg6gwhetvltgbwosquvnszed/app.bsky.feed.post/3mehs4xj5ws2z": {
+      "url": "https://www.youtube.com/watch?v=HgwOx31qsK4",
+      "platform": "youtube",
+      "videoTitle": "No One Mourns the Wicked | Wicked (HDR)",
+      "parsedSong": "Wicked (HDR)",
+      "parsedArtist": "No One Mourns the Wicked"
+    },
+    "at://did:plc:qc2yusypa5njhkyt2iqminqu/app.bsky.feed.post/3mehs4jw24c2n": {
+      "url": "https://www.youtube.com/watch?v=HSh73d3TZcA",
+      "platform": "youtube",
+      "videoTitle": "Transformers - The Movie(1986) - The Touch",
+      "parsedSong": "The Movie(1986) - The Touch",
+      "parsedArtist": "Transformers"
+    },
+    "at://did:plc:st44ish4urutbqgbvbero6lp/app.bsky.feed.post/3mehs4i3tsk2b": {
+      "url": "https://www.youtube.com/watch?v=ttEMYvpoR-k",
+      "platform": "youtube",
+      "videoTitle": "Leonard Cohen - Hallelujah (Official Audio)",
+      "parsedSong": "Hallelujah",
+      "parsedArtist": "Leonard Cohen"
+    },
+    "at://did:plc:x4i7trjomvdryqaaotfhae4k/app.bsky.feed.post/3mehrvpt3ws2a": {
+      "url": "https://www.youtube.com/watch?v=IJVTTuD44vE",
+      "platform": "youtube",
+      "videoTitle": "Norma Tanega - You're Dead (Lyrics)",
+      "parsedSong": "You're Dead",
+      "parsedArtist": "Norma Tanega"
+    },
+    "at://did:plc:v3fvh4v5e3zuedwxwgvgvqvp/app.bsky.feed.post/3mehrmjqef22q": {
+      "url": "https://www.youtube.com/watch?v=iPUmE-tne5U",
+      "platform": "youtube",
+      "videoTitle": "Katrina & The Waves - Walking On Sunshine (Official Music Video)",
+      "parsedSong": "Walking On Sunshine",
+      "parsedArtist": "Katrina & The Waves"
+    },
+    "at://did:plc:xzikjbiawufixojhoi5zqz45/app.bsky.feed.post/3mehrc3zgsc2h": {
+      "url": "https://www.youtube.com/watch?v=JC1mSzUbULM",
+      "platform": "youtube",
+      "videoTitle": "Sam, Play Our Song... Classic Naked Gun Scene #shorts",
+      "parsedSong": "Sam, Play Our Song... Classic Naked Gun Scene #shorts",
+      "parsedArtist": null
+    },
+    "at://did:plc:socy27udzlwbk7yxba6rt5to/app.bsky.feed.post/3mehrb7rf4c2s": {
+      "url": "https://www.youtube.com/watch?v=XDkhzVw0yBs",
+      "platform": "youtube",
+      "videoTitle": "When that Man is Dead and Gone (1941) - Protest song against Hitler (Live Take)",
+      "parsedSong": "Protest song against Hitler",
+      "parsedArtist": "When that Man is Dead and Gone (1941)"
+    },
+    "at://did:plc:cpzc3nkgu7lx4ld7qrozcben/app.bsky.feed.post/3mehraxuuzs2s": {
+      "url": "https://www.youtube.com/watch?v=9KhbM2mqhCQ",
+      "platform": "youtube",
+      "videoTitle": "Martha Reeves & the Vandellas - Dancing in the Street (1964)",
+      "parsedSong": "Dancing in the Street (1964)",
+      "parsedArtist": "Martha Reeves & the Vandellas"
+    },
+    "at://did:plc:xzikjbiawufixojhoi5zqz45/app.bsky.feed.post/3mehr5t5rf22h": {
+      "url": "https://www.youtube.com/watch?v=po5HxJgyaMU",
+      "platform": "youtube",
+      "videoTitle": "Ewok Celebration / Yub Nub / Ewok Song (1983, Star Wars - Return of the Jedi Ending) HQ audio",
+      "parsedSong": "Return of the Jedi Ending) HQ audio",
+      "parsedArtist": "Ewok Celebration / Yub Nub / Ewok Song (1983, Star Wars"
+    },
+    "at://did:plc:uhe77pwtcgzicuv2cfzfiya3/app.bsky.feed.post/3mehr42equ22x": {
+      "url": "https://www.youtube.com/watch?v=7ON8zNL3e7c",
+      "platform": "youtube",
+      "videoTitle": "Where Eagles Dare",
+      "parsedSong": "Where Eagles Dare",
+      "parsedArtist": null
+    },
+    "at://did:plc:hzu2lfknadek6mvpngeco2yt/app.bsky.feed.post/3mehqyd5fzs2y": {
+      "url": "https://www.youtube.com/watch?v=ZB51taDpPZg",
+      "platform": "youtube",
+      "videoTitle": "flood",
+      "parsedSong": "flood",
+      "parsedArtist": null
+    },
+    "at://did:plc:2v7dqpnv2d4iyq345twjpm3o/app.bsky.feed.post/3mehqps6ekc2o": {
+      "url": "https://www.youtube.com/watch?v=lWw5mKSQnZ4",
+      "platform": "youtube",
+      "videoTitle": "Can YOU BE A NEW DAY FROM FAMILY GUY",
+      "parsedSong": "Can YOU BE A NEW DAY FROM FAMILY GUY",
+      "parsedArtist": null
+    },
+    "at://did:plc:2r6qmv5dg3cyi5piiekopnoc/app.bsky.feed.post/3mehqn63g722n": {
+      "url": "https://www.youtube.com/watch?v=FGBhQbmPwH8",
+      "platform": "youtube",
+      "videoTitle": "Daft Punk - One More Time (Official Video)",
+      "parsedSong": "One More Time",
+      "parsedArtist": "Daft Punk"
+    },
+    "at://did:plc:be5p6fbf44j5uduhwfunzlyo/app.bsky.feed.post/3mehqj47d3c2u": {
+      "url": "https://www.youtube.com/watch?v=07mvTzbIZok",
+      "platform": "youtube",
+      "videoTitle": "Revolution Rock (Remastered)",
+      "parsedSong": "Revolution Rock",
+      "parsedArtist": null
+    },
+    "at://did:plc:7udm3gmb5i4f3ow24idk2g7z/app.bsky.feed.post/3mehqibo3cc2h": {
+      "url": "https://www.youtube.com/watch?v=_m7_nPzG0E4",
+      "platform": "youtube",
+      "videoTitle": "The Clash - Let's Go Crazy (Remastered - Official Audio)",
+      "parsedSong": "Let's Go Crazy",
+      "parsedArtist": "The Clash"
+    },
+    "at://did:plc:mxsqjskc2n57qmcnlhrgae4r/app.bsky.feed.post/3mehqcysdes2p": {
+      "url": "https://www.youtube.com/watch?v=EbRTPvTcU9g",
+      "platform": "youtube",
+      "videoTitle": "Beer:30",
+      "parsedSong": "Beer:30",
+      "parsedArtist": null
+    },
+    "at://did:plc:ya7cdz2gne2nxehz7gtbmyso/app.bsky.feed.post/3mehqajshrk25": {
+      "url": "https://www.youtube.com/watch?v=w2hvtTGKmP8",
+      "platform": "youtube",
+      "videoTitle": "Goodbye Fatman",
+      "parsedSong": "Goodbye Fatman",
+      "parsedArtist": null
+    },
+    "at://did:plc:hbuxubf7gdl65mff7cwtgnvt/app.bsky.feed.post/3mehplhgk5s2q": {
+      "url": "https://www.youtube.com/watch?v=ugD3_yt756w",
+      "platform": "youtube",
+      "videoTitle": "Hit 'Em Up",
+      "parsedSong": "Hit 'Em Up",
+      "parsedArtist": null
+    },
+    "at://did:plc:ti7plchklhqpvvlfjm4an7ew/app.bsky.feed.post/3mehpdu7rdc2k": {
+      "url": "https://www.youtube.com/watch?v=VJ9RmuY8A60",
+      "platform": "youtube",
+      "videoTitle": "Burn in Hell",
+      "parsedSong": "Burn in Hell",
+      "parsedArtist": null
+    },
+    "at://did:plc:bqiwprvyjxzsdgs7bf6vokaq/app.bsky.feed.post/3mehpbjb5hs25": {
+      "url": "https://www.youtube.com/watch?v=zy8dUJEOqos",
+      "platform": "youtube",
+      "videoTitle": "The Wiz (6/8) Movie CLIP - Everybody Rejoice (1978) HD",
+      "parsedSong": "Everybody Rejoice (1978) HD",
+      "parsedArtist": "The Wiz (6/8) Movie CLIP"
+    },
+    "at://did:plc:dnilolmtvcn2vfq3o34op45k/app.bsky.feed.post/3mehp7tsrzk2t": {
+      "url": "https://www.youtube.com/watch?v=np6vAuS0KNs",
+      "platform": "youtube",
+      "videoTitle": "Yub Nub (Star Wars Episode VI: Return of the Jedi Ending)",
+      "parsedSong": "Return of the Jedi Ending)",
+      "parsedArtist": "Yub Nub (Star Wars Episode VI"
+    },
+    "at://did:plc:ctrefctrsvmtjuuysbnnuikk/app.bsky.feed.post/3mehp3ht7ds2o": {
+      "url": "https://www.youtube.com/watch?v=lA5FWz1j9ik",
+      "platform": "youtube",
+      "videoTitle": "Chumbawamba - So Long, So Long",
+      "parsedSong": "So Long, So Long",
+      "parsedArtist": "Chumbawamba"
+    },
+    "at://did:plc:hqo5afqrons7lzjnuxhthlyl/app.bsky.feed.post/3mehp2mhoqk2i": {
+      "url": "https://www.youtube.com/watch?v=kSQ8tZ35t4U",
+      "platform": "youtube",
+      "videoTitle": "When Will You Die? - They Might Be Giants (Official Video)",
+      "parsedSong": "They Might Be Giants",
+      "parsedArtist": "When Will You Die?"
+    },
+    "at://did:plc:ym55x6ejem6iakeaogdn57rt/app.bsky.feed.post/3mehp22up4k2d": {
+      "url": "https://www.youtube.com/watch?v=g_rB4v75jqU",
+      "platform": "youtube",
+      "videoTitle": "I Can See Clearly Now",
+      "parsedSong": "I Can See Clearly Now",
+      "parsedArtist": null
+    },
+    "at://did:plc:ndvrcguyd7kuojanaaeivy7l/app.bsky.feed.post/3mehoyr3qvc27": {
+      "url": "https://www.youtube.com/watch?v=U6rzVVwvlLU",
+      "platform": "youtube",
+      "videoTitle": "The Hell Of It",
+      "parsedSong": "The Hell Of It",
+      "parsedArtist": null
+    },
+    "at://did:plc:amiu5gp7k2mcqkrllzxac5cm/app.bsky.feed.post/3mehoxhfwbk2q": {
+      "url": "https://www.youtube.com/watch?v=Wh3t49NsWBA",
+      "platform": "youtube",
+      "videoTitle": "Motörhead – Eat The Rich (Official Video)",
+      "parsedSong": "Motörhead – Eat The Rich",
+      "parsedArtist": null
+    },
+    "at://did:plc:pfuzlkz2mvvdb4iy6ushpd4g/app.bsky.feed.post/3mehowvrplk2n": {
+      "url": "https://www.youtube.com/watch?v=OLkPwxcIji0",
+      "platform": "youtube",
+      "videoTitle": "Chumbawamba - The day the nazi died",
+      "parsedSong": "The day the nazi died",
+      "parsedArtist": "Chumbawamba"
+    },
+    "at://did:plc:zgg4jd2fr3kt5ptahhcj33sb/app.bsky.feed.post/3mehow7bipk26": {
+      "url": "https://www.youtube.com/watch?v=zw5y7KPCsL8",
+      "platform": "youtube",
+      "videoTitle": "Naked Gun 2 1/2 - Sam, play our song",
+      "parsedSong": "Sam, play our song",
+      "parsedArtist": "Naked Gun 2 1/2"
+    },
+    "at://did:plc:lvx6ctj2xkeka6mys5bvndo3/app.bsky.feed.post/3mehovjpmk22j": {
+      "url": "https://www.youtube.com/watch?v=UZ7piHyO5Nk",
+      "platform": "youtube",
+      "videoTitle": "Ramsey Lewis - Oh Happy Day (Live)",
+      "parsedSong": "Oh Happy Day",
+      "parsedArtist": "Ramsey Lewis"
+    },
+    "at://did:plc:qzl6u7jrihfvjvi47a6pdjrj/app.bsky.feed.post/3mehorgelhs2w": {
+      "url": "https://www.youtube.com/watch?v=FRtd8ArvH_s",
+      "platform": "youtube",
+      "videoTitle": "Gold Guns Girls [Official Music Video] - METRIC",
+      "parsedSong": "METRIC",
+      "parsedArtist": "Gold Guns Girls"
+    },
+    "at://did:plc:7ju4xwdhqqo2cxiyzqtf7st5/app.bsky.feed.post/3mehonaeyds2a": {
+      "url": "https://www.youtube.com/watch?v=fc7_1GAYNOw",
+      "platform": "youtube",
+      "videoTitle": "'A Brand New Day (Everybody Rejoice)' from THE WIZ: 1080p",
+      "parsedSong": "1080p",
+      "parsedArtist": "'A Brand New Day (Everybody Rejoice)' from THE WIZ"
+    },
+    "at://did:plc:ty2kxmxjmtealqi2kc7f4pww/app.bsky.feed.post/3mehofldudc24": {
+      "url": "https://www.youtube.com/watch?v=P6I6yr7WDeg",
+      "platform": "youtube",
+      "videoTitle": "Sparks - The Number One Song In Heaven (Official Video)",
+      "parsedSong": "The Number One Song In Heaven",
+      "parsedArtist": "Sparks"
+    },
+    "at://did:plc:qzl6u7jrihfvjvi47a6pdjrj/app.bsky.feed.post/3mehoer42ck2w": {
+      "url": "https://www.youtube.com/watch?v=U6rzVVwvlLU",
+      "platform": "youtube",
+      "videoTitle": "The Hell Of It",
+      "parsedSong": "The Hell Of It",
+      "parsedArtist": null
+    },
+    "at://did:plc:ipqv2at6ydly7cug3ecx2izd/app.bsky.feed.post/3mehoe35dy22z": {
+      "url": "https://www.youtube.com/watch?v=bEeaS6fuUoA",
+      "platform": "youtube",
+      "videoTitle": "Bill Withers - Lovely Day (Official Audio)",
+      "parsedSong": "Lovely Day",
+      "parsedArtist": "Bill Withers"
+    },
+    "at://did:plc:smbrla62zd5n5foyztjzy4zr/app.bsky.feed.post/3meho3lak7226": {
+      "url": "https://www.youtube.com/watch?v=LDU_Txk06tM",
+      "platform": "youtube",
+      "videoTitle": "Noisestorm - Crab Rave [Monstercat Release]",
+      "parsedSong": "Crab Rave [Monstercat Release]",
+      "parsedArtist": "Noisestorm"
+    },
+    "at://did:plc:d5mxdf7hapmcqzygv4ux4sk4/app.bsky.feed.post/3mehnztpsq22p": {
+      "url": "https://www.youtube.com/watch?v=CTICOHFdCjk",
+      "platform": "youtube",
+      "videoTitle": "Klaus Nomi Ding Dong the witch is dead (extended version)",
+      "parsedSong": "Klaus Nomi Ding Dong the witch is dead (extended version)",
+      "parsedArtist": null
+    },
+    "at://did:plc:cgsbx6hjwc6jrcgts3s5ebsa/app.bsky.feed.post/3mehnyoqpe22v": {
+      "url": "https://www.youtube.com/watch?v=qwC7hFXaed0",
+      "platform": "youtube",
+      "videoTitle": "Barry Harris - Dive in the pool",
+      "parsedSong": "Dive in the pool",
+      "parsedArtist": "Barry Harris"
+    },
+    "at://did:plc:njkn4uc2j5d4qmhq35isgka2/app.bsky.feed.post/3mehnurqjik2t": {
+      "url": "https://www.youtube.com/watch?v=E5iUvpjii14",
+      "platform": "youtube",
+      "videoTitle": "Lily Allen | Fuck You (Official Audio)",
+      "parsedSong": "Fuck You",
+      "parsedArtist": "Lily Allen"
+    },
+    "at://did:plc:zsmxecbmrqwmwkeag2x5sk2l/app.bsky.feed.post/3mehnobtvpc2y": {
+      "url": "https://www.youtube.com/watch?v=kSQ8tZ35t4U",
+      "platform": "youtube",
+      "videoTitle": "When Will You Die? - They Might Be Giants (Official Video)",
+      "parsedSong": "They Might Be Giants",
+      "parsedArtist": "When Will You Die?"
+    },
+    "at://did:plc:6oogssodg7grxcpmtcdzb653/app.bsky.feed.post/3mehnfjihrc2d": {
+      "url": "https://www.youtube.com/watch?v=ziNnlbFu3Jo",
+      "platform": "youtube",
+      "videoTitle": "Miscast 2015: \"Cell Block Tango\" From \"Chicago\"",
+      "parsedSong": "\"Cell Block Tango\" From \"Chicago\"",
+      "parsedArtist": "Miscast 2015"
+    },
+    "at://did:plc:pkcyvgwvsweeytttezuxu4tv/app.bsky.feed.post/3mehnbilsj22x": {
+      "url": "https://www.youtube.com/watch?v=eV16Ysr03Vw",
+      "platform": "youtube",
+      "videoTitle": "Dancing in the Street (Live at Barton Hall, Cornell University, Ithaca, NY 5/8/77)",
+      "parsedSong": "Dancing in the Street",
+      "parsedArtist": null
+    },
+    "at://did:plc:27aiejrimrpgw5lzpn7ilngv/app.bsky.feed.post/3mehn6eupbk2z": {
+      "url": "https://www.youtube.com/watch?v=WccfbPQNMbg",
+      "platform": "youtube",
+      "videoTitle": "Andrew W.K. - Party Hard",
+      "parsedSong": "Party Hard",
+      "parsedArtist": "Andrew W.K."
+    },
+    "at://did:plc:xwiy2lg5lrykwhidqyiua2aq/app.bsky.feed.post/3mehmwih5tc2y": {
+      "url": "https://www.youtube.com/watch?v=Z1TlbLfaJp8",
+      "platform": "youtube",
+      "videoTitle": "The System Is Down",
+      "parsedSong": "The System Is Down",
+      "parsedArtist": null
+    },
+    "at://did:plc:x3qbj4xrodwrnm2cwrhrnnmq/app.bsky.feed.post/3mehmq65ud22t": {
+      "url": "https://www.youtube.com/watch?v=JTeKpWp8Psw",
+      "platform": "youtube",
+      "videoTitle": "Sufjan Stevens, \"Fourth Of July\" (Official Audio)",
+      "parsedSong": "Fourth Of July",
+      "parsedArtist": "Sufjan Stevens,"
+    },
+    "at://did:plc:sn2fspeytugiphvqmdrgy4zi/app.bsky.feed.post/3mehmku5x6c2d": {
+      "url": "https://www.youtube.com/watch?v=WXhchEiPqko",
+      "platform": "youtube",
+      "videoTitle": "the coup - piss on your grave",
+      "parsedSong": "piss on your grave",
+      "parsedArtist": "the coup"
+    },
+    "at://did:plc:mjzyb5hephyp2yeghtafxizf/app.bsky.feed.post/3mehmjyii7k2u": {
+      "url": "https://www.youtube.com/watch?v=aRXKxIXg7Fc",
+      "platform": "youtube",
+      "videoTitle": "Happy Man",
+      "parsedSong": "Happy Man",
+      "parsedArtist": null
+    },
+    "at://did:plc:4t4ft5wqspvawogfev3ta4lv/app.bsky.feed.post/3mehmixdba22x": {
+      "url": "https://www.youtube.com/watch?v=3GwjfUFyY6M",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Celebration",
+      "parsedSong": "Celebration",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:dejfdqeshq7chti6f4avaxtb/app.bsky.feed.post/3mehm24efx22t": {
+      "url": "https://www.youtube.com/watch?v=DwRXI-y6M9o",
+      "platform": "youtube",
+      "videoTitle": "Grandmaster Melle Mel ‎- White Lines (Don't Don't Do It) (Official Video)",
+      "parsedSong": "Grandmaster Melle Mel ‎- White Lines (Don't Don't Do It)",
+      "parsedArtist": null
+    },
+    "at://did:plc:6xavmse54akxck7wlul3k5d5/app.bsky.feed.post/3mehlyxtlm22j": {
+      "url": "https://www.youtube.com/watch?v=55btGpGsuDo",
+      "platform": "youtube",
+      "videoTitle": "Ha Ha You're Dead",
+      "parsedSong": "Ha Ha You're Dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:hr25qe6gbpdosx6qim6csmde/app.bsky.feed.post/3mehlyurqqk2c": {
+      "url": "https://www.youtube.com/watch?v=oPjwKQo8nmQ",
+      "platform": "youtube",
+      "videoTitle": "Tom Jones & Stereophonics - Mama Told Me Not To Come (Official Music Video)",
+      "parsedSong": "Mama Told Me Not To Come",
+      "parsedArtist": "Tom Jones & Stereophonics"
+    },
+    "at://did:plc:ns43jt7qclr2r74giayefpmr/app.bsky.feed.post/3mehldxd7b22w": {
+      "url": "https://www.youtube.com/watch?v=wxiMrvDbq3s",
+      "platform": "youtube",
+      "videoTitle": "Woody Guthrie- This Land Is Your Land",
+      "parsedSong": "Woody Guthrie- This Land Is Your Land",
+      "parsedArtist": null
+    },
+    "at://did:plc:a5a7fvsc5nneewt43awdlxmc/app.bsky.feed.post/3mehlc6za6c2s": {
+      "url": "https://www.youtube.com/watch?v=FaEjDk3lgcI",
+      "platform": "youtube",
+      "videoTitle": "Freedom! '90 (Remastered)",
+      "parsedSong": "Freedom! '90",
+      "parsedArtist": null
+    },
+    "at://did:plc:7a7iibavayaqhr3ore7pwq63/app.bsky.feed.post/3mehl6fhfks2b": {
+      "url": "https://www.youtube.com/watch?v=gQK9k42ongU",
+      "platform": "youtube",
+      "videoTitle": "George Baker Selection - Una paloma blanca",
+      "parsedSong": "Una paloma blanca",
+      "parsedArtist": "George Baker Selection"
+    },
+    "at://did:plc:hdkhwnxl2l5r7l467t2itbxs/app.bsky.feed.post/3mehl5isxfc2w": {
+      "url": "https://www.youtube.com/watch?v=Ag1o3koTLWM",
+      "platform": "youtube",
+      "videoTitle": "Curb Your Enthusiasm Theme",
+      "parsedSong": "Curb Your Enthusiasm Theme",
+      "parsedArtist": null
+    },
+    "at://did:plc:pwatwdoqcjfvf7lx6rvr3xbo/app.bsky.feed.post/3mehky65qm22t": {
+      "url": "https://www.youtube.com/watch?v=j-lO3tZDKLQ",
+      "platform": "youtube",
+      "videoTitle": "The Angels - Am I Ever Gonna See Your Face Again | Max Sessions 2014",
+      "parsedSong": "Am I Ever Gonna See Your Face Again | Max Sessions 2014",
+      "parsedArtist": "The Angels"
+    },
+    "at://did:plc:aiqoq7b2wwdhwyc4frvuwjbl/app.bsky.feed.post/3mehkvbrtqc2l": {
+      "url": "https://www.youtube.com/watch?v=7odMzSb6WUQ",
+      "platform": "youtube",
+      "videoTitle": "Paul Oakenfold - Starry Eyed Surprise (Official Video) ft. Shifty ShellShock",
+      "parsedSong": "Starry Eyed Surprise",
+      "parsedArtist": "Paul Oakenfold"
+    },
+    "at://did:plc:fwbqxgi6blcsse2jzo6pvt4k/app.bsky.feed.post/3mehkdppuxc2c": {
+      "url": "https://www.youtube.com/watch?v=mZF4G79OLkk",
+      "platform": "youtube",
+      "videoTitle": "Bring The Noise",
+      "parsedSong": "Bring The Noise",
+      "parsedArtist": null
+    },
+    "at://did:plc:te2iugbqgog72chnuddhijv3/app.bsky.feed.post/3mehjtjfxwk2f": {
+      "url": "https://www.youtube.com/watch?v=0BvqGkcoY88",
+      "platform": "youtube",
+      "videoTitle": "Star Wars: Ewok Celebration & Finale // Danish National Symphony Orchestra (LIVE)",
+      "parsedSong": "Ewok Celebration & Finale // Danish National Symphony Orchestra",
+      "parsedArtist": "Star Wars"
+    },
+    "at://did:plc:jmmkl425tns6xxwxzu4jqgwq/app.bsky.feed.post/3mehj7quw2s2h": {
+      "url": "https://www.youtube.com/watch?v=55btGpGsuDo",
+      "platform": "youtube",
+      "videoTitle": "Ha Ha You're Dead",
+      "parsedSong": "Ha Ha You're Dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:2uufde7u55z4it3u55jotobs/app.bsky.feed.post/3mehj4f5ves26": {
+      "url": "https://www.youtube.com/watch?v=OLkPwxcIji0",
+      "platform": "youtube",
+      "videoTitle": "Chumbawamba - The day the nazi died",
+      "parsedSong": "The day the nazi died",
+      "parsedArtist": "Chumbawamba"
+    },
+    "at://did:plc:fzx4ggso2xlu3tlxkpzwakez/app.bsky.feed.post/3mehiuv6yrc2k": {
+      "url": "https://www.youtube.com/watch?v=Dkq7WZTzkLQ",
+      "platform": "youtube",
+      "videoTitle": "Scrooge - Thank You Very Much",
+      "parsedSong": "Thank You Very Much",
+      "parsedArtist": "Scrooge"
+    },
+    "at://did:plc:rtfrnjke7ycgrsc7jw54uz4n/app.bsky.feed.post/3mehis4r7zs2d": {
+      "url": "https://www.youtube.com/watch?v=Dkq7WZTzkLQ",
+      "platform": "youtube",
+      "videoTitle": "Scrooge - Thank You Very Much",
+      "parsedSong": "Thank You Very Much",
+      "parsedArtist": "Scrooge"
+    },
+    "at://did:plc:vpft5oly6fhry5vj5h67oogu/app.bsky.feed.post/3mehil4gfes2i": {
+      "url": "https://www.youtube.com/watch?v=4p1pFCrTuvY",
+      "platform": "youtube",
+      "videoTitle": "jubilee",
+      "parsedSong": "jubilee",
+      "parsedArtist": null
+    },
+    "at://did:plc:2zi2a7zzlkseeoqho7lcg4cg/app.bsky.feed.post/3mehijbmkms23": {
+      "url": "https://www.youtube.com/watch?v=PLT68mI5Pwc",
+      "platform": "youtube",
+      "videoTitle": "Ante Up Remix (featuring Busta Rhymes, Teflon, and Remy Martin) (Official Video)",
+      "parsedSong": "Ante Up Remix (featuring Busta Rhymes, Teflon, and Remy Martin)",
+      "parsedArtist": null
+    },
+    "at://did:plc:cbhnuflsctq2s7mu4iqcuauq/app.bsky.feed.post/3mehicblbn227": {
+      "url": "https://www.youtube.com/watch?v=lVehcuJXe6I",
+      "platform": "youtube",
+      "videoTitle": "Outkast - B.O.B. (Bombs Over Baghdad) (Official HD Video)",
+      "parsedSong": "B.O.B. (Bombs Over Baghdad) (Official HD Video)",
+      "parsedArtist": "Outkast"
+    },
+    "at://did:plc:lmieio72lgit7a5ts43iiyks/app.bsky.feed.post/3mehianahv22f": {
+      "url": "https://www.youtube.com/watch?v=HFNZOk00D74",
+      "platform": "youtube",
+      "videoTitle": "James Brown - The Payback",
+      "parsedSong": "The Payback",
+      "parsedArtist": "James Brown"
+    },
+    "at://did:plc:kxonhfdvrqnafpnt26mzloha/app.bsky.feed.post/3mehi7bdtlb2c": {
+      "url": "https://www.youtube.com/watch?v=IUZEtVbJT5c",
+      "platform": "youtube",
+      "videoTitle": "Royal Choral Society: 'Hallelujah Chorus' from Handel's Messiah",
+      "parsedSong": "'Hallelujah Chorus' from Handel's Messiah",
+      "parsedArtist": "Royal Choral Society"
+    },
+    "at://did:plc:36lm7t4hmzdezc6dw2d7aada/app.bsky.feed.post/3mehhwrdeoc23": {
+      "url": "https://www.youtube.com/watch?v=np6vAuS0KNs",
+      "platform": "youtube",
+      "videoTitle": "Yub Nub (Star Wars Episode VI: Return of the Jedi Ending)",
+      "parsedSong": "Return of the Jedi Ending)",
+      "parsedArtist": "Yub Nub (Star Wars Episode VI"
+    },
+    "at://did:plc:yavixsnvb62umfczbamzhqao/app.bsky.feed.post/3mehhtj7lic23": {
+      "url": "https://www.youtube.com/watch?v=i9o6412lwGA",
+      "platform": "youtube",
+      "videoTitle": "Stars and Stripes Forever",
+      "parsedSong": "Stars and Stripes Forever",
+      "parsedArtist": null
+    },
+    "at://did:plc:n5pg56fdhidwzyn53gd4pj2w/app.bsky.feed.post/3mehhqyewzk22": {
+      "url": "https://www.youtube.com/watch?v=41NOMETNp3U",
+      "platform": "youtube",
+      "videoTitle": "Malört & Savior - On The Day It Finally Happens",
+      "parsedSong": "On The Day It Finally Happens",
+      "parsedArtist": "Malört & Savior"
+    },
+    "at://did:plc:4g6tvyroadg6q7vzhukeixdx/app.bsky.feed.post/3mehhn7j4jc2v": {
+      "url": "https://www.youtube.com/watch?v=o2vdCm4tZDA",
+      "platform": "youtube",
+      "videoTitle": "[I'll Be Glad When You're Dead] You Rascal You",
+      "parsedSong": "[I'll Be Glad When You're Dead] You Rascal You",
+      "parsedArtist": null
+    },
+    "at://did:plc:a35jmhggifqillwurbtt2cah/app.bsky.feed.post/3mehhiobiv22t": {
+      "url": "https://www.youtube.com/watch?v=opRRax4ph3E",
+      "platform": "youtube",
+      "videoTitle": "David Bowie & Mick Jagger - Dancing In The Street (Official Video) [4K]",
+      "parsedSong": "Dancing In The Street [4K]",
+      "parsedArtist": "David Bowie & Mick Jagger"
+    },
+    "at://did:plc:mkibiq27576m54hc64xebwrg/app.bsky.feed.post/3mehhfmhiq22u": {
+      "url": "https://www.youtube.com/watch?v=kSQ8tZ35t4U",
+      "platform": "youtube",
+      "videoTitle": "When Will You Die? - They Might Be Giants (Official Video)",
+      "parsedSong": "They Might Be Giants",
+      "parsedArtist": "When Will You Die?"
+    },
+    "at://did:plc:5x2abcwdk7kkluf54vd6jwe6/app.bsky.feed.post/3mehhbsursc2p": {
+      "url": "https://www.youtube.com/watch?v=41NOMETNp3U",
+      "platform": "youtube",
+      "videoTitle": "Malört & Savior - On The Day It Finally Happens",
+      "parsedSong": "On The Day It Finally Happens",
+      "parsedArtist": "Malört & Savior"
+    },
+    "at://did:plc:r7erkgwniyk6piltlfnjccts/app.bsky.feed.post/3mehhajt5o22w": {
+      "url": "https://www.youtube.com/watch?v=pi_YQul7XXk",
+      "platform": "youtube",
+      "videoTitle": "Tramp the Dirt Down",
+      "parsedSong": "Tramp the Dirt Down",
+      "parsedArtist": null
+    },
+    "at://did:plc:rzobz6l55r36udn7iqqrsqnt/app.bsky.feed.post/3mehh7e3eas26": {
+      "url": "https://www.youtube.com/watch?v=Vq75KA5IA0A",
+      "platform": "youtube",
+      "videoTitle": "All You Fascists",
+      "parsedSong": "All You Fascists",
+      "parsedArtist": null
+    },
+    "at://did:plc:4zbvdrxhyqxq7umnxopt2ht6/app.bsky.feed.post/3mehh5yjwfs2k": {
+      "url": "https://www.youtube.com/watch?v=3oPzbzvM7DA",
+      "platform": "youtube",
+      "videoTitle": "Youngbloodz - Presidential (KEIFERGR33N Remix)",
+      "parsedSong": "Presidential (KEIFERGR33N Remix)",
+      "parsedArtist": "Youngbloodz"
+    },
+    "at://did:plc:htadvkaj7djdzveuvi5mrgs3/app.bsky.feed.post/3mehgxmzyl22o": {
+      "url": "https://www.youtube.com/watch?v=3GwjfUFyY6M",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Celebration",
+      "parsedSong": "Celebration",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:kbkn2wz2znozfitjwz3ijjxc/app.bsky.feed.post/3mehgwmime22e": {
+      "url": "https://www.youtube.com/watch?v=qchPLaiKocI",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Get Down On It",
+      "parsedSong": "Get Down On It",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:q3ulk4lyg5r7qfpepouehft5/app.bsky.feed.post/3mehgv7v4o22v": {
+      "url": "https://www.youtube.com/watch?v=qOwFVowEugQ",
+      "platform": "youtube",
+      "videoTitle": "The Alan Parsons Project - I Wouldn't Want to be Like You (Official HD Video)",
+      "parsedSong": "I Wouldn't Want to be Like You (Official HD Video)",
+      "parsedArtist": "The Alan Parsons Project"
+    },
+    "at://did:plc:zw3ebxo3yxygnagnukl6divm/app.bsky.feed.post/3mejbcyofz223": {
+      "url": "https://www.youtube.com/watch?v=8iwBM_YB1sE",
+      "platform": "youtube",
+      "videoTitle": "The Pointer Sisters - I'm So Excited (Official Video)",
+      "parsedSong": "I'm So Excited",
+      "parsedArtist": "The Pointer Sisters"
+    },
+    "at://did:plc:rmwj3o2ik23pxhgz2ncsnqmd/app.bsky.feed.post/3meizzvku4s2p": {
+      "url": "https://www.youtube.com/watch?v=0o4yv6Cm_ag",
+      "platform": "youtube",
+      "videoTitle": "Die, Die My Darling",
+      "parsedSong": "Die, Die My Darling",
+      "parsedArtist": null
+    },
+    "at://did:plc:dgmwhbtcjbexpq3kzcs6qgyq/app.bsky.feed.post/3meiyax2aec2h": {
+      "url": "https://www.youtube.com/watch?v=atY7ymXAcRQ",
+      "platform": "youtube",
+      "videoTitle": "Sunshine, Lollipops And Rainbows",
+      "parsedSong": "Sunshine, Lollipops And Rainbows",
+      "parsedArtist": null
+    },
+    "at://did:plc:7pflvwfgh6otgavq6hftkjc7/app.bsky.feed.post/3meiit74bls2q": {
+      "url": "https://www.youtube.com/watch?v=RfinvuRolR0",
+      "platform": "youtube",
+      "videoTitle": "Light of a Clear Blue Morning",
+      "parsedSong": "Light of a Clear Blue Morning",
+      "parsedArtist": null
+    },
+    "at://did:plc:24xaq2i3wipz56thxp42z5gk/app.bsky.feed.post/3meiluikkk22c": {
+      "url": "https://www.youtube.com/watch?v=EfkNvOOiZ_8",
+      "platform": "youtube",
+      "videoTitle": "Spaceballs — Escape Pod Scene",
+      "parsedSong": "Spaceballs — Escape Pod Scene",
+      "parsedArtist": null
+    },
+    "at://did:plc:juw6ao5hy5p3gdvs6qdfnebl/app.bsky.feed.post/3mei4qcg7gc2e": {
+      "url": "https://www.youtube.com/watch?v=xTlNMmZKwpA",
+      "platform": "youtube",
+      "videoTitle": "Cardi B, Bad Bunny & J Balvin - I Like It [Official Music Video]",
+      "parsedSong": "I Like It",
+      "parsedArtist": "Cardi B, Bad Bunny & J Balvin"
+    },
+    "at://did:plc:3ahy6f34453trpbtcbcschas/app.bsky.feed.post/3mei4s57ohc2c": {
+      "url": "https://www.youtube.com/watch?v=2Z4m4lnjxkY",
+      "platform": "youtube",
+      "videoTitle": "Trololo Sing Along!",
+      "parsedSong": "Trololo Sing Along!",
+      "parsedArtist": null
+    },
+    "at://did:plc:bdpb7rmqu46t345arbvgtlpw/app.bsky.feed.post/3mehygvu5fc26": {
+      "url": "https://www.youtube.com/watch?v=g3lM_ocAU_0",
+      "platform": "youtube",
+      "videoTitle": "Father Goes Crazy when Song Comes On In Car",
+      "parsedSong": "Father Goes Crazy when Song Comes On In Car",
+      "parsedArtist": null
+    },
+    "at://did:plc:vclmh5jyk5frwc7wkjudh2k7/app.bsky.feed.post/3mehye3ocpk2v": {
+      "url": "https://www.youtube.com/watch?v=rvrZJ5C_Nwg",
+      "platform": "youtube",
+      "videoTitle": "Kirin J Callinan - Big Enough (Official Video) ft. Alex Cameron, Molly Lewis, Jimmy Barnes",
+      "parsedSong": "Big Enough",
+      "parsedArtist": "Kirin J Callinan"
+    },
+    "at://did:plc:ooqnj2qum2tc4q5bcldcrri5/app.bsky.feed.post/3mehxt55xhk23": {
+      "url": "https://www.youtube.com/watch?v=pi_YQul7XXk",
+      "platform": "youtube",
+      "videoTitle": "Tramp the Dirt Down",
+      "parsedSong": "Tramp the Dirt Down",
+      "parsedArtist": null
+    },
+    "at://did:plc:vy3hwxmvnhzkhxxbo3v5xl5m/app.bsky.feed.post/3mej25hnhhk2r": {
+      "url": "https://www.youtube.com/watch?v=92ydUdqWE1g",
+      "platform": "youtube",
+      "videoTitle": "Tunak Tunak Tun Video | Daler Mehndi | Full Song | Daler Mehndi Music",
+      "parsedSong": "Daler Mehndi | Full Song | Daler Mehndi Music",
+      "parsedArtist": "Tunak Tunak Tun Video"
+    },
+    "at://did:plc:vclmh5jyk5frwc7wkjudh2k7/app.bsky.feed.post/3mehyiog2f22v": {
+      "url": "https://www.youtube.com/watch?v=rvrZJ5C_Nwg",
+      "platform": "youtube",
+      "videoTitle": "Kirin J Callinan - Big Enough (Official Video) ft. Alex Cameron, Molly Lewis, Jimmy Barnes",
+      "parsedSong": "Big Enough",
+      "parsedArtist": "Kirin J Callinan"
+    },
+    "at://did:plc:q3ok7mb6t3shuvpetzygyv6j/app.bsky.feed.post/3meiazeeifs2m": {
+      "url": "https://www.youtube.com/watch?v=H58vbez_m4E",
+      "platform": "youtube",
+      "videoTitle": "Kendrick Lamar - Not Like Us",
+      "parsedSong": "Not Like Us",
+      "parsedArtist": "Kendrick Lamar"
+    },
+    "at://did:plc:kjij4vjaztblqyfcqpykqull/app.bsky.feed.post/3mehyjicoyc2e": {
+      "url": "https://www.youtube.com/watch?v=j9V78UbdzWI",
+      "platform": "youtube",
+      "videoTitle": "Coffin Dance (Official Music Video HD)",
+      "parsedSong": "Coffin Dance (Official Music Video HD)",
+      "parsedArtist": null
+    },
+    "at://did:plc:f435gwy4lp36qwimnvvqapj5/app.bsky.feed.post/3mehzzh6nwc2v": {
+      "url": "https://www.youtube.com/watch?v=cZVhhnXOI84",
+      "platform": "youtube",
+      "videoTitle": "Twista ft. Anthony Hamilton - Sunshine (Lovely Day)",
+      "parsedSong": "Twista",
+      "parsedArtist": null
+    },
+    "at://did:plc:7j4s2wjy7riihyg5wxa4vgna/app.bsky.feed.post/3mej2h2oewc2m": {
+      "url": "https://www.youtube.com/watch?v=XDIYqv4gUQ4",
+      "platform": "youtube",
+      "videoTitle": "Gustavo Dudamel - Beethoven: Symphony No. 9 - Mvmt 4 (Orquesta Sinfónica Simón Bolívar)",
+      "parsedSong": "Beethoven: Symphony No. 9 - Mvmt 4 (Orquesta Sinfónica Simón Bolívar)",
+      "parsedArtist": "Gustavo Dudamel"
+    },
+    "at://did:plc:6ooog32zunn273jdfehel2lq/app.bsky.feed.post/3mei4lk7k3s2k": {
+      "url": "https://www.youtube.com/watch?v=t0ofhhiVB14",
+      "platform": "youtube",
+      "videoTitle": "MY PEE PEE - DUBSTEP REMIX",
+      "parsedSong": "DUBSTEP REMIX",
+      "parsedArtist": "MY PEE PEE"
+    },
+    "at://did:plc:6cjbukflm73ww4w62ismfvbf/app.bsky.feed.post/3mehyz7drgk2m": {
+      "url": "https://www.youtube.com/watch?v=a_UqAMQT_LE",
+      "platform": "youtube",
+      "videoTitle": "Manu Chao - Bongo Bong (Official Audio)",
+      "parsedSong": "Bongo Bong",
+      "parsedArtist": "Manu Chao"
+    },
+    "at://did:plc:6cjbukflm73ww4w62ismfvbf/app.bsky.feed.post/3mei2vjbz4223": {
+      "url": "https://www.youtube.com/watch?v=BHm3GIs2lMY",
+      "platform": "youtube",
+      "videoTitle": "RV",
+      "parsedSong": "RV",
+      "parsedArtist": null
+    },
+    "at://did:plc:lqarmcw7eb6pg5veceb5wyld/app.bsky.feed.post/3mei2btwbgc2z": {
+      "url": "https://www.youtube.com/watch?v=Nl-RVIdTUVI",
+      "platform": "youtube",
+      "videoTitle": "People Get Up And Drive Your Funky Soul (Remix)",
+      "parsedSong": "People Get Up And Drive Your Funky Soul (Remix)",
+      "parsedArtist": null
+    },
+    "at://did:plc:vcuhbon7i37objkptanyotpr/app.bsky.feed.post/3mehyqypa4k2l": {
+      "url": "https://www.youtube.com/watch?v=61pMtsWxQrs",
+      "platform": "youtube",
+      "videoTitle": "FUCK DONALD TRUMP",
+      "parsedSong": "FUCK DONALD TRUMP",
+      "parsedArtist": null
+    },
+    "at://did:plc:ofi77njf7n72bptwntndpt7u/app.bsky.feed.post/3mei2zdteis2q": {
+      "url": "https://www.youtube.com/watch?v=rblt2EtFfC4",
+      "platform": "youtube",
+      "videoTitle": "Prince - 1999 (Official Music Video)",
+      "parsedSong": "1999",
+      "parsedArtist": "Prince"
+    },
+    "at://did:plc:2xlwrjoobwtn2kwqnamuhvum/app.bsky.feed.post/3mehz3rowms2i": {
+      "url": "https://www.youtube.com/watch?v=3GwjfUFyY6M",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Celebration",
+      "parsedSong": "Celebration",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:tfdmkbcrz7xbmqiujulwjwfi/app.bsky.feed.post/3mei5kvaue22y": {
+      "url": "https://www.youtube.com/watch?v=6ppEYILuEx8",
+      "platform": "youtube",
+      "videoTitle": "YG  Nipsey Hussle  - Fuck donald trump",
+      "parsedSong": "Fuck donald trump",
+      "parsedArtist": "YG  Nipsey Hussle"
+    },
+    "at://did:plc:vnqqj4nfak4e6gmoggsjfe7z/app.bsky.feed.post/3mejbxhwv7s25": {
+      "url": "https://www.youtube.com/watch?v=2H5uWRjFsGc",
+      "platform": "youtube",
+      "videoTitle": "Chumbawamba - Tubthumping",
+      "parsedSong": "Tubthumping",
+      "parsedArtist": "Chumbawamba"
+    },
+    "at://did:plc:sv524cvckefuardkofllsz44/app.bsky.feed.post/3mehxbvis3s2o": {
+      "url": "https://www.youtube.com/watch?v=xmUZ6nCFNoU",
+      "platform": "youtube",
+      "videoTitle": "The Smashing Pumpkins - Today",
+      "parsedSong": "Today",
+      "parsedArtist": "The Smashing Pumpkins"
+    },
+    "at://did:plc:sv524cvckefuardkofllsz44/app.bsky.feed.post/3mehxe47bj22o": {
+      "url": "https://www.youtube.com/watch?v=rBrd_3VMC3c",
+      "platform": "youtube",
+      "videoTitle": "Louis Armstrong - What A Wonderful World (Official Video)",
+      "parsedSong": "What A Wonderful World",
+      "parsedArtist": "Louis Armstrong"
+    },
+    "at://did:plc:sv524cvckefuardkofllsz44/app.bsky.feed.post/3mehxqje7zs2o": {
+      "url": "https://www.youtube.com/watch?v=lXgkuM2NhYI",
+      "platform": "youtube",
+      "videoTitle": "David Bowie - \"Heroes\" (Official Video) [HD]",
+      "parsedSong": "\"Heroes\"",
+      "parsedArtist": "David Bowie"
+    },
+    "at://did:plc:sv524cvckefuardkofllsz44/app.bsky.feed.post/3mehxs53irs2o": {
+      "url": "https://www.youtube.com/watch?v=1qJU8G7gR_g",
+      "platform": "youtube",
+      "videoTitle": "At Last",
+      "parsedSong": "At Last",
+      "parsedArtist": null
+    },
+    "at://did:plc:sv524cvckefuardkofllsz44/app.bsky.feed.post/3mehxwrbzjk2o": {
+      "url": "https://www.youtube.com/watch?v=oIFLtNYI3Ls",
+      "platform": "youtube",
+      "videoTitle": "Radiohead - Just",
+      "parsedSong": "Just",
+      "parsedArtist": "Radiohead"
+    },
+    "at://did:plc:sv524cvckefuardkofllsz44/app.bsky.feed.post/3mehxzg63lk2o": {
+      "url": "https://www.youtube.com/watch?v=oHRNrgDIJfo",
+      "platform": "youtube",
+      "videoTitle": "Nina Simone - Feeling Good (Official Video)",
+      "parsedSong": "Feeling Good",
+      "parsedArtist": "Nina Simone"
+    },
+    "at://did:plc:sv524cvckefuardkofllsz44/app.bsky.feed.post/3mehy4d2hsc2o": {
+      "url": "https://www.youtube.com/watch?v=GytxTq8wQw4",
+      "platform": "youtube",
+      "videoTitle": "David Byrne - Miss America (Official Video)",
+      "parsedSong": "Miss America",
+      "parsedArtist": "David Byrne"
+    },
+    "at://did:plc:sv524cvckefuardkofllsz44/app.bsky.feed.post/3mei5h4djyk2o": {
+      "url": "https://www.youtube.com/watch?v=k85mRPqvMbE",
+      "platform": "youtube",
+      "videoTitle": "Crazy Frog - Axel F (Official Video)",
+      "parsedSong": "Axel F",
+      "parsedArtist": "Crazy Frog"
+    },
+    "at://did:plc:grwlkkvpd2265qrkwp544owk/app.bsky.feed.post/3mehx2vy2fk2e": {
+      "url": "https://www.youtube.com/watch?v=lcpnL8bIHk0",
+      "platform": "youtube",
+      "videoTitle": "Happy Days Are Here Again",
+      "parsedSong": "Happy Days Are Here Again",
+      "parsedArtist": null
+    },
+    "at://did:plc:3z4wgjvttn6uw7mn2jyqvnxy/app.bsky.feed.post/3mehwjeqkcc2b": {
+      "url": "https://www.youtube.com/watch?v=fqYjCXCqMbs",
+      "platform": "youtube",
+      "videoTitle": "Laughin' To The Bank",
+      "parsedSong": "Laughin' To The Bank",
+      "parsedArtist": null
+    },
+    "at://did:plc:4daag2kflgcmvxgtiv7zn7it/app.bsky.feed.post/3mei2ddfats2o": {
+      "url": "https://www.youtube.com/watch?v=uCyrJdYsALg",
+      "platform": "youtube",
+      "videoTitle": "Black Merda - Windsong (1971) HQ",
+      "parsedSong": "Windsong (1971) HQ",
+      "parsedArtist": "Black Merda"
+    },
+    "at://did:plc:6t2yqcq3ay5fri2ujz7kxwun/app.bsky.feed.post/3mehwhnnuzk2e": {
+      "url": "https://www.youtube.com/watch?v=VRL1hGPOUTo",
+      "platform": "youtube",
+      "videoTitle": "Go to Hell",
+      "parsedSong": "Go to Hell",
+      "parsedArtist": null
+    },
+    "at://did:plc:uibtitmn7wptsxnwqfdozm32/app.bsky.feed.post/3mehwtkg5j22j": {
+      "url": "https://www.youtube.com/watch?v=OT6sqbzyS0I",
+      "platform": "youtube",
+      "videoTitle": "Okkervil River- The President Is Dead",
+      "parsedSong": "Okkervil River- The President Is Dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:igqdkhc7sczr6dtoirkig3i3/app.bsky.feed.post/3mehwttuics2s": {
+      "url": "https://www.youtube.com/watch?v=_zkClhEfNIk",
+      "platform": "youtube",
+      "videoTitle": "Andrew WK - The Moving Room",
+      "parsedSong": "The Moving Room",
+      "parsedArtist": "Andrew WK"
+    },
+    "at://did:plc:cwipu4xy5imkmcvw4k7twkdv/app.bsky.feed.post/3mehyes7vjs2r": {
+      "url": "https://www.youtube.com/watch?v=SEyAjt-Cbh8",
+      "platform": "youtube",
+      "videoTitle": "Bootsy's Rubber Band - Psychoticbumpschool (Live 1976)",
+      "parsedSong": "Psychoticbumpschool",
+      "parsedArtist": "Bootsy's Rubber Band"
+    },
+    "at://did:plc:bycam7nthlc4q6tfwfzyfxsd/app.bsky.feed.post/3mehypa4jqc2b": {
+      "url": "https://www.youtube.com/watch?v=IoyvvEWHodk",
+      "platform": "youtube",
+      "videoTitle": "Na Na Na Na Hey Hey-ey Goodbye",
+      "parsedSong": "Na Na Na Na Hey Hey-ey Goodbye",
+      "parsedArtist": null
+    },
+    "at://did:plc:aepe25ga7xejykysjvbssmhy/app.bsky.feed.post/3mei4xwirvk2o": {
+      "url": "https://www.youtube.com/watch?v=6Zbi0XmGtMw",
+      "platform": "youtube",
+      "videoTitle": "Vengaboys - We like to Party! (The Vengabus)",
+      "parsedSong": "We like to Party! (The Vengabus)",
+      "parsedArtist": "Vengaboys"
+    },
+    "at://did:plc:b4qpe5izh4msvgfltaiyx3qc/app.bsky.feed.post/3mehvpy2hxk2v": {
+      "url": "https://www.youtube.com/watch?v=3GwjfUFyY6M",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Celebration",
+      "parsedSong": "Celebration",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:db7h6uw3wluxi7vn2fimpqbo/app.bsky.feed.post/3mehvy36fr224": {
+      "url": "https://www.youtube.com/watch?v=Eo-KmOd3i7s",
+      "platform": "youtube",
+      "videoTitle": "*NSYNC - Bye Bye Bye (Official Video)",
+      "parsedSong": "Bye Bye Bye",
+      "parsedArtist": "*NSYNC"
+    },
+    "at://did:plc:twojc76dknjbdggrftzpf6n6/app.bsky.feed.post/3mehwlclv622l": {
+      "url": "https://www.youtube.com/watch?v=RWWlFqJn3o8",
+      "platform": "youtube",
+      "videoTitle": "Aquarius / Let the Sunshine in - CELIA CRUZ & TITO PUENTE - All Fania Stars (SALSA)",
+      "parsedSong": "CELIA CRUZ & TITO PUENTE - All Fania Stars (SALSA)",
+      "parsedArtist": "Aquarius / Let the Sunshine in"
+    },
+    "at://did:plc:rgnfawcvbximp4cskqo3ocnz/app.bsky.feed.post/3mehvvqpewc23": {
+      "url": "https://www.youtube.com/watch?v=Dkq7WZTzkLQ",
+      "platform": "youtube",
+      "videoTitle": "Scrooge - Thank You Very Much",
+      "parsedSong": "Thank You Very Much",
+      "parsedArtist": "Scrooge"
+    },
+    "at://did:plc:o2h4fvv5zfgchydfufozrw7v/app.bsky.feed.post/3mehv4akpjk2r": {
+      "url": "https://www.youtube.com/watch?v=X_ZT9nz9mLs",
+      "platform": "youtube",
+      "videoTitle": "A Brand New Day | The Wiz (1978) | TUNE",
+      "parsedSong": "The Wiz (1978) | TUNE",
+      "parsedArtist": "A Brand New Day"
+    },
+    "at://did:plc:k5z4zy6x3wyybhymz3yz2e72/app.bsky.feed.post/3mehw44lfi22w": {
+      "url": "https://www.youtube.com/watch?v=BEi9WB18vwE",
+      "platform": "youtube",
+      "videoTitle": "Star Wars VI (The Complete Score) - Ewok Celebration (Yub Nub)",
+      "parsedSong": "Ewok Celebration (Yub Nub)",
+      "parsedArtist": "Star Wars VI (The Complete Score)"
+    },
+    "at://did:plc:h2wtgbztnbxm2yssu7yuf6z6/app.bsky.feed.post/3mehwlcenps26": {
+      "url": "https://www.youtube.com/watch?v=m_HEyMDfrQ4",
+      "platform": "youtube",
+      "videoTitle": "Robert Earl Keen - Feelin' Good Again - 12/5/2017 - Paste Studios, New York, NY",
+      "parsedSong": "Feelin' Good Again - 12/5/2017 - Paste Studios, New York, NY",
+      "parsedArtist": "Robert Earl Keen"
+    },
+    "at://did:plc:f7y236w36gj6a3u3ijo3av2f/app.bsky.feed.post/3mehyagqs722a": {
+      "url": "https://www.youtube.com/watch?v=8vXR5gjRMPk",
+      "platform": "youtube",
+      "videoTitle": "Klaus Nomi - Ding Dong The Witch Is Dead",
+      "parsedSong": "Ding Dong The Witch Is Dead",
+      "parsedArtist": "Klaus Nomi"
+    },
+    "at://did:plc:cyfqsz7gb5xllt2vofbt6f7e/app.bsky.feed.post/3mehwvkfoyk2d": {
+      "url": "https://www.youtube.com/watch?v=UDfAdHBtK_Q",
+      "platform": "youtube",
+      "videoTitle": "The Who - Won't Get Fooled Again (Shepperton Studios / 1978)",
+      "parsedSong": "Won't Get Fooled Again (Shepperton Studios / 1978)",
+      "parsedArtist": "The Who"
+    },
+    "at://did:plc:bl5quleyd7cmng3trzgbibp5/app.bsky.feed.post/3mehxpgrou22f": {
+      "url": "https://www.youtube.com/watch?v=JgRBkjgXHro",
+      "platform": "youtube",
+      "videoTitle": "Ultra Nate - Free (Official HD Video)",
+      "parsedSong": "Free (Official HD Video)",
+      "parsedArtist": "Ultra Nate"
+    },
+    "at://did:plc:3uxfmkt5skhkwwbthyexznhw/app.bsky.feed.post/3mehvcubelk2j": {
+      "url": "https://www.youtube.com/watch?v=PrfaPAH9Zx0",
+      "platform": "youtube",
+      "videoTitle": "Joan Baez - Battle Hymn of the Republic (Lyrics) [HD]",
+      "parsedSong": "Battle Hymn of the Republic",
+      "parsedArtist": "Joan Baez"
+    },
+    "at://did:plc:y6dmtgpxufogeh35tdhf4pjd/app.bsky.feed.post/3mehvrrdvv22z": {
+      "url": "https://www.youtube.com/watch?v=hYq4kfUz_EM",
+      "platform": "youtube",
+      "videoTitle": "PONTO DO CABOCLO COBRA CORAL",
+      "parsedSong": "PONTO DO CABOCLO COBRA CORAL",
+      "parsedArtist": null
+    },
+    "at://did:plc:y6dmtgpxufogeh35tdhf4pjd/app.bsky.feed.post/3mehvzbs4q22z": {
+      "url": "https://www.youtube.com/watch?v=4p5wvwKJHLg",
+      "platform": "youtube",
+      "videoTitle": "Alerta Geral",
+      "parsedSong": "Alerta Geral",
+      "parsedArtist": null
+    },
+    "at://did:plc:6vpua44hdnfgjvzszdqsghwx/app.bsky.feed.post/3mehuzoplys2s": {
+      "url": "https://www.youtube.com/watch?v=M4Czx8EWXb0",
+      "platform": "youtube",
+      "videoTitle": "Eruption (2015 Remaster)",
+      "parsedSong": "Eruption (2015 Remaster)",
+      "parsedArtist": null
+    },
+    "at://did:plc:ahveupw7pwraxkesbnwkjrhk/app.bsky.feed.post/3mehz6na2322p": {
+      "url": "https://www.youtube.com/watch?v=etAIpkdhU9Q",
+      "platform": "youtube",
+      "videoTitle": "AC/DC - Hells Bells (Official 4K Video)",
+      "parsedSong": "Hells Bells (Official 4K Video)",
+      "parsedArtist": "AC/DC"
+    },
+    "at://did:plc:nhn5jhoc474wbzpfilwavytb/app.bsky.feed.post/3mehvie7bss2j": {
+      "url": "https://www.youtube.com/watch?v=CTICOHFdCjk",
+      "platform": "youtube",
+      "videoTitle": "Klaus Nomi Ding Dong the witch is dead (extended version)",
+      "parsedSong": "Klaus Nomi Ding Dong the witch is dead (extended version)",
+      "parsedArtist": null
+    },
+    "at://did:plc:hvtx7ajb4cj4l7iep5qxy6zh/app.bsky.feed.post/3meht2bc52c2h": {
+      "url": "https://www.youtube.com/watch?v=09XoLm0sF1A",
+      "platform": "youtube",
+      "videoTitle": "Pictures at an Exhibition: X. The Great Gate of Kiev",
+      "parsedSong": "X. The Great Gate of Kiev",
+      "parsedArtist": "Pictures at an Exhibition"
+    },
+    "at://did:plc:3ahy6f34453trpbtcbcschas/app.bsky.feed.post/3mehrtscpns2e": {
+      "url": "https://www.youtube.com/watch?v=Bm9hySTVKtY",
+      "platform": "youtube",
+      "videoTitle": "We're In The Money - HD - featuring Ginger Rogers (Gold Diggers of 1933)",
+      "parsedSong": "HD - featuring Ginger Rogers (Gold Diggers of 1933)",
+      "parsedArtist": "We're In The Money"
+    },
+    "at://did:plc:zgg4jd2fr3kt5ptahhcj33sb/app.bsky.feed.post/3mehoyx7ens26": {
+      "url": "https://www.youtube.com/watch?v=0BvqGkcoY88",
+      "platform": "youtube",
+      "videoTitle": "Star Wars: Ewok Celebration & Finale // Danish National Symphony Orchestra (LIVE)",
+      "parsedSong": "Ewok Celebration & Finale // Danish National Symphony Orchestra",
+      "parsedArtist": "Star Wars"
+    },
+    "at://did:plc:z5kxkke3lqsfklrgntlpt243/app.bsky.feed.post/3mehpbn3ap227": {
+      "url": "https://www.youtube.com/watch?v=y6120QOlsfU",
+      "platform": "youtube",
+      "videoTitle": "Darude - Sandstorm",
+      "parsedSong": "Sandstorm",
+      "parsedArtist": "Darude"
+    },
+    "at://did:plc:7udm3gmb5i4f3ow24idk2g7z/app.bsky.feed.post/3mehqktld6k2h": {
+      "url": "https://www.youtube.com/watch?v=_m7_nPzG0E4",
+      "platform": "youtube",
+      "videoTitle": "The Clash - Let's Go Crazy (Remastered - Official Audio)",
+      "parsedSong": "Let's Go Crazy",
+      "parsedArtist": "The Clash"
+    },
+    "at://did:plc:rrx6pwvuznriyuzwzhx3mwtj/app.bsky.feed.post/3mehmlns4c22i": {
+      "url": "https://www.youtube.com/watch?v=xYX5ZgwM9LY",
+      "platform": "youtube",
+      "videoTitle": "Light & Day / Reach For The Sun",
+      "parsedSong": "Light & Day / Reach For The Sun",
+      "parsedArtist": null
+    },
+    "at://did:plc:vdsy525lbx26k3353pc7wxbd/app.bsky.feed.post/3mehqwiwbw224": {
+      "url": "https://www.youtube.com/watch?v=TqT_izKjCtU",
+      "platform": "youtube",
+      "videoTitle": "Five Gears In Reverse",
+      "parsedSong": "Five Gears In Reverse",
+      "parsedArtist": null
+    },
+    "at://did:plc:ns43jt7qclr2r74giayefpmr/app.bsky.feed.post/3mehlfhj7yc2w": {
+      "url": "https://www.youtube.com/watch?v=jso1YRQnpCI",
+      "platform": "youtube",
+      "videoTitle": "Pete Seeger   John Brown s body",
+      "parsedSong": "Pete Seeger   John Brown s body",
+      "parsedArtist": null
+    },
+    "at://did:plc:ejcrmg3nandy634v26uqbycp/app.bsky.feed.post/3mehmw42eks2g": {
+      "url": "https://www.youtube.com/watch?v=1sKP2-mXlgw",
+      "platform": "youtube",
+      "videoTitle": "White Rabbit (Psychedelic Blues Cover)",
+      "parsedSong": "White Rabbit (Psychedelic Blues Cover)",
+      "parsedArtist": null
+    },
+    "at://did:plc:byssomyzpzi2cq6xbglawira/app.bsky.feed.post/3mehlwo4ifc27": {
+      "url": "https://www.youtube.com/watch?v=q_qRaMuc_iY",
+      "platform": "youtube",
+      "videoTitle": "It's A Good Day",
+      "parsedSong": "It's A Good Day",
+      "parsedArtist": null
+    },
+    "at://did:plc:g7ktcmrm74d5h6btqhuqkgny/app.bsky.feed.post/3mehlsplsrk2b": {
+      "url": "https://www.youtube.com/watch?v=9yvIPR8ND9g",
+      "platform": "youtube",
+      "videoTitle": "Señor Burns (Long Version)",
+      "parsedSong": "Señor Burns (Long Version)",
+      "parsedArtist": null
+    },
+    "at://did:plc:y57casrk7drgzxe3aivsqvqq/app.bsky.feed.post/3mehliukwv22j": {
+      "url": "https://www.youtube.com/watch?v=7HcDQGZuppc",
+      "platform": "youtube",
+      "videoTitle": "Barbra Streisand - Happy Days Are Here Again",
+      "parsedSong": "Happy Days Are Here Again",
+      "parsedArtist": "Barbra Streisand"
+    },
+    "at://did:plc:wk4jrvgxifmk4ysig7si5b4d/app.bsky.feed.post/3mehih3xmhc2a": {
+      "url": "https://www.youtube.com/watch?v=kSQ8tZ35t4U",
+      "platform": "youtube",
+      "videoTitle": "When Will You Die? - They Might Be Giants (Official Video)",
+      "parsedSong": "They Might Be Giants",
+      "parsedArtist": "When Will You Die?"
+    },
+    "at://did:plc:2yzdhjhbleyj4osy6gnesk7g/app.bsky.feed.post/3mehiybaqa22h": {
+      "url": "https://www.youtube.com/watch?v=WzlAEVH4U0c",
+      "platform": "youtube",
+      "videoTitle": "Fuck Donald Trump 1 Hour",
+      "parsedSong": "Fuck Donald Trump 1 Hour",
+      "parsedArtist": null
+    },
+    "at://did:plc:zjcgjxaibdnkykwzzvikefux/app.bsky.feed.post/3mehhhdpso22g": {
+      "url": "https://www.youtube.com/watch?v=Eo-KmOd3i7s",
+      "platform": "youtube",
+      "videoTitle": "*NSYNC - Bye Bye Bye (Official Video)",
+      "parsedSong": "Bye Bye Bye",
+      "parsedArtist": "*NSYNC"
+    },
+    "at://did:plc:folsgzh4ld2fuigb4wgz7x6g/app.bsky.feed.post/3mehhxhywh225": {
+      "url": "https://www.youtube.com/watch?v=3GwjfUFyY6M",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Celebration",
+      "parsedSong": "Celebration",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:mwv67dbyva6y64as6r25cag6/app.bsky.feed.post/3mehkpj6arc2u": {
+      "url": "https://www.youtube.com/watch?v=3GwjfUFyY6M",
+      "platform": "youtube",
+      "videoTitle": "Kool & The Gang - Celebration",
+      "parsedSong": "Celebration",
+      "parsedArtist": "Kool & The Gang"
+    },
+    "at://did:plc:w6gch2fmjeqggeiq6k6ei4dd/app.bsky.feed.post/3meipo56mds2m": {
+      "url": "https://www.youtube.com/watch?v=XDkhzVw0yBs",
+      "platform": "youtube",
+      "videoTitle": "When that Man is Dead and Gone (1941) - Protest song against Hitler (Live Take)",
+      "parsedSong": "Protest song against Hitler",
+      "parsedArtist": "When that Man is Dead and Gone (1941)"
+    },
+    "at://did:plc:7wzxgh4ghcdogirklqtgufgt/app.bsky.feed.post/3mehnmyvrus2b": {
+      "url": "https://www.youtube.com/watch?v=IoyvvEWHodk",
+      "platform": "youtube",
+      "videoTitle": "Na Na Na Na Hey Hey-ey Goodbye",
+      "parsedSong": "Na Na Na Na Hey Hey-ey Goodbye",
+      "parsedArtist": null
+    },
+    "at://did:plc:2mfrjjlrkljeu3trrvndnta4/app.bsky.feed.post/3mehnpmkzqs2s": {
+      "url": "https://www.youtube.com/watch?v=uYW3mVUyUtI",
+      "platform": "youtube",
+      "videoTitle": "Rancid - Last One To Die",
+      "parsedSong": "Last One To Die",
+      "parsedArtist": "Rancid"
+    },
+    "at://did:plc:q7mbnl4sklycwbq6ujcqg37s/app.bsky.feed.post/3mehh236tw22g": {
+      "url": "https://www.youtube.com/watch?v=mgwkpOzZXWg",
+      "platform": "youtube",
+      "videoTitle": "Glad All Over (2019 Remaster)",
+      "parsedSong": "Glad All Over (2019 Remaster)",
+      "parsedArtist": null
+    },
+    "at://did:plc:vxkpxytkpl3dosdkrfbjjkxu/app.bsky.feed.post/3mei4whh5ac2u": {
+      "url": "https://www.youtube.com/watch?v=kPIdRJlzERo",
+      "platform": "youtube",
+      "videoTitle": "Ding Dong the Witch is Dead",
+      "parsedSong": "Ding Dong the Witch is Dead",
+      "parsedArtist": null
+    },
+    "at://did:plc:ajkwqtb22mbhr23jakvw3g7n/app.bsky.feed.post/3meixaab73k2e": {
+      "url": "https://www.youtube.com/watch?v=OLkPwxcIji0",
+      "platform": "youtube",
+      "videoTitle": "Chumbawamba - The day the nazi died",
+      "parsedSong": "The day the nazi died",
+      "parsedArtist": "Chumbawamba"
+    },
+    "at://did:plc:flo45yzoqrs47mze27iw27ef/app.bsky.feed.post/3mehnx7m4ws2m": {
+      "url": "https://www.youtube.com/watch?v=OLkPwxcIji0",
+      "platform": "youtube",
+      "videoTitle": "Chumbawamba - The day the nazi died",
+      "parsedSong": "The day the nazi died",
+      "parsedArtist": "Chumbawamba"
+    },
+    "at://did:plc:egxeqagzyq3vzikhsduex2kj/app.bsky.feed.post/3meiytd7wck2o": {
+      "url": "https://www.youtube.com/watch?v=4XmNNb63TVo",
+      "platform": "youtube",
+      "videoTitle": "Chumbawamba - Farewell to the Crown",
+      "parsedSong": "Farewell to the Crown",
+      "parsedArtist": "Chumbawamba"
+    },
+    "at://did:plc:rgnfawcvbximp4cskqo3ocnz/app.bsky.feed.post/3mehvx5ytqc23": {
+      "url": "https://www.youtube.com/watch?v=Dkq7WZTzkLQ",
+      "platform": "youtube",
+      "videoTitle": "Scrooge - Thank You Very Much",
+      "parsedSong": "Thank You Very Much",
+      "parsedArtist": "Scrooge"
+    },
+    "at://did:plc:gxatr25f6fz3k2ipgl7pzrfc/app.bsky.feed.post/3mehhq5inq22r": {
+      "url": "https://www.youtube.com/watch?v=fnnLfG5_Bek",
+      "platform": "youtube",
+      "videoTitle": "All I Want For Christmas Is Goth",
+      "parsedSong": "All I Want For Christmas Is Goth",
+      "parsedArtist": null
+    }
+  }
+}
